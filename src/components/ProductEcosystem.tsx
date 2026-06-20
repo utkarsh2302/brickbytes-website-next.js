@@ -78,7 +78,7 @@ const platformCards = [
 
         {/* Row 2 */}
         <rect x="25" y="62" width="190" height="30" rx="6" fill="#ffffff" stroke="#e4e4e7" strokeWidth="0.5" />
-        <text x="35" y="80" fontSize="8" fontWeight="bold" fill="#1c1a17" fontFamily="sans-serif">Priyal M.</text>
+        <text x="35" y="80" fontSize="8" fontWeight="bold" fill="#1c1a17" fontFamily="sans-serif">Priya V.</text>
         <text x="95" y="79" fontSize="7" fill="#71717a" fontFamily="sans-serif">Offer Negotiation</text>
         <rect x="160" y="69" width="45" height="14" rx="4" fill="#f4f4f5" stroke="#e4e4e7" strokeWidth="0.5" />
         <text x="182.5" y="78" fontSize="6" fontWeight="bold" fill="#71717a" fontFamily="sans-serif" textAnchor="middle">PLOT 05</text>
