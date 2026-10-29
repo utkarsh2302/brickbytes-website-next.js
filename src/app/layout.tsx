@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Lora } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { constructMetadata } from "@/lib/seo";
+import { constructMetadata, SITE_DESCRIPTION, siteJsonLd } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,8 +21,8 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = constructMetadata({
-  title: "BrickBytes | Turn Layout Plans into Digital Sales Experiences",
-  description: "Luxury interactive subdivision and plot visualization for real-estate developers and builders.",
+  title: "Interactive Master Plans for Real Estate Sales | BrickBytes",
+  description: SITE_DESCRIPTION,
   path: "/",
 });
 
@@ -37,27 +37,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "BrickBytes",
-    "url": "https://brickbytes.in",
-    "logo": "https://brickbytes.in/icon-512.png",
-    "description": "Luxury interactive subdivision and plot visualization for real-estate developers and builders.",
-    "sameAs": [
-      "https://x.com/brickbytes",
-      "https://linkedin.com/company/brickbytes"
-    ]
-  };
-
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} antialiased`}
       >
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
         />
         <Navbar />
         {children}

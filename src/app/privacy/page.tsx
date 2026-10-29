@@ -5,7 +5,7 @@ import FinalCTA from "@/components/FinalCTA";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
-  title: "BrickBytes | Privacy Policy",
+  title: "Privacy Policy | BrickBytes",
   description: "Learn about how BrickBytes collects, stores, and handles your data safely and transparently.",
   path: "/privacy",
 });

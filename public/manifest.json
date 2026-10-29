@@ -1,7 +1,7 @@
 {
   "name": "BrickBytes",
   "short_name": "BrickBytes",
-  "description": "Luxury interactive subdivision and plot visualization for real-estate developers and builders.",
+  "description": "Interactive 3D master plans and live plot inventory for real estate developers, brokers and buyers.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f7f4ef",

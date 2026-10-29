@@ -3,8 +3,8 @@ import ContactPage from "@/components/ContactPage";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
-  title: "BrickBytes | Contact Us",
-  description: "Get in touch with BrickBytes. Book a demo, reach us via WhatsApp or email, or submit a project inquiry.",
+  title: "Book a Demo or Contact Sales | BrickBytes",
+  description: "Book a BrickBytes demo for your next real estate project. Message us on WhatsApp, email business@brickbytes.in, or send your project details through the form.",
   path: "/contact",
 });
 

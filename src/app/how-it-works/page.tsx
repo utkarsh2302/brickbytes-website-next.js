@@ -3,8 +3,8 @@ import HowItWorksPage from "@/components/HowItWorksPage";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
-  title: "BrickBytes | How It Works",
-  description: "From blueprint upload to live interactive experience — the three-step BrickBytes onboarding process explained in detail.",
+  title: "How It Works: From Layout Plan to Live 3D Map | BrickBytes",
+  description: "Send your CAD or PDF layout plan and BrickBytes builds an interactive 3D project map, usually in 10 to 14 business days. See the three-step onboarding process.",
   path: "/how-it-works",
 });
 

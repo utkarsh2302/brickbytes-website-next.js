@@ -680,7 +680,7 @@ export default function Hero() {
                   {/* Drone View Background Render */}
                   {viewMode === "drone" && (
                     <image
-                      href="/drone_aerial_view.png"
+                      href="/drone_aerial_view.webp"
                       x="0"
                       y="0"
                       width="1000"

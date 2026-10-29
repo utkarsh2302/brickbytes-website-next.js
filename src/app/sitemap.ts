@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/seo";
 
+// No lastModified: a build timestamp marks every page as changed on every
+// deploy, and Google ignores lastmod values that are not accurate.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://brickbytes.in";
-  
   const routes = [
     { path: "", changeFrequency: "weekly" as const, priority: 1.0 },
     { path: "/technology", changeFrequency: "weekly" as const, priority: 0.8 },
@@ -14,8 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return routes.map((route) => ({
-    url: `${baseUrl}${route.path}`,
-    lastModified: new Date(),
+    url: `${SITE_URL}${route.path}`,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));

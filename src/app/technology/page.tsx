@@ -3,8 +3,8 @@ import TechnologyPage from "@/components/TechnologyPage";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
-  title: "BrickBytes | Our Technology",
-  description: "Interactive maps, live inventory, AI-powered engagement, and developer controls — the technology behind BrickBytes.",
+  title: "Master Plan Explorer & Live Plot Inventory | BrickBytes",
+  description: "See the BrickBytes platform: an interactive master plan explorer, live plot inventory, buyer engagement tools and a developer control center for every project.",
   path: "/technology",
 });
 

@@ -3,8 +3,8 @@ import AboutPage from "@/components/AboutPage";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
-  title: "BrickBytes | About Us",
-  description: "Building the bridge between vision and reality. Learn about BrickBytes, our mission, our team, and the values that drive us.",
+  title: "About BrickBytes | The Team Behind Interactive Master Plans",
+  description: "Meet the Jaipur team behind BrickBytes, built by BrickNova Technologies. We help real estate developers sell plots and homes with interactive live project maps.",
   path: "/about",
 });
 
