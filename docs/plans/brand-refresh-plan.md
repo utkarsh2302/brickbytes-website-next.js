@@ -14,6 +14,8 @@ Bring the whole site onto the BrickBytes v2.1 brand (Brand Guidelines v2.1, Oct 
 - **No 3D logo.** Use the flat symbol, flat glass-system shapes and plan illustrations. The 3D glass renders are not used on the site or the share card.
 - **Tagline: "Technology that holds."** It's the sign-off in the footer, the closing section and the share card. The hero headline stays "Every plot, in plain sight." so it describes what we do.
 - **Contact:** WhatsApp +91 77422 00618 and business@brickbytes.in (`src/lib/contact.ts`).
+- **Units:** plot sizes are always in square yards ("200 sq yd"), never square feet.
+- **Client logos** keep their original colours.
 - **A visitor understands exactly what we do.** Within one screen, a first-time visitor can say what BrickBytes is (a live, interactive map of a plotted project that buyers and brokers use to see and book plots), who it is for (plotted-land developers and their brokers), and what to do next (book a demo). The hero says it in plain words, three plain facts follow, then the working map demo. No jargon ("spatial engine", "sales engine", "HUD").
 
 ## Design tokens (from guidelines p. 16–18, 32)
@@ -30,7 +32,7 @@ Bring the whole site onto the BrickBytes v2.1 brand (Brand Guidelines v2.1, Oct 
 | status | `#2E7A4E` / `#B7791F` / `#9AA0A8` | Available / On hold / Booked, only in product mock-ups |
 | radius | 8px base; 16–24px for large cards | |
 
-Type: **Plus Jakarta Sans** ExtraBold/SemiBold for headlines (tracking −3%), **Inter** Regular 16/26 for body, **DM Mono** only for plot facts (`PLOT C-47 · 1,800 SQ FT · EAST`). This replaces Lora, Geist and Geist Mono.
+Type: **Plus Jakarta Sans** ExtraBold/SemiBold for headlines (tracking −3%), **Inter** Regular 16/26 for body, **DM Mono** only for plot facts (`PLOT C-47 · 200 SQ YD · EAST`). This replaces Lora, Geist and Geist Mono.
 
 ## Brand elements to build
 

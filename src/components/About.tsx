@@ -1,182 +1,72 @@
-"use client";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import SectionHeading from "./ui/SectionHeading";
 
-import React, { useState } from "react";
-import { motion, Variants } from "framer-motion";
-import { ArrowUpRight, Compass, ShieldAlert, Sparkles } from "lucide-react";
-import InteractiveGrid from "./InteractiveGrid";
-
-const aboutItems = [
+const statements = [
   {
-    tag: "01 / MISSION",
-    title: "Replace obsolete flat paperwork",
-    desc: "To replace obsolete flat paper plans and static PDFs with dynamic, interactive spatial blueprints that clarify property layouts for modern real estate buyers.",
-    icon: <Compass className="w-4 h-4 text-bb-orange" />
+    title: "Our mission",
+    body: "Make every plot visible, truthful and bookable, so land sells on clarity, not pressure.",
   },
   {
-    tag: "02 / VISION",
-    title: "Global interactive sales standard",
-    desc: "A global real estate sales standard where every master layout is digitally explorable, transparent, and instantly transactional.",
-    icon: <Sparkles className="w-4 h-4 text-bb-orange" />
+    title: "Our vision",
+    body: "Every layout plan explorable online, with prices and availability that are always current.",
   },
   {
-    tag: "03 / PHILOSOPHY",
-    title: "Precision meets presentation",
-    desc: "Engineering-grade precision meets high-end luxury presentation. We build products designed around how elite developers actually sell.",
-    icon: <ShieldAlert className="w-4 h-4 text-bb-orange" />
-  }
+    title: "How we work",
+    body: "Precise plot data, presented simply, and built around how developers actually sell.",
+  },
 ];
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15
-    }
-  }
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, x: 25 },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.16, 1, 0.3, 1]
-    }
-  }
-};
-
 export default function About() {
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-
   return (
-    <section id="about" className="relative bg-white text-ink py-20 sm:py-28 overflow-hidden border-t border-line/50">
-      {/* Blueprint Grid Accent */}
-      <InteractiveGrid opacity={0.4} />
-      
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
-          {/* LEFT COLUMN: TITLE & CAD GRAPHIC */}
-          <div className="lg:col-span-5 flex flex-col justify-between h-full text-left">
-            <div>
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3"
-              >
-                About | A Venture by BrickNova Technologies
-              </motion.div>
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-                className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-[1.2] text-ink mb-8"
-              >
-                Why BrickBytes exists.
-              </motion.h2>
-            </div>
+    <section id="about" className="relative bg-bb-stone py-24 text-ink sm:py-32">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
+        <div className="lg:col-span-5">
+          <SectionHeading
+            title="Why BrickBytes exists."
+            lead="BrickBytes is made by BrickNova Technologies in Jaipur. We build sales software for real estate developers and their brokers."
+          />
 
-            {/* Abstract CAD Blueprint Drawing */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="w-full bg-white border border-line/50 rounded-3xl p-6 shadow-sm overflow-hidden z-10"
-            >
-              <svg className="w-full h-48 md:h-56" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Internal grids */}
-                <path d="M 0 20 L 200 20 M 0 50 L 200 50 M 0 80 L 200 80 M 0 110 L 200 110 M 0 140 L 200 140 M 30 0 L 30 160 M 60 0 L 60 160 M 90 0 L 90 160 M 120 0 L 120 160 M 150 0 L 150 160 M 180 0 L 180 160" stroke="#ece6dd" strokeWidth="0.5" />
-                
-                {/* Intersecting circle maps */}
-                <circle cx="100" cy="80" r="45" fill="none" stroke="#e3ddd3" strokeWidth="0.8" />
-                <circle cx="100" cy="80" r="30" fill="none" stroke="#ff5a1f" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.6" />
-                <circle cx="100" cy="80" r="3" fill="#ff5a1f" />
-
-                {/* Symmetrical axis vectors */}
-                <line x1="100" y1="20" x2="100" y2="140" stroke="#ff5a1f" strokeWidth="0.6" opacity="0.4" />
-                <line x1="40" y1="80" x2="160" y2="80" stroke="#ff5a1f" strokeWidth="0.6" opacity="0.4" />
-
-                {/* Dimension callouts */}
-                <text x="145" y="75" fontSize="5" fontFamily="monospace" fill="#9aa0a8">R 45.00&apos;</text>
-                <text x="105" y="32" fontSize="5" fontFamily="monospace" fill="#9aa0a8">GPS: 12.35&apos; N</text>
-
-                {/* Polygon boundary draft */}
-                <polygon points="68,58 132,58 132,102 68,102" fill="none" stroke="#1c1a17" strokeWidth="0.8" />
-                <rect x="68" y="58" width="6" height="6" fill="#1c1a17" />
-                <rect x="126" y="58" width="6" height="6" fill="#1c1a17" />
-                <rect x="126" y="96" width="6" height="6" fill="#1c1a17" />
-                <rect x="68" y="96" width="6" height="6" fill="#1c1a17" />
-              </svg>
-            </motion.div>
+          {/* Construction guides, as on a surveyor's table (Guidelines p. 20) */}
+          <div className="mt-10 rounded-2xl border border-line bg-white p-6">
+            <svg aria-hidden className="h-48 w-full md:h-56" viewBox="0 0 200 160" fill="none">
+              <path
+                d="M0 20H200M0 50H200M0 80H200M0 110H200M0 140H200M30 0V160M60 0V160M90 0V160M120 0V160M150 0V160M180 0V160"
+                stroke="#ece6dd"
+                strokeWidth="0.5"
+              />
+              <circle cx="100" cy="80" r="45" stroke="#1c1a17" strokeOpacity="0.2" strokeWidth="0.6" strokeDasharray="2 2" />
+              <path d="M100 22V138M42 80H158" stroke="#1c1a17" strokeOpacity="0.15" strokeWidth="0.5" />
+              <rect x="68.5" y="58.5" width="63" height="43" fill="#e6d3bc" stroke="#1c1a17" strokeWidth="0.6" />
+              <circle cx="100" cy="80" r="3" fill="#ff5a1f" />
+              <text x="146" y="75" fontSize="5" fontFamily="monospace" fill="#5a6272">
+                R 45.00&apos;
+              </text>
+              <text x="104" y="32" fontSize="5" fontFamily="monospace" fill="#5a6272">
+                N ↑
+              </text>
+            </svg>
           </div>
 
-          {/* RIGHT COLUMN: CORE CONCISE BLOCKS */}
-          <div className="lg:col-span-7">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-100px" }}
-              className="space-y-6 sm:space-y-8"
-            >
-              {aboutItems.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  onMouseEnter={() => setHoveredIdx(idx)}
-                  onMouseLeave={() => setHoveredIdx(null)}
-                  className={`relative bg-white border rounded-3xl p-6 sm:p-8 transition-all duration-300 shadow-sm text-left flex flex-col justify-between card-hover-accent accent-radius-3xl ${
-                    hoveredIdx === idx
-                      ? "border-bb-orange/40 shadow-luxury-deep accent-active"
-                      : "border-line/60"
-                  }`}
-                >
-                  
-                  <div>
-                    {/* Header line metadata */}
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-[8px] font-mono tracking-widest text-bb-slate uppercase">
-                        {item.tag}
-                      </span>
-                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-bb-sand/30 border border-bb-sand/30">
-                        {item.icon}
-                      </span>
-                    </div>
-
-                    {/* Content */}
-                    <h3 className={`text-lg sm:text-xl font-display font-normal mb-3 transition-colors duration-300 ${
-                      hoveredIdx === idx ? "text-bb-orange" : "text-ink"
-                    }`}>
-                      {item.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light">
-                      {item.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-            
-            {/* Optional bottom link */}
-            <div className="mt-10 text-left pl-6">
-              <a
-                href="/contact"
-                className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-bb-orange hover:text-bb-orange/80 transition-colors group"
-              >
-                <span>Connect with our team</span>
-                <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            </div>
-          </div>
-
+          <Link
+            href="/contact"
+            className="mt-8 inline-flex items-center gap-1.5 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+          >
+            Talk to our team
+            <ArrowUpRight className="h-4 w-4" aria-hidden />
+          </Link>
         </div>
+
+        <ul className="flex flex-col lg:col-span-7 lg:pt-2">
+          {statements.map((statement) => (
+            <li key={statement.title} className="border-t border-ink/10 py-8 first:border-t-0 first:pt-0 lg:first:pt-2">
+              <h3 className="font-display text-lg font-semibold text-ink">{statement.title}</h3>
+              <p className="mt-3 max-w-xl font-display text-2xl font-semibold leading-snug text-ink/85 sm:text-[28px]">
+                {statement.body}
+              </p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Map, Info, Database, Check, Layers, RefreshCw } from "lucide-react";
-import InteractiveGrid from "./InteractiveGrid";
+import { Check } from "lucide-react";
+import SectionHeading from "./ui/SectionHeading";
+
+type PlotStatus = "Available" | "Hold" | "Sold";
 
 interface Plot {
   id: string;
@@ -12,7 +14,7 @@ interface Plot {
   size: string;
   road: string;
   price: string;
-  status: "Available" | "Hold" | "Sold";
+  status: PlotStatus;
   category: "corner" | "east" | "lakeside" | "north";
   x: number;
   y: number;
@@ -21,20 +23,29 @@ interface Plot {
 }
 
 const initialPlots: Plot[] = [
-  { id: "PLOT 01", type: "Corner Estate", facing: "North", size: "265 Sq. Yds.", road: "40 ft. Road", price: "₹72.0 L", status: "Available", category: "corner", x: 25, y: 25, w: 90, h: 70 },
-  { id: "PLOT 02", type: "Standard Plot", facing: "East", size: "133 Sq. Yds.", road: "30 ft. Road", price: "₹36.0 L", status: "Sold", category: "east", x: 125, y: 25, w: 90, h: 70 },
-  { id: "PLOT 03", type: "Lakeside Villa", facing: "East", size: "333 Sq. Yds.", road: "60 ft. Avenue", price: "₹1.2 Cr", status: "Hold", category: "lakeside", x: 225, y: 25, w: 100, h: 70 },
-  { id: "PLOT 04", type: "Corner Estate", facing: "East", size: "265 Sq. Yds.", road: "40 ft. Road", price: "₹76.0 L", status: "Available", category: "corner", x: 25, y: 115, w: 90, h: 80 },
-  { id: "PLOT 05", type: "Standard Plot", facing: "North", size: "165 Sq. Yds.", road: "35 ft. Road", price: "₹45.0 L", status: "Available", category: "north", x: 125, y: 115, w: 90, h: 80 },
-  { id: "PLOT 06", type: "Lakeside Villa", facing: "North", size: "355 Sq. Yds.", road: "60 ft. Avenue", price: "₹1.3 Cr", status: "Available", category: "lakeside", x: 225, y: 115, w: 100, h: 80 },
+  { id: "PLOT 01", type: "Corner plot", facing: "North", size: "265 sq yd", road: "40 ft road", price: "₹ 72 L", status: "Available", category: "corner", x: 24, y: 24, w: 90, h: 64 },
+  { id: "PLOT 02", type: "Standard plot", facing: "East", size: "133 sq yd", road: "30 ft road", price: "₹ 36 L", status: "Sold", category: "east", x: 124, y: 24, w: 90, h: 64 },
+  { id: "PLOT 03", type: "Lakeside plot", facing: "East", size: "333 sq yd", road: "60 ft avenue", price: "₹ 1.2 Cr", status: "Hold", category: "lakeside", x: 224, y: 24, w: 102, h: 64 },
+  { id: "PLOT 04", type: "Corner plot", facing: "East", size: "265 sq yd", road: "40 ft road", price: "₹ 76 L", status: "Available", category: "corner", x: 24, y: 128, w: 90, h: 68 },
+  { id: "PLOT 05", type: "Standard plot", facing: "North", size: "165 sq yd", road: "35 ft road", price: "₹ 45 L", status: "Available", category: "north", x: 124, y: 128, w: 90, h: 68 },
+  { id: "PLOT 06", type: "Lakeside plot", facing: "North", size: "355 sq yd", road: "60 ft avenue", price: "₹ 1.3 Cr", status: "Available", category: "lakeside", x: 224, y: 128, w: 102, h: 68 },
 ];
 
 const filters = [
-  { label: "Show All", value: "all" },
-  { label: "East Facing", value: "east" },
-  { label: "Corner Estates", value: "corner" },
-  { label: "Lakeside View", value: "lakeside" }
+  { label: "All plots", value: "all" },
+  { label: "East facing", value: "east" },
+  { label: "Corner plots", value: "corner" },
+  { label: "Lakeside", value: "lakeside" },
 ];
+
+// Brand status names and colours (Guidelines p. 17), used only in product mock-ups.
+const statusStyles: Record<PlotStatus, { label: string; dot: string; fill: string; hex: string; chip: string }> = {
+  Available: { label: "Available", dot: "bg-bb-available", fill: "#ffffff", hex: "#2e7a4e", chip: "border-bb-available/40 text-bb-available" },
+  Hold: { label: "On hold", dot: "bg-bb-hold", fill: "#f3e8d4", hex: "#b7791f", chip: "border-bb-hold/40 text-bb-hold" },
+  Sold: { label: "Booked", dot: "bg-bb-booked", fill: "#ece6dd", hex: "#9aa0a8", chip: "border-ink/15 text-bb-slate" },
+};
+
+const STATUSES: PlotStatus[] = ["Available", "Hold", "Sold"];
 
 export default function ProductShowcase() {
   const [plots, setPlots] = useState<Plot[]>(initialPlots);
@@ -45,35 +56,26 @@ export default function ProductShowcase() {
 
   const selectedPlot = plots.find((p) => p.id === selectedId) || null;
 
-  // Derived state for inventory management counts
-  const totalCount = plots.length;
-  const availableCount = plots.filter((p) => p.status === "Available").length;
-  const holdCount = plots.filter((p) => p.status === "Hold").length;
-  const soldCount = plots.filter((p) => p.status === "Sold").length;
+  const counts = STATUSES.map((status) => ({
+    status,
+    count: plots.filter((p) => p.status === status).length,
+  }));
 
   const handleSelectPlot = (id: string, isFilteredOut: boolean) => {
     if (isFilteredOut) return;
     setSelectedId(id);
   };
 
-  const handleUpdateStatus = (id: string, newStatus: "Available" | "Hold" | "Sold") => {
-    setPlots((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, status: newStatus } : p))
-    );
+  const handleUpdateStatus = (id: string, newStatus: PlotStatus) => {
+    setPlots((prev) => prev.map((p) => (p.id === id ? { ...p, status: newStatus } : p)));
 
     const plot = plots.find((p) => p.id === id);
     if (plot) {
-      const rx = plot.x + plot.w / 2;
-      const ry = plot.y + plot.h / 2;
-      let color = "#2e7a4e"; // Available
-      if (newStatus === "Hold") color = "#f59e0b";
-      if (newStatus === "Sold") color = "#ef4444";
-      
-      setRipple({ x: rx, y: ry, color });
+      setRipple({ x: plot.x + plot.w / 2, y: plot.y + plot.h / 2, color: statusStyles[newStatus].hex });
       setTimeout(() => setRipple(null), 1200);
     }
 
-    triggerToast(`${id} status updated to ${newStatus}. Broadcasting live update...`);
+    triggerToast(`${id} is now ${statusStyles[newStatus].label.toLowerCase()}. Every buyer and broker screen shows the change.`);
   };
 
   const triggerToast = (message: string) => {
@@ -84,35 +86,26 @@ export default function ProductShowcase() {
   };
 
   return (
-    <section id="showcase" className="relative bg-white text-ink py-20 sm:py-28 overflow-hidden border-t border-line/50">
-      <InteractiveGrid opacity={0.35} />
+    <section id="showcase" className="relative bg-bb-stone py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          title="Manage availability on a live master plan"
+          lead="Pick a plot to see its details, filter by type, then change its status the way your sales team would. Every view updates at once."
+          className="mb-12"
+        />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10 w-full">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-12 sm:mb-16 text-left">
-          <div className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3">
-            Interactive Showcase
-          </div>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-[1.2] text-ink mb-4">
-            Master Plan Explorer
-          </h2>
-          <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light max-w-xl">
-            Experience the central operating system. Click plots to explore parameters, toggle status filters, and run real-time availability updates.
-          </p>
-        </div>
-
-        {/* Filters and Inventory Status HUD */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-line/70 pb-6">
-          {/* Filters Panel */}
-          <div className="flex flex-wrap gap-2.5">
+        <div className="mb-8 flex flex-col justify-between gap-6 md:flex-row md:items-center">
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Filter plots">
             {filters.map((f) => (
               <button
                 key={f.value}
+                type="button"
                 onClick={() => setActiveFilter(f.value)}
-                className={`px-4 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 ${
+                aria-pressed={activeFilter === f.value}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
                   activeFilter === f.value
-                    ? "bg-ink text-white shadow-sm"
-                    : "bg-bb-paper text-bb-slate border border-line/50 hover:bg-bb-stone/35"
+                    ? "bg-ink text-white"
+                    : "border border-ink/15 bg-white text-ink hover:border-ink/35"
                 }`}
               >
                 {f.label}
@@ -120,388 +113,199 @@ export default function ProductShowcase() {
             ))}
           </div>
 
-          {/* Real-time Inventory Counts HUD */}
-          <div className="grid grid-cols-4 gap-2 sm:gap-4 bg-bb-paper border border-line/40 rounded-2xl p-3 text-center min-w-70 sm:min-w-85">
-            <div>
-              <span className="text-[8px] font-mono text-bb-slate uppercase block">Total</span>
-              <motion.span 
-                key={totalCount}
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                className="text-xs font-mono font-bold text-ink"
-              >
-                {totalCount}
-              </motion.span>
+          <dl className="flex flex-wrap gap-x-6 gap-y-2 whitespace-nowrap text-sm text-bb-slate" aria-live="polite">
+            <div className="flex items-center gap-2">
+              <dt>Total</dt>
+              <dd className="font-mono text-base text-ink">{plots.length}</dd>
             </div>
-            <div>
-              <span className="text-[8px] font-mono text-bb-available uppercase block">Available</span>
-              <motion.span 
-                key={availableCount}
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                className="text-xs font-mono font-bold text-bb-available"
-              >
-                {availableCount}
-              </motion.span>
-            </div>
-            <div>
-              <span className="text-[8px] font-mono text-bb-hold uppercase block">Hold</span>
-              <motion.span 
-                key={holdCount}
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                className="text-xs font-mono font-bold text-bb-hold"
-              >
-                {holdCount}
-              </motion.span>
-            </div>
-            <div>
-              <span className="text-[8px] font-mono text-bb-slate block uppercase">Sold</span>
-              <motion.span 
-                key={soldCount}
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                className="text-xs font-mono font-bold text-bb-slate"
-              >
-                {soldCount}
-              </motion.span>
-            </div>
-          </div>
+            {counts.map(({ status, count }) => (
+              <div key={status} className="flex items-center gap-2">
+                <dt className="flex items-center gap-1.5">
+                  <span aria-hidden className={`h-2 w-2 rounded-full ${statusStyles[status].dot}`} />
+                  {statusStyles[status].label}
+                </dt>
+                <dd className="font-mono text-base text-ink">{count}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        {/* Showcase Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
-          {/* LEFT: SVG Master Plan Map */}
-          <div className="lg:col-span-7 bg-bb-paper border border-line/60 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-sm relative min-h-87.5 overflow-hidden">
-            <div className="absolute inset-0 pointer-events-none opacity-5">
-              <div className="w-full h-full bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-size-[16px_16px]" />
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+          <div className="relative flex flex-col overflow-hidden rounded-3xl border border-line bg-white p-5 shadow-[0_1px_2px_rgb(28_26_23/0.04),0_32px_64px_-32px_rgb(28_26_23/0.2)] sm:p-8 lg:col-span-7">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+              <p className="font-display text-[15px] font-semibold text-ink">Sector A master plan</p>
+              <ul className="flex gap-4 text-sm text-bb-slate">
+                {STATUSES.map((status) => (
+                  <li key={status} className="flex items-center gap-1.5">
+                    <span aria-hidden className={`h-2 w-2 rounded-full ${statusStyles[status].dot}`} />
+                    {statusStyles[status].label}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Map Header details */}
-            <div className="flex justify-between items-center z-10 mb-6">
-              <div className="flex items-center gap-2">
-                <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-bb-sand/30 border border-bb-sand/30">
-                  <Map className="w-4 h-4 text-bb-orange" />
-                </span>
-                <span className="text-[10px] font-mono tracking-widest text-bb-slate uppercase font-bold">
-                  Sector A Master Plan
-                </span>
-              </div>
-              <div className="flex gap-4">
-                <span className="flex items-center gap-1.5 text-[9px] font-mono font-bold text-bb-available">
-                  <span className="w-1.5 h-1.5 rounded-full bg-bb-available" />
-                  Available
-                </span>
-                <span className="flex items-center gap-1.5 text-[9px] font-mono font-bold text-bb-hold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-bb-hold" />
-                  On Hold
-                </span>
-                <span className="flex items-center gap-1.5 text-[9px] font-mono font-bold text-bb-slate">
-                  <span className="w-1.5 h-1.5 rounded-full bg-bb-booked" />
-                  Sold Out
-                </span>
-              </div>
-            </div>
+            <div className="flex flex-1 items-center">
+            <svg className="h-auto w-full overflow-visible" viewBox="0 0 350 220" fill="none" role="group" aria-label="Sector A master plan. Select a plot to see its details.">
+              <g stroke="#1c1a17" strokeOpacity="0.55" strokeWidth="1" aria-hidden>
+                <path d="M0 103H350M0 113H350" />
+              </g>
+              <text x="342" y="110.5" textAnchor="end" className="font-mono" fontSize="6" fill="#5a6272" letterSpacing="0.08em" aria-hidden>
+                CENTRAL AVENUE · 60 FT
+              </text>
 
-            {/* SVG Interactive Map */}
-            <div className="flex-1 flex items-center justify-center py-4 z-10">
-              <svg className="w-full max-w-120 h-auto aspect-16/10 overflow-visible" viewBox="0 0 350 220" fill="none">
-                {/* Background Roads / Accents */}
-                <path d="M 0 102 L 350 102" stroke="#e3ddd3" strokeWidth="12" strokeLinecap="square" />
-                <path d="M 0 102 L 350 102" stroke="#ffffff" strokeWidth="1" strokeDasharray="4 4" />
-                <text x="175" y="105" fontSize="6" fontWeight="bold" fill="#9aa0a8" fontFamily="monospace" textAnchor="middle" tracking-widest="0.1em">CENTRAL AVENUE (60FT ROAD)</text>
+              {plots.map((plot) => {
+                const isFilteredOut = activeFilter !== "all" && plot.category !== activeFilter;
+                const isSelected = plot.id === selectedId;
+                const style = statusStyles[plot.status];
+                const cx = plot.x + plot.w / 2;
 
-                {/* Plot Paths */}
-                {plots.map((plot) => {
-                  const isFilteredOut = activeFilter !== "all" && plot.category !== activeFilter;
-                  const isSelected = plot.id === selectedId;
-                  
-                  // Status Colors
-                  let fill = "#ecfdf5";
-                  let stroke = "#2e7a4e";
-                  let textCol = "#047857";
-
-                  if (plot.status === "Hold") {
-                    fill = "#fef3c7";
-                    stroke = "#f59e0b";
-                    textCol = "#b45309";
-                  } else if (plot.status === "Sold") {
-                    fill = "#ece6dd";
-                    stroke = "#9ca3af";
-                    textCol = "#5a6272";
-                  }
-
-                  if (isSelected) {
-                    stroke = "#ff5a1f";
-                  }
-
-                  return (
-                    <motion.g
-                      key={plot.id}
-                      onClick={() => handleSelectPlot(plot.id, isFilteredOut)}
-                      className={`cursor-pointer select-none transition-all duration-300 ${
-                        isFilteredOut ? "pointer-events-none opacity-10" : "opacity-100"
-                      }`}
-                      whileHover={{ scale: isFilteredOut ? 1 : 1.02, zIndex: 10 }}
-                    >
-                      {/* Plot block */}
-                      <motion.rect
-                        x={plot.x}
-                        y={plot.y}
-                        width={plot.w}
-                        height={plot.h}
-                        rx="6"
-                        fill={fill}
-                        stroke={stroke}
-                        strokeWidth={isSelected ? 2.5 : 1}
-                        animate={isSelected ? { stroke: "#ff5a1f" } : { stroke }}
-                        className="transition-colors duration-300"
+                return (
+                  <g
+                    key={plot.id}
+                    role="button"
+                    tabIndex={isFilteredOut ? -1 : 0}
+                    aria-label={`${plot.id}, ${plot.type}, ${style.label}`}
+                    aria-pressed={isSelected}
+                    onClick={() => handleSelectPlot(plot.id, isFilteredOut)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handleSelectPlot(plot.id, isFilteredOut);
+                      }
+                    }}
+                    className={`cursor-pointer select-none outline-none transition-opacity duration-300 focus-visible:[&>rect]:stroke-ink focus-visible:[&>rect]:[stroke-width:2.5] ${
+                      isFilteredOut ? "pointer-events-none opacity-20" : "opacity-100"
+                    }`}
+                  >
+                    <rect
+                      x={plot.x + 0.5}
+                      y={plot.y + 0.5}
+                      width={plot.w}
+                      height={plot.h}
+                      fill={isSelected ? "#ff5a1f" : style.fill}
+                      stroke="#1c1a17"
+                      strokeOpacity={isSelected ? 1 : 0.55}
+                      strokeWidth="1"
+                      className="transition-colors duration-300"
+                    />
+                    <circle cx={plot.x + plot.w - 8} cy={plot.y + 8} r="3" fill={style.hex} stroke="#ffffff" strokeWidth="1" />
+                    {isSelected && (
+                      <path
+                        d={`M${cx - 9} ${plot.y + 18}a9 9 0 1 1 9 9h-9zm9-3.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z`}
+                        fill="#1c1a17"
+                        fillRule="evenodd"
                       />
-                      
-                      {/* Active Selection Marching Ants Outline */}
-                      {isSelected && (
-                        <motion.rect
-                          x={plot.x - 2}
-                          y={plot.y - 2}
-                          width={plot.w + 4}
-                          height={plot.h + 4}
-                          rx="8"
-                          fill="none"
-                          stroke="#ff5a1f"
-                          strokeWidth="1.5"
-                          strokeDasharray="4 3"
-                          animate={{ strokeDashoffset: [0, -20] }}
-                          transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
-                        />
-                      )}
-                      
-                      {/* Plot label */}
-                      <text
-                        x={plot.x + plot.w / 2}
-                        y={plot.y + plot.h / 2 - 2}
-                        fontSize="7.5"
-                        fontWeight="bold"
-                        fill={isSelected ? "#ff5a1f" : textCol}
-                        fontFamily="sans-serif"
-                        textAnchor="middle"
-                      >
-                        {plot.id}
-                      </text>
+                    )}
+                    <text x={cx} y={plot.y + plot.h - 20} fontSize="7.5" fill="#1c1a17" className="font-mono" textAnchor="middle">
+                      {plot.id}
+                    </text>
+                    <text x={cx} y={plot.y + plot.h - 9} fontSize="6" fill={isSelected ? "#1c1a17" : "#5a6272"} className="font-mono" textAnchor="middle">
+                      {plot.size}
+                    </text>
+                  </g>
+                );
+              })}
 
-                      {/* Small details inside */}
-                      <text
-                        x={plot.x + plot.w / 2}
-                        y={plot.y + plot.h / 2 + 8}
-                        fontSize="5.5"
-                        fill={isSelected ? "#ff5a1f" : "#5a6272"}
-                        fontFamily="monospace"
-                        textAnchor="middle"
-                        opacity={0.8}
-                      >
-                        {plot.size}
-                      </text>
-
-                      {/* Corner Badge representation */}
-                      {plot.type === "Corner Estate" && (
-                        <circle cx={plot.x + 8} cy={plot.y + 8} r="2.5" fill="#ff5a1f" />
-                      )}
-                    </motion.g>
-                  );
-                })}
-
-                {/* Database Synchronization Waves */}
-                <AnimatePresence>
-                  {ripple && (
-                    <g key={`sync-ripple-${ripple.x}-${ripple.y}`}>
-                      <motion.circle
-                        initial={{ r: 12, opacity: 0.6 }}
-                        animate={{ r: 85, opacity: 0 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 1.1, ease: "easeOut" }}
-                        cx={ripple.x}
-                        cy={ripple.y}
-                        fill="none"
-                        stroke={ripple.color}
-                        strokeWidth="2.5"
-                      />
-                      <motion.circle
-                        initial={{ r: 6, opacity: 0.8 }}
-                        animate={{ r: 45, opacity: 0 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
-                        cx={ripple.x}
-                        cy={ripple.y}
-                        fill="none"
-                        stroke={ripple.color}
-                        strokeWidth="1.5"
-                      />
-                    </g>
-                  )}
-                </AnimatePresence>
-              </svg>
+              <AnimatePresence>
+                {ripple && (
+                  <motion.circle
+                    key={`ripple-${ripple.x}-${ripple.y}`}
+                    initial={{ r: 10, opacity: 0.6 }}
+                    animate={{ r: 70, opacity: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    cx={ripple.x}
+                    cy={ripple.y}
+                    fill="none"
+                    stroke={ripple.color}
+                    strokeWidth="2"
+                    aria-hidden
+                  />
+                )}
+              </AnimatePresence>
+            </svg>
             </div>
 
-            {/* Simulated Live Connection Info */}
-            <div className="mt-4 flex items-center justify-between z-10 border-t border-line/70 pt-4">
-              <div className="flex items-center gap-1.5">
-                <Database className="w-3.5 h-3.5 text-bb-slate" />
-                <span className="text-[9px] font-mono text-bb-slate">Node Sync State</span>
-              </div>
-              <span className="flex items-center gap-1 text-[9px] font-mono font-bold text-bb-available">
-                <RefreshCw className="w-3 h-3 animate-spin mr-0.5" />
-                Live Broadcast
-              </span>
-            </div>
-
-            {/* Sync Alert Toast Overlay inside map */}
             <AnimatePresence>
               {toastMessage && (
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  role="status"
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  className="absolute bottom-6 left-6 right-6 bg-ink text-white px-5 py-3 rounded-2xl flex items-center gap-3 z-30 shadow-luxury-deep border border-white/10"
+                  exit={{ opacity: 0, y: 12 }}
+                  className="absolute bottom-5 left-5 right-5 z-30 flex items-center gap-3 rounded-2xl bg-ink px-5 py-3 text-sm text-white"
                 >
-                  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-bb-available shrink-0">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-bb-available">
+                    <Check className="h-3 w-3 text-white" strokeWidth={3} aria-hidden />
                   </span>
-                  <span className="text-[11px] font-sans font-medium tracking-wide">
-                    {toastMessage}
-                  </span>
+                  {toastMessage}
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
-          {/* RIGHT: Detail Information Panel */}
-          <div className="lg:col-span-5 flex flex-col">
-            <div className="bg-white border border-line/60 rounded-3xl p-6 sm:p-8 flex flex-col justify-between h-full shadow-sm">
-              <div>
-                {/* Panel Title */}
-                <div className="flex items-center justify-between border-b border-line/70 pb-5 mb-6">
-                  <div className="flex items-center gap-2">
-                    <Info className="w-4 h-4 text-bb-orange" />
-                    <h3 className="text-base font-display font-semibold text-ink">
-                      Unit Specifications
+          <div className="flex flex-col rounded-3xl border border-line bg-white p-6 sm:p-8 lg:col-span-5">
+            {selectedPlot ? (
+              <div className="flex flex-1 flex-col">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="font-mono text-xs uppercase tracking-[0.12em] text-bb-slate">{selectedPlot.id}</p>
+                    <h3 className="mt-1 font-display text-2xl font-extrabold text-ink">
+                      {selectedPlot.size} · {selectedPlot.facing}
                     </h3>
+                    <p className="mt-1 text-base text-bb-slate">{selectedPlot.type}</p>
                   </div>
-                  <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-md bg-bb-paper border border-line/40 text-bb-slate">
-                    Workspace Mode
+                  <span
+                    className={`shrink-0 rounded-full border px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.08em] ${statusStyles[selectedPlot.status].chip}`}
+                  >
+                    {statusStyles[selectedPlot.status].label}
                   </span>
                 </div>
 
-                <AnimatePresence mode="wait">
-                  {selectedPlot ? (
-                    <motion.div
-                      key={selectedPlot.id}
-                      initial={{ opacity: 0, x: 15 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -15 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {/* Plot Meta Data */}
-                      <div className="flex items-center justify-between mb-6">
-                        <div>
-                          <h4 className="text-2xl font-display font-semibold text-ink">
-                            {selectedPlot.id}
-                          </h4>
-                          <p className="text-[10px] font-mono uppercase tracking-wider text-bb-orange mt-1">
-                            {selectedPlot.type}
-                          </p>
-                        </div>
+                <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-6">
+                  <div>
+                    <dt className="text-sm text-bb-slate">Facing</dt>
+                    <dd className="mt-1 font-mono text-base text-ink">{selectedPlot.facing}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm text-bb-slate">Area</dt>
+                    <dd className="mt-1 font-mono text-base text-ink">{selectedPlot.size}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm text-bb-slate">Road</dt>
+                    <dd className="mt-1 font-mono text-base text-ink">{selectedPlot.road}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm text-bb-slate">Price</dt>
+                    <dd className="mt-1 font-mono text-base text-ink">{selectedPlot.price}</dd>
+                  </div>
+                </dl>
 
-                        {/* Dynamic Badge */}
-                        <span className={`px-2.5 py-0.5 rounded-md text-[9px] font-mono font-medium tracking-wide border flex items-center gap-1.5 select-none ${
-                          selectedPlot.status === "Available"
-                            ? "bg-bb-available/4 border-bb-available/12 text-bb-available"
-                            : selectedPlot.status === "Hold"
-                            ? "bg-bb-hold/4 border-bb-hold/15 text-bb-hold"
-                            : "bg-bb-paper border-line/60 text-bb-slate"
-                        }`}>
-                          <span className={`w-1 h-1 rounded-full ${
-                            selectedPlot.status === "Available"
-                              ? "bg-bb-available"
-                              : selectedPlot.status === "Hold"
-                              ? "bg-bb-hold"
-                              : "bg-bb-booked"
-                          }`} />
-                          {selectedPlot.status}
-                        </span>
-                      </div>
+                <div className="mt-8 border-t border-line pt-6">
+                  <p className="text-sm font-medium text-ink">Change status</p>
+                  <div className="mt-3 grid grid-cols-3 gap-2">
+                    {STATUSES.map((status) => (
+                      <button
+                        key={status}
+                        type="button"
+                        onClick={() => handleUpdateStatus(selectedPlot.id, status)}
+                        disabled={selectedPlot.status === status}
+                        className="rounded-full border border-ink/15 bg-white px-3 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:cursor-not-allowed disabled:border-transparent disabled:bg-bb-paper disabled:text-bb-slate"
+                      >
+                        {statusStyles[status].label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
-                      {/* Parameters Spec Grid */}
-                      <div className="grid grid-cols-2 gap-4 mb-8 bg-bb-paper border border-line/40 rounded-2xl p-5">
-                        <div>
-                          <span className="text-[9px] font-mono tracking-widest text-bb-slate uppercase block mb-1">Facing</span>
-                          <span className="text-xs font-sans font-semibold text-ink">{selectedPlot.facing} Facing</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] font-mono tracking-widest text-bb-slate uppercase block mb-1">Area</span>
-                          <span className="text-xs font-sans font-semibold text-ink">{selectedPlot.size}</span>
-                        </div>
-                        <div className="border-t border-line/70 pt-3">
-                          <span className="text-[9px] font-mono tracking-widest text-bb-slate uppercase block mb-1">Accessway</span>
-                          <span className="text-xs font-sans font-semibold text-ink">{selectedPlot.road}</span>
-                        </div>
-                        <div className="border-t border-line/70 pt-3">
-                          <span className="text-[9px] font-mono tracking-widest text-bb-slate uppercase block mb-1">Est. Price</span>
-                          <span className="text-xs font-sans font-semibold text-ink">{selectedPlot.price}</span>
-                        </div>
-                      </div>
-
-                      {/* Operation simulator label */}
-                      <div className="mb-4">
-                        <span className="text-[9px] font-mono tracking-widest text-bb-slate uppercase font-bold flex items-center gap-1">
-                          <Layers className="w-3 h-3" />
-                          Simulate Broker Operations
-                        </span>
-                      </div>
-
-                      {/* Control Buttons */}
-                      <div className="grid grid-cols-3 gap-2">
-                        <button
-                          onClick={() => handleUpdateStatus(selectedPlot.id, "Available")}
-                          disabled={selectedPlot.status === "Available"}
-                          className="py-2.5 px-3 rounded-lg border border-line hover:border-bb-available/20 hover:bg-bb-available/2 hover:text-bb-available text-[10px] font-mono font-bold uppercase tracking-wider transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-                        >
-                          Available
-                        </button>
-                        <button
-                          onClick={() => handleUpdateStatus(selectedPlot.id, "Hold")}
-                          disabled={selectedPlot.status === "Hold"}
-                          className="py-2.5 px-3 rounded-lg border border-line hover:border-bb-hold/25 hover:bg-bb-hold/2 hover:text-bb-hold text-[10px] font-mono font-bold uppercase tracking-wider transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-                        >
-                          Hold
-                        </button>
-                        <button
-                          onClick={() => handleUpdateStatus(selectedPlot.id, "Sold")}
-                          disabled={selectedPlot.status === "Sold"}
-                          className="py-2.5 px-3 rounded-lg border border-line hover:border-red-200 hover:bg-red-50/30 hover:text-red-600 text-[10px] font-mono font-bold uppercase tracking-wider transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-                        >
-                          Sold
-                        </button>
-                      </div>
-                    </motion.div>
-                  ) : (
-                    <div className="flex flex-col items-center justify-center py-12 text-center">
-                      <p className="text-sm text-bb-slate font-sans font-light">
-                        Select a plot block on the master plan to inspect details.
-                      </p>
-                    </div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Panel Footer */}
-              <div className="border-t border-line/70 pt-5 mt-6 text-left">
-                <p className="text-[10px] text-bb-slate leading-relaxed font-sans font-light">
-                  *This interactive console demonstrates plot availability synchronization across active developer consoles and broker maps.
+                <p className="mt-auto pt-8 text-sm leading-relaxed text-bb-slate">
+                  This demo shows how one status change reaches every developer and broker screen.
                 </p>
               </div>
-            </div>
+            ) : (
+              <p className="m-auto py-12 text-center text-base text-bb-slate">Select a plot on the master plan to see its details.</p>
+            )}
           </div>
-
         </div>
       </div>
     </section>

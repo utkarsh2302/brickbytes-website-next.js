@@ -187,7 +187,7 @@ export default function LiveMapDemo() {
       filter = "";
     } else if (viewMode === "drone") {
       if (isSelected) {
-        capFill = "rgba(255, 94, 19, 0.15)";
+        capFill = "rgba(255, 90, 31, 0.15)";
         wallRightFill = "transparent";
         wallBottomFill = "transparent";
         capStroke = "#ff5a1f";
@@ -203,9 +203,9 @@ export default function LiveMapDemo() {
       }
     } else if (dronePlotId) {
       if (isPlotZoomed) {
-        capFill = "rgba(212, 175, 55, 0.15)";
+        capFill = "rgba(230, 211, 188, 0.4)";
         wallRightFill = "#d9c2a3";
-        wallBottomFill = "#bca032";
+        wallBottomFill = "#c5b399";
         capStroke = "#d9c2a3";
         capStrokeWidth = "2.5";
         filter = "url(#shadow-plot-hover)";
@@ -358,7 +358,7 @@ export default function LiveMapDemo() {
               r="2.5"
               fill={
                 plot.status === "available" 
-                  ? "#ff5a1f" 
+                  ? "#2e7a4e" 
                   : plot.status === "reserved" 
                   ? "#b7791f" 
                   : "#9aa0a8"
@@ -426,8 +426,8 @@ export default function LiveMapDemo() {
             <div className="absolute inset-0 w-full h-full bg-bb-paper">
               {/* Luxury Header Stamp */}
               <div className="absolute top-6 left-6 flex flex-col gap-1 text-[10px] text-bb-slate font-sans tracking-wider pointer-events-none text-left">
-                <span className="font-semibold text-bb-orange uppercase tracking-[0.2em]">The Oasis Sanctuary</span>
-                <span className="font-display font-semibold text-bb-slate">Master-Planned Luxury Reserve</span>
+                <span className="font-semibold text-ink uppercase tracking-[0.2em]">The Oasis Sanctuary</span>
+                <span className="font-display font-semibold text-bb-slate">Sample plotted project</span>
               </div>
 
               {/* Floating Interactive Controls (Top Right) */}
@@ -460,7 +460,7 @@ export default function LiveMapDemo() {
               {viewMode !== "drone" && (
                 <div className="absolute top-14.5 right-6 z-20 hidden sm:flex items-center gap-3.5 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-sm border border-line/50 shadow-sm pointer-events-none text-[9px] font-bold tracking-wider uppercase">
                   <span className="flex items-center gap-1.5 text-bb-slate">
-                    <span className="w-2 h-2 rounded-full bg-bb-orange" /> Available
+                    <span className="w-2 h-2 rounded-full bg-bb-available" /> Available
                   </span>
                   <span className="flex items-center gap-1.5 text-bb-slate">
                     <span className="w-2 h-2 rounded-full bg-bb-hold" /> Reserved
@@ -527,27 +527,27 @@ export default function LiveMapDemo() {
                 <defs>
                   {/* Luxury Pool Water Gradient */}
                   <linearGradient id="pool-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#bae6fd" />
-                    <stop offset="50%" stopColor="#38bdf8" />
-                    <stop offset="100%" stopColor="#0284c7" />
+                    <stop offset="0%" stopColor="#cfdde3" />
+                    <stop offset="50%" stopColor="#b6cbd4" />
+                    <stop offset="100%" stopColor="#9fb7c2" />
                   </linearGradient>
                   
                   {/* Luxury Waterbody Gradient */}
                   <linearGradient id="lake-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#e0f2fe" />
-                    <stop offset="100%" stopColor="#bae6fd" />
+                    <stop offset="0%" stopColor="#dde7ea" />
+                    <stop offset="100%" stopColor="#cfdde3" />
                   </linearGradient>
 
                   {/* Luxury Lawn Radial Gradient */}
                   <radialGradient id="park-gradient" cx="50%" cy="50%" r="70%">
-                    <stop offset="0%" stopColor="#f7fee7" />
-                    <stop offset="70%" stopColor="#d9f99d" />
-                    <stop offset="100%" stopColor="#bef264" />
+                    <stop offset="0%" stopColor="#eef1e6" />
+                    <stop offset="70%" stopColor="#d5ddc6" />
+                    <stop offset="100%" stopColor="#c9d3b8" />
                   </radialGradient>
 
                   {/* Wood Deck Planking Pattern */}
                   <pattern id="wood-deck-upgraded" width="8" height="48" patternUnits="userSpaceOnUse" patternTransform="rotate(10)">
-                    <rect width="8" height="48" fill="#f5e0c3" opacity="0.9" />
+                    <rect width="8" height="48" fill="#ebdcc7" opacity="0.9" />
                     <line x1="8" y1="0" x2="8" y2="48" stroke="#d5c0a3" strokeWidth="0.8" />
                     <line x1="0" y1="24" x2="8" y2="24" stroke="#d5c0a3" strokeWidth="0.8" />
                   </pattern>
@@ -619,7 +619,7 @@ export default function LiveMapDemo() {
                       <path
                         d="M 50,110 C 60,60 160,40 230,80 C 290,110 320,150 240,180 C 160,200 60,180 50,110 Z"
                         fill="url(#lake-gradient)"
-                        stroke="#7dd3fc"
+                        stroke="#c3d4db"
                         strokeWidth="1.2"
                       />
                       
@@ -627,7 +627,7 @@ export default function LiveMapDemo() {
                       <path
                         d="M 50,110 C 60,60 160,40 230,80 C 290,110 320,150 240,180 C 160,200 60,180 50,110 Z"
                         fill="none"
-                        stroke="#bae6fd"
+                        stroke="#cfdde3"
                         strokeWidth="2"
                         className="ripple-anim pointer-events-none"
                       />
@@ -641,10 +641,10 @@ export default function LiveMapDemo() {
 
                       {/* Stylized Lake Boardwalk/Pier (3D Volumetric Extrusion) */}
                       {/* Mooring foundation posts (vertical cylinders) */}
-                      <line x1="215" y1="135" x2="215" y2="142" stroke="#78350f" strokeWidth="1.8" />
-                      <line x1="255" y1="155" x2="255" y2="162" stroke="#78350f" strokeWidth="1.8" />
-                      <line x1="245" y1="170" x2="245" y2="177" stroke="#78350f" strokeWidth="1.8" />
-                      <line x1="205" y1="150" x2="205" y2="157" stroke="#78350f" strokeWidth="1.8" />
+                      <line x1="215" y1="135" x2="215" y2="142" stroke="#7c6e5e" strokeWidth="1.8" />
+                      <line x1="255" y1="155" x2="255" y2="162" stroke="#7c6e5e" strokeWidth="1.8" />
+                      <line x1="245" y1="170" x2="245" y2="177" stroke="#7c6e5e" strokeWidth="1.8" />
+                      <line x1="205" y1="150" x2="205" y2="157" stroke="#7c6e5e" strokeWidth="1.8" />
 
                       {/* Pier deck bottom walls */}
                       <polygon points="215,135 255,155 253.5,153 213.5,133" fill="#9f8564" />
@@ -658,10 +658,10 @@ export default function LiveMapDemo() {
                         filter="url(#shadow-plot-elevated)"
                       />
                       {/* Mooring post caps on deck */}
-                      <circle cx="213.5" cy="133" r="1.2" fill="#78350f" />
-                      <circle cx="253.5" cy="153" r="1.2" fill="#78350f" />
-                      <circle cx="243.5" cy="168" r="1.2" fill="#78350f" />
-                      <circle cx="203.5" cy="148" r="1.2" fill="#78350f" />
+                      <circle cx="213.5" cy="133" r="1.2" fill="#7c6e5e" />
+                      <circle cx="253.5" cy="153" r="1.2" fill="#7c6e5e" />
+                      <circle cx="243.5" cy="168" r="1.2" fill="#7c6e5e" />
+                      <circle cx="203.5" cy="148" r="1.2" fill="#7c6e5e" />
                       
                       {/* Wavy reflection lines on lake */}
                       <path d="M 120,95 Q 140,90 160,95 M 150,135 Q 170,130 190,135 M 90,120 Q 105,115 120,120" fill="none" stroke="#ffffff" strokeWidth="1" opacity="0.55" strokeLinecap="round" />
@@ -678,7 +678,7 @@ export default function LiveMapDemo() {
                         height="210"
                         rx="12"
                         fill="url(#park-gradient)"
-                        stroke="#bef264"
+                        stroke="#c9d3b8"
                         strokeWidth="1.2"
                       />
                       
@@ -686,7 +686,7 @@ export default function LiveMapDemo() {
                       <path
                         d="M 725,350 Q 820,340 840,410 T 930,515"
                         fill="none"
-                        stroke="#f5e0c3"
+                        stroke="#ebdcc7"
                         strokeWidth="2.5"
                         strokeLinecap="round"
                         opacity="0.85"
@@ -701,11 +701,11 @@ export default function LiveMapDemo() {
                       />
 
                       {/* Volumetric Hedges / Trimmed Green Shrub Blocks */}
-                      <rect x="735" y="465" width="40" height="8" rx="2" fill="#15803d" stroke="#166534" strokeWidth="0.8" filter="url(#shadow-plot-elevated)" />
-                      <rect x="735" y="465" width="40" height="8" rx="2" fill="none" stroke="#22c55e" strokeWidth="0.5" opacity="0.3" />
+                      <rect x="735" y="465" width="40" height="8" rx="2" fill="#6f8462" stroke="#5a6d4f" strokeWidth="0.8" filter="url(#shadow-plot-elevated)" />
+                      <rect x="735" y="465" width="40" height="8" rx="2" fill="none" stroke="#8fa27e" strokeWidth="0.5" opacity="0.3" />
                       
-                      <rect x="890" y="485" width="35" height="8" rx="2" fill="#15803d" stroke="#166534" strokeWidth="0.8" filter="url(#shadow-plot-elevated)" />
-                      <rect x="890" y="485" width="35" height="8" rx="2" fill="none" stroke="#22c55e" strokeWidth="0.5" opacity="0.3" />
+                      <rect x="890" y="485" width="35" height="8" rx="2" fill="#6f8462" stroke="#5a6d4f" strokeWidth="0.8" filter="url(#shadow-plot-elevated)" />
+                      <rect x="890" y="485" width="35" height="8" rx="2" fill="none" stroke="#8fa27e" strokeWidth="0.5" opacity="0.3" />
 
                       {/* Volumetric Tiered Stone Fountain (Architectural Showcase) */}
                       {/* Fountain Basin shadow */}
@@ -727,15 +727,15 @@ export default function LiveMapDemo() {
 
                       {/* Landscape Trees (Stylized Volumetric Symbols) */}
                       {[
-                        { cx: 750, cy: 375, r: 10, fill: "#a3e635", stroke: "#84cc16" },
-                        { cx: 790, cy: 485, r: 8, fill: "#84cc16", stroke: "#65a30d" },
-                        { cx: 890, cy: 370, r: 11, fill: "#65a30d", stroke: "#4d7c0f" },
-                        { cx: 920, cy: 475, r: 9, fill: "#a3e635", stroke: "#84cc16" },
-                        { cx: 860, cy: 445, r: 10, fill: "#84cc16", stroke: "#65a30d" }
+                        { cx: 750, cy: 375, r: 10, fill: "#a9b897", stroke: "#8fa27e" },
+                        { cx: 790, cy: 485, r: 8, fill: "#8fa27e", stroke: "#7f9470" },
+                        { cx: 890, cy: 370, r: 11, fill: "#7f9470", stroke: "#66795a" },
+                        { cx: 920, cy: 475, r: 9, fill: "#a9b897", stroke: "#8fa27e" },
+                        { cx: 860, cy: 445, r: 10, fill: "#8fa27e", stroke: "#7f9470" }
                       ].map((tree, i) => (
                         <g key={`tree-${i}`} className="tree-sway">
                           {/* Tree trunk ground line */}
-                          <line x1={tree.cx} y1={tree.cy} x2={tree.cx - 2} y2={tree.cy + 3} stroke="#78350f" strokeWidth="1" />
+                          <line x1={tree.cx} y1={tree.cy} x2={tree.cx - 2} y2={tree.cy + 3} stroke="#7c6e5e" strokeWidth="1" />
                           {/* Tree drop shadow */}
                           <circle cx={tree.cx + 2} cy={tree.cy + 3} r={tree.r} fill="#1c1a17" fillOpacity="0.08" />
                           {/* Main volumetric canopy */}
@@ -743,7 +743,7 @@ export default function LiveMapDemo() {
                           {/* Highlighting circle */}
                           <circle cx={tree.cx - tree.r/3} cy={tree.cy - tree.r/3} r={tree.r/2.5} fill="#ffffff" fillOpacity="0.15" />
                           {/* Center core point */}
-                          <circle cx={tree.cx} cy={tree.cy} r="1" fill="#4d7c0f" />
+                          <circle cx={tree.cx} cy={tree.cy} r="1" fill="#66795a" />
                         </g>
                       ))}
 
@@ -792,7 +792,7 @@ export default function LiveMapDemo() {
                         height="56"
                         rx="3"
                         fill="url(#pool-gradient)"
-                        stroke="#38bdf8"
+                        stroke="#b6cbd4"
                         strokeWidth="0.8"
                         className="pool-shimmer-anim"
                       />
@@ -821,17 +821,17 @@ export default function LiveMapDemo() {
                       <g opacity="0.85">
                         {/* Sunbed 1 */}
                         <rect x="840" y="66" width="4" height="8" rx="0.5" fill="#ffffff" stroke="#c5a880" strokeWidth="0.4" transform="rotate(-10 840 66)" />
-                        <line x1="841" y1="67" x2="843" y2="72" stroke="#bae6fd" strokeWidth="2.4" />
+                        <line x1="841" y1="67" x2="843" y2="72" stroke="#cfdde3" strokeWidth="2.4" />
                         {/* Umbrella 1 */}
                         <circle cx="835" cy="68" r="4" fill="#ffffff" stroke="#c5a880" strokeWidth="0.5" filter="url(#shadow-plot-elevated)" />
-                        <circle cx="835" cy="68" r="0.6" fill="#78350f" />
+                        <circle cx="835" cy="68" r="0.6" fill="#7c6e5e" />
 
                         {/* Sunbed 2 */}
                         <rect x="855" y="66" width="4" height="8" rx="0.5" fill="#ffffff" stroke="#c5a880" strokeWidth="0.4" transform="rotate(-10 855 66)" />
-                        <line x1="856" y1="67" x2="858" y2="72" stroke="#bae6fd" strokeWidth="2.4" />
+                        <line x1="856" y1="67" x2="858" y2="72" stroke="#cfdde3" strokeWidth="2.4" />
                         {/* Umbrella 2 */}
                         <circle cx="850" cy="68" r="4" fill="#ffffff" stroke="#c5a880" strokeWidth="0.5" filter="url(#shadow-plot-elevated)" />
-                        <circle cx="850" cy="68" r="0.6" fill="#78350f" />
+                        <circle cx="850" cy="68" r="0.6" fill="#7c6e5e" />
                       </g>
 
                       {/* Clubhouse Pavilion Building - Volumetric 3D Extrusion */}
@@ -993,15 +993,15 @@ export default function LiveMapDemo() {
                           <g key={`road-tree-${i}`} className="tree-sway">
                             {/* Top Side Trees */}
                             <circle cx={cx + 1} cy={273} r="3.5" fill="#1c1a17" fillOpacity="0.06" />
-                            <circle cx={cx} cy={271} r="3.5" fill="#a3e635" stroke="#84cc16" strokeWidth="0.5" />
-                            <circle cx={cx - 1} cy={270} r="1.5" fill="#d9f99d" opacity="0.6" />
-                            <circle cx={cx} cy={271} r="0.6" fill="#4d7c0f" />
+                            <circle cx={cx} cy={271} r="3.5" fill="#a9b897" stroke="#8fa27e" strokeWidth="0.5" />
+                            <circle cx={cx - 1} cy={270} r="1.5" fill="#d5ddc6" opacity="0.6" />
+                            <circle cx={cx} cy={271} r="0.6" fill="#66795a" />
 
                             {/* Bottom Side Trees */}
                             <circle cx={cx + 1} cy={329} r="3.5" fill="#1c1a17" fillOpacity="0.06" />
-                            <circle cx={cx} cy={327} r="3.5" fill="#a3e635" stroke="#84cc16" strokeWidth="0.5" />
-                            <circle cx={cx - 1} cy={326} r="1.5" fill="#d9f99d" opacity="0.6" />
-                            <circle cx={cx} cy={327} r="0.6" fill="#4d7c0f" />
+                            <circle cx={cx} cy={327} r="3.5" fill="#a9b897" stroke="#8fa27e" strokeWidth="0.5" />
+                            <circle cx={cx - 1} cy={326} r="1.5" fill="#d5ddc6" opacity="0.6" />
+                            <circle cx={cx} cy={327} r="0.6" fill="#66795a" />
                           </g>
                         ))}
                       </>
@@ -1075,7 +1075,7 @@ export default function LiveMapDemo() {
                       <span className="text-lg font-display font-semibold text-ink leading-tight">{currentPlot.id}</span>
                       <span className={`text-[8px] uppercase font-bold px-1.5 py-0.5 rounded ${
                         currentPlot.status === "available" 
-                          ? "bg-bb-sand/36 text-bb-orange" 
+                          ? "bg-bb-available/10 text-bb-available" 
                           : currentPlot.status === "reserved"
                           ? "bg-bb-hold/9 text-bb-hold"
                           : "bg-bb-stone/70 text-bb-slate"
@@ -1142,7 +1142,7 @@ export default function LiveMapDemo() {
                     <g style={{ transform: "rotate(35deg)", transformOrigin: "50px 50px" }}>
                       <polygon points="50,18 55,50 50,46" fill="#ff5a1f" />
                       <polygon points="50,82 55,50 50,46" fill="rgba(255,255,255,0.4)" />
-                      <polygon points="50,18 45,50 50,46" fill="#ff3e00" />
+                      <polygon points="50,18 45,50 50,46" fill="#e2531c" />
                       <polygon points="50,82 45,50 50,46" fill="rgba(255,255,255,0.2)" />
                     </g>
                     <circle cx="50" cy="50" r="3" fill="#ffffff" />
@@ -1168,11 +1168,11 @@ export default function LiveMapDemo() {
                   <div className="absolute bottom-6 right-6 w-5 h-5 border-b border-r border-white/40" />
                   
                   {/* Drone aerial label */}
-                  <div className="absolute top-6 left-1/2 -translate-x-1/2 px-4.5 py-2.5 rounded-lg bg-ink/85 backdrop-blur-sm text-white text-[9px] font-sans tracking-[0.2em] uppercase flex items-center gap-2 shadow border border-white/10 pointer-events-auto">
-                    <Compass className="w-3.5 h-3.5 text-bb-orange animate-spin-slow" />
-                    <span>Plot {dronePlotId} Site Inspection Mode</span>
-                    <span className="text-[7.5px] text-bb-slate font-mono tracking-normal normal-case ml-1 border-l border-white/20 pl-2">
-                      Real site capture placeholder
+                  <div className="absolute top-6 left-1/2 -translate-x-1/2 px-4.5 py-2.5 rounded-lg bg-ink/90 text-white text-[11px] font-medium flex items-center gap-2 shadow border border-white/10 pointer-events-auto">
+                    <Compass className="w-3.5 h-3.5 text-bb-orange" />
+                    <span>{dronePlotId} site view</span>
+                    <span className="text-[11px] text-white/70 ml-1 border-l border-white/20 pl-2">
+                      Sample image
                     </span>
                     <button 
                       onClick={() => {
@@ -1209,7 +1209,7 @@ export default function LiveMapDemo() {
                 <p>SCALE: 1 INCH = 40 FEET</p>
                 <p>TOTAL UNITS: 16 SUBDIVISIONS</p>
                 <p>SURVEYOR: BRICKBYTES ASSOC</p>
-                <p className="text-red-700/60 font-semibold mt-1">STATUS: STATIC CAD SHEET</p>
+                <p className="text-ink font-semibold mt-1">STATUS: STATIC CAD SHEET</p>
               </div>
 
               {/* SVG Plots Map - Flat Monochrome Draft Layout */}
@@ -1420,7 +1420,7 @@ export default function LiveMapDemo() {
                 <span className="text-base font-display font-semibold text-ink">{currentPlot.id}</span>
                 <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${
                   currentPlot.status === "available" 
-                    ? "bg-bb-sand/36 text-bb-orange" 
+                    ? "bg-bb-available/10 text-bb-available" 
                     : currentPlot.status === "reserved"
                     ? "bg-bb-hold/9 text-bb-hold"
                     : "bg-bb-stone/70 text-bb-slate"

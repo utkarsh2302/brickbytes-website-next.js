@@ -87,7 +87,7 @@ export default function BrandHero() {
               className="absolute bottom-0 left-0 w-60 rounded-2xl border border-line bg-white p-5 shadow-[0_1px_2px_rgb(28_26_23/0.04),0_24px_48px_-20px_rgb(28_26_23/0.28)] sm:-left-6 sm:w-64"
             >
               <p className="font-mono text-xs uppercase tracking-[0.12em] text-bb-slate">Plot C-47</p>
-              <p className="mt-1 font-display text-2xl font-extrabold text-ink">1,800 sq ft · East</p>
+              <p className="mt-1 font-display text-2xl font-extrabold text-ink">200 sq yd · East</p>
               <p className="mt-2 font-mono text-sm text-ink">₹ 42,50,000</p>
               <div className="mt-3 flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-[0.08em]">
                 <span className="rounded-full border border-bb-available/40 px-2.5 py-1 text-bb-available">Available</span>

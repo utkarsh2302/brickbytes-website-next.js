@@ -1,35 +1,42 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, HelpCircle, ArrowRight } from "lucide-react";
-import InteractiveGrid from "./InteractiveGrid";
+import { ArrowRight, Plus } from "lucide-react";
+import SectionHeading from "./ui/SectionHeading";
 
 const faqs = [
   {
     question: "What is BrickBytes?",
-    answer: "BrickBytes is an interactive real estate sales engine that transforms static project layouts, master plans, and floor boundaries into immersive, transactional digital experiences. We replace flat blueprint drawings with dynamic 3D maps and reality site captures."
+    answer:
+      "BrickBytes turns a project's layout plan into a live, interactive map. Buyers and brokers see each plot's size, facing, price and availability, in a 2D, 3D or drone view.",
   },
   {
     question: "Who is BrickBytes for?",
-    answer: "Our platform is designed specifically for modern property developers, broker networks, and high-end buyers. It enables sales departments to present real estate layouts with absolute spatial clarity while empowering agents to check live availability and close bookings."
+    answer:
+      "Real estate developers and their broker networks. Your sales team presents the layout clearly, brokers check live availability and close bookings, and buyers explore plots before they visit.",
   },
   {
     question: "Can buyers access projects remotely?",
-    answer: "Yes. The entire interactive model operates natively in any web browser without requiring heavy installations or native apps. Remote buyers can inspect plot dimensions, check facing, trigger virtual drone site inspections, and review pricing on any desktop or mobile device."
+    answer:
+      "Yes. The map runs in any web browser on a phone or computer, with nothing to install. Buyers can check plot dimensions and facing, see prices and take a drone view of the site.",
   },
   {
     question: "How long does onboarding take?",
-    answer: "Onboarding is fully managed and typically takes 10 to 14 business days. Our spatial engineering team handles the conversion of your standard CAD (.dwg) drawings or PDF boundary drafts into a high-fidelity, interactive digital model."
+    answer:
+      "Usually 10 to 14 business days, and we handle the setup. Send us your CAD (.dwg) drawings or PDF layout plan, and our team turns them into your interactive map.",
   },
   {
     question: "Can BrickBytes support plotted developments?",
-    answer: "Absolutely. BrickBytes is built to handle plotted subdivisions, gated villa communities, and high-rise apartment towers. The engine supports custom layers for boundary lines, road widths, amenities, and floor structures."
+    answer:
+      "Yes. BrickBytes works for plotted developments, gated villa communities and apartment towers, with layers for plot boundaries, road widths, amenities and floors.",
   },
   {
     question: "Do brokers get their own portal?",
-    answer: "Yes. BrickBytes features a dedicated Broker Portal where affiliate agents can view lead listings, track reservation timers, log client site visits, and coordinate inventory reserves independently."
-  }
+    answer:
+      "Yes. In the broker portal, brokers see their leads, track reservation timers, log client site visits and hold plots for their clients.",
+  },
 ];
 
 export default function FAQ() {
@@ -40,103 +47,65 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative bg-bb-paper text-ink py-20 sm:py-28 overflow-hidden border-t border-line/50">
-      {/* Decorative Grid Accent */}
-      <InteractiveGrid opacity={0.4} />
-      
-      <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 z-10 w-full">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-12 sm:mb-20 text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-bb-sand/15 border border-bb-sand/50 text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3">
-            <HelpCircle className="w-3.5 h-3.5" />
-            <span>Platform Questions</span>
-          </div>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-[1.2] text-ink">
-            Frequently Asked Questions
-          </h2>
+    <section id="faq" className="relative bg-bb-paper py-24 text-ink sm:py-32">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
+        <div className="lg:col-span-4">
+          <SectionHeading title="Frequently asked questions" />
+          <p className="mt-6 text-base text-bb-slate">Have another question?</p>
+          <Link
+            href="/contact"
+            className="mt-1 inline-flex items-center gap-1.5 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+          >
+            Contact sales
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
         </div>
 
-        {/* Accordion Stack */}
-        <div className="space-y-4">
+        <ul className="border-b border-line lg:col-span-8">
           {faqs.map((faq, index) => {
             const isOpen = activeIndex === index;
+            const buttonId = `faq-question-${index}`;
+            const panelId = `faq-answer-${index}`;
             return (
-              <div
-                key={index}
-                className={`group border rounded-2xl bg-white transition-all duration-300 ${
-                  isOpen 
-                    ? "border-bb-orange/40 shadow-luxury-deep" 
-                    : "border-line/60 hover:border-bb-orange/20"
-                }`}
-              >
-                {/* Header / Click Area */}
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer select-none"
-                >
-                  <span className={`text-sm sm:text-base font-display transition-colors duration-300 ${
-                    isOpen ? "text-bb-orange" : "text-ink group-hover:text-bb-orange/90"
-                  }`}>
-                    {faq.question}
-                  </span>
-                  
-                  {/* Rotating Indicator */}
-                  <span className={`flex items-center justify-center w-7 h-7 rounded-full border transition-all duration-300 ${
-                    isOpen 
-                      ? "border-bb-orange/30 bg-bb-sand/30 text-bb-orange rotate-180" 
-                      : "border-line text-bb-slate group-hover:border-bb-orange/20 group-hover:text-bb-orange"
-                  }`}>
-                    <ChevronDown className="w-4 h-4" />
-                  </span>
-                </button>
+              <li key={faq.question} className="border-t border-line">
+                <h3>
+                  <button
+                    id={buttonId}
+                    type="button"
+                    onClick={() => toggleFAQ(index)}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    className="flex w-full items-center justify-between gap-6 py-6 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                  >
+                    <span className="font-display text-lg font-semibold text-ink sm:text-xl">{faq.question}</span>
+                    <Plus
+                      aria-hidden
+                      strokeWidth={1.5}
+                      className={`h-6 w-6 shrink-0 text-ink transition-transform duration-200 ${isOpen ? "rotate-45" : ""}`}
+                    />
+                  </button>
+                </h3>
 
-                {/* Animated Body panel */}
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={buttonId}
                       initial={{ height: 0, opacity: 0 }}
-                      animate={{ 
-                        height: "auto", 
-                        opacity: 1,
-                        transition: {
-                          height: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
-                          opacity: { duration: 0.25, delay: 0.05 }
-                        }
-                      }}
-                      exit={{ 
-                        height: 0, 
-                        opacity: 0,
-                        transition: {
-                          height: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
-                          opacity: { duration: 0.15 }
-                        }
-                      }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-5 sm:px-6 sm:pb-6 border-t border-line/70 pt-4">
-                        <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light">
-                          {faq.answer}
-                        </p>
-                      </div>
+                      <p className="max-w-2xl pb-7 text-base leading-relaxed text-bb-slate sm:text-lg">{faq.answer}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </li>
             );
           })}
-        </div>
-
-        {/* Bottom CTA Hook */}
-        <div className="mt-12 text-left pl-6">
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-bb-orange hover:text-bb-orange/80 transition-colors group"
-          >
-            <span>Have a different question? Contact Sales</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </a>
-        </div>
-
+        </ul>
       </div>
     </section>
   );
