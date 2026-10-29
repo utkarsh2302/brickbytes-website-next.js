@@ -59,20 +59,18 @@ const values: { title: string; desc: string; icon: BrandIconName }[] = [
 
 // Add `photo: "/team/<name>.jpg"` (portrait, at least 800×1000) to show a photo
 // instead of the brand monogram.
-const founders: { name: string; initials: string; role: string; desc: string; photo?: string }[] = [
+const founders: { name: string; initials: string; role: string; photo?: string }[] = [
   {
     name: "Utkarsh Sharma",
     initials: "US",
     role: "Founder & Director",
     photo: "/team/utkarsh-sharma.webp",
-    desc: "Utkarsh leads partnerships at BrickBytes. He works with developers and their broker networks to understand how each project is sold, then shapes every rollout so the live map fits the way their teams already work.",
   },
   {
     name: "Rashika Verma",
     initials: "RV",
     role: "Founder & Director",
     photo: "/team/rashika-verma.webp",
-    desc: "Rashika leads product at BrickBytes. She turns what developers, brokers and buyers ask for into features they use every day, and keeps every project map accurate, simple and quick to use.",
   },
 ];
 
@@ -126,36 +124,37 @@ export default function AboutPage() {
             lead="BrickBytes is built in Jaipur by BrickNova Technologies and led by its two founders."
             className="mb-12 sm:mb-16"
           />
-          <ul className="grid max-w-5xl grid-cols-1 gap-12 sm:grid-cols-2 lg:gap-16">
+          <ul className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12">
             {founders.map((founder, index) => (
-              <li key={founder.name}>
-                <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-bb-paper">
+              <li key={founder.name} className="flex items-center gap-6">
+                <div className="relative aspect-[4/5] w-32 shrink-0 overflow-hidden rounded-2xl bg-bb-paper sm:w-40">
                   {founder.photo ? (
                     <Image
                       src={founder.photo}
                       alt={`Portrait of ${founder.name}`}
                       fill
-                      sizes="(min-width: 640px) 40vw, 100vw"
+                      sizes="160px"
                       className="object-cover"
                     />
                   ) : (
                     <>
                       <GlassAccent
                         variant={index % 2 === 0 ? "pin" : "circles"}
-                        className="-right-28 -top-16 w-[440px]"
+                        className="-right-12 -top-8 w-[180px]"
                       />
                       <span
                         aria-hidden
-                        className="absolute bottom-6 left-7 font-display text-8xl font-extrabold tracking-[-0.04em] text-ink"
+                        className="absolute bottom-3 left-4 font-display text-4xl font-extrabold tracking-[-0.04em] text-ink"
                       >
                         {founder.initials}
                       </span>
                     </>
                   )}
                 </div>
-                <h3 className="mt-7 font-display text-2xl font-extrabold text-ink">{founder.name}</h3>
-                <p className="mt-1 text-base font-medium text-bb-slate">{founder.role}</p>
-                <p className="mt-4 max-w-md text-base leading-relaxed text-bb-slate">{founder.desc}</p>
+                <div>
+                  <h3 className="font-display text-2xl font-extrabold text-ink">{founder.name}</h3>
+                  <p className="mt-1 text-base font-medium text-bb-slate">{founder.role}</p>
+                </div>
               </li>
             ))}
           </ul>
