@@ -1,88 +1,86 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, Variants } from "framer-motion";
-import {
-  ArrowRight,
-  Mail,
-  MessageCircle,
-  MapPin,
-  Building2,
-  FileText,
-  User,
-  Phone,
-  Briefcase,
-  Send,
-} from "lucide-react";
-import InteractiveGrid from "./InteractiveGrid";
+import { ArrowRight, ChevronDown, Mail, MessageCircle } from "lucide-react";
+import BrandIcon from "./BrandIcon";
+import CompanyDetails from "./CompanyDetails";
 import FAQ from "./FAQ";
-import { WHATSAPP_URL } from "@/lib/contact";
+import PageHero from "./ui/PageHero";
+import SectionHeading from "./ui/SectionHeading";
+import { buttonPrimary, buttonSecondary } from "./ui/button";
+import { SALES_PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
-  },
+const projectTypes = ["Plotted layout", "Township", "High-rise", "Villa community", "Commercial", "Other"];
+
+const initialForm = {
+  name: "",
+  company: "",
+  phone: "",
+  email: "",
+  projectType: "",
+  message: "",
 };
 
-const slideInLeft: Variants = {
-  hidden: { opacity: 0, x: -50, scale: 0.95 },
-  show: {
-    opacity: 1,
-    x: 0,
-    scale: 1,
-    transition: { type: "spring", stiffness: 80, damping: 15, duration: 0.8 },
-  },
-};
+type FieldName = keyof typeof initialForm;
 
-const slideInRight: Variants = {
-  hidden: { opacity: 0, x: 50, scale: 0.95 },
-  show: {
-    opacity: 1,
-    x: 0,
-    scale: 1,
-    transition: { type: "spring", stiffness: 80, damping: 15, duration: 0.8 },
-  },
-};
-
-const springUp: Variants = {
-  hidden: { opacity: 0, y: 50, scale: 0.92 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: "spring", stiffness: 70, damping: 12, duration: 0.9 },
-  },
-};
-
-const stagger: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12 },
-  },
-};
-
-const projectTypes = [
-  "Plotted Layout",
-  "Township",
-  "High-Rise",
-  "Villa Community",
-  "Commercial",
-  "Other",
+// Messages for the fields marked `required` (or typed) in the markup below.
+const fieldMessages: { name: FieldName; missing: string; invalid?: string }[] = [
+  { name: "name", missing: "Enter your name." },
+  { name: "company", missing: "Enter your company name." },
+  { name: "email", missing: "Enter your email address.", invalid: "Enter a valid email address, like you@company.com." },
+  { name: "projectType", missing: "Choose a project type." },
 ];
 
+// Uses the browser's own constraint checks (required, type="email") and shows
+// the result next to each field instead of the native bubble.
+function findFieldErrors(formElement: HTMLFormElement) {
+  const errors: Partial<Record<FieldName, string>> = {};
+  for (const field of fieldMessages) {
+    const element = formElement.elements.namedItem(field.name);
+    if (!(element instanceof HTMLInputElement || element instanceof HTMLSelectElement)) continue;
+    if (element.validity.valid) continue;
+    errors[field.name] = element.validity.typeMismatch && field.invalid ? field.invalid : field.missing;
+  }
+  return errors;
+}
+
+const inputClass =
+  "w-full rounded-xl border border-line bg-white px-4 py-3 text-base text-ink placeholder:text-bb-slate transition-colors focus:border-ink focus:outline-none focus:ring-1 focus:ring-ink disabled:cursor-not-allowed disabled:opacity-60 aria-[invalid=true]:border-red-700";
+
+function Field({
+  id,
+  label,
+  optional,
+  error,
+  className = "",
+  children,
+}: {
+  id: string;
+  label: string;
+  optional?: boolean;
+  error?: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={`flex flex-col gap-2 ${className}`}>
+      <label htmlFor={id} className="text-sm font-medium text-ink">
+        {label}
+        {optional && <span className="font-normal text-bb-slate"> (optional)</span>}
+      </label>
+      {children}
+      {error && (
+        <p id={`${id}-error`} className="text-sm text-red-700">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
 export default function ContactPage() {
-  const [form, setForm] = useState({
-    name: "",
-    company: "",
-    phone: "",
-    email: "",
-    projectType: "",
-    message: "",
-  });
+  const [form, setForm] = useState(initialForm);
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<FieldName, string>>>({});
 
   const [isSending, setIsSending] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -91,12 +89,23 @@ export default function ContactPage() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const name = e.target.name as FieldName;
+    setForm({ ...form, [name]: e.target.value });
+    if (fieldErrors[name]) setFieldErrors({ ...fieldErrors, [name]: undefined });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isSending) return;
+
+    const errors = findFieldErrors(e.currentTarget);
+    setFieldErrors(errors);
+    const firstInvalid = fieldMessages.find((field) => errors[field.name]);
+    if (firstInvalid) {
+      const element = e.currentTarget.elements.namedItem(firstInvalid.name);
+      if (element instanceof HTMLElement) element.focus();
+      return;
+    }
 
     setIsSending(true);
     setError(null);
@@ -126,382 +135,238 @@ export default function ContactPage() {
     }
   };
 
+  const errorProps = (name: FieldName) =>
+    fieldErrors[name]
+      ? { "aria-invalid": true as const, "aria-describedby": `contact-${name}-error` }
+      : {};
+
   return (
     <>
-      {/* ─── Hero Section ─── */}
-      <section className="relative bg-bb-paper text-ink pt-36 sm:pt-44 pb-16 sm:pb-24 overflow-hidden border-b border-line/50">
-        <InteractiveGrid opacity={0.4} />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10 w-full">
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={stagger}
-            className="max-w-3xl text-left"
-          >
-            <motion.div
-              variants={fadeUp}
-              className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3"
-            >
-              Contact
-            </motion.div>
-            <motion.h1
-              variants={fadeUp}
-              className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-[1.15] text-ink mb-6"
-            >
-              Let&apos;s build something{" "}
-              <span className="">extraordinary</span>
-            </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              className="text-sm sm:text-base text-bb-slate leading-relaxed font-sans font-light max-w-xl"
-            >
-              Whether you&apos;re ready for a demo or just exploring — we&apos;d love to hear about your project. Reach out through any channel below.
-            </motion.p>
-          </motion.div>
+      <PageHero
+        title="Book a BrickBytes demo"
+        lead="Tell us about your project. We reply within one business day and set up a walkthrough of a live project map, tailored to your layout."
+        accent="pin"
+      >
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <a href="#demo-form" className={buttonPrimary}>
+            Request a demo
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </a>
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={buttonSecondary}>
+            <MessageCircle className="h-4 w-4" strokeWidth={1.5} aria-hidden />
+            Message us on WhatsApp
+          </a>
         </div>
-      </section>
+      </PageHero>
 
-      {/* ─── Contact Methods ─── */}
-      <section className="relative bg-white text-ink py-16 sm:py-24 overflow-hidden border-b border-line/50">
-        <InteractiveGrid opacity={0.3} />
-        <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 z-10 w-full">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={stagger}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-          >
-            {/* WhatsApp Card */}
-            <motion.a
-              variants={slideInLeft}
+      <section className="relative bg-bb-stone py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading title="Talk to us directly" className="mb-12" />
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-white border border-line/60 rounded-3xl p-6 sm:p-10 transition-all duration-300 shadow-sm hover:border-bb-available/25 hover:shadow-luxury-deep card-hover-accent accent-radius-3xl text-left"
-              style={{ "--accent-hover-color": "#22c55e" } as React.CSSProperties}
+              className="group flex flex-col rounded-2xl border border-line bg-white p-8 transition-colors hover:border-ink/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
             >
-              <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-bb-available/8 border border-bb-available/10 mb-6">
-                <MessageCircle className="w-6 h-6 text-bb-available" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-display font-semibold text-ink mb-2 group-hover:text-bb-available transition-colors">
-                WhatsApp
-              </h3>
-              <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light mb-6">
-                Get a quick response. Chat directly with our sales team on WhatsApp — we typically reply within minutes.
+              <MessageCircle className="h-7 w-7 text-ink" strokeWidth={1.5} aria-hidden />
+              <h3 className="mt-6 font-display text-xl font-semibold text-ink">WhatsApp</h3>
+              <p className="mt-1 font-mono text-base text-ink">{SALES_PHONE_DISPLAY}</p>
+              <p className="mt-3 text-base leading-relaxed text-bb-slate">
+                Chat with our sales team. We typically reply within minutes.
               </p>
-              <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-bb-available group-hover:text-bb-available transition-colors">
-                <span>Open WhatsApp</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+              <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
+                Open WhatsApp
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </span>
-            </motion.a>
+            </a>
 
-            {/* Email Card */}
-            <motion.a
-              variants={slideInRight}
+            <a
               href="mailto:business@brickbytes.in"
-              className="group relative bg-white border border-line/60 rounded-3xl p-6 sm:p-10 transition-all duration-300 shadow-sm hover:border-bb-orange/40 hover:shadow-luxury-deep card-hover-accent accent-radius-3xl text-left"
+              className="group flex flex-col rounded-2xl border border-line bg-white p-8 transition-colors hover:border-ink/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
             >
-              <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-bb-sand/30 border border-bb-sand/50 mb-6">
-                <Mail className="w-6 h-6 text-bb-orange" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-display font-semibold text-ink mb-2 group-hover:text-bb-orange transition-colors">
-                Email
-              </h3>
-              <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light mb-6">
-                Send us a detailed inquiry. We&apos;ll get back to you within one business day with a tailored response.
+              <Mail className="h-7 w-7 text-ink" strokeWidth={1.5} aria-hidden />
+              <h3 className="mt-6 font-display text-xl font-semibold text-ink">Email</h3>
+              <p className="mt-1 text-base font-medium text-ink">business@brickbytes.in</p>
+              <p className="mt-3 text-base leading-relaxed text-bb-slate">
+                Send us a detailed inquiry. We reply within one business day.
               </p>
-              <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-bb-orange group-hover:text-bb-orange/80 transition-colors">
-                <span>business@brickbytes.in</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+              <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
+                Write to us
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </span>
-            </motion.a>
-          </motion.div>
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* ─── Contact Form ─── */}
-      <section className="relative bg-bb-paper text-ink py-16 sm:py-24 overflow-hidden border-b border-line/50">
-        <InteractiveGrid opacity={0.3} />
-        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 z-10 w-full">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeUp} className="max-w-2xl mb-10 sm:mb-14 text-left">
-              <div className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3">
-                Request a Demo
-              </div>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-[1.2] text-ink mb-4">
-                Tell us about your project
-              </h2>
-              <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light">
-                Fill out the form below and our team will reach out with a custom walkthrough tailored to your development.
-              </p>
-            </motion.div>
+      <section id="demo-form" className="relative scroll-mt-18 bg-bb-paper py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            title="Tell us about your project"
+            lead="Share a few details and we'll set up a walkthrough tailored to your project."
+            className="mb-12"
+          />
 
+          <div className="max-w-3xl">
             {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white border border-bb-available/12 rounded-3xl p-10 sm:p-14 text-center shadow-sm"
-              >
-                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-bb-available/8 border border-bb-available/10 mx-auto mb-6">
-                  <Send className="w-7 h-7 text-bb-available" />
-                </div>
-                <h3 className="text-xl sm:text-2xl font-display font-semibold text-ink mb-3">
-                  Request received
-                </h3>
-                <p className="text-sm text-bb-slate font-sans font-light max-w-md mx-auto">
+              <div role="status" className="rounded-3xl border border-line bg-white p-10 sm:p-14">
+                <BrandIcon name="pin" className="h-12 w-12" />
+                <h3 className="mt-6 font-display text-2xl font-semibold text-ink">Request received</h3>
+                <p className="mt-3 max-w-md text-base leading-relaxed text-bb-slate">
                   Thank you for reaching out. Our team will review your details and get back to you within one business day.
                 </p>
-              </motion.div>
+              </div>
             ) : (
-              <motion.form
-                variants={springUp}
+              <form
+                noValidate
                 onSubmit={handleSubmit}
-                className="bg-white border border-line/60 rounded-3xl p-5 sm:p-10 shadow-sm"
+                className="rounded-3xl border border-line bg-white p-6 shadow-[0_1px_2px_rgb(28_26_23/0.04),0_24px_48px_-32px_rgb(28_26_23/0.2)] sm:p-10"
               >
                 {error && (
-                  <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-100 text-xs sm:text-sm text-red-600 text-left">
+                  <div role="alert" className="mb-8 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
                     {error}
                   </div>
                 )}
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-                  {/* Name */}
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="contact-name" className="text-[10px] font-mono font-bold tracking-widest text-bb-slate uppercase flex items-center gap-1.5">
-                      <User className="w-3 h-3" />
-                      Name
-                    </label>
+
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <Field id="contact-name" label="Name" error={fieldErrors.name}>
                     <input
                       id="contact-name"
                       type="text"
                       name="name"
+                      autoComplete="name"
                       required
                       disabled={isSending}
                       value={form.name}
                       onChange={handleChange}
                       placeholder="Your full name"
-                      className="w-full px-4 py-3 rounded-xl border border-line bg-bb-paper text-sm text-ink font-sans placeholder:text-bb-slate focus:outline-none focus:border-bb-orange/50 focus:ring-1 focus:ring-bb-orange/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className={inputClass}
+                      {...errorProps("name")}
                     />
-                  </div>
+                  </Field>
 
-                  {/* Company */}
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="contact-company" className="text-[10px] font-mono font-bold tracking-widest text-bb-slate uppercase flex items-center gap-1.5">
-                      <Building2 className="w-3 h-3" />
-                      Company
-                    </label>
+                  <Field id="contact-company" label="Company" error={fieldErrors.company}>
                     <input
                       id="contact-company"
                       type="text"
                       name="company"
+                      autoComplete="organization"
                       required
                       disabled={isSending}
                       value={form.company}
                       onChange={handleChange}
                       placeholder="Company name"
-                      className="w-full px-4 py-3 rounded-xl border border-line bg-bb-paper text-sm text-ink font-sans placeholder:text-bb-slate focus:outline-none focus:border-bb-orange/50 focus:ring-1 focus:ring-bb-orange/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className={inputClass}
+                      {...errorProps("company")}
                     />
-                  </div>
+                  </Field>
 
-                  {/* Phone */}
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="contact-phone" className="text-[10px] font-mono font-bold tracking-widest text-bb-slate uppercase flex items-center gap-1.5">
-                      <Phone className="w-3 h-3" />
-                      Phone
-                    </label>
+                  <Field id="contact-phone" label="Phone" optional>
                     <input
                       id="contact-phone"
                       type="tel"
                       name="phone"
+                      autoComplete="tel"
                       disabled={isSending}
                       value={form.phone}
                       onChange={handleChange}
                       placeholder="+91 98765 43210"
-                      className="w-full px-4 py-3 rounded-xl border border-line bg-bb-paper text-sm text-ink font-sans placeholder:text-bb-slate focus:outline-none focus:border-bb-orange/50 focus:ring-1 focus:ring-bb-orange/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className={inputClass}
                     />
-                  </div>
+                  </Field>
 
-                  {/* Email */}
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="contact-email" className="text-[10px] font-mono font-bold tracking-widest text-bb-slate uppercase flex items-center gap-1.5">
-                      <Mail className="w-3 h-3" />
-                      Email
-                    </label>
+                  <Field id="contact-email" label="Email" error={fieldErrors.email}>
                     <input
                       id="contact-email"
                       type="email"
                       name="email"
+                      autoComplete="email"
                       required
                       disabled={isSending}
                       value={form.email}
                       onChange={handleChange}
                       placeholder="you@company.com"
-                      className="w-full px-4 py-3 rounded-xl border border-line bg-bb-paper text-sm text-ink font-sans placeholder:text-bb-slate focus:outline-none focus:border-bb-orange/50 focus:ring-1 focus:ring-bb-orange/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className={inputClass}
+                      {...errorProps("email")}
                     />
-                  </div>
+                  </Field>
+
+                  <Field id="contact-projectType" label="Project type" error={fieldErrors.projectType} className="sm:col-span-2">
+                    <div className="relative">
+                      <select
+                        id="contact-projectType"
+                        name="projectType"
+                        required
+                        disabled={isSending}
+                        value={form.projectType}
+                        onChange={handleChange}
+                        className={`${inputClass} cursor-pointer appearance-none pr-11`}
+                        {...errorProps("projectType")}
+                      >
+                        <option value="" disabled>
+                          Select project type
+                        </option>
+                        {projectTypes.map((type) => (
+                          <option key={type} value={type}>
+                            {type}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown
+                        className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink"
+                        aria-hidden
+                      />
+                    </div>
+                  </Field>
+
+                  <Field id="contact-message" label="Message" optional className="sm:col-span-2">
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      rows={4}
+                      disabled={isSending}
+                      value={form.message}
+                      onChange={handleChange}
+                      placeholder="Number of plots, location, timeline..."
+                      className={`${inputClass} resize-none`}
+                    />
+                  </Field>
                 </div>
 
-                {/* Project Type */}
-                <div className="flex flex-col gap-1.5 mb-5">
-                  <label htmlFor="contact-project-type" className="text-[10px] font-mono font-bold tracking-widest text-bb-slate uppercase flex items-center gap-1.5">
-                    <Briefcase className="w-3 h-3" />
-                    Project Type
-                  </label>
-                  <select
-                    id="contact-project-type"
-                    name="projectType"
-                    required
-                    disabled={isSending}
-                    value={form.projectType}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl border border-line bg-bb-paper text-sm text-ink font-sans focus:outline-none focus:border-bb-orange/50 focus:ring-1 focus:ring-bb-orange/20 transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <option value="" disabled>
-                      Select project type
-                    </option>
-                    {projectTypes.map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Message */}
-                <div className="flex flex-col gap-1.5 mb-8">
-                  <label htmlFor="contact-message" className="text-[10px] font-mono font-bold tracking-widest text-bb-slate uppercase flex items-center gap-1.5">
-                    <FileText className="w-3 h-3" />
-                    Message
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    rows={4}
-                    disabled={isSending}
-                    value={form.message}
-                    onChange={handleChange}
-                    placeholder="Tell us about your project — number of plots, location, timeline..."
-                    className="w-full px-4 py-3 rounded-xl border border-line bg-bb-paper text-sm text-ink font-sans placeholder:text-bb-slate focus:outline-none focus:border-bb-orange/50 focus:ring-1 focus:ring-bb-orange/20 transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
-                  />
-                </div>
-
-                {/* Submit */}
                 <button
                   type="submit"
                   disabled={isSending}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-bb-orange hover:bg-bb-orange/95 text-white font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors duration-300 shadow-xl shadow-bb-orange/20 group disabled:opacity-70 disabled:cursor-not-allowed"
+                  className={`${buttonPrimary} mt-8 w-full disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto`}
                 >
                   {isSending ? (
                     <>
-                      <span>Sending...</span>
-                      <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      Sending…
+                      <span
+                        aria-hidden
+                        className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"
+                      />
                     </>
                   ) : (
                     <>
-                      <span>Request Demo</span>
-                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                      Request a demo
+                      <ArrowRight className="h-4 w-4" aria-hidden />
                     </>
                   )}
                 </button>
-              </motion.form>
+              </form>
             )}
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* ─── Office Information ─── */}
-      <section className="relative bg-white text-ink py-14 sm:py-20 overflow-hidden border-b border-line/50">
-        <InteractiveGrid opacity={0.25} />
-        <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 z-10 w-full">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeUp} className="mb-8 text-left">
-              <div className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3">
-                Office
-              </div>
-              <h2 className="text-xl sm:text-3xl font-display font-extrabold tracking-tight text-ink">
-                Company Information
-              </h2>
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-6"
-            >
-              {/* Address */}
-              <motion.div 
-                variants={slideInLeft}
-                className="flex items-start gap-3 bg-bb-paper border border-line/50 rounded-2xl p-6"
-              >
-                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-bb-sand/30 border border-bb-sand/30 shrink-0">
-                  <MapPin className="w-4 h-4 text-bb-orange" />
-                </div>
-                <div className="text-left">
-                  <div className="text-[9px] font-mono font-bold tracking-widest text-bb-slate uppercase mb-1">
-                    Registered Office
-                  </div>
-                  <p className="text-xs sm:text-sm text-bb-slate font-sans font-light leading-relaxed">
-                    Khushi Sansar, Lakshmi Nikunj,
-                    <br />
-                    Rampura Road, Mohanpura,
-                    <br />
-                    Jaipur, Rajasthan 302020, India
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* CIN */}
-              <motion.div 
-                variants={springUp}
-                className="flex items-start gap-3 bg-bb-paper border border-line/50 rounded-2xl p-6"
-              >
-                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-bb-sand/30 border border-bb-sand/30 shrink-0">
-                  <Building2 className="w-4 h-4 text-bb-orange" />
-                </div>
-                <div className="text-left">
-                  <div className="text-[9px] font-mono font-bold tracking-widest text-bb-slate uppercase mb-1">
-                    CIN
-                  </div>
-                  <p className="text-xs sm:text-sm text-bb-slate font-mono font-light leading-relaxed">
-                    U62011RJ2026PTC113544
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* GSTIN */}
-              <motion.div 
-                variants={slideInRight}
-                className="flex items-start gap-3 bg-bb-paper border border-line/50 rounded-2xl p-6"
-              >
-                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-bb-sand/30 border border-bb-sand/30 shrink-0">
-                  <FileText className="w-4 h-4 text-bb-orange" />
-                </div>
-                <div className="text-left">
-                  <div className="text-[9px] font-mono font-bold tracking-widest text-bb-slate uppercase mb-1">
-                    GSTIN
-                  </div>
-                  <p className="text-xs sm:text-sm text-bb-slate font-mono font-light leading-relaxed">
-                    08AAOCB6672J1Z2
-                  </p>
-                </div>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+      <section aria-labelledby="company-heading" className="relative bg-bb-stone py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading id="company-heading" title="Company information" className="mb-12" />
+          <CompanyDetails />
         </div>
       </section>
 
-      {/* ─── FAQ Section (reused) ─── */}
       <FAQ />
     </>
   );

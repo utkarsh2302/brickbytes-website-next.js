@@ -24,10 +24,11 @@ const steps: { icon: BrandIconName; title: string; desc: string }[] = [
 ];
 
 // A genuine three-step sequence, so the steps are numbered.
-export default function HowItWorks() {
+// showAccent is off on /how-it-works, where the page hero already carries one.
+export default function HowItWorks({ showAccent = true }: { showAccent?: boolean }) {
   return (
     <section id="process" className="relative overflow-hidden bg-bb-paper py-24 sm:py-32">
-      <GlassAccent variant="circles" className="-top-56 right-0 hidden w-[460px] lg:block" />
+      {showAccent && <GlassAccent variant="circles" className="-top-56 right-0 hidden w-[460px] lg:block" />}
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading

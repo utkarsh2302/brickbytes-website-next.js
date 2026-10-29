@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
-import InteractiveGrid from "@/components/InteractiveGrid";
 import FinalCTA from "@/components/FinalCTA";
+import PageHero from "@/components/ui/PageHero";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
@@ -10,69 +10,43 @@ export const metadata: Metadata = constructMetadata({
   path: "/privacy",
 });
 
+const h2Class = "font-display text-2xl font-semibold text-ink";
+
 export default function PrivacyPage() {
   const lastUpdated = "June 14, 2026";
 
   return (
     <>
-      {/* ─── Hero Section ─── */}
-      <section className="relative bg-bb-paper text-ink pt-36 sm:pt-44 pb-16 sm:pb-24 overflow-hidden border-b border-line/50">
-        <InteractiveGrid opacity={0.6} />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10 w-full">
-          <div className="max-w-3xl text-left">
-            <div className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3">
-              Legal
-            </div>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-[1.15] text-ink mb-6">
-              Privacy <span className="">Policy</span>
-            </h1>
-            <p className="text-xs sm:text-sm text-bb-slate font-mono font-light">
-              Last Updated: {lastUpdated}
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero title="Privacy policy" lead={`Last updated ${lastUpdated}`} accent="pin" />
 
-      {/* ─── Document Content ─── */}
-      <section className="relative bg-white text-ink py-16 sm:py-24 overflow-hidden border-b border-line/50">
-        <InteractiveGrid opacity={0.3} />
-        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 z-10 w-full">
-          <div className="flex flex-col gap-10 text-left font-sans font-light text-sm sm:text-base text-bb-slate leading-relaxed">
-            
-            {/* Section 1 */}
+      <section className="relative bg-bb-paper pb-24 sm:pb-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <article className="flex max-w-3xl flex-col gap-12 border-t border-line pt-16 text-base leading-7 text-bb-slate [&_strong]:font-semibold [&_strong]:text-ink">
             <div>
-              <h2 className="text-xl sm:text-2xl font-display font-semibold text-ink mb-4">
-                1. Introduction
-              </h2>
-              <p>
+              <h2 className={h2Class}>1. Introduction</h2>
+              <p className="mt-4">
                 Welcome to BrickBytes, operated by <strong>BrickNova Technologies Private Limited</strong>. We respect your privacy and are committed to protecting the personal data we collect from you. This Privacy Policy explains how we gather, use, disclose, and secure your information when you visit our website and use our real estate interactive showcase platforms.
               </p>
             </div>
 
-            {/* Section 2 */}
             <div>
-              <h2 className="text-xl sm:text-2xl font-display font-semibold text-ink mb-4">
-                2. Information We Collect
-              </h2>
-              <p className="mb-4">
+              <h2 className={h2Class}>2. Information we collect</h2>
+              <p className="mt-4">
                 We collect personal information that you voluntarily provide to us when you request a demo, submit an inquiry, or contact us. This includes:
               </p>
-              <ul className="list-disc pl-6 space-y-2">
+              <ul className="mt-4 list-disc space-y-2 pl-6">
                 <li><strong>Contact details</strong>: Name, email address, telephone/WhatsApp number, and physical office location.</li>
                 <li><strong>Professional info</strong>: Company name, job title, and project scale metadata.</li>
                 <li><strong>Interactive inputs</strong>: Content and messages submitted through our request forms and custom chat panels.</li>
               </ul>
             </div>
 
-            {/* Section 3 */}
             <div>
-              <h2 className="text-xl sm:text-2xl font-display font-semibold text-ink mb-4">
-                3. How We Use Your Information
-              </h2>
-              <p className="mb-4">
+              <h2 className={h2Class}>3. How we use your information</h2>
+              <p className="mt-4">
                 We use the collected data exclusively to power and improve our product offerings, specifically:
               </p>
-              <ul className="list-disc pl-6 space-y-2">
+              <ul className="mt-4 list-disc space-y-2 pl-6">
                 <li>Processing and arranging personalized interactive demo walkthroughs.</li>
                 <li>Sending transactional updates, service alerts, and responder confirmations via email or WhatsApp.</li>
                 <li>Optimizing user engagement metrics across our digital maps and bento interfaces.</li>
@@ -80,47 +54,45 @@ export default function PrivacyPage() {
               </ul>
             </div>
 
-            {/* Section 4 */}
             <div>
-              <h2 className="text-xl sm:text-2xl font-display font-semibold text-ink mb-4">
-                4. Data Sharing and Third Parties
-              </h2>
-              <p>
+              <h2 className={h2Class}>4. Data sharing and third parties</h2>
+              <p className="mt-4">
                 We do not sell, rent, or trade your personal data to third-party marketing companies. Data is only shared with certified cloud hosting servers and database APIs (such as Resend or Vercel) necessary to deliver website notification emails and host interactive models securely.
               </p>
             </div>
 
-            {/* Section 5 */}
             <div>
-              <h2 className="text-xl sm:text-2xl font-display font-semibold text-ink mb-4">
-                5. Security and Data Retention
-              </h2>
-              <p>
+              <h2 className={h2Class}>5. Security and data retention</h2>
+              <p className="mt-4">
                 We implement strict standard security measures to safeguard your credentials. Your personal details are retained only as long as necessary to fulfill the demo setup and ongoing business interactions, or to satisfy legal, accounting, and compliance reporting requirements.
               </p>
             </div>
 
-            {/* Section 6 */}
             <div>
-              <h2 className="text-xl sm:text-2xl font-display font-semibold text-ink mb-4">
-                6. Contact Information
-              </h2>
-              <p className="mb-4">
+              <h2 className={h2Class}>6. Contact information</h2>
+              <p className="mt-4">
                 For questions or requests regarding your personal data rights under this Privacy Policy, please contact our legal desk:
               </p>
-              <div className="bg-bb-paper border border-line/50 rounded-2xl p-6 font-mono text-xs sm:text-sm text-bb-slate">
-                <span className="text-ink block mb-2 font-display font-semibold">BrickNova Technologies Private Limited</span>
-                Office: Khushi Sansar, Lakshmi Nikunj, Rampura Road, Mohanpura, Jaipur, Rajasthan 302020, India<br />
-                CIN: U62011RJ2026PTC113544<br />
-                Email: <a href="mailto:business@brickbytes.in" className="text-bb-orange hover:underline">business@brickbytes.in</a>
-              </div>
+              <address className="mt-4 rounded-2xl border border-line bg-white p-6 not-italic">
+                <span className="block font-display font-semibold text-ink">BrickNova Technologies Private Limited</span>
+                <span className="mt-2 block">
+                  Office: Khushi Sansar, Lakshmi Nikunj, Rampura Road, Mohanpura, Jaipur, Rajasthan 302020, India
+                </span>
+                <span className="block">
+                  CIN: <span className="font-mono">U62011RJ2026PTC113544</span>
+                </span>
+                <span className="block">
+                  Email:{" "}
+                  <a href="mailto:business@brickbytes.in" className="text-ink underline underline-offset-4 hover:text-bb-kiln">
+                    business@brickbytes.in
+                  </a>
+                </span>
+              </address>
             </div>
-
-          </div>
+          </article>
         </div>
       </section>
 
-      {/* ─── Final CTA ─── */}
       <FinalCTA />
     </>
   );

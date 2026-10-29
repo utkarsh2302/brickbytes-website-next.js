@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { motion } from "framer-motion";
-import { RotateCcw, Mail } from "lucide-react";
-import InteractiveGrid from "@/components/InteractiveGrid";
+import { RotateCcw } from "lucide-react";
+import BrandIcon from "@/components/BrandIcon";
+import { buttonPrimary, buttonSecondary } from "@/components/ui/button";
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -17,54 +17,31 @@ export default function Error({ error, reset }: ErrorProps) {
   }, [error]);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-bb-paper text-ink px-4 overflow-hidden">
-      {/* Dynamic architectural grid background */}
-      <InteractiveGrid opacity={0.55} />
-
-      <div className="relative max-w-lg w-full text-center z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="glass-card rounded-3xl p-8 sm:p-12 border border-line/60 shadow-luxury-deep"
-        >
-          {/* Subtle label */}
-          <div className="text-[10px] uppercase tracking-[0.3em] font-mono font-bold text-bb-orange mb-4">
-            System Alert
-          </div>
-
-          {/* Elegant header */}
-          <h1 className="text-3xl sm:text-4xl font-display font-extrabold tracking-tight text-ink mb-4">
-            Experience <span className="">Interrupted</span>
+    <section className="relative flex min-h-[80vh] items-center overflow-hidden bg-bb-paper pb-24 pt-36">
+      <div
+        aria-hidden
+        className="bg-grid-pattern absolute inset-y-0 right-0 w-2/3 [mask-image:radial-gradient(closest-side,black,transparent)]"
+      />
+      <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="max-w-xl">
+          <BrandIcon name="facing" className="h-14 w-14" />
+          <h1 className="mt-8 font-display text-5xl font-extrabold leading-[1] tracking-[-0.035em] text-ink sm:text-6xl">
+            Something went wrong
           </h1>
-
-          {/* Error copy */}
-          <p className="text-sm sm:text-base text-bb-slate font-sans font-light leading-relaxed mb-8">
-            An unexpected layout rendering boundary was crossed or a network timeout occurred. Please try resetting the view, or contact our support desk if this persists.
+          <p className="mt-6 text-lg leading-relaxed text-bb-slate">
+            This page didn&apos;t load as expected. Try again. If it keeps happening, email us at business@brickbytes.in.
           </p>
-
-          {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            {/* Reset / Retry CTA */}
-            <button
-              onClick={() => reset()}
-              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-bb-orange hover:bg-bb-orange/95 text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-md shadow-bb-orange/20 hover:shadow-bb-orange/30 cursor-pointer"
-            >
-              <RotateCcw className="w-3.5 h-3.5 animate-spin-slow" />
-              <span>Retry Render</span>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <button type="button" onClick={() => reset()} className={buttonPrimary}>
+              <RotateCcw className="h-4 w-4" aria-hidden />
+              Try again
             </button>
-
-            {/* Support CTA */}
-            <a
-              href="mailto:business@brickbytes.in"
-              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white border border-line hover:border-ink/15 hover:bg-bb-paper font-bold text-xs uppercase tracking-wider text-bb-slate transition-all duration-300"
-            >
-              <Mail className="w-3.5 h-3.5" />
-              <span>Contact Support</span>
+            <a href="mailto:business@brickbytes.in" className={buttonSecondary}>
+              Email us
             </a>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

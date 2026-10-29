@@ -55,3 +55,6 @@ Desktop.ini
 # TypeScript build info
 *.tsbuildinfo
 next-env.d.ts
+
+# Reticle browser-testing artifacts (also keeps Tailwind from scanning them)
+.reticle/
