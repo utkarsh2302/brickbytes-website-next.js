@@ -83,6 +83,54 @@ export default function AboutPage() {
         accent="circles"
       />
 
+      {/* Founders sit right under the opening, as a compact block on the same Paper */}
+      <section aria-labelledby="founders-heading" className="relative bg-bb-paper pb-24 sm:pb-28">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-10 border-t border-line pt-12 lg:grid-cols-12 lg:items-center lg:gap-8">
+            <div className="lg:col-span-5">
+              <h2 id="founders-heading" className="font-display text-3xl font-extrabold leading-[1.05] text-ink sm:text-4xl">
+                Founded in Jaipur
+              </h2>
+              <p className="mt-4 max-w-md text-lg leading-relaxed text-bb-slate">
+                BrickBytes is built by BrickNova Technologies and led by its two founders.
+              </p>
+            </div>
+            <ul className="flex gap-6 sm:gap-8 lg:col-span-7 lg:justify-end">
+              {founders.map((founder, index) => (
+                <li key={founder.name} className="w-40 sm:w-44">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-bb-stone">
+                    {founder.photo ? (
+                      <Image
+                        src={founder.photo}
+                        alt={`Portrait of ${founder.name}`}
+                        fill
+                        sizes="176px"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <>
+                        <GlassAccent
+                          variant={index % 2 === 0 ? "pin" : "circles"}
+                          className="-right-12 -top-8 w-[180px]"
+                        />
+                        <span
+                          aria-hidden
+                          className="absolute bottom-3 left-4 font-display text-4xl font-extrabold tracking-[-0.04em] text-ink"
+                        >
+                          {founder.initials}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                  <h3 className="mt-4 font-display text-lg font-extrabold text-ink">{founder.name}</h3>
+                  <p className="mt-0.5 text-sm font-medium text-bb-slate">{founder.role}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section className="relative bg-bb-stone py-24 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading title="What we're working towards" className="mb-12 sm:mb-16" />
@@ -119,50 +167,6 @@ export default function AboutPage() {
 
       <section className="relative bg-bb-stone py-24 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            title="The team behind BrickBytes"
-            lead="BrickBytes is built in Jaipur by BrickNova Technologies and led by its two founders."
-            className="mb-12 sm:mb-16"
-          />
-          <ul className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12">
-            {founders.map((founder, index) => (
-              <li key={founder.name} className="flex items-center gap-6">
-                <div className="relative aspect-[4/5] w-32 shrink-0 overflow-hidden rounded-2xl bg-bb-paper sm:w-40">
-                  {founder.photo ? (
-                    <Image
-                      src={founder.photo}
-                      alt={`Portrait of ${founder.name}`}
-                      fill
-                      sizes="160px"
-                      className="object-cover"
-                    />
-                  ) : (
-                    <>
-                      <GlassAccent
-                        variant={index % 2 === 0 ? "pin" : "circles"}
-                        className="-right-12 -top-8 w-[180px]"
-                      />
-                      <span
-                        aria-hidden
-                        className="absolute bottom-3 left-4 font-display text-4xl font-extrabold tracking-[-0.04em] text-ink"
-                      >
-                        {founder.initials}
-                      </span>
-                    </>
-                  )}
-                </div>
-                <div>
-                  <h3 className="font-display text-2xl font-extrabold text-ink">{founder.name}</h3>
-                  <p className="mt-1 text-base font-medium text-bb-slate">{founder.role}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="relative bg-bb-paper py-24 sm:py-32">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading title="What guides our work" className="mb-12 sm:mb-16" />
           <ul className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value) => (
@@ -176,15 +180,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section aria-labelledby="company-heading" className="relative bg-bb-paper pb-24 sm:pb-32">
+      <section aria-labelledby="company-heading" className="relative bg-bb-paper py-24 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="border-t border-line pt-16">
-            <h2 id="company-heading" className="font-display text-2xl font-extrabold text-ink sm:text-3xl">
-              BrickNova Technologies Private Limited
-            </h2>
-            <div className="mt-8">
-              <CompanyDetails />
-            </div>
+          <h2 id="company-heading" className="font-display text-2xl font-extrabold text-ink sm:text-3xl">
+            BrickNova Technologies Private Limited
+          </h2>
+          <div className="mt-8">
+            <CompanyDetails />
           </div>
         </div>
       </section>

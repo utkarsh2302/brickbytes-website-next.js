@@ -54,7 +54,7 @@ export default function BrandHero() {
         </div>
 
         <div className="relative lg:col-span-6">
-          <div aria-hidden className="pointer-events-none absolute -right-40 -top-4 w-[560px] max-w-none sm:-right-56 sm:-top-32 sm:w-[680px]">
+          <div aria-hidden className="pointer-events-none absolute -right-40 -top-4 w-[560px] max-w-none sm:-right-56 sm:-top-36 sm:w-[680px]">
             <div className="bg-grid-pattern absolute -inset-20 [mask-image:radial-gradient(closest-side,black,transparent)]" />
             <Image src="/brand/glass-shapes.svg" alt="" width={600} height={600} priority className="relative w-full" />
           </div>
