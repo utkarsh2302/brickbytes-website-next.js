@@ -191,7 +191,7 @@ export default function Hero() {
         capFill = "rgba(255, 94, 19, 0.15)";
         wallRightFill = "transparent";
         wallBottomFill = "transparent";
-        capStroke = "#ff5e13";
+        capStroke = "#ff5a1f";
         capStrokeWidth = "2";
         filter = "";
       } else {
@@ -205,14 +205,14 @@ export default function Hero() {
     } else if (dronePlotId) {
       if (isPlotZoomed) {
         capFill = "rgba(212, 175, 55, 0.15)";
-        wallRightFill = "#d4af37";
+        wallRightFill = "#d9c2a3";
         wallBottomFill = "#bca032";
-        capStroke = "#d4af37";
+        capStroke = "#d9c2a3";
         capStrokeWidth = "2.5";
         filter = "url(#shadow-plot-hover)";
       } else {
         capFill = "rgba(28, 26, 23, 0.05)";
-        wallRightFill = "#dfdbd3";
+        wallRightFill = "#e0d9ce";
         wallBottomFill = "#ccc8c0";
         capStroke = "rgba(255, 255, 255, 0.15)";
         capStrokeWidth = "0.5";
@@ -225,7 +225,7 @@ export default function Hero() {
           capFill = "#fefcf3"; 
           wallRightFill = "#d9c9b2";
           wallBottomFill = "#c5b399";
-          capStroke = "#d4af37"; // Elegant Gold
+          capStroke = "#d9c2a3"; // Elegant Gold
         } else {
           capFill = "#faf8f4"; // Ivory
           wallRightFill = "#e6ded1";
@@ -234,7 +234,7 @@ export default function Hero() {
         }
         
         if (isSelected) {
-          capStroke = plot.isPremium ? "#d4af37" : "#ff5e13";
+          capStroke = plot.isPremium ? "#d9c2a3" : "#ff5a1f";
           capStrokeWidth = "2";
           filter = "url(#shadow-plot-hover)";
           if (plot.isPremium) {
@@ -251,7 +251,7 @@ export default function Hero() {
         capFill = "#f7edd8"; // Terracotta clay
         wallRightFill = "#dec3aa";
         wallBottomFill = "#caa98d";
-        capStroke = "#d97706";
+        capStroke = "#b7791f";
         if (isSelected) {
           capStrokeWidth = "1.8";
           filter = "url(#shadow-plot-hover)";
@@ -346,8 +346,8 @@ export default function Hero() {
                     ? "fill-white font-bold"
                     : "fill-white/45"
                   : isSelected
-                  ? "fill-zinc-950 font-bold"
-                  : "fill-zinc-500"
+                  ? "fill-ink font-bold"
+                  : "fill-bb-slate"
               } ${viewMode === "drone" && !isSelected ? "opacity-30" : "opacity-100"}`}
             >
               {plot.id.replace("Plot ", "")}
@@ -359,10 +359,10 @@ export default function Hero() {
               r="2.5"
               fill={
                 plot.status === "available" 
-                  ? "#ff5e13" 
+                  ? "#ff5a1f" 
                   : plot.status === "reserved" 
-                  ? "#d97706" 
-                  : "#a1a1aa"
+                  ? "#b7791f" 
+                  : "#9aa0a8"
               }
               className={`transition-all duration-300 ${dronePlotId && !isPlotZoomed ? "opacity-20" : "opacity-100"}`}
             />
@@ -374,7 +374,7 @@ export default function Hero() {
                 cy={(cy1 + cy2) / 2 + 10}
                 r="5.5"
                 fill="none"
-                stroke="#d4af37"
+                stroke="#d9c2a3"
                 strokeWidth="0.8"
                 strokeDasharray="1.5 1.5"
                 className={`animate-spin-slow ${dronePlotId && !isPlotZoomed ? "opacity-20" : "opacity-100"}`}
@@ -387,14 +387,14 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center pt-16 sm:pt-24 pb-6 sm:pb-16 overflow-hidden bg-white text-[#1c1a17]">
+    <section className="relative min-h-screen flex flex-col justify-center items-center pt-16 sm:pt-24 pb-6 sm:pb-16 overflow-hidden bg-white text-ink">
       {/* Background architectural fine lines */}
       <InteractiveGrid opacity={1.0} />
       <div className="absolute inset-0 bg-dot-pattern opacity-60 pointer-events-none z-0" />
 
       {/* Decorative architectural borders */}
-      <div className="absolute left-10 top-0 bottom-0 w-px bg-zinc-200/50 hidden xl:block" />
-      <div className="absolute right-10 top-0 bottom-0 w-px bg-zinc-200/50 hidden xl:block" />
+      <div className="absolute left-10 top-0 bottom-0 w-px bg-bb-stone/50 hidden xl:block" />
+      <div className="absolute right-10 top-0 bottom-0 w-px bg-bb-stone/50 hidden xl:block" />
 
       {/* Main content layout with luxury spacings */}
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10 w-full flex flex-col items-center text-center">
@@ -406,12 +406,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: -20, x: "-50%" }}
               animate={{ opacity: 1, y: 16 }}
               exit={{ opacity: 0, y: -10 }}
-              className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-zinc-950 text-white text-[10px] font-semibold tracking-wider uppercase px-5 py-3 rounded-lg shadow-2xl border border-zinc-800 flex items-center gap-3"
+              className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-ink text-white text-[10px] font-semibold tracking-wider uppercase px-5 py-3 rounded-lg shadow-2xl border border-white/10 flex items-center gap-3"
             >
               <span>{toastMessage}</span>
               <button 
                 onClick={() => setToastMessage(null)} 
-                className="p-1 rounded-full hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors"
+                className="p-1 rounded-full hover:bg-ink/90 text-bb-slate hover:text-white transition-colors"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -428,9 +428,9 @@ export default function Hero() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2.5 px-4 py-2 mt-4 rounded-full bg-[#faf9f5] border border-zinc-200/50 text-[10px] uppercase tracking-[0.2em] font-semibold text-zinc-500 mb-2 sm:mb-6 shadow-sm"
+              className="inline-flex items-center gap-2.5 px-4 py-2 mt-4 rounded-full bg-bb-paper border border-line/50 text-[10px] uppercase tracking-[0.2em] font-semibold text-bb-slate mb-2 sm:mb-6 shadow-sm"
             >
-              <Compass className="w-3.5 h-3.5 text-brick-orange animate-spin-slow" />
+              <Compass className="w-3.5 h-3.5 text-bb-orange animate-spin-slow" />
               <span>Interactive Estate Visualization</span>
             </motion.div>
 
@@ -439,10 +439,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light tracking-tight leading-[1.1] max-w-5xl text-zinc-950"
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.1] max-w-5xl text-ink"
             >
               Transform flat layouts into{" "}
-              <span className="font-normal block sm:inline text-brick-orange italic">
+              <span className="font-normal block sm:inline">
                 digital sales experiences.
               </span>
             </motion.h1>
@@ -452,7 +452,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xs sm:text-sm md:text-base text-zinc-500 max-w-xl mt-4 mb-6 leading-relaxed font-sans font-light"
+              className="text-xs sm:text-sm md:text-base text-bb-slate max-w-xl mt-4 mb-6 leading-relaxed font-sans font-light"
             >
               Deploy AI-powered project exploration to replace static blueprints. Empower buyers to explore available plots, view luxury township amenities, and experience virtual drone tours. Crafted for premium real estate developers.
             </motion.p>
@@ -466,7 +466,7 @@ export default function Hero() {
             >
               <a
                 href="/contact"
-                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-3 sm:px-8 sm:py-4 rounded-lg bg-brick-orange hover:bg-brick-orange/95 text-white font-semibold text-xs sm:text-sm transition-all duration-300 shadow-md shadow-brick-orange/20 hover:shadow-brick-orange/30 group"
+                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-3 sm:px-8 sm:py-4 rounded-lg bg-bb-orange hover:bg-bb-orange/95 text-white font-semibold text-xs sm:text-sm transition-all duration-300 shadow-md shadow-bb-orange/20 hover:shadow-bb-orange/30 group"
               >
                 <span>Book Demo</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -474,9 +474,9 @@ export default function Hero() {
 
               <a
                 href="/contact"
-                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-3 sm:px-8 sm:py-4 rounded-lg bg-white hover:bg-zinc-50 text-zinc-800 font-semibold text-xs sm:text-sm border border-zinc-200 transition-all duration-300 group"
+                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-3 sm:px-8 sm:py-4 rounded-lg bg-white hover:bg-bb-paper text-ink font-semibold text-xs sm:text-sm border border-line transition-all duration-300 group"
               >
-                <Play className="w-3.5 h-3.5 text-zinc-500 fill-zinc-500 group-hover:text-brick-orange group-hover:fill-brick-orange transition-colors" />
+                <Play className="w-3.5 h-3.5 text-bb-slate fill-bb-slate group-hover:text-bb-orange group-hover:fill-bb-orange transition-colors" />
                 <span>Watch Live</span>
               </a>
             </motion.div>
@@ -501,21 +501,21 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.4 }}
           ref={containerRef}
-          className="relative w-full max-w-275 h-57.5 xs:h-[290px] sm:h-95 md:h-125 lg:h-145 xl:h-160 bg-zinc-50 border border-zinc-200/80 rounded-2xl overflow-hidden select-none cursor-ew-resize shadow-[0_25px_60px_-15px_rgba(28,26,23,0.12)]"
+          className="relative w-full max-w-275 h-57.5 xs:h-[290px] sm:h-95 md:h-125 lg:h-145 xl:h-160 bg-bb-paper border border-line/80 rounded-2xl overflow-hidden select-none cursor-ew-resize shadow-[0_25px_60px_-15px_rgba(28,26,23,0.12)]"
         >
           {/* Flat Map Wrapper */}
           <div className="absolute inset-0 w-full h-full">
             
             {/* BACKGROUND: RIGHT SIDE - Luxury Project Presentation System */}
-            <div className="absolute inset-0 w-full h-full bg-[#faf9f5]">
+            <div className="absolute inset-0 w-full h-full bg-bb-paper">
               {/* Luxury Header Stamp */}
-              <div className="absolute top-6 left-6 flex flex-col gap-1 text-[10px] text-zinc-500 font-sans tracking-wider pointer-events-none text-left">
-                <span className="font-semibold text-brick-orange uppercase tracking-[0.2em]">The Oasis Sanctuary</span>
-                <span className="font-serif font-light italic text-zinc-400">Master-Planned Luxury Reserve</span>
+              <div className="absolute top-6 left-6 flex flex-col gap-1 text-[10px] text-bb-slate font-sans tracking-wider pointer-events-none text-left">
+                <span className="font-semibold text-bb-orange uppercase tracking-[0.2em]">The Oasis Sanctuary</span>
+                <span className="font-display font-semibold text-bb-slate">Master-Planned Luxury Reserve</span>
               </div>
 
               {/* Floating Interactive Controls (Top Right) */}
-              <div className="absolute top-6 right-6 flex items-center gap-1 z-20 pointer-events-auto bg-white/95 backdrop-blur-sm p-1 rounded-lg border border-zinc-200/50 shadow-md">
+              <div className="absolute top-6 right-6 flex items-center gap-1 z-20 pointer-events-auto bg-white/95 backdrop-blur-sm p-1 rounded-lg border border-line/50 shadow-md">
                 {(["2d", "3d", "drone"] as const).map((mode) => (
                   <button
                     key={mode}
@@ -529,8 +529,8 @@ export default function Hero() {
                     }}
                     className={`px-3 py-1.5 rounded-md text-[9px] font-bold tracking-wider uppercase transition-all duration-200 ${
                       viewMode === mode
-                        ? "bg-zinc-950 text-white shadow-sm"
-                        : "text-zinc-500 hover:text-zinc-950 hover:bg-zinc-100/60"
+                        ? "bg-ink text-white shadow-sm"
+                        : "text-bb-slate hover:text-ink hover:bg-bb-stone/42"
                     }`}
                   >
                     {mode === "2d" ? "2D View" : mode === "3d" ? "3D View" : "Drone View"}
@@ -542,15 +542,15 @@ export default function Hero() {
               
               {/* Floating Availability Legend (Top Right, under viewMode swapper) */}
               {viewMode !== "drone" && (
-                <div className="absolute top-14.5 right-6 z-20 hidden sm:flex items-center gap-3.5 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-sm border border-zinc-200/50 shadow-sm pointer-events-none text-[9px] font-bold tracking-wider uppercase">
-                  <span className="flex items-center gap-1.5 text-zinc-600">
-                    <span className="w-2 h-2 rounded-full bg-brick-orange" /> Available
+                <div className="absolute top-14.5 right-6 z-20 hidden sm:flex items-center gap-3.5 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-sm border border-line/50 shadow-sm pointer-events-none text-[9px] font-bold tracking-wider uppercase">
+                  <span className="flex items-center gap-1.5 text-bb-slate">
+                    <span className="w-2 h-2 rounded-full bg-bb-orange" /> Available
                   </span>
-                  <span className="flex items-center gap-1.5 text-zinc-600">
-                    <span className="w-2 h-2 rounded-full bg-amber-600" /> Reserved
+                  <span className="flex items-center gap-1.5 text-bb-slate">
+                    <span className="w-2 h-2 rounded-full bg-bb-hold" /> Reserved
                   </span>
-                  <span className="flex items-center gap-1.5 text-zinc-600">
-                    <span className="w-2 h-2 rounded-full bg-zinc-400" /> Sold
+                  <span className="flex items-center gap-1.5 text-bb-slate">
+                    <span className="w-2 h-2 rounded-full bg-bb-booked" /> Sold
                   </span>
                 </div>
               )}
@@ -645,12 +645,12 @@ export default function Hero() {
 
                   {/* Premium Gold diagonal hatch pattern */}
                   <pattern id="premium-gold-hatch" width="10" height="10" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
-                    <line x1="0" y1="0" x2="0" y2="10" stroke="#d4af37" strokeWidth="0.8" opacity="0.12" />
+                    <line x1="0" y1="0" x2="0" y2="10" stroke="#d9c2a3" strokeWidth="0.8" opacity="0.12" />
                   </pattern>
 
                   {/* Commercial Building Roof Pattern */}
                   <pattern id="roof-hatch" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
-                    <line x1="0" y1="0" x2="0" y2="8" stroke="#eae8e2" strokeWidth="0.8" />
+                    <line x1="0" y1="0" x2="0" y2="8" stroke="#ece6dd" strokeWidth="0.8" />
                   </pattern>
 
                   {/* Deep Shadow for Clubhouse & Buildings */}
@@ -795,7 +795,7 @@ export default function Hero() {
                       {/* Fountain Basin shadow */}
                       <circle cx="830" cy="385" r="14" fill="#1c1a17" fillOpacity="0.08" filter="url(#shadow-plot-hover)" />
                       {/* Basin stone coping */}
-                      <circle cx="830" cy="385" r="14" fill="#eae8e2" stroke="#bbb8b0" strokeWidth="0.8" />
+                      <circle cx="830" cy="385" r="14" fill="#ece6dd" stroke="#bbb8b0" strokeWidth="0.8" />
                       {/* Basin water pool */}
                       <circle cx="830" cy="385" r="11.5" fill="url(#pool-gradient)" />
                       <circle cx="830" cy="385" r="11.5" fill="none" stroke="rgba(28,26,23,0.15)" strokeWidth="1" />
@@ -831,10 +831,10 @@ export default function Hero() {
                         </g>
                       ))}
 
-                      <text x="830" y="440" textAnchor="middle" className="text-[9px] font-serif font-light tracking-[0.15em] fill-zinc-800">
+                      <text x="830" y="440" textAnchor="middle" className="text-[9px] font-display font-semibold tracking-[0.15em] fill-ink">
                         SANCTUARY GARDENS
                       </text>
-                      <text x="830" y="452" textAnchor="middle" className="text-[6.5px] font-sans tracking-widest fill-zinc-400 font-bold uppercase">
+                      <text x="830" y="452" textAnchor="middle" className="text-[6.5px] font-sans tracking-widest fill-bb-slate font-bold uppercase">
                         Wellness Trails
                       </text>
 
@@ -944,13 +944,13 @@ export default function Hero() {
                       <line x1="711" y1="60" x2="711" y2="100" stroke="rgba(14, 165, 233, 0.2)" strokeWidth="0.6" />
                       <line x1="744" y1="60" x2="744" y2="100" stroke="rgba(14, 165, 233, 0.2)" strokeWidth="0.6" />
                       
-                      <rect x="685" y="112" width="86" height="4" fill="#ff5e13" opacity="0.08" />
-                      <line x1="690" y1="112" x2="766" y2="112" stroke="#f4f4f5" strokeWidth="1.5" />
+                      <rect x="685" y="112" width="86" height="4" fill="#ff5a1f" opacity="0.08" />
+                      <line x1="690" y1="112" x2="766" y2="112" stroke="#ece6dd" strokeWidth="1.5" />
                       
-                      <text x="728" y="82" textAnchor="middle" className="text-[9px] font-serif font-light tracking-[0.2em] fill-zinc-800">
+                      <text x="728" y="82" textAnchor="middle" className="text-[9px] font-display font-semibold tracking-[0.2em] fill-ink">
                         THE PAVILION
                       </text>
-                      <text x="728" y="94" textAnchor="middle" className="text-[6px] font-sans tracking-wider fill-zinc-400 font-bold uppercase">
+                      <text x="728" y="94" textAnchor="middle" className="text-[6px] font-sans tracking-wider fill-bb-slate font-bold uppercase">
                         Club &amp; Amenities
                       </text>
 
@@ -962,20 +962,20 @@ export default function Hero() {
                         height="110"
                         rx="12"
                         fill="#FAF9F6"
-                        stroke="#e4e4e7"
+                        stroke="#e3ddd3"
                         strokeWidth="1"
                       />
                       {/* Shop structures with shadows */}
-                      <rect x="75" y="345" width="40" height="40" rx="4" fill="#ffffff" stroke="#e4e4e7" strokeWidth="0.8" filter="url(#block-shadow)" />
-                      <rect x="75" y="345" width="40" height="12" fill="url(#roof-hatch)" stroke="#e4e4e7" strokeWidth="0.8" />
+                      <rect x="75" y="345" width="40" height="40" rx="4" fill="#ffffff" stroke="#e3ddd3" strokeWidth="0.8" filter="url(#block-shadow)" />
+                      <rect x="75" y="345" width="40" height="12" fill="url(#roof-hatch)" stroke="#e3ddd3" strokeWidth="0.8" />
                       
-                      <rect x="125" y="345" width="50" height="30" rx="4" fill="#ffffff" stroke="#e4e4e7" strokeWidth="0.8" filter="url(#block-shadow)" />
-                      <rect x="125" y="345" width="50" height="10" fill="url(#roof-hatch)" stroke="#e4e4e7" strokeWidth="0.8" />
+                      <rect x="125" y="345" width="50" height="30" rx="4" fill="#ffffff" stroke="#e3ddd3" strokeWidth="0.8" filter="url(#block-shadow)" />
+                      <rect x="125" y="345" width="50" height="10" fill="url(#roof-hatch)" stroke="#e3ddd3" strokeWidth="0.8" />
                       
-                      <rect x="185" y="345" width="40" height="50" rx="4" fill="#ffffff" stroke="#e4e4e7" strokeWidth="0.8" filter="url(#block-shadow)" />
-                      <rect x="185" y="345" width="40" height="15" fill="url(#roof-hatch)" stroke="#e4e4e7" strokeWidth="0.8" />
+                      <rect x="185" y="345" width="40" height="50" rx="4" fill="#ffffff" stroke="#e3ddd3" strokeWidth="0.8" filter="url(#block-shadow)" />
+                      <rect x="185" y="345" width="40" height="15" fill="url(#roof-hatch)" stroke="#e3ddd3" strokeWidth="0.8" />
                       
-                      <text x="150" y="415" textAnchor="middle" className="text-[8px] font-serif tracking-widest fill-zinc-500 font-bold">
+                      <text x="150" y="415" textAnchor="middle" className="text-[8px] font-display font-semibold tracking-widest fill-bb-slate">
                         RETAIL PROMENADE
                       </text>
                     </>
@@ -997,10 +997,10 @@ export default function Hero() {
                     {/* Horizontal Sidewalk Curbs (Raised concrete lines) */}
                     {viewMode !== "drone" && (
                       <>
-                        <rect x="0" y="281" width="1000" height="3" fill="#eae8e2" stroke="#dfdbd3" strokeWidth="0.5" />
+                        <rect x="0" y="281" width="1000" height="3" fill="#ece6dd" stroke="#e0d9ce" strokeWidth="0.5" />
                         <line x1="0" y1="284" x2="1000" y2="284" stroke="#c8c6c0" strokeWidth="1" />
                         {/* Bottom Curb */}
-                        <rect x="0" y="316" width="1000" height="3" fill="#eae8e2" stroke="#dfdbd3" strokeWidth="0.5" />
+                        <rect x="0" y="316" width="1000" height="3" fill="#ece6dd" stroke="#e0d9ce" strokeWidth="0.5" />
                         <line x1="0" y1="316" x2="1000" y2="316" stroke="#c8c6c0" strokeWidth="1" />
                         
                         {/* Central white divider line */}
@@ -1021,8 +1021,8 @@ export default function Hero() {
                     {/* North Avenue Curbs */}
                     {viewMode !== "drone" && (
                       <>
-                        <rect x="485" y="50" width="3" height="231" fill="#eae8e2" stroke="#dfdbd3" strokeWidth="0.5" />
-                        <rect x="512" y="50" width="3" height="231" fill="#eae8e2" stroke="#dfdbd3" strokeWidth="0.5" />
+                        <rect x="485" y="50" width="3" height="231" fill="#ece6dd" stroke="#e0d9ce" strokeWidth="0.5" />
+                        <rect x="512" y="50" width="3" height="231" fill="#ece6dd" stroke="#e0d9ce" strokeWidth="0.5" />
                         <line x1="500" y1="50" x2="500" y2="281" stroke="#ffffff" strokeWidth="1" strokeDasharray="6 5" opacity="0.8" />
                       </>
                     )}
@@ -1040,8 +1040,8 @@ export default function Hero() {
                     {/* South Avenue Curbs */}
                     {viewMode !== "drone" && (
                       <>
-                        <rect x="485" y="319" width="3" height="231" fill="#eae8e2" stroke="#dfdbd3" strokeWidth="0.5" />
-                        <rect x="512" y="319" width="3" height="231" fill="#eae8e2" stroke="#dfdbd3" strokeWidth="0.5" />
+                        <rect x="485" y="319" width="3" height="231" fill="#ece6dd" stroke="#e0d9ce" strokeWidth="0.5" />
+                        <rect x="512" y="319" width="3" height="231" fill="#ece6dd" stroke="#e0d9ce" strokeWidth="0.5" />
                         <line x1="500" y1="319" x2="500" y2="550" stroke="#ffffff" strokeWidth="1" strokeDasharray="6 5" opacity="0.8" />
                         
                         {/* Volumetric Crosswalks at Intersection */}
@@ -1117,11 +1117,11 @@ export default function Hero() {
                             y1={ecy}
                             x2={ecx}
                             y2={ecy - 35}
-                            stroke="#ff5e13"
+                            stroke="#ff5a1f"
                             strokeWidth="1.5"
                             strokeDasharray="2 2"
                           />
-                          <circle cx={ecx} cy={ecy} r="3" fill="#ff5e13" />
+                          <circle cx={ecx} cy={ecy} r="3" fill="#ff5a1f" />
                           <rect
                             x={ecx - 65}
                             y={ecy - 60}
@@ -1129,11 +1129,11 @@ export default function Hero() {
                             height="26"
                             rx="13"
                             fill="#ffffff"
-                            stroke="#ff5e13"
+                            stroke="#ff5a1f"
                             strokeWidth="1"
                             className="shadow-sm"
                           />
-                          <text x={ecx} y={ecy - 44} textAnchor="middle" className="text-[10px] font-bold fill-zinc-950 font-sans">
+                          <text x={ecx} y={ecy - 44} textAnchor="middle" className="text-[10px] font-bold fill-ink font-sans">
                             {currentPlot.id} • {currentPlot.area}
                           </text>
                         </motion.g>
@@ -1151,62 +1151,62 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 5, scale: 0.98 }}
                   transition={{ duration: 0.25 }}
-                  className="hidden md:block absolute bottom-6 right-6 w-60 glass-card rounded-xl p-4 border border-zinc-200/50 z-20 text-left pointer-events-auto shadow-luxury-deep"
+                  className="hidden md:block absolute bottom-6 right-6 w-60 glass-card rounded-xl p-4 border border-line/50 z-20 text-left pointer-events-auto shadow-luxury-deep"
                 >
                   {/* Card Header */}
-                  <div className="flex flex-col gap-0.5 border-b border-zinc-200/60 pb-2.5 mb-3">
+                  <div className="flex flex-col gap-0.5 border-b border-line/60 pb-2.5 mb-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-lg font-serif font-normal text-zinc-950 leading-tight">{currentPlot.id}</span>
+                      <span className="text-lg font-display font-semibold text-ink leading-tight">{currentPlot.id}</span>
                       <span className={`text-[8px] uppercase font-bold px-1.5 py-0.5 rounded ${
                         currentPlot.status === "available" 
-                          ? "bg-orange-100/60 text-brick-orange" 
+                          ? "bg-bb-sand/36 text-bb-orange" 
                           : currentPlot.status === "reserved"
-                          ? "bg-amber-100/60 text-amber-800"
-                          : "bg-zinc-100 text-zinc-500"
+                          ? "bg-bb-hold/9 text-bb-hold"
+                          : "bg-bb-stone/70 text-bb-slate"
                       }`}>
                         {currentPlot.status}
                       </span>
                     </div>
-                    <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mt-0.5">Residential Plot</span>
+                    <span className="text-[10px] font-semibold text-bb-slate uppercase tracking-wider mt-0.5">Residential Plot</span>
                   </div>
 
                   {/* Price Row */}
-                  <div className="flex justify-between items-center py-2 border-b border-zinc-200/40 mb-3 text-xs">
-                    <span className="text-zinc-400 font-bold uppercase tracking-wider text-[9px]">Price</span>
-                    <span className="font-semibold text-zinc-950 font-mono">Price on Request</span>
+                  <div className="flex justify-between items-center py-2 border-b border-line/40 mb-3 text-xs">
+                    <span className="text-bb-slate font-bold uppercase tracking-wider text-[9px]">Price</span>
+                    <span className="font-semibold text-ink font-mono">Price on Request</span>
                   </div>
 
                   {/* Lot Metadata Specifications */}
-                  <div className="space-y-2 text-xs text-zinc-600">
+                  <div className="space-y-2 text-xs text-bb-slate">
                     <div className="flex justify-between">
-                      <span className="text-zinc-400">Area:</span>
-                      <span className="font-semibold text-zinc-800">{currentPlot.area}</span>
+                      <span className="text-bb-slate">Area:</span>
+                      <span className="font-semibold text-ink">{currentPlot.area}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-zinc-400">Facing:</span>
-                      <span className="font-semibold text-zinc-800">{currentPlot.facing}</span>
+                      <span className="text-bb-slate">Facing:</span>
+                      <span className="font-semibold text-ink">{currentPlot.facing}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-zinc-400">Dimensions:</span>
-                      <span className="font-semibold text-zinc-800">{currentPlot.dimensions}</span>
+                      <span className="text-bb-slate">Dimensions:</span>
+                      <span className="font-semibold text-ink">{currentPlot.dimensions}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-zinc-400">Road Width:</span>
-                      <span className="font-semibold text-zinc-800">{currentPlot.roadWidth}</span>
+                      <span className="text-bb-slate">Road Width:</span>
+                      <span className="font-semibold text-ink">{currentPlot.roadWidth}</span>
                     </div>
 
                     {/* Actions Process: Drone View toggle & Add to Compare */}
-                    <div className="grid grid-cols-2 gap-2 mt-4 pt-2 border-t border-zinc-200/40">
+                    <div className="grid grid-cols-2 gap-2 mt-4 pt-2 border-t border-line/40">
                       <button
                         onClick={() => setToastMessage(`Drone view for ${currentPlot.id} is coming soon.`)}
-                        className="w-full py-2.5 rounded text-[9px] font-bold tracking-wider uppercase border border-zinc-200 bg-white hover:bg-zinc-50 text-zinc-700 transition-colors"
+                        className="w-full py-2.5 rounded text-[9px] font-bold tracking-wider uppercase border border-line bg-white hover:bg-bb-paper text-bb-slate transition-colors"
                       >
                         Drone View
                       </button>
 
                       <button
                         onClick={() => setToastMessage(`Added ${currentPlot.id} to comparison list.`)}
-                        className="w-full py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded text-[9px] font-bold tracking-wider uppercase transition-colors"
+                        className="w-full py-2.5 bg-ink hover:bg-ink/90 text-white rounded text-[9px] font-bold tracking-wider uppercase transition-colors"
                       >
                         Add To Compare
                       </button>
@@ -1218,27 +1218,27 @@ export default function Hero() {
 
               {/* Subtle Compass Needle HUD */}
               {viewMode === "drone" && (
-                <div className="absolute top-20 left-6 z-20 hidden sm:flex flex-col items-center gap-1.5 p-2 rounded-lg bg-zinc-950/85 backdrop-blur-sm border border-white/10 shadow-lg pointer-events-none text-white">
+                <div className="absolute top-20 left-6 z-20 hidden sm:flex flex-col items-center gap-1.5 p-2 rounded-lg bg-ink/85 backdrop-blur-sm border border-white/10 shadow-lg pointer-events-none text-white">
                   <svg className="w-8 h-8" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="3" />
                     <text x="50" y="24" textAnchor="middle" fill="#ffffff" className="text-[12px] font-mono font-bold">N</text>
                     <text x="50" y="84" textAnchor="middle" fill="rgba(255,255,255,0.3)" className="text-[10px] font-mono">S</text>
                     <g style={{ transform: "rotate(35deg)", transformOrigin: "50px 50px" }}>
-                      <polygon points="50,18 55,50 50,46" fill="#ff5e13" />
+                      <polygon points="50,18 55,50 50,46" fill="#ff5a1f" />
                       <polygon points="50,82 55,50 50,46" fill="rgba(255,255,255,0.4)" />
                       <polygon points="50,18 45,50 50,46" fill="#ff3e00" />
                       <polygon points="50,82 45,50 50,46" fill="rgba(255,255,255,0.2)" />
                     </g>
                     <circle cx="50" cy="50" r="3" fill="#ffffff" />
                   </svg>
-                  <span className="text-[7px] font-mono tracking-widest text-zinc-400">BEARING: 35° N</span>
+                  <span className="text-[7px] font-mono tracking-widest text-bb-slate">BEARING: 35° N</span>
                 </div>
               )}
 
               {/* Drag to Explore Reality Indicator */}
               {viewMode === "drone" && (
-                <div className="absolute bottom-6 right-65 z-20 hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-950/85 backdrop-blur-sm text-white text-[8px] font-bold tracking-widest uppercase border border-white/10 shadow-lg pointer-events-auto">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brick-orange animate-pulse" />
+                <div className="absolute bottom-6 right-65 z-20 hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink/85 backdrop-blur-sm text-white text-[8px] font-bold tracking-widest uppercase border border-white/10 shadow-lg pointer-events-auto">
+                  <span className="w-1.5 h-1.5 rounded-full bg-bb-orange animate-pulse" />
                   <span>Drag Divider to Compare with Blueprint</span>
                 </div>
               )}
@@ -1252,10 +1252,10 @@ export default function Hero() {
                   <div className="absolute bottom-6 right-6 w-5 h-5 border-b border-r border-white/40" />
                   
                   {/* Drone aerial label */}
-                  <div className="absolute top-6 left-1/2 -translate-x-1/2 px-4.5 py-2.5 rounded-lg bg-zinc-950/85 backdrop-blur-sm text-white text-[9px] font-sans tracking-[0.2em] uppercase flex items-center gap-2 shadow border border-white/10 pointer-events-auto">
-                    <Compass className="w-3.5 h-3.5 text-brick-orange animate-spin-slow" />
+                  <div className="absolute top-6 left-1/2 -translate-x-1/2 px-4.5 py-2.5 rounded-lg bg-ink/85 backdrop-blur-sm text-white text-[9px] font-sans tracking-[0.2em] uppercase flex items-center gap-2 shadow border border-white/10 pointer-events-auto">
+                    <Compass className="w-3.5 h-3.5 text-bb-orange animate-spin-slow" />
                     <span>Plot {dronePlotId} Site Inspection Mode</span>
-                    <span className="text-[7.5px] text-zinc-400 font-mono tracking-normal normal-case ml-1 border-l border-white/20 pl-2">
+                    <span className="text-[7.5px] text-bb-slate font-mono tracking-normal normal-case ml-1 border-l border-white/20 pl-2">
                       Real site capture placeholder
                     </span>
                     <button 
@@ -1274,22 +1274,22 @@ export default function Hero() {
 
             {/* OVERLAY: LEFT SIDE - Engineering Subdivision Blueprint Draft */}
             <div
-              className="absolute inset-0 w-full h-full bg-[#f4f2ed] border-r border-zinc-300"
+              className="absolute inset-0 w-full h-full bg-[#f4f2ed] border-r border-ink/15"
               style={{
                 clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`,
                 ...{ transition: transitionStyle }
               }}
             >
               {/* Engineering Title Stamp */}
-              <div className="absolute top-6 left-6 flex flex-col gap-1.5 text-[9px] text-zinc-400 font-mono uppercase tracking-widest pointer-events-none">
-                <span className="font-bold text-zinc-500">SUBDIVISION MAP SYSTEM</span>
+              <div className="absolute top-6 left-6 flex flex-col gap-1.5 text-[9px] text-bb-slate font-mono uppercase tracking-widest pointer-events-none">
+                <span className="font-bold text-bb-slate">SUBDIVISION MAP SYSTEM</span>
                 <span>SHEET: SEC-C / SITE PLAN</span>
                 <span>REVISION v2.0 • 12/04/2004</span>
               </div>
 
               {/* Title Block Box (Engineering Drafting Stamp) */}
-              <div className="absolute bottom-6 left-6 z-10 p-4 border border-zinc-300 font-mono text-[9px] text-zinc-400 leading-relaxed bg-[#f4f2ed]/90 max-w-55 pointer-events-none">
-                <p className="font-bold text-zinc-500 border-b border-zinc-300 pb-1.5 mb-1.5 uppercase tracking-wide">Technical Boundary Draft</p>
+              <div className="absolute bottom-6 left-6 z-10 p-4 border border-ink/15 font-mono text-[9px] text-bb-slate leading-relaxed bg-[#f4f2ed]/90 max-w-55 pointer-events-none">
+                <p className="font-bold text-bb-slate border-b border-ink/15 pb-1.5 mb-1.5 uppercase tracking-wide">Technical Boundary Draft</p>
                 <p>SCALE: 1 INCH = 40 FEET</p>
                 <p>TOTAL UNITS: 16 SUBDIVISIONS</p>
                 <p>SURVEYOR: BRICKBYTES ASSOC</p>
@@ -1302,11 +1302,11 @@ export default function Hero() {
                 <defs>
                   {/* Diagonal line hatch representing natural reserve/lake */}
                   <pattern id="diagonal-hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
-                    <line x1="0" y1="0" x2="0" y2="8" stroke="#a3a29b" strokeWidth="0.8" />
+                    <line x1="0" y1="0" x2="0" y2="8" stroke="#9aa0a8" strokeWidth="0.8" />
                   </pattern>
                   {/* Grid hatch representing retail zone */}
                   <pattern id="grid-hatch" width="8" height="8" patternUnits="userSpaceOnUse">
-                    <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#a3a29b" strokeWidth="0.8" />
+                    <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#9aa0a8" strokeWidth="0.8" />
                   </pattern>
                   {/* Drafting layout grid */}
                   <pattern id="draft-grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -1326,19 +1326,19 @@ export default function Hero() {
                   }}
                 >
                   {/* Boundary drafting layout guide lines */}
-                  <line x1="0" y1="110" x2="1000" y2="110" stroke="#e3e1da" strokeWidth="0.8" />
-                  <line x1="0" y1="440" x2="1000" y2="440" stroke="#e3e1da" strokeWidth="0.8" />
-                  <line x1="260" y1="0" x2="260" y2="600" stroke="#e3e1da" strokeWidth="0.8" />
-                  <line x1="730" y1="0" x2="730" y2="600" stroke="#e3e1da" strokeWidth="0.8" />
+                  <line x1="0" y1="110" x2="1000" y2="110" stroke="#e0d9ce" strokeWidth="0.8" />
+                  <line x1="0" y1="440" x2="1000" y2="440" stroke="#e0d9ce" strokeWidth="0.8" />
+                  <line x1="260" y1="0" x2="260" y2="600" stroke="#e0d9ce" strokeWidth="0.8" />
+                  <line x1="730" y1="0" x2="730" y2="600" stroke="#e0d9ce" strokeWidth="0.8" />
 
                   {/* Flat monochrome Winding Lake Boundary */}
                   <path
                     d="M 50,110 C 60,60 160,40 230,80 C 290,110 320,150 240,180 C 160,200 60,180 50,110 Z"
                     fill="url(#diagonal-hatch)"
-                    stroke="#a3a29b"
+                    stroke="#9aa0a8"
                     strokeWidth="1"
                   />
-                  <text x="150" y="125" textAnchor="middle" className="text-[8px] font-mono tracking-wider fill-zinc-500 pointer-events-none">
+                  <text x="150" y="125" textAnchor="middle" className="text-[8px] font-mono tracking-wider fill-bb-slate pointer-events-none">
                     NATURAL RESERVE RESERVOIR
                   </text>
 
@@ -1350,11 +1350,11 @@ export default function Hero() {
                     height="210"
                     rx="0"
                     fill="none"
-                    stroke="#a3a29b"
+                    stroke="#9aa0a8"
                     strokeWidth="1"
                     strokeDasharray="4 4"
                   />
-                  <text x="830" y="440" textAnchor="middle" className="text-[8px] font-mono tracking-wider fill-zinc-500 pointer-events-none">
+                  <text x="830" y="440" textAnchor="middle" className="text-[8px] font-mono tracking-wider fill-bb-slate pointer-events-none">
                     RECREATIONAL LAND [SEC-B]
                   </text>
 
@@ -1365,7 +1365,7 @@ export default function Hero() {
                     width="290"
                     height="90"
                     fill="none"
-                    stroke="#a3a29b"
+                    stroke="#9aa0a8"
                     strokeWidth="1"
                     strokeDasharray="2 2"
                   />
@@ -1375,10 +1375,10 @@ export default function Hero() {
                     width="120"
                     height="70"
                     fill="none"
-                    stroke="#a3a29b"
+                    stroke="#9aa0a8"
                     strokeWidth="1"
                   />
-                  <text x="735" y="110" textAnchor="middle" className="text-[8px] font-mono tracking-widest fill-zinc-500 pointer-events-none">
+                  <text x="735" y="110" textAnchor="middle" className="text-[8px] font-mono tracking-widest fill-bb-slate pointer-events-none">
                     CLUBHOUSE BOUNDARY
                   </text>
                   <rect
@@ -1387,10 +1387,10 @@ export default function Hero() {
                     width="120"
                     height="60"
                     fill="none"
-                    stroke="#a3a29b"
+                    stroke="#9aa0a8"
                     strokeWidth="1"
                   />
-                  <text x="875" y="110" textAnchor="middle" className="text-[8px] font-mono tracking-wider fill-zinc-500 pointer-events-none">
+                  <text x="875" y="110" textAnchor="middle" className="text-[8px] font-mono tracking-wider fill-bb-slate pointer-events-none">
                     RETENTION POOL
                   </text>
 
@@ -1401,27 +1401,27 @@ export default function Hero() {
                     width="180"
                     height="110"
                     fill="url(#grid-hatch)"
-                    stroke="#a3a29b"
+                    stroke="#9aa0a8"
                   />
-                  <text x="150" y="390" textAnchor="middle" className="text-[8px] font-mono tracking-wider fill-zinc-600 bg-white px-1 pointer-events-none">
+                  <text x="150" y="390" textAnchor="middle" className="text-[8px] font-mono tracking-wider fill-bb-slate bg-white px-1 pointer-events-none">
                     RETAIL RESERVE ZONE A
                   </text>
 
                   {/* Flat roads outline */}
                   {/* Horizontal Boulevard */}
-                  <line x1="0" y1="284" x2="1000" y2="284" stroke="#a3a29b" strokeWidth="0.8" />
-                  <line x1="0" y1="316" x2="1000" y2="316" stroke="#a3a29b" strokeWidth="0.8" />
-                  <line x1="0" y1="300" x2="1000" y2="300" stroke="#a3a29b" strokeWidth="0.8" strokeDasharray="6 6" />
+                  <line x1="0" y1="284" x2="1000" y2="284" stroke="#9aa0a8" strokeWidth="0.8" />
+                  <line x1="0" y1="316" x2="1000" y2="316" stroke="#9aa0a8" strokeWidth="0.8" />
+                  <line x1="0" y1="300" x2="1000" y2="300" stroke="#9aa0a8" strokeWidth="0.8" strokeDasharray="6 6" />
 
                   {/* Vertical North Avenue */}
-                  <line x1="488" y1="50" x2="488" y2="284" stroke="#a3a29b" strokeWidth="0.8" />
-                  <line x1="512" y1="50" x2="512" y2="284" stroke="#a3a29b" strokeWidth="0.8" />
-                  <line x1="500" y1="50" x2="500" y2="284" stroke="#a3a29b" strokeWidth="0.8" strokeDasharray="5 5" />
+                  <line x1="488" y1="50" x2="488" y2="284" stroke="#9aa0a8" strokeWidth="0.8" />
+                  <line x1="512" y1="50" x2="512" y2="284" stroke="#9aa0a8" strokeWidth="0.8" />
+                  <line x1="500" y1="50" x2="500" y2="284" stroke="#9aa0a8" strokeWidth="0.8" strokeDasharray="5 5" />
 
                   {/* Vertical South Avenue */}
-                  <line x1="488" y1="316" x2="488" y2="550" stroke="#a3a29b" strokeWidth="0.8" />
-                  <line x1="512" y1="316" x2="512" y2="550" stroke="#a3a29b" strokeWidth="0.8" />
-                  <line x1="500" y1="316" x2="500" y2="550" stroke="#a3a29b" strokeWidth="0.8" strokeDasharray="5 5" />
+                  <line x1="488" y1="316" x2="488" y2="550" stroke="#9aa0a8" strokeWidth="0.8" />
+                  <line x1="512" y1="316" x2="512" y2="550" stroke="#9aa0a8" strokeWidth="0.8" />
+                  <line x1="500" y1="316" x2="500" y2="550" stroke="#9aa0a8" strokeWidth="0.8" strokeDasharray="5 5" />
 
                   {/* Dashed blueprint subdivision plots */}
                   {plots.map((plot) => (
@@ -1465,7 +1465,7 @@ export default function Hero() {
 
           {/* Draggable Divider Handle */}
           <div
-            className="absolute top-0 bottom-0 w-1 bg-brick-orange z-30 cursor-ew-resize"
+            className="absolute top-0 bottom-0 w-1 bg-bb-orange z-30 cursor-ew-resize"
             style={{
               left: `${sliderPosition}%`,
               ...{ transition: transitionStyle }
@@ -1473,7 +1473,7 @@ export default function Hero() {
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
           >
-            <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-brick-orange text-white flex items-center justify-center shadow-[0_4px_20px_rgba(255,94,19,0.35)] border-2 border-white hover:scale-105 active:scale-95 transition-transform">
+            <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-bb-orange text-white flex items-center justify-center shadow-[0_4px_20px_rgba(255,94,19,0.35)] border-2 border-white hover:scale-105 active:scale-95 transition-transform">
               <span className="text-base font-bold font-mono select-none">↔</span>
             </div>
             
@@ -1484,7 +1484,7 @@ export default function Hero() {
                   initial={{ opacity: 0, y: -20, x: "-50%" }}
                   animate={{ opacity: 1, y: -48 }}
                   exit={{ opacity: 0 }}
-                  className="absolute left-1/2 whitespace-nowrap bg-zinc-950 text-white text-[9px] font-semibold tracking-[0.15em] uppercase px-3 py-1.5 rounded-md shadow-md border border-zinc-800"
+                  className="absolute left-1/2 whitespace-nowrap bg-ink text-white text-[9px] font-semibold tracking-[0.15em] uppercase px-3 py-1.5 rounded-md shadow-md border border-white/10"
                 >
                   ← Drag to Reveal →
                 </motion.div>
@@ -1498,58 +1498,58 @@ export default function Hero() {
         <div className="w-full max-w-275 mt-6 md:hidden px-2 flex flex-col gap-4 text-left pointer-events-auto">
 
           {/* Mobile Plot Details Card */}
-          <div className="w-full bg-white border border-zinc-200/80 rounded-xl p-5 shadow-sm">
-            <div className="flex flex-col gap-0.5 border-b border-zinc-100 pb-3 mb-3">
+          <div className="w-full bg-white border border-line/80 rounded-xl p-5 shadow-sm">
+            <div className="flex flex-col gap-0.5 border-b border-line/70 pb-3 mb-3">
               <div className="flex items-center justify-between">
-                <span className="text-base font-serif font-normal text-zinc-950">{currentPlot.id}</span>
+                <span className="text-base font-display font-semibold text-ink">{currentPlot.id}</span>
                 <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${
                   currentPlot.status === "available" 
-                    ? "bg-orange-100/60 text-brick-orange" 
+                    ? "bg-bb-sand/36 text-bb-orange" 
                     : currentPlot.status === "reserved"
-                    ? "bg-amber-100/60 text-amber-800"
-                    : "bg-zinc-100 text-zinc-500"
+                    ? "bg-bb-hold/9 text-bb-hold"
+                    : "bg-bb-stone/70 text-bb-slate"
                 }`}>
                   {currentPlot.status}
                 </span>
               </div>
-              <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mt-0.5">Residential Plot</span>
+              <span className="text-[10px] font-semibold text-bb-slate uppercase tracking-wider mt-0.5">Residential Plot</span>
             </div>
 
-            <div className="flex justify-between items-center py-2 border-b border-zinc-100 mb-3 text-xs">
-              <span className="text-zinc-400 font-bold uppercase tracking-wider text-[9px]">Price</span>
-              <span className="font-semibold text-zinc-950 font-mono">Price on Request</span>
+            <div className="flex justify-between items-center py-2 border-b border-line/70 mb-3 text-xs">
+              <span className="text-bb-slate font-bold uppercase tracking-wider text-[9px]">Price</span>
+              <span className="font-semibold text-ink font-mono">Price on Request</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-zinc-600 mb-4">
-              <div className="flex justify-between border-b border-zinc-50 pb-1.5">
-                <span className="text-zinc-400">Area:</span>
-                <span className="font-semibold text-zinc-800">{currentPlot.area}</span>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-bb-slate mb-4">
+              <div className="flex justify-between border-b border-line/50 pb-1.5">
+                <span className="text-bb-slate">Area:</span>
+                <span className="font-semibold text-ink">{currentPlot.area}</span>
               </div>
-              <div className="flex justify-between border-b border-zinc-50 pb-1.5">
-                <span className="text-zinc-400">Road Width:</span>
-                <span className="font-semibold text-zinc-800">{currentPlot.roadWidth}</span>
+              <div className="flex justify-between border-b border-line/50 pb-1.5">
+                <span className="text-bb-slate">Road Width:</span>
+                <span className="font-semibold text-ink">{currentPlot.roadWidth}</span>
               </div>
-              <div className="flex justify-between border-b border-zinc-50 pb-1.5">
-                <span className="text-zinc-400">Facing:</span>
-                <span className="font-semibold text-zinc-800">{currentPlot.facing}</span>
+              <div className="flex justify-between border-b border-line/50 pb-1.5">
+                <span className="text-bb-slate">Facing:</span>
+                <span className="font-semibold text-ink">{currentPlot.facing}</span>
               </div>
-              <div className="flex justify-between border-b border-zinc-50 pb-1.5">
-                <span className="text-zinc-400">Dimensions:</span>
-                <span className="font-semibold text-zinc-800">{currentPlot.dimensions}</span>
+              <div className="flex justify-between border-b border-line/50 pb-1.5">
+                <span className="text-bb-slate">Dimensions:</span>
+                <span className="font-semibold text-ink">{currentPlot.dimensions}</span>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 mt-1 pt-3 border-t border-zinc-100">
+            <div className="grid grid-cols-2 gap-3 mt-1 pt-3 border-t border-line/70">
               <button
                 onClick={() => setToastMessage(`Drone view for ${currentPlot.id} is coming soon.`)}
-                className="w-full py-2.5 rounded-lg text-xs font-bold tracking-wider uppercase border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 transition-colors"
+                className="w-full py-2.5 rounded-lg text-xs font-bold tracking-wider uppercase border border-line bg-white text-bb-slate hover:bg-bb-paper transition-colors"
               >
                 Drone View
               </button>
 
               <button
                 onClick={() => setToastMessage(`Added ${currentPlot.id} to comparison list.`)}
-                className="w-full py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-lg text-xs font-bold tracking-wider uppercase transition-colors"
+                className="w-full py-2.5 bg-ink hover:bg-ink/90 text-white rounded-lg text-xs font-bold tracking-wider uppercase transition-colors"
               >
                 Add To Compare
               </button>
@@ -1558,7 +1558,7 @@ export default function Hero() {
         </div>
 
         {/* Drag Hint footer */}
-        <p className="text-xs text-zinc-400 mt-6 uppercase tracking-wider font-mono">
+        <p className="text-xs text-bb-slate mt-6 uppercase tracking-wider font-mono">
           Drag the center slider to compare blueprint sketches with digital interactive model
         </p>
 

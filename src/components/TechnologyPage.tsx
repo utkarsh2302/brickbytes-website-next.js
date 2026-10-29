@@ -74,7 +74,7 @@ function BuyerExperienceSVG() {
           show: { opacity: 1, transition: { duration: 1 } }
         }}
         d="M 0 40 L 320 40 M 0 80 L 320 80 M 0 120 L 320 120 M 0 160 L 320 160 M 40 0 L 40 200 M 80 0 L 80 200 M 120 0 L 120 200 M 160 0 L 160 200 M 200 0 L 200 200 M 240 0 L 240 200 M 280 0 L 280 200" 
-        stroke="#f4f4f5" 
+        stroke="#ece6dd" 
         strokeWidth="0.5" 
       />
       {/* Lot 1 */}
@@ -84,10 +84,10 @@ function BuyerExperienceSVG() {
           show: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 100, delay: 0.2 } }
         }}
       >
-        <rect x="25" y="25" width="80" height="70" rx="4" fill="#faf9f5" stroke="#ff5e13" strokeWidth="1" />
-        <rect x="35" y="65" width="40" height="12" rx="3" fill="#ff5e13" />
+        <rect x="25" y="25" width="80" height="70" rx="4" fill="#f7f4ef" stroke="#ff5a1f" strokeWidth="1" />
+        <rect x="35" y="65" width="40" height="12" rx="3" fill="#ff5a1f" />
         <text x="55" y="73" fontSize="6" fontWeight="bold" fill="#ffffff" fontFamily="sans-serif" textAnchor="middle">LOT 01</text>
-        <text x="65" y="45" fontSize="6" fontFamily="monospace" fill="#a1a1aa" textAnchor="middle">50&apos; x 100&apos;</text>
+        <text x="65" y="45" fontSize="6" fontFamily="monospace" fill="#9aa0a8" textAnchor="middle">50&apos; x 100&apos;</text>
       </motion.g>
       {/* Lot 2 */}
       <motion.g
@@ -96,14 +96,14 @@ function BuyerExperienceSVG() {
           show: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 100, delay: 0.4 } }
         }}
       >
-        <rect x="115" y="25" width="80" height="70" rx="4" fill="#faf9f5" stroke="#e4e4e7" strokeWidth="0.8" />
-        <text x="155" y="60" fontSize="7" fontWeight="bold" fill="#71717a" fontFamily="sans-serif" textAnchor="middle">LOT 02</text>
+        <rect x="115" y="25" width="80" height="70" rx="4" fill="#f7f4ef" stroke="#e3ddd3" strokeWidth="0.8" />
+        <text x="155" y="60" fontSize="7" fontWeight="bold" fill="#5a6272" fontFamily="sans-serif" textAnchor="middle">LOT 02</text>
         <motion.text 
           variants={{
             hidden: { opacity: 0, scale: 0.8 },
             show: { opacity: 1, scale: 1, transition: { delay: 0.8 } }
           }}
-          x="155" y="72" fontSize="5" fontWeight="bold" fill="#10b981" fontFamily="sans-serif" textAnchor="middle">SOLD</motion.text>
+          x="155" y="72" fontSize="5" fontWeight="bold" fill="#2e7a4e" fontFamily="sans-serif" textAnchor="middle">SOLD</motion.text>
       </motion.g>
       {/* Lot 3 */}
       <motion.g
@@ -112,8 +112,8 @@ function BuyerExperienceSVG() {
           show: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 100, delay: 0.6 } }
         }}
       >
-        <rect x="205" y="25" width="80" height="70" rx="4" fill="#faf9f5" stroke="#d97706" strokeWidth="1" />
-        <rect x="215" y="65" width="45" height="12" rx="3" fill="#d97706" />
+        <rect x="205" y="25" width="80" height="70" rx="4" fill="#f7f4ef" stroke="#b7791f" strokeWidth="1" />
+        <rect x="215" y="65" width="45" height="12" rx="3" fill="#b7791f" />
         <text x="237.5" y="73" fontSize="6" fontWeight="bold" fill="#ffffff" fontFamily="sans-serif" textAnchor="middle">RESERVED</text>
       </motion.g>
       
@@ -124,7 +124,7 @@ function BuyerExperienceSVG() {
           show: { opacity: 1, transition: { delay: 0.8 } }
         }}
       >
-        <rect x="25" y="115" width="170" height="60" rx="4" fill="#ffffff" stroke="#e4e4e7" strokeWidth="0.8" />
+        <rect x="25" y="115" width="170" height="60" rx="4" fill="#ffffff" stroke="#e3ddd3" strokeWidth="0.8" />
         <motion.path 
           variants={{
             hidden: { pathLength: 0 },
@@ -132,7 +132,7 @@ function BuyerExperienceSVG() {
           }}
           d="M 35 145 Q 110 125 185 145" 
           fill="none" 
-          stroke="#ff5e13" 
+          stroke="#ff5a1f" 
           strokeWidth="1" 
           strokeDasharray="3 3" 
         />
@@ -142,9 +142,9 @@ function BuyerExperienceSVG() {
           cx="110" 
           cy="138" 
           r="4" 
-          fill="#ff5e13" 
+          fill="#ff5a1f" 
         />
-        <text x="110" y="130" fontSize="6" fontWeight="bold" fill="#ff5e13" fontFamily="sans-serif" textAnchor="middle">Lakeside Boardwalk</text>
+        <text x="110" y="130" fontSize="6" fontWeight="bold" fill="#ff5a1f" fontFamily="sans-serif" textAnchor="middle">Lakeside Boardwalk</text>
         <text x="110" y="160" fontSize="7" fontWeight="bold" fill="#1c1a17" fontFamily="sans-serif" textAnchor="middle">Community Layout Boundary</text>
       </motion.g>
     </svg>
@@ -160,7 +160,7 @@ function LiveInventorySVG() {
           show: { opacity: 1, transition: { duration: 1 } }
         }}
         d="M 0 40 L 320 40 M 0 80 L 320 80 M 0 120 L 320 120 M 0 160 L 320 160 M 40 0 L 40 200 M 80 0 L 80 200 M 120 0 L 120 200 M 160 0 L 160 200 M 200 0 L 200 200 M 240 0 L 240 200 M 280 0 L 280 200" 
-        stroke="#f4f4f5" 
+        stroke="#ece6dd" 
         strokeWidth="0.5" 
       />
       {/* Progress Box */}
@@ -170,16 +170,16 @@ function LiveInventorySVG() {
           show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, delay: 0.2 } }
         }}
       >
-        <rect x="30" y="30" width="260" height="56" rx="8" fill="#ffffff" stroke="#e4e4e7" strokeWidth="0.8" />
+        <rect x="30" y="30" width="260" height="56" rx="8" fill="#ffffff" stroke="#e3ddd3" strokeWidth="0.8" />
         <text x="45" y="52" fontSize="8" fontWeight="bold" fill="#1c1a17" fontFamily="sans-serif">Subdivision Progress</text>
-        <text x="275" y="52" fontSize="8" fontWeight="bold" fill="#ff5e13" fontFamily="sans-serif" textAnchor="end">72% Allocated</text>
-        <rect x="45" y="60" width="230" height="8" rx="4" fill="#faf9f5" stroke="#e4e4e7" strokeWidth="0.5" />
+        <text x="275" y="52" fontSize="8" fontWeight="bold" fill="#ff5a1f" fontFamily="sans-serif" textAnchor="end">72% Allocated</text>
+        <rect x="45" y="60" width="230" height="8" rx="4" fill="#f7f4ef" stroke="#e3ddd3" strokeWidth="0.5" />
         <motion.rect 
           variants={{
             hidden: { width: 0 },
             show: { width: 165, transition: { duration: 1.2, ease: "easeOut", delay: 0.5 } }
           }}
-          x="45" y="60" height="8" rx="4" fill="#ff5e13" 
+          x="45" y="60" height="8" rx="4" fill="#ff5a1f" 
         />
       </motion.g>
 
@@ -190,14 +190,14 @@ function LiveInventorySVG() {
           show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100, delay: 0.4 } }
         }}
       >
-        <rect x="30" y="105" width="120" height="46" rx="6" fill="#ffffff" stroke="#e4e4e7" strokeWidth="0.8" />
+        <rect x="30" y="105" width="120" height="46" rx="6" fill="#ffffff" stroke="#e3ddd3" strokeWidth="0.8" />
         <text x="40" y="131" fontSize="8" fontWeight="bold" fill="#1c1a17" fontFamily="sans-serif">Status Lock: Lot 12</text>
         
         {/* Toggle background */}
         <motion.rect 
           variants={{
-            hidden: { fill: "#e4e4e7" },
-            show: { fill: "#ff5e13", transition: { delay: 0.8 } }
+            hidden: { fill: "#e3ddd3" },
+            show: { fill: "#ff5a1f", transition: { delay: 0.8 } }
           }}
           x="110" y="121" width="30" height="14" rx="7" 
         />
@@ -220,12 +220,12 @@ function LiveInventorySVG() {
           show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100, delay: 0.6 } }
         }}
       >
-        <rect x="170" y="105" width="120" height="46" rx="6" fill="#ffffff" stroke="#e4e4e7" strokeWidth="0.8" />
-        <text x="180" y="125" fontSize="7" fill="#71717a" fontFamily="sans-serif">Auto-synced</text>
+        <rect x="170" y="105" width="120" height="46" rx="6" fill="#ffffff" stroke="#e3ddd3" strokeWidth="0.8" />
+        <text x="180" y="125" fontSize="7" fill="#5a6272" fontFamily="sans-serif">Auto-synced</text>
         <motion.text 
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          x="180" y="140" fontSize="9" fontWeight="bold" fill="#10b981" fontFamily="sans-serif">LIVE</motion.text>
+          x="180" y="140" fontSize="9" fontWeight="bold" fill="#2e7a4e" fontFamily="sans-serif">LIVE</motion.text>
       </motion.g>
     </svg>
   );
@@ -240,7 +240,7 @@ function AiAssistantSVG() {
           show: { opacity: 1, transition: { duration: 1 } }
         }}
         d="M 0 40 L 320 40 M 0 80 L 320 80 M 0 120 L 320 120 M 0 160 L 320 160 M 40 0 L 40 200 M 80 0 L 80 200 M 120 0 L 120 200 M 160 0 L 160 200 M 200 0 L 200 200 M 240 0 L 240 200 M 280 0 L 280 200" 
-        stroke="#f4f4f5" 
+        stroke="#ece6dd" 
         strokeWidth="0.5" 
       />
       {/* Bubble 1 */}
@@ -250,8 +250,8 @@ function AiAssistantSVG() {
           show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, delay: 0.2 } }
         }}
       >
-        <rect x="40" y="30" width="150" height="30" rx="8" fill="#faf9f5" stroke="#e4e4e7" strokeWidth="0.5" />
-        <text x="55" y="48" fontSize="8" fill="#71717a" fontFamily="sans-serif">Show Lot 14 facing details.</text>
+        <rect x="40" y="30" width="150" height="30" rx="8" fill="#f7f4ef" stroke="#e3ddd3" strokeWidth="0.5" />
+        <text x="55" y="48" fontSize="8" fill="#5a6272" fontFamily="sans-serif">Show Lot 14 facing details.</text>
       </motion.g>
 
       {/* Bubble 2 */}
@@ -261,9 +261,9 @@ function AiAssistantSVG() {
           show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, delay: 0.6 } }
         }}
       >
-        <rect x="120" y="80" width="170" height="50" rx="8" fill="#fff3eb" stroke="#ffebdd" strokeWidth="0.5" />
-        <text x="135" y="100" fontSize="9" fontWeight="bold" fill="#ff5e13" fontFamily="sans-serif">East facing</text>
-        <text x="135" y="116" fontSize="7.5" fill="#71717a" fontFamily="sans-serif">Road width is 40 feet.</text>
+        <rect x="120" y="80" width="170" height="50" rx="8" fill="#f3e9dc" stroke="#ead9c4" strokeWidth="0.5" />
+        <text x="135" y="100" fontSize="9" fontWeight="bold" fill="#ff5a1f" fontFamily="sans-serif">East facing</text>
+        <text x="135" y="116" fontSize="7.5" fill="#5a6272" fontFamily="sans-serif">Road width is 40 feet.</text>
       </motion.g>
 
       {/* Bubble 3 */}
@@ -273,8 +273,8 @@ function AiAssistantSVG() {
           show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, delay: 1.0 } }
         }}
       >
-        <rect x="40" y="150" width="200" height="30" rx="8" fill="#faf9f5" stroke="#e4e4e7" strokeWidth="0.5" />
-        <text x="55" y="168" fontSize="8" fill="#71717a" fontFamily="sans-serif">What is the price range for Block A?</text>
+        <rect x="40" y="150" width="200" height="30" rx="8" fill="#f7f4ef" stroke="#e3ddd3" strokeWidth="0.5" />
+        <text x="55" y="168" fontSize="8" fill="#5a6272" fontFamily="sans-serif">What is the price range for Block A?</text>
       </motion.g>
     </svg>
   );
@@ -289,7 +289,7 @@ function DeveloperControlSVG() {
           show: { opacity: 1, transition: { duration: 1 } }
         }}
         d="M 0 40 L 320 40 M 0 80 L 320 80 M 0 120 L 320 120 M 0 160 L 320 160 M 40 0 L 40 200 M 80 0 L 80 200 M 120 0 L 120 200 M 160 0 L 160 200 M 200 0 L 200 200 M 240 0 L 240 200 M 280 0 L 280 200" 
-        stroke="#f4f4f5" 
+        stroke="#ece6dd" 
         strokeWidth="0.5" 
       />
       {/* Main card */}
@@ -299,7 +299,7 @@ function DeveloperControlSVG() {
           show: { opacity: 1, scale: 1, transition: { duration: 0.6 } }
         }}
       >
-        <rect x="30" y="25" width="260" height="150" rx="10" fill="#ffffff" stroke="#e4e4e7" strokeWidth="0.8" />
+        <rect x="30" y="25" width="260" height="150" rx="10" fill="#ffffff" stroke="#e3ddd3" strokeWidth="0.8" />
         
         {/* Metric 1 */}
         <motion.g
@@ -308,9 +308,9 @@ function DeveloperControlSVG() {
             show: { opacity: 1, y: 0, transition: { delay: 0.2 } }
           }}
         >
-          <rect x="45" y="40" width="70" height="40" rx="6" fill="#faf9f5" stroke="#e4e4e7" strokeWidth="0.5" />
-          <text x="52" y="55" fontSize="7" fill="#71717a" fontFamily="sans-serif">Total Value</text>
-          <text x="52" y="72" fontSize="12" fontWeight="bold" fill="#ff5e13" fontFamily="sans-serif">₹95 Cr</text>
+          <rect x="45" y="40" width="70" height="40" rx="6" fill="#f7f4ef" stroke="#e3ddd3" strokeWidth="0.5" />
+          <text x="52" y="55" fontSize="7" fill="#5a6272" fontFamily="sans-serif">Total Value</text>
+          <text x="52" y="72" fontSize="12" fontWeight="bold" fill="#ff5a1f" fontFamily="sans-serif">₹95 Cr</text>
         </motion.g>
 
         {/* Metric 2 */}
@@ -320,8 +320,8 @@ function DeveloperControlSVG() {
             show: { opacity: 1, y: 0, transition: { delay: 0.3 } }
           }}
         >
-          <rect x="125" y="40" width="70" height="40" rx="6" fill="#ffffff" stroke="#e4e4e7" strokeWidth="0.5" />
-          <text x="132" y="55" fontSize="7" fill="#71717a" fontFamily="sans-serif">Plots Sold</text>
+          <rect x="125" y="40" width="70" height="40" rx="6" fill="#ffffff" stroke="#e3ddd3" strokeWidth="0.5" />
+          <text x="132" y="55" fontSize="7" fill="#5a6272" fontFamily="sans-serif">Plots Sold</text>
           <text x="132" y="72" fontSize="12" fontWeight="bold" fill="#1c1a17" fontFamily="sans-serif">56%</text>
         </motion.g>
 
@@ -332,8 +332,8 @@ function DeveloperControlSVG() {
             show: { opacity: 1, y: 0, transition: { delay: 0.4 } }
           }}
         >
-          <rect x="205" y="40" width="70" height="40" rx="6" fill="#ffffff" stroke="#e4e4e7" strokeWidth="0.5" />
-          <text x="212" y="55" fontSize="7" fill="#71717a" fontFamily="sans-serif">Reserved</text>
+          <rect x="205" y="40" width="70" height="40" rx="6" fill="#ffffff" stroke="#e3ddd3" strokeWidth="0.5" />
+          <text x="212" y="55" fontSize="7" fill="#5a6272" fontFamily="sans-serif">Reserved</text>
           <text x="212" y="72" fontSize="12" fontWeight="bold" fill="#1c1a17" fontFamily="sans-serif">12%</text>
         </motion.g>
 
@@ -344,8 +344,8 @@ function DeveloperControlSVG() {
             show: { opacity: 1, transition: { delay: 0.5 } }
           }}
         >
-          <rect x="45" y="95" width="230" height="65" rx="6" fill="#ffffff" stroke="#e4e4e7" strokeWidth="0.5" />
-          <text x="52" y="112" fontSize="7" fontWeight="bold" fill="#71717a" fontFamily="sans-serif">SALES VELOCITY (MONTHLY)</text>
+          <rect x="45" y="95" width="230" height="65" rx="6" fill="#ffffff" stroke="#e3ddd3" strokeWidth="0.5" />
+          <text x="52" y="112" fontSize="7" fontWeight="bold" fill="#5a6272" fontFamily="sans-serif">SALES VELOCITY (MONTHLY)</text>
           
           <motion.path 
             variants={{
@@ -354,7 +354,7 @@ function DeveloperControlSVG() {
             }}
             d="M 55 150 L 100 135 L 145 140 L 190 122 L 235 110 L 265 106" 
             fill="none" 
-            stroke="#ff5e13" 
+            stroke="#ff5a1f" 
             strokeWidth="1.8" 
             strokeLinecap="round" 
           />
@@ -366,7 +366,7 @@ function DeveloperControlSVG() {
             cx="265" 
             cy="106" 
             r="3" 
-            fill="#ff5e13" 
+            fill="#ff5a1f" 
           />
         </motion.g>
       </motion.g>
@@ -385,7 +385,7 @@ const capabilitySections = [
       "Real-time visualization of plot boundaries",
       "Drone and ground reality virtual site captures",
     ],
-    icon: <Map className="w-6 h-6 text-brick-orange" />,
+    icon: <Map className="w-6 h-6 text-bb-orange" />,
     svg: <BuyerExperienceSVG />,
   },
   {
@@ -398,7 +398,7 @@ const capabilitySections = [
       "Instant plot locking and release controls",
       "Reservation document generation",
     ],
-    icon: <Database className="w-6 h-6 text-brick-orange" />,
+    icon: <Database className="w-6 h-6 text-bb-orange" />,
     svg: <LiveInventorySVG />,
   },
   {
@@ -411,7 +411,7 @@ const capabilitySections = [
       "AI-enhanced inventory status updates",
       "Secure AI infrastructure for developer data",
     ],
-    icon: <Sparkles className="w-6 h-6 text-brick-orange" />,
+    icon: <Sparkles className="w-6 h-6 text-bb-orange" />,
     svg: <AiAssistantSVG />,
   },
   {
@@ -424,7 +424,7 @@ const capabilitySections = [
       "Project sales analytics",
       "Business volume visibility",
     ],
-    icon: <Monitor className="w-6 h-6 text-brick-orange" />,
+    icon: <Monitor className="w-6 h-6 text-bb-orange" />,
     svg: <DeveloperControlSVG />,
   },
 ];
@@ -433,22 +433,22 @@ const benefitCards = [
   {
     title: "Faster buyer decisions",
     desc: "Clear spatial context answers layout questions instantly, preventing client hesitation and speeding up purchasing decisions.",
-    icon: <ThumbsUp className="w-5 h-5 text-brick-orange" />,
+    icon: <ThumbsUp className="w-5 h-5 text-bb-orange" />,
   },
   {
     title: "Elevated project presentation",
     desc: "Present subdivision layouts on premium interactive systems instead of obsolete paper brochures or loose spreadsheets.",
-    icon: <Landmark className="w-5 h-5 text-brick-orange" />,
+    icon: <Landmark className="w-5 h-5 text-bb-orange" />,
   },
   {
     title: "Accelerated broker velocity",
     desc: "Equip affiliate agents with real-time stock availability maps and visit schedules to close client bookings independently.",
-    icon: <Zap className="w-5 h-5 text-brick-orange" />,
+    icon: <Zap className="w-5 h-5 text-bb-orange" />,
   },
   {
     title: "Zero coordination errors",
     desc: "One unified developer platform syncs pricing, unit status, and layouts automatically, eliminating manual database overlaps.",
-    icon: <ShieldCheck className="w-5 h-5 text-brick-orange" />,
+    icon: <ShieldCheck className="w-5 h-5 text-bb-orange" />,
   },
 ];
 
@@ -456,18 +456,18 @@ export default function TechnologyPage() {
   return (
     <>
       {/* ─── Hero ─── */}
-      <section className="relative bg-[#fbfbfa] text-[#1c1a17] pt-36 sm:pt-44 pb-16 sm:pb-24 overflow-hidden border-b border-zinc-200/50">
+      <section className="relative bg-bb-paper text-ink pt-36 sm:pt-44 pb-16 sm:pb-24 overflow-hidden border-b border-line/50">
         <InteractiveGrid opacity={0.6} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10 w-full">
           <motion.div initial="hidden" animate="show" variants={stagger} className="max-w-3xl text-left">
-            <motion.div variants={fadeUp} className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-brick-orange mb-3">
+            <motion.div variants={fadeUp} className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3">
               Technology
             </motion.div>
-            <motion.h1 variants={fadeUp} className="text-3xl sm:text-5xl md:text-6xl font-serif font-light tracking-tight leading-[1.15] text-zinc-950 mb-6">
+            <motion.h1 variants={fadeUp} className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-[1.15] text-ink mb-6">
               Turn static layouts into{" "}
-              <span className="text-brick-orange italic">digital project experiences</span>
+              <span className="">digital project experiences</span>
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-sm sm:text-base text-zinc-500 leading-relaxed font-sans font-light max-w-xl">
+            <motion.p variants={fadeUp} className="text-sm sm:text-base text-bb-slate leading-relaxed font-sans font-light max-w-xl">
               BrickBytes replaces obsolete flat paper plans and static PDFs with dynamic, interactive spatial experiences that clarify property layouts for modern real estate buyers.
             </motion.p>
           </motion.div>
@@ -478,8 +478,8 @@ export default function TechnologyPage() {
       {capabilitySections.map((section, idx) => (
         <section
           key={idx}
-          className={`relative text-[#1c1a17] py-16 sm:py-24 overflow-hidden border-b border-zinc-200/50 ${
-            idx % 2 === 0 ? "bg-white" : "bg-[#fbfbfa]"
+          className={`relative text-ink py-16 sm:py-24 overflow-hidden border-b border-line/50 ${
+            idx % 2 === 0 ? "bg-white" : "bg-bb-paper"
           }`}
         >
           <InteractiveGrid opacity={0.45} />
@@ -498,25 +498,25 @@ export default function TechnologyPage() {
                 variants={idx % 2 === 0 ? slideInLeft : slideInRight} 
                 className={`text-left ${idx % 2 !== 0 ? "lg:order-2" : ""}`}
               >
-                <div className="text-[9px] font-mono tracking-widest text-zinc-400 uppercase mb-4">
+                <div className="text-[9px] font-mono tracking-widest text-bb-slate uppercase mb-4">
                   {section.tag}
                 </div>
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="flex items-center justify-center w-11 h-11 rounded-2xl bg-orange-50 border border-orange-100/50">
+                  <span className="flex items-center justify-center w-11 h-11 rounded-2xl bg-bb-sand/30 border border-bb-sand/50">
                     {section.icon}
                   </span>
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-light tracking-tight text-zinc-950">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold tracking-tight text-ink">
                     {section.title}
                   </h2>
                 </div>
-                <p className="text-sm sm:text-base text-zinc-500 leading-relaxed font-sans font-light mb-8 max-w-lg">
+                <p className="text-sm sm:text-base text-bb-slate leading-relaxed font-sans font-light mb-8 max-w-lg">
                   {section.desc}
                 </p>
                 <ul className="space-y-3">
                   {section.features.map((feature, fIdx) => (
-                    <li key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-600 font-sans font-light">
-                      <span className="flex items-center justify-center w-5 h-5 rounded-full bg-orange-50 border border-orange-100 mt-0.5 shrink-0">
-                        <Check className="w-3 h-3 text-brick-orange" strokeWidth={3} />
+                    <li key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-bb-slate font-sans font-light">
+                      <span className="flex items-center justify-center w-5 h-5 rounded-full bg-bb-sand/30 border border-bb-sand mt-0.5 shrink-0">
+                        <Check className="w-3 h-3 text-bb-orange" strokeWidth={3} />
                       </span>
                       <span>{feature}</span>
                     </li>
@@ -527,7 +527,7 @@ export default function TechnologyPage() {
               {/* Visual Side */}
               <motion.div
                 variants={idx % 2 === 0 ? slideInRight : slideInLeft}
-                className={`w-full bg-white border border-zinc-200/50 rounded-3xl p-4 shadow-sm ${idx % 2 !== 0 ? "lg:order-1" : ""}`}
+                className={`w-full bg-white border border-line/50 rounded-3xl p-4 shadow-sm ${idx % 2 !== 0 ? "lg:order-1" : ""}`}
               >
                 {section.svg}
               </motion.div>
@@ -537,7 +537,7 @@ export default function TechnologyPage() {
       ))}
 
       {/* ─── Technology Benefits ─── */}
-      <section className="relative bg-[#fbfbfa] text-[#1c1a17] py-16 sm:py-24 overflow-hidden border-b border-zinc-200/50">
+      <section className="relative bg-bb-paper text-ink py-16 sm:py-24 overflow-hidden border-b border-line/50">
         <InteractiveGrid opacity={0.45} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10 w-full">
           <motion.div
@@ -547,10 +547,10 @@ export default function TechnologyPage() {
             variants={stagger}
           >
             <motion.div variants={fadeUp} className="max-w-3xl mb-12 sm:mb-16 text-left">
-              <div className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-brick-orange mb-3">
+              <div className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3">
                 Outcomes
               </div>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif font-light tracking-tight leading-[1.2] text-zinc-950">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-[1.2] text-ink">
                 Built around how developers actually sell.
               </h2>
             </motion.div>
@@ -562,15 +562,15 @@ export default function TechnologyPage() {
                   <motion.div
                     key={idx}
                     variants={cardVariant}
-                    className="group bg-white border border-zinc-200/60 rounded-3xl p-6 sm:p-8 hover:border-brick-orange/40 hover:shadow-luxury-deep transition-all duration-300 text-left card-hover-accent accent-radius-3xl"
+                    className="group bg-white border border-line/60 rounded-3xl p-6 sm:p-8 hover:border-bb-orange/40 hover:shadow-luxury-deep transition-all duration-300 text-left card-hover-accent accent-radius-3xl"
                   >
-                    <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-100/50 mb-5">
+                    <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-bb-sand/30 border border-bb-sand/50 mb-5">
                       {card.icon}
                     </span>
-                    <h3 className="text-base sm:text-lg font-serif font-normal text-zinc-950 mb-2">
+                    <h3 className="text-base sm:text-lg font-display font-semibold text-ink mb-2">
                       {card.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed font-sans font-light">
+                    <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light">
                       {card.desc}
                     </p>
                   </motion.div>

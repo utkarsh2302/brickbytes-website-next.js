@@ -10,19 +10,19 @@ const aboutItems = [
     tag: "01 / MISSION",
     title: "Replace obsolete flat paperwork",
     desc: "To replace obsolete flat paper plans and static PDFs with dynamic, interactive spatial blueprints that clarify property layouts for modern real estate buyers.",
-    icon: <Compass className="w-4 h-4 text-brick-orange" />
+    icon: <Compass className="w-4 h-4 text-bb-orange" />
   },
   {
     tag: "02 / VISION",
     title: "Global interactive sales standard",
     desc: "A global real estate sales standard where every master layout is digitally explorable, transparent, and instantly transactional.",
-    icon: <Sparkles className="w-4 h-4 text-brick-orange" />
+    icon: <Sparkles className="w-4 h-4 text-bb-orange" />
   },
   {
     tag: "03 / PHILOSOPHY",
     title: "Precision meets presentation",
     desc: "Engineering-grade precision meets high-end luxury presentation. We build products designed around how elite developers actually sell.",
-    icon: <ShieldAlert className="w-4 h-4 text-brick-orange" />
+    icon: <ShieldAlert className="w-4 h-4 text-bb-orange" />
   }
 ];
 
@@ -52,7 +52,7 @@ export default function About() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   return (
-    <section id="about" className="relative bg-white text-[#1c1a17] py-20 sm:py-28 overflow-hidden border-t border-zinc-200/50">
+    <section id="about" className="relative bg-white text-ink py-20 sm:py-28 overflow-hidden border-t border-line/50">
       {/* Blueprint Grid Accent */}
       <InteractiveGrid opacity={0.4} />
       
@@ -67,7 +67,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-brick-orange mb-3"
+                className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3"
               >
                 About | A Venture by BrickNova Technologies
               </motion.div>
@@ -76,7 +76,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.1 }}
-                className="text-2xl sm:text-4xl md:text-5xl font-serif font-light tracking-tight leading-[1.2] text-zinc-950 mb-8"
+                className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-[1.2] text-ink mb-8"
               >
                 Why BrickBytes exists.
               </motion.h2>
@@ -88,24 +88,24 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="w-full bg-white border border-zinc-200/50 rounded-3xl p-6 shadow-sm overflow-hidden z-10"
+              className="w-full bg-white border border-line/50 rounded-3xl p-6 shadow-sm overflow-hidden z-10"
             >
               <svg className="w-full h-48 md:h-56" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* Internal grids */}
-                <path d="M 0 20 L 200 20 M 0 50 L 200 50 M 0 80 L 200 80 M 0 110 L 200 110 M 0 140 L 200 140 M 30 0 L 30 160 M 60 0 L 60 160 M 90 0 L 90 160 M 120 0 L 120 160 M 150 0 L 150 160 M 180 0 L 180 160" stroke="#f4f4f5" strokeWidth="0.5" />
+                <path d="M 0 20 L 200 20 M 0 50 L 200 50 M 0 80 L 200 80 M 0 110 L 200 110 M 0 140 L 200 140 M 30 0 L 30 160 M 60 0 L 60 160 M 90 0 L 90 160 M 120 0 L 120 160 M 150 0 L 150 160 M 180 0 L 180 160" stroke="#ece6dd" strokeWidth="0.5" />
                 
                 {/* Intersecting circle maps */}
-                <circle cx="100" cy="80" r="45" fill="none" stroke="#e4e4e7" strokeWidth="0.8" />
-                <circle cx="100" cy="80" r="30" fill="none" stroke="#ff5e13" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.6" />
-                <circle cx="100" cy="80" r="3" fill="#ff5e13" />
+                <circle cx="100" cy="80" r="45" fill="none" stroke="#e3ddd3" strokeWidth="0.8" />
+                <circle cx="100" cy="80" r="30" fill="none" stroke="#ff5a1f" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.6" />
+                <circle cx="100" cy="80" r="3" fill="#ff5a1f" />
 
                 {/* Symmetrical axis vectors */}
-                <line x1="100" y1="20" x2="100" y2="140" stroke="#ff5e13" strokeWidth="0.6" opacity="0.4" />
-                <line x1="40" y1="80" x2="160" y2="80" stroke="#ff5e13" strokeWidth="0.6" opacity="0.4" />
+                <line x1="100" y1="20" x2="100" y2="140" stroke="#ff5a1f" strokeWidth="0.6" opacity="0.4" />
+                <line x1="40" y1="80" x2="160" y2="80" stroke="#ff5a1f" strokeWidth="0.6" opacity="0.4" />
 
                 {/* Dimension callouts */}
-                <text x="145" y="75" fontSize="5" fontFamily="monospace" fill="#a1a1aa">R 45.00&apos;</text>
-                <text x="105" y="32" fontSize="5" fontFamily="monospace" fill="#a1a1aa">GPS: 12.35&apos; N</text>
+                <text x="145" y="75" fontSize="5" fontFamily="monospace" fill="#9aa0a8">R 45.00&apos;</text>
+                <text x="105" y="32" fontSize="5" fontFamily="monospace" fill="#9aa0a8">GPS: 12.35&apos; N</text>
 
                 {/* Polygon boundary draft */}
                 <polygon points="68,58 132,58 132,102 68,102" fill="none" stroke="#1c1a17" strokeWidth="0.8" />
@@ -134,29 +134,29 @@ export default function About() {
                   onMouseLeave={() => setHoveredIdx(null)}
                   className={`relative bg-white border rounded-3xl p-6 sm:p-8 transition-all duration-300 shadow-sm text-left flex flex-col justify-between card-hover-accent accent-radius-3xl ${
                     hoveredIdx === idx
-                      ? "border-brick-orange/40 shadow-luxury-deep accent-active"
-                      : "border-zinc-200/60"
+                      ? "border-bb-orange/40 shadow-luxury-deep accent-active"
+                      : "border-line/60"
                   }`}
                 >
                   
                   <div>
                     {/* Header line metadata */}
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-[8px] font-mono tracking-widest text-zinc-400 uppercase">
+                      <span className="text-[8px] font-mono tracking-widest text-bb-slate uppercase">
                         {item.tag}
                       </span>
-                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-orange-50 border border-orange-100/30">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-bb-sand/30 border border-bb-sand/30">
                         {item.icon}
                       </span>
                     </div>
 
                     {/* Content */}
-                    <h3 className={`text-lg sm:text-xl font-serif font-normal mb-3 transition-colors duration-300 ${
-                      hoveredIdx === idx ? "text-brick-orange" : "text-zinc-950"
+                    <h3 className={`text-lg sm:text-xl font-display font-normal mb-3 transition-colors duration-300 ${
+                      hoveredIdx === idx ? "text-bb-orange" : "text-ink"
                     }`}>
                       {item.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed font-sans font-light">
+                    <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light">
                       {item.desc}
                     </p>
                   </div>
@@ -168,7 +168,7 @@ export default function About() {
             <div className="mt-10 text-left pl-6">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-brick-orange hover:text-brick-orange/80 transition-colors group"
+                className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-bb-orange hover:text-bb-orange/80 transition-colors group"
               >
                 <span>Connect with our team</span>
                 <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

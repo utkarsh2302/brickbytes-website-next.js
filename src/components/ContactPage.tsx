@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import InteractiveGrid from "./InteractiveGrid";
 import FAQ from "./FAQ";
+import { WHATSAPP_URL } from "@/lib/contact";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -128,7 +129,7 @@ export default function ContactPage() {
   return (
     <>
       {/* ─── Hero Section ─── */}
-      <section className="relative bg-[#fbfbfa] text-[#1c1a17] pt-36 sm:pt-44 pb-16 sm:pb-24 overflow-hidden border-b border-zinc-200/50">
+      <section className="relative bg-bb-paper text-ink pt-36 sm:pt-44 pb-16 sm:pb-24 overflow-hidden border-b border-line/50">
         <InteractiveGrid opacity={0.4} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10 w-full">
           <motion.div
@@ -139,20 +140,20 @@ export default function ContactPage() {
           >
             <motion.div
               variants={fadeUp}
-              className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-brick-orange mb-3"
+              className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3"
             >
               Contact
             </motion.div>
             <motion.h1
               variants={fadeUp}
-              className="text-3xl sm:text-5xl md:text-6xl font-serif font-light tracking-tight leading-[1.15] text-zinc-950 mb-6"
+              className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-[1.15] text-ink mb-6"
             >
               Let&apos;s build something{" "}
-              <span className="text-brick-orange italic">extraordinary</span>
+              <span className="">extraordinary</span>
             </motion.h1>
             <motion.p
               variants={fadeUp}
-              className="text-sm sm:text-base text-zinc-500 leading-relaxed font-sans font-light max-w-xl"
+              className="text-sm sm:text-base text-bb-slate leading-relaxed font-sans font-light max-w-xl"
             >
               Whether you&apos;re ready for a demo or just exploring — we&apos;d love to hear about your project. Reach out through any channel below.
             </motion.p>
@@ -161,7 +162,7 @@ export default function ContactPage() {
       </section>
 
       {/* ─── Contact Methods ─── */}
-      <section className="relative bg-white text-[#1c1a17] py-16 sm:py-24 overflow-hidden border-b border-zinc-200/50">
+      <section className="relative bg-white text-ink py-16 sm:py-24 overflow-hidden border-b border-line/50">
         <InteractiveGrid opacity={0.3} />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 z-10 w-full">
           <motion.div
@@ -174,22 +175,22 @@ export default function ContactPage() {
             {/* WhatsApp Card */}
             <motion.a
               variants={slideInLeft}
-              href="https://wa.me/919507321260"
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-white border border-zinc-200/60 rounded-3xl p-6 sm:p-10 transition-all duration-300 shadow-sm hover:border-emerald-400/50 hover:shadow-luxury-deep card-hover-accent accent-radius-3xl text-left"
+              className="group relative bg-white border border-line/60 rounded-3xl p-6 sm:p-10 transition-all duration-300 shadow-sm hover:border-bb-available/25 hover:shadow-luxury-deep card-hover-accent accent-radius-3xl text-left"
               style={{ "--accent-hover-color": "#22c55e" } as React.CSSProperties}
             >
-              <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100/50 mb-6">
-                <MessageCircle className="w-6 h-6 text-emerald-600" />
+              <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-bb-available/8 border border-bb-available/10 mb-6">
+                <MessageCircle className="w-6 h-6 text-bb-available" />
               </div>
-              <h3 className="text-lg sm:text-xl font-serif font-normal text-zinc-950 mb-2 group-hover:text-emerald-600 transition-colors">
+              <h3 className="text-lg sm:text-xl font-display font-semibold text-ink mb-2 group-hover:text-bb-available transition-colors">
                 WhatsApp
               </h3>
-              <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed font-sans font-light mb-6">
+              <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light mb-6">
                 Get a quick response. Chat directly with our sales team on WhatsApp — we typically reply within minutes.
               </p>
-              <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-600 group-hover:text-emerald-700 transition-colors">
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-bb-available group-hover:text-bb-available transition-colors">
                 <span>Open WhatsApp</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
               </span>
@@ -199,18 +200,18 @@ export default function ContactPage() {
             <motion.a
               variants={slideInRight}
               href="mailto:business@brickbytes.in"
-              className="group relative bg-white border border-zinc-200/60 rounded-3xl p-6 sm:p-10 transition-all duration-300 shadow-sm hover:border-brick-orange/40 hover:shadow-luxury-deep card-hover-accent accent-radius-3xl text-left"
+              className="group relative bg-white border border-line/60 rounded-3xl p-6 sm:p-10 transition-all duration-300 shadow-sm hover:border-bb-orange/40 hover:shadow-luxury-deep card-hover-accent accent-radius-3xl text-left"
             >
-              <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-orange-50 border border-orange-100/50 mb-6">
-                <Mail className="w-6 h-6 text-brick-orange" />
+              <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-bb-sand/30 border border-bb-sand/50 mb-6">
+                <Mail className="w-6 h-6 text-bb-orange" />
               </div>
-              <h3 className="text-lg sm:text-xl font-serif font-normal text-zinc-950 mb-2 group-hover:text-brick-orange transition-colors">
+              <h3 className="text-lg sm:text-xl font-display font-semibold text-ink mb-2 group-hover:text-bb-orange transition-colors">
                 Email
               </h3>
-              <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed font-sans font-light mb-6">
+              <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light mb-6">
                 Send us a detailed inquiry. We&apos;ll get back to you within one business day with a tailored response.
               </p>
-              <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brick-orange group-hover:text-brick-orange/80 transition-colors">
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-bb-orange group-hover:text-bb-orange/80 transition-colors">
                 <span>business@brickbytes.in</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
               </span>
@@ -220,7 +221,7 @@ export default function ContactPage() {
       </section>
 
       {/* ─── Contact Form ─── */}
-      <section className="relative bg-[#fbfbfa] text-[#1c1a17] py-16 sm:py-24 overflow-hidden border-b border-zinc-200/50">
+      <section className="relative bg-bb-paper text-ink py-16 sm:py-24 overflow-hidden border-b border-line/50">
         <InteractiveGrid opacity={0.3} />
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 z-10 w-full">
           <motion.div
@@ -230,13 +231,13 @@ export default function ContactPage() {
             variants={stagger}
           >
             <motion.div variants={fadeUp} className="max-w-2xl mb-10 sm:mb-14 text-left">
-              <div className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-brick-orange mb-3">
+              <div className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3">
                 Request a Demo
               </div>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif font-light tracking-tight leading-[1.2] text-zinc-950 mb-4">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-[1.2] text-ink mb-4">
                 Tell us about your project
               </h2>
-              <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed font-sans font-light">
+              <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light">
                 Fill out the form below and our team will reach out with a custom walkthrough tailored to your development.
               </p>
             </motion.div>
@@ -246,15 +247,15 @@ export default function ContactPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="bg-white border border-emerald-200/60 rounded-3xl p-10 sm:p-14 text-center shadow-sm"
+                className="bg-white border border-bb-available/12 rounded-3xl p-10 sm:p-14 text-center shadow-sm"
               >
-                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-emerald-50 border border-emerald-100/50 mx-auto mb-6">
-                  <Send className="w-7 h-7 text-emerald-600" />
+                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-bb-available/8 border border-bb-available/10 mx-auto mb-6">
+                  <Send className="w-7 h-7 text-bb-available" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-serif font-normal text-zinc-950 mb-3">
+                <h3 className="text-xl sm:text-2xl font-display font-semibold text-ink mb-3">
                   Request received
                 </h3>
-                <p className="text-sm text-zinc-500 font-sans font-light max-w-md mx-auto">
+                <p className="text-sm text-bb-slate font-sans font-light max-w-md mx-auto">
                   Thank you for reaching out. Our team will review your details and get back to you within one business day.
                 </p>
               </motion.div>
@@ -262,7 +263,7 @@ export default function ContactPage() {
               <motion.form
                 variants={springUp}
                 onSubmit={handleSubmit}
-                className="bg-white border border-zinc-200/60 rounded-3xl p-5 sm:p-10 shadow-sm"
+                className="bg-white border border-line/60 rounded-3xl p-5 sm:p-10 shadow-sm"
               >
                 {error && (
                   <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-100 text-xs sm:text-sm text-red-600 text-left">
@@ -273,7 +274,7 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
                   {/* Name */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="contact-name" className="text-[10px] font-mono font-bold tracking-widest text-zinc-400 uppercase flex items-center gap-1.5">
+                    <label htmlFor="contact-name" className="text-[10px] font-mono font-bold tracking-widest text-bb-slate uppercase flex items-center gap-1.5">
                       <User className="w-3 h-3" />
                       Name
                     </label>
@@ -286,13 +287,13 @@ export default function ContactPage() {
                       value={form.name}
                       onChange={handleChange}
                       placeholder="Your full name"
-                      className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-[#fbfbfa] text-sm text-zinc-900 font-sans placeholder:text-zinc-400 focus:outline-none focus:border-brick-orange/50 focus:ring-1 focus:ring-brick-orange/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 rounded-xl border border-line bg-bb-paper text-sm text-ink font-sans placeholder:text-bb-slate focus:outline-none focus:border-bb-orange/50 focus:ring-1 focus:ring-bb-orange/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                   </div>
 
                   {/* Company */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="contact-company" className="text-[10px] font-mono font-bold tracking-widest text-zinc-400 uppercase flex items-center gap-1.5">
+                    <label htmlFor="contact-company" className="text-[10px] font-mono font-bold tracking-widest text-bb-slate uppercase flex items-center gap-1.5">
                       <Building2 className="w-3 h-3" />
                       Company
                     </label>
@@ -305,13 +306,13 @@ export default function ContactPage() {
                       value={form.company}
                       onChange={handleChange}
                       placeholder="Company name"
-                      className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-[#fbfbfa] text-sm text-zinc-900 font-sans placeholder:text-zinc-400 focus:outline-none focus:border-brick-orange/50 focus:ring-1 focus:ring-brick-orange/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 rounded-xl border border-line bg-bb-paper text-sm text-ink font-sans placeholder:text-bb-slate focus:outline-none focus:border-bb-orange/50 focus:ring-1 focus:ring-bb-orange/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                   </div>
 
                   {/* Phone */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="contact-phone" className="text-[10px] font-mono font-bold tracking-widest text-zinc-400 uppercase flex items-center gap-1.5">
+                    <label htmlFor="contact-phone" className="text-[10px] font-mono font-bold tracking-widest text-bb-slate uppercase flex items-center gap-1.5">
                       <Phone className="w-3 h-3" />
                       Phone
                     </label>
@@ -323,13 +324,13 @@ export default function ContactPage() {
                       value={form.phone}
                       onChange={handleChange}
                       placeholder="+91 98765 43210"
-                      className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-[#fbfbfa] text-sm text-zinc-900 font-sans placeholder:text-zinc-400 focus:outline-none focus:border-brick-orange/50 focus:ring-1 focus:ring-brick-orange/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 rounded-xl border border-line bg-bb-paper text-sm text-ink font-sans placeholder:text-bb-slate focus:outline-none focus:border-bb-orange/50 focus:ring-1 focus:ring-bb-orange/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                   </div>
 
                   {/* Email */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="contact-email" className="text-[10px] font-mono font-bold tracking-widest text-zinc-400 uppercase flex items-center gap-1.5">
+                    <label htmlFor="contact-email" className="text-[10px] font-mono font-bold tracking-widest text-bb-slate uppercase flex items-center gap-1.5">
                       <Mail className="w-3 h-3" />
                       Email
                     </label>
@@ -342,14 +343,14 @@ export default function ContactPage() {
                       value={form.email}
                       onChange={handleChange}
                       placeholder="you@company.com"
-                      className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-[#fbfbfa] text-sm text-zinc-900 font-sans placeholder:text-zinc-400 focus:outline-none focus:border-brick-orange/50 focus:ring-1 focus:ring-brick-orange/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 rounded-xl border border-line bg-bb-paper text-sm text-ink font-sans placeholder:text-bb-slate focus:outline-none focus:border-bb-orange/50 focus:ring-1 focus:ring-bb-orange/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                   </div>
                 </div>
 
                 {/* Project Type */}
                 <div className="flex flex-col gap-1.5 mb-5">
-                  <label htmlFor="contact-project-type" className="text-[10px] font-mono font-bold tracking-widest text-zinc-400 uppercase flex items-center gap-1.5">
+                  <label htmlFor="contact-project-type" className="text-[10px] font-mono font-bold tracking-widest text-bb-slate uppercase flex items-center gap-1.5">
                     <Briefcase className="w-3 h-3" />
                     Project Type
                   </label>
@@ -360,7 +361,7 @@ export default function ContactPage() {
                     disabled={isSending}
                     value={form.projectType}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-[#fbfbfa] text-sm text-zinc-900 font-sans focus:outline-none focus:border-brick-orange/50 focus:ring-1 focus:ring-brick-orange/20 transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 rounded-xl border border-line bg-bb-paper text-sm text-ink font-sans focus:outline-none focus:border-bb-orange/50 focus:ring-1 focus:ring-bb-orange/20 transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <option value="" disabled>
                       Select project type
@@ -375,7 +376,7 @@ export default function ContactPage() {
 
                 {/* Message */}
                 <div className="flex flex-col gap-1.5 mb-8">
-                  <label htmlFor="contact-message" className="text-[10px] font-mono font-bold tracking-widest text-zinc-400 uppercase flex items-center gap-1.5">
+                  <label htmlFor="contact-message" className="text-[10px] font-mono font-bold tracking-widest text-bb-slate uppercase flex items-center gap-1.5">
                     <FileText className="w-3 h-3" />
                     Message
                   </label>
@@ -387,7 +388,7 @@ export default function ContactPage() {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="Tell us about your project — number of plots, location, timeline..."
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-[#fbfbfa] text-sm text-zinc-900 font-sans placeholder:text-zinc-400 focus:outline-none focus:border-brick-orange/50 focus:ring-1 focus:ring-brick-orange/20 transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 rounded-xl border border-line bg-bb-paper text-sm text-ink font-sans placeholder:text-bb-slate focus:outline-none focus:border-bb-orange/50 focus:ring-1 focus:ring-bb-orange/20 transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
 
@@ -395,7 +396,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSending}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-brick-orange hover:bg-brick-orange/95 text-white font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors duration-300 shadow-xl shadow-brick-orange/20 group disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-bb-orange hover:bg-bb-orange/95 text-white font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors duration-300 shadow-xl shadow-bb-orange/20 group disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {isSending ? (
                     <>
@@ -416,7 +417,7 @@ export default function ContactPage() {
       </section>
 
       {/* ─── Office Information ─── */}
-      <section className="relative bg-white text-[#1c1a17] py-14 sm:py-20 overflow-hidden border-b border-zinc-200/50">
+      <section className="relative bg-white text-ink py-14 sm:py-20 overflow-hidden border-b border-line/50">
         <InteractiveGrid opacity={0.25} />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 z-10 w-full">
           <motion.div
@@ -426,10 +427,10 @@ export default function ContactPage() {
             variants={stagger}
           >
             <motion.div variants={fadeUp} className="mb-8 text-left">
-              <div className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-brick-orange mb-3">
+              <div className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3">
                 Office
               </div>
-              <h2 className="text-xl sm:text-3xl font-serif font-light tracking-tight text-zinc-950">
+              <h2 className="text-xl sm:text-3xl font-display font-extrabold tracking-tight text-ink">
                 Company Information
               </h2>
             </motion.div>
@@ -441,16 +442,16 @@ export default function ContactPage() {
               {/* Address */}
               <motion.div 
                 variants={slideInLeft}
-                className="flex items-start gap-3 bg-[#fbfbfa] border border-zinc-200/50 rounded-2xl p-6"
+                className="flex items-start gap-3 bg-bb-paper border border-line/50 rounded-2xl p-6"
               >
-                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-orange-50 border border-orange-100/30 shrink-0">
-                  <MapPin className="w-4 h-4 text-brick-orange" />
+                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-bb-sand/30 border border-bb-sand/30 shrink-0">
+                  <MapPin className="w-4 h-4 text-bb-orange" />
                 </div>
                 <div className="text-left">
-                  <div className="text-[9px] font-mono font-bold tracking-widest text-zinc-400 uppercase mb-1">
+                  <div className="text-[9px] font-mono font-bold tracking-widest text-bb-slate uppercase mb-1">
                     Registered Office
                   </div>
-                  <p className="text-xs sm:text-sm text-zinc-600 font-sans font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-bb-slate font-sans font-light leading-relaxed">
                     Khushi Sansar, Lakshmi Nikunj,
                     <br />
                     Rampura Road, Mohanpura,
@@ -463,16 +464,16 @@ export default function ContactPage() {
               {/* CIN */}
               <motion.div 
                 variants={springUp}
-                className="flex items-start gap-3 bg-[#fbfbfa] border border-zinc-200/50 rounded-2xl p-6"
+                className="flex items-start gap-3 bg-bb-paper border border-line/50 rounded-2xl p-6"
               >
-                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-orange-50 border border-orange-100/30 shrink-0">
-                  <Building2 className="w-4 h-4 text-brick-orange" />
+                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-bb-sand/30 border border-bb-sand/30 shrink-0">
+                  <Building2 className="w-4 h-4 text-bb-orange" />
                 </div>
                 <div className="text-left">
-                  <div className="text-[9px] font-mono font-bold tracking-widest text-zinc-400 uppercase mb-1">
+                  <div className="text-[9px] font-mono font-bold tracking-widest text-bb-slate uppercase mb-1">
                     CIN
                   </div>
-                  <p className="text-xs sm:text-sm text-zinc-600 font-mono font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-bb-slate font-mono font-light leading-relaxed">
                     U62011RJ2026PTC113544
                   </p>
                 </div>
@@ -481,16 +482,16 @@ export default function ContactPage() {
               {/* GSTIN */}
               <motion.div 
                 variants={slideInRight}
-                className="flex items-start gap-3 bg-[#fbfbfa] border border-zinc-200/50 rounded-2xl p-6"
+                className="flex items-start gap-3 bg-bb-paper border border-line/50 rounded-2xl p-6"
               >
-                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-orange-50 border border-orange-100/30 shrink-0">
-                  <FileText className="w-4 h-4 text-brick-orange" />
+                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-bb-sand/30 border border-bb-sand/30 shrink-0">
+                  <FileText className="w-4 h-4 text-bb-orange" />
                 </div>
                 <div className="text-left">
-                  <div className="text-[9px] font-mono font-bold tracking-widest text-zinc-400 uppercase mb-1">
+                  <div className="text-[9px] font-mono font-bold tracking-widest text-bb-slate uppercase mb-1">
                     GSTIN
                   </div>
-                  <p className="text-xs sm:text-sm text-zinc-600 font-mono font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-bb-slate font-mono font-light leading-relaxed">
                     08AAOCB6672J1Z2
                   </p>
                 </div>

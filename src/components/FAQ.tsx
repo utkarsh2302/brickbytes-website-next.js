@@ -40,18 +40,18 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative bg-[#fbfbfa] text-[#1c1a17] py-20 sm:py-28 overflow-hidden border-t border-zinc-200/50">
+    <section id="faq" className="relative bg-bb-paper text-ink py-20 sm:py-28 overflow-hidden border-t border-line/50">
       {/* Decorative Grid Accent */}
       <InteractiveGrid opacity={0.4} />
       
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 z-10 w-full">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-20 text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50/50 border border-orange-100/50 text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-brick-orange mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-bb-sand/15 border border-bb-sand/50 text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Platform Questions</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif font-light tracking-tight leading-[1.2] text-zinc-950">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-[1.2] text-ink">
             Frequently Asked Questions
           </h2>
         </div>
@@ -65,8 +65,8 @@ export default function FAQ() {
                 key={index}
                 className={`group border rounded-2xl bg-white transition-all duration-300 ${
                   isOpen 
-                    ? "border-brick-orange/40 shadow-luxury-deep" 
-                    : "border-zinc-200/60 hover:border-brick-orange/20"
+                    ? "border-bb-orange/40 shadow-luxury-deep" 
+                    : "border-line/60 hover:border-bb-orange/20"
                 }`}
               >
                 {/* Header / Click Area */}
@@ -74,8 +74,8 @@ export default function FAQ() {
                   onClick={() => toggleFAQ(index)}
                   className="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer select-none"
                 >
-                  <span className={`text-sm sm:text-base font-serif transition-colors duration-300 ${
-                    isOpen ? "text-brick-orange" : "text-zinc-950 group-hover:text-brick-orange/90"
+                  <span className={`text-sm sm:text-base font-display transition-colors duration-300 ${
+                    isOpen ? "text-bb-orange" : "text-ink group-hover:text-bb-orange/90"
                   }`}>
                     {faq.question}
                   </span>
@@ -83,8 +83,8 @@ export default function FAQ() {
                   {/* Rotating Indicator */}
                   <span className={`flex items-center justify-center w-7 h-7 rounded-full border transition-all duration-300 ${
                     isOpen 
-                      ? "border-brick-orange/30 bg-orange-50 text-brick-orange rotate-180" 
-                      : "border-zinc-200 text-zinc-400 group-hover:border-brick-orange/20 group-hover:text-brick-orange"
+                      ? "border-bb-orange/30 bg-bb-sand/30 text-bb-orange rotate-180" 
+                      : "border-line text-bb-slate group-hover:border-bb-orange/20 group-hover:text-bb-orange"
                   }`}>
                     <ChevronDown className="w-4 h-4" />
                   </span>
@@ -113,8 +113,8 @@ export default function FAQ() {
                       }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-5 sm:px-6 sm:pb-6 border-t border-zinc-100 pt-4">
-                        <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed font-sans font-light">
+                      <div className="px-5 pb-5 sm:px-6 sm:pb-6 border-t border-line/70 pt-4">
+                        <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light">
                           {faq.answer}
                         </p>
                       </div>
@@ -130,7 +130,7 @@ export default function FAQ() {
         <div className="mt-12 text-left pl-6">
           <a
             href="/contact"
-            className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brick-orange hover:text-brick-orange/80 transition-colors group"
+            className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-bb-orange hover:text-bb-orange/80 transition-colors group"
           >
             <span>Have a different question? Contact Sales</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />

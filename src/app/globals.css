@@ -1,100 +1,118 @@
 @import "tailwindcss";
 
-:root {
-  --background: #fbfbfa;
-  --foreground: #1c1a17;
-  --card-bg: rgba(255, 255, 255, 0.92);
-  --border-color: rgba(28, 26, 23, 0.09);
-  --brick-orange: #ff5e13;
+/* BrickBytes v2.1 palette (Brand Guidelines p. 16, 32).
+   Survey Navy is deliberately absent: it lives only in the logo artwork. */
+@theme {
+  --color-ink: #1c1a17;
+  --color-line: rgb(28 26 23 / 0.1);
+  --color-bb-paper: #f7f4ef;
+  --color-bb-stone: #ece6dd;
+  --color-bb-sand: #e6d3bc;
+  --color-bb-orange: #ff5a1f;
+  --color-bb-kiln: #e2531c;
+  --color-bb-slate: #5a6272;
+  /* Plot status, used only in product mock-ups */
+  --color-bb-available: #2e7a4e;
+  --color-bb-hold: #b7791f;
+  --color-bb-booked: #9aa0a8;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-serif);
-  --color-card-bg: var(--card-bg);
-  --color-border-color: var(--border-color);
-  --color-brick-orange: var(--brick-orange);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-dm-mono);
+  --font-display: var(--font-jakarta);
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+@layer base {
+  body {
+    background-color: var(--color-bb-paper);
+    color: var(--color-ink);
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headlines track −3% per the type spec; explicit tracking utilities still win */
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.03em;
+  }
 }
 
-/* Custom Utilities */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Survey grid: construction guides stay visible at 5–25% (Guidelines p. 20) */
 .bg-grid-pattern {
-  background-size: 50px 50px;
-  background-image: 
-    linear-gradient(to right, rgba(28, 26, 23, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(28, 26, 23, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right, rgb(28 26 23 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(28 26 23 / 0.05) 1px, transparent 1px);
 }
 
 .bg-dot-pattern {
-  background-size: 25px 25px;
-  background-image: radial-gradient(rgba(28, 26, 23, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgb(28 26 23 / 0.06) 1px, transparent 1px);
 }
 
-/* Custom Scrollbar for premium feel */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #fbfbfa;
+  background: var(--color-bb-paper);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(28, 26, 23, 0.15);
+  background: rgb(28 26 23 / 0.15);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(28, 26, 23, 0.3);
+  background: rgb(28 26 23 / 0.3);
 }
 
-/* Smooth glassmorphic highlights */
+/* Flat surfaces: no blur or translucency, a hairline and a soft two-part shadow */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(28, 26, 23, 0.08);
+  background: #ffffff;
+  border: 1px solid var(--color-line);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(28, 26, 23, 0.06);
-  box-shadow: 0 10px 40px -10px rgba(28, 26, 23, 0.08);
+  background: #ffffff;
+  border: 1px solid var(--color-line);
+  box-shadow:
+    0 1px 2px rgb(28 26 23 / 0.04),
+    0 12px 32px -12px rgb(28 26 23 / 0.1);
 }
 
 .shadow-luxury-deep {
-  box-shadow: 
-    0 4px 20px -2px rgba(28, 26, 23, 0.04),
-    0 12px 30px -4px rgba(28, 26, 23, 0.08),
-    0 30px 60px -15px rgba(28, 26, 23, 0.12);
+  box-shadow:
+    0 1px 2px rgb(28 26 23 / 0.04),
+    0 24px 48px -24px rgb(28 26 23 / 0.16);
 }
 
-/* Reusable Card Top Accent Line System */
+/* Card top accent: a hairline that turns Byte Orange on hover or when active */
 .card-hover-accent {
-  border-top: 1px solid var(--accent-base-color, rgba(28, 26, 23, 0.09));
-  transition: border-top-width 300ms cubic-bezier(0.16, 1, 0.3, 1), border-top-color 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  border-top: 1px solid var(--accent-base-color, var(--color-line));
+  transition: border-top-color 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-hover-accent:hover {
-  border-top-width: 4px;
-  border-top-color: var(--accent-hover-color, var(--brick-orange));
+  border-top-color: var(--accent-hover-color, var(--color-bb-orange));
 }
 
 .card-hover-accent.accent-active {
-  border-top-width: 4px;
-  border-top-color: var(--accent-active-color, var(--brick-orange));
+  border-top-color: var(--accent-active-color, var(--color-bb-orange));
 }
 
 .accent-radius-xl {
@@ -108,5 +126,3 @@ body {
 .accent-radius-3xl {
   --accent-radius: 1.5rem;
 }
-
-

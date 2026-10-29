@@ -44,7 +44,7 @@ export default function Navbar() {
         <nav
           className={`flex items-center justify-between py-3 px-6 rounded-2xl transition-all duration-300 border ${
             scrolled
-              ? "bg-[#fbfbfa]/75 backdrop-blur-xl border-[#1c1a17]/8 shadow-[0_10px_35px_-10px_rgba(28,26,23,0.08)]"
+              ? "bg-bb-paper/75 backdrop-blur-xl border-ink/8 shadow-[0_10px_35px_-10px_rgba(28,26,23,0.08)]"
               : "bg-transparent border-transparent"
           }`}
         >
@@ -55,7 +55,7 @@ export default function Navbar() {
               alt="BrickBytes Logo"
               width={148}
               height={32}
-              className="h-8 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+              className="h-8 w-auto object-contain"
               priority
             />
           </Link>
@@ -68,8 +68,8 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors hover:text-[#1c1a17] ${
-                    isActive ? "text-brick-orange" : "text-zinc-600"
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors hover:text-ink ${
+                    isActive ? "text-bb-orange" : "text-bb-slate"
                   }`}
                   onMouseEnter={() => setHoveredIndex(idx)}
                   onMouseLeave={() => setHoveredIndex(null)}
@@ -77,7 +77,7 @@ export default function Navbar() {
                   <span className="relative z-10">{item.name}</span>
                   {hoveredIndex === idx && (
                     <motion.span
-                      className="absolute inset-0 bg-[#1c1a17]/5 rounded-lg border border-[#1c1a17]/3"
+                      className="absolute inset-0 bg-ink/5 rounded-lg border border-ink/3"
                       layoutId="navbar-hover"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -86,7 +86,7 @@ export default function Navbar() {
                     />
                   )}
                   {isActive && (
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-brick-orange rounded-full" />
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-bb-orange rounded-full" />
                   )}
                 </Link>
               );
@@ -97,7 +97,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-4">
             <Link
               href="/contact"
-              className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-brick-orange hover:bg-brick-orange/95 text-sm font-medium text-white transition-all duration-300 shadow-sm shadow-brick-orange/10 hover:shadow-brick-orange/25 group"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-bb-orange hover:bg-bb-orange/95 text-sm font-medium text-white transition-all duration-300 shadow-sm shadow-bb-orange/10 hover:shadow-bb-orange/25 group"
             >
               <PhoneCall className="w-3.5 h-3.5" />
               <span>Book Demo</span>
@@ -109,7 +109,7 @@ export default function Navbar() {
           <div className="lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center justify-center p-2 rounded-xl text-zinc-600 hover:text-[#1c1a17] hover:bg-black/5 transition-colors border border-transparent"
+              className="flex items-center justify-center p-2 rounded-xl text-bb-slate hover:text-ink hover:bg-black/5 transition-colors border border-transparent"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -125,7 +125,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden border-b border-black/5 bg-[#fbfbfa]/95 backdrop-blur-xl absolute top-full left-0 right-0 w-full overflow-hidden shadow-xl"
+            className="lg:hidden border-b border-black/5 bg-bb-paper/95 backdrop-blur-xl absolute top-full left-0 right-0 w-full overflow-hidden shadow-xl"
           >
             <div className="px-6 py-8 flex flex-col gap-6">
               <div className="flex flex-col gap-4">
@@ -141,7 +141,7 @@ export default function Navbar() {
                       <Link
                         href={item.href}
                         className={`text-lg font-medium transition-colors ${
-                          isActive ? "text-brick-orange" : "text-zinc-600 hover:text-[#1c1a17]"
+                          isActive ? "text-bb-orange" : "text-bb-slate hover:text-ink"
                         }`}
                       >
                         {item.name}
@@ -150,11 +150,11 @@ export default function Navbar() {
                   );
                 })}
               </div>
-              <div className="h-px bg-zinc-200 w-full" />
+              <div className="h-px bg-bb-stone w-full" />
               <div className="flex flex-col gap-4">
                 <Link
                   href="/contact"
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brick-orange text-white font-medium hover:bg-brick-orange/95 transition-colors shadow-sm"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-bb-orange text-white font-medium hover:bg-bb-orange/95 transition-colors shadow-sm"
                 >
                   <PhoneCall className="w-4 h-4" />
                   <span>Book Demo</span>

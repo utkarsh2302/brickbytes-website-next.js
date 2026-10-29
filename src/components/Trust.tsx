@@ -9,32 +9,32 @@ const trustCards = [
   {
     title: "Secure Project Data",
     desc: "Your vector master plans, boundaries, and layout files are encrypted at rest and in transit using industry-grade protocols.",
-    icon: <Lock className="w-5 h-5 text-brick-orange" />,
+    icon: <Lock className="w-5 h-5 text-bb-orange" />,
   },
   {
     title: "Developer-Owned Information",
     desc: "All inventory, pricing history, and buyer details belong entirely to you. You maintain absolute sovereignty over your dataset.",
-    icon: <ShieldCheck className="w-5 h-5 text-brick-orange" />,
+    icon: <ShieldCheck className="w-5 h-5 text-bb-orange" />,
   },
   {
     title: "Privacy-First Infrastructure",
     desc: "Built on a private cloud environment, keeping your project layout maps completely shielded from unauthorized third-party scrapers.",
-    icon: <EyeOff className="w-5 h-5 text-brick-orange" />,
+    icon: <EyeOff className="w-5 h-5 text-bb-orange" />,
   },
   {
     title: "No Data Resale",
     desc: "We do not monetize your project leads, buyer questions, or pricing logs. BrickBytes sells software, not developer or buyer intelligence.",
-    icon: <Server className="w-5 h-5 text-brick-orange" />,
+    icon: <Server className="w-5 h-5 text-bb-orange" />,
   },
   {
     title: "Controlled Access Management",
     desc: "Manage broker and sales team access with precision. Revoke permissions, lock plot allocations, and audit history at any time.",
-    icon: <Key className="w-5 h-5 text-brick-orange" />,
+    icon: <Key className="w-5 h-5 text-bb-orange" />,
   },
   {
     title: "Enterprise-Grade Security",
     desc: "Backed by standard firewalls, constant threat monitoring, and zero-trust credentials policy for all administrative tools.",
-    icon: <Users className="w-5 h-5 text-brick-orange" />,
+    icon: <Users className="w-5 h-5 text-bb-orange" />,
   },
 ];
 
@@ -62,7 +62,7 @@ const cardVariants: Variants = {
 
 export default function Trust() {
   return (
-    <section id="security" className="relative bg-white text-[#1c1a17] py-20 sm:py-28 overflow-hidden border-t border-zinc-200/50">
+    <section id="security" className="relative bg-white text-ink py-20 sm:py-28 overflow-hidden border-t border-line/50">
       {/* Decorative background grid */}
       <InteractiveGrid opacity={0.4} />
 
@@ -75,7 +75,7 @@ export default function Trust() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-brick-orange mb-3"
+              className="text-[10px] uppercase tracking-[0.25em] font-mono font-bold text-bb-orange mb-3"
             >
               Data Privacy & Sovereignty
             </motion.div>
@@ -84,7 +84,7 @@ export default function Trust() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-2xl sm:text-4xl md:text-5xl font-serif font-light tracking-tight leading-[1.2] text-zinc-950"
+              className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-[1.2] text-ink"
             >
               Your Project Data Stays Yours.
             </motion.h2>
@@ -95,7 +95,7 @@ export default function Trust() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-xs sm:text-sm text-zinc-500 max-w-md leading-relaxed font-sans font-light inline-block"
+              className="text-xs sm:text-sm text-bb-slate max-w-md leading-relaxed font-sans font-light inline-block"
             >
               BrickBytes is built for developers who value ownership, privacy, and long-term control of their project information.
             </motion.p>
@@ -115,28 +115,28 @@ export default function Trust() {
               key={index}
               variants={cardVariants}
               whileHover={{ y: -4 }}
-              className="group relative bg-[#fbfbfa] border border-zinc-200/50 rounded-3xl p-8 hover:border-brick-orange/40 hover:shadow-luxury-deep transition-all duration-300 flex flex-col justify-between text-left card-hover-accent accent-radius-3xl"
+              className="group relative bg-bb-paper border border-line/50 rounded-3xl p-8 hover:border-bb-orange/40 hover:shadow-luxury-deep transition-all duration-300 flex flex-col justify-between text-left card-hover-accent accent-radius-3xl"
             >
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <span className="text-[8px] font-mono tracking-widest text-zinc-400 uppercase">
+                  <span className="text-[8px] font-mono tracking-widest text-bb-slate uppercase">
                     Security Layer {index + 1}
                   </span>
-                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-orange-50/50 border border-orange-100/50">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-bb-sand/15 border border-bb-sand/50">
                     {card.icon}
                   </span>
                 </div>
-                <h3 className="text-lg font-serif font-normal text-zinc-950 mb-3">
+                <h3 className="text-lg font-display font-semibold text-ink mb-3">
                   {card.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed font-sans font-light">
+                <p className="text-xs sm:text-sm text-bb-slate leading-relaxed font-sans font-light">
                   {card.desc}
                 </p>
               </div>
 
-              <div className="border-t border-zinc-200/40 pt-4 mt-6 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-[9px] font-mono font-bold tracking-wider text-zinc-400">ENTERPRISE PROTOCOL</span>
-                <span className="text-[9px] font-bold text-brick-orange uppercase tracking-widest">
+              <div className="border-t border-line/40 pt-4 mt-6 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-[9px] font-mono font-bold tracking-wider text-bb-slate">ENTERPRISE PROTOCOL</span>
+                <span className="text-[9px] font-bold text-bb-orange uppercase tracking-widest">
                   Active
                 </span>
               </div>

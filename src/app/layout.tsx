@@ -1,22 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Lora } from "next/font/google";
+import { DM_Mono, Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { constructMetadata, SITE_DESCRIPTION, siteJsonLd } from "@/lib/seo";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Brand type (Guidelines p. 18): Plus Jakarta Sans for display, Inter for
+// body, DM Mono for plot facts.
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const lora = Lora({
-  variable: "--font-serif",
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
+  weight: ["400", "500"],
   subsets: ["latin"],
 });
 
@@ -27,7 +30,7 @@ export const metadata: Metadata = constructMetadata({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#ff5e13",
+  themeColor: "#f7f4ef",
   width: "device-width",
   initialScale: 1,
 };
@@ -40,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en-IN">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} antialiased`}
+        className={`${jakarta.variable} ${inter.variable} ${dmMono.variable} antialiased`}
       >
         <script
           type="application/ld+json"

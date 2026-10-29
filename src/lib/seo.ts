@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { SALES_PHONE } from "./contact";
 
 export const SITE_URL = "https://brickbytes.in";
 
@@ -93,7 +94,7 @@ export const siteJsonLd = {
         "@type": "ContactPoint",
         contactType: "sales",
         email: "business@brickbytes.in",
-        telephone: "+91-95073-21260",
+        telephone: SALES_PHONE,
         areaServed: "IN",
         availableLanguage: ["en", "hi"],
       },

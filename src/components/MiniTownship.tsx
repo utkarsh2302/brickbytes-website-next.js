@@ -31,12 +31,12 @@ export default function MiniTownship() {
   const [scanActive, setScanActive] = useState(true);
 
   return (
-    <div className="relative w-full max-w-sm sm:max-w-md bg-white/70 backdrop-blur-md border border-zinc-200/80 rounded-2xl p-5 sm:p-6 shadow-xl select-none overflow-hidden">
+    <div className="relative w-full max-w-sm sm:max-w-md bg-white/70 backdrop-blur-md border border-line/80 rounded-2xl p-5 sm:p-6 shadow-xl select-none overflow-hidden">
       {/* Decorative Blueprint Corner Marks */}
-      <div className="absolute top-3 left-3 w-4 h-4 border-t border-l border-zinc-300" />
-      <div className="absolute top-3 right-3 w-4 h-4 border-t border-r border-zinc-300" />
-      <div className="absolute bottom-3 left-3 w-4 h-4 border-b border-l border-zinc-300" />
-      <div className="absolute bottom-3 right-3 w-4 h-4 border-b border-r border-zinc-300" />
+      <div className="absolute top-3 left-3 w-4 h-4 border-t border-l border-ink/15" />
+      <div className="absolute top-3 right-3 w-4 h-4 border-t border-r border-ink/15" />
+      <div className="absolute bottom-3 left-3 w-4 h-4 border-b border-l border-ink/15" />
+      <div className="absolute bottom-3 right-3 w-4 h-4 border-b border-r border-ink/15" />
 
       {/* Embedded Styles for Animations */}
       <style>{`
@@ -61,10 +61,10 @@ export default function MiniTownship() {
       `}</style>
 
       {/* Header Info */}
-      <div className="flex items-center justify-between border-b border-zinc-100 pb-3 mb-4">
+      <div className="flex items-center justify-between border-b border-line/70 pb-3 mb-4">
         <div className="flex items-center gap-2">
-          <Compass className="w-4 h-4 text-brick-orange animate-spin-slow" />
-          <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-bold">
+          <Compass className="w-4 h-4 text-bb-orange animate-spin-slow" />
+          <span className="text-[10px] font-mono tracking-widest text-bb-slate uppercase font-bold">
             Live Development HUD
           </span>
         </div>
@@ -72,8 +72,8 @@ export default function MiniTownship() {
           onClick={() => setScanActive(!scanActive)}
           className={`px-2 py-0.5 rounded text-[8px] font-mono uppercase border ${
             scanActive
-              ? "bg-orange-50 border-orange-200 text-brick-orange font-bold"
-              : "bg-zinc-50 border-zinc-200 text-zinc-400"
+              ? "bg-bb-sand/30 border-bb-sand text-bb-orange font-bold"
+              : "bg-bb-paper border-line text-bb-slate"
           }`}
         >
           {scanActive ? "Scan Active" : "Scan Idle"}
@@ -81,7 +81,7 @@ export default function MiniTownship() {
       </div>
 
       {/* SVG Viewport */}
-      <div className="relative w-full aspect-4/3 flex items-center justify-center bg-zinc-50/50 rounded-xl border border-zinc-200/50 overflow-hidden">
+      <div className="relative w-full aspect-4/3 flex items-center justify-center bg-bb-paper/50 rounded-xl border border-line/50 overflow-hidden">
         {/* Fine Architectural grid backdrop */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
           <div className="w-full h-full bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-size-[20px_20px]" />
@@ -89,7 +89,7 @@ export default function MiniTownship() {
 
         {/* Laser Sweep Overlay */}
         {scanActive && (
-          <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-transparent via-brick-orange/45 to-transparent shadow-[0_0_10px_rgba(255,94,19,0.5)] laser-sweep-anim pointer-events-none z-10" />
+          <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-transparent via-bb-orange/45 to-transparent shadow-[0_0_10px_rgba(255,94,19,0.5)] laser-sweep-anim pointer-events-none z-10" />
         )}
 
         <svg className="w-full h-full p-2 overflow-visible" viewBox="0 0 380 270" fill="none">
@@ -115,7 +115,7 @@ export default function MiniTownship() {
                 : isActive 
                 ? "rgba(255, 94, 19, 0.08)"
                 : "rgba(255, 94, 19, 0.03)";
-              stroke = isHovered || isActive ? "#ff5e13" : "rgba(255, 94, 19, 0.4)";
+              stroke = isHovered || isActive ? "#ff5a1f" : "rgba(255, 94, 19, 0.4)";
               glowFilter = isHovered || isActive ? "drop-shadow(0px 0px 5px rgba(255, 94, 19, 0.35))" : "drop-shadow(0px 0px 2px rgba(255, 94, 19, 0.15))";
             } else if (plot.status === "reserved") {
               fill = "rgba(217, 119, 6, 0.05)";
@@ -126,7 +126,7 @@ export default function MiniTownship() {
             }
 
             if (isHovered || isActive) {
-              stroke = "#ff5e13";
+              stroke = "#ff5a1f";
             }
 
             return (
@@ -154,7 +154,7 @@ export default function MiniTownship() {
                   x={plot.cx}
                   y={plot.cy - 2}
                   textAnchor="middle"
-                  className="text-[7.5px] font-mono font-bold fill-zinc-800"
+                  className="text-[7.5px] font-mono font-bold fill-ink"
                   style={{ pointerEvents: "none" }}
                 >
                   {plot.id.replace("Plot ", "")}
@@ -169,7 +169,7 @@ export default function MiniTownship() {
                       cy={plot.cy + 10}
                       r="4.5"
                       fill="none"
-                      stroke="#ff5e13"
+                      stroke="#ff5a1f"
                       strokeWidth="0.8"
                       className="marker-pulse-anim"
                     />
@@ -178,7 +178,7 @@ export default function MiniTownship() {
                       cx={plot.cx}
                       cy={plot.cy + 10}
                       r="2"
-                      fill="#ff5e13"
+                      fill="#ff5a1f"
                     />
                   </g>
                 )}
@@ -189,7 +189,7 @@ export default function MiniTownship() {
                     cx={plot.cx}
                     cy={plot.cy + 10}
                     r="2"
-                    fill="#d97706"
+                    fill="#b7791f"
                   />
                 )}
               </g>
@@ -205,7 +205,7 @@ export default function MiniTownship() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 5 }}
               transition={{ duration: 0.15 }}
-              className="absolute pointer-events-none bg-zinc-950 text-white rounded-lg p-2.5 shadow-xl border border-zinc-800 flex flex-col gap-0.5 text-left z-20"
+              className="absolute pointer-events-none bg-ink text-white rounded-lg p-2.5 shadow-xl border border-white/10 flex flex-col gap-0.5 text-left z-20"
               style={{
                 top: `${(hoveredPlot.cy / 270) * 100}%`,
                 left: `${(hoveredPlot.cx / 380) * 100}%`,
@@ -216,16 +216,16 @@ export default function MiniTownship() {
                 <span className="text-[9px] font-bold font-mono">{hoveredPlot.id}</span>
                 <span className={`text-[6px] font-bold uppercase px-1 rounded ${
                   hoveredPlot.status === "available"
-                    ? "bg-emerald-500/20 text-emerald-400"
+                    ? "bg-bb-available/20 text-bb-available"
                     : hoveredPlot.status === "reserved"
-                    ? "bg-amber-500/20 text-amber-400"
-                    : "bg-zinc-700/50 text-zinc-400"
+                    ? "bg-bb-hold/20 text-bb-hold"
+                    : "bg-ink/40 text-bb-slate"
                 }`}>
                   {hoveredPlot.status}
                 </span>
               </div>
-              <span className="text-[7.5px] font-mono text-zinc-400">{hoveredPlot.type}</span>
-              <span className="text-[8px] font-bold text-brick-orange mt-0.5">{hoveredPlot.price} • {hoveredPlot.area}</span>
+              <span className="text-[7.5px] font-mono text-bb-slate">{hoveredPlot.type}</span>
+              <span className="text-[8px] font-bold text-bb-orange mt-0.5">{hoveredPlot.price} • {hoveredPlot.area}</span>
             </motion.div>
           )}
         </AnimatePresence>
@@ -234,43 +234,43 @@ export default function MiniTownship() {
       {/* Selected Unit Details Panel */}
       <div className="mt-4">
         {activePlot ? (
-          <div className="bg-zinc-50 border border-zinc-200/50 rounded-xl p-3 text-left">
-            <div className="flex justify-between items-center mb-1.5 border-b border-zinc-200/40 pb-1.5">
+          <div className="bg-bb-paper border border-line/50 rounded-xl p-3 text-left">
+            <div className="flex justify-between items-center mb-1.5 border-b border-line/40 pb-1.5">
               <div className="flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5 text-brick-orange" />
-                <span className="text-xs font-serif font-bold text-zinc-950">{activePlot.id}</span>
+                <MapPin className="w-3.5 h-3.5 text-bb-orange" />
+                <span className="text-xs font-display font-semibold text-ink">{activePlot.id}</span>
               </div>
-              <span className="text-[9px] font-bold text-zinc-500 font-mono tracking-wide uppercase">
+              <span className="text-[9px] font-bold text-bb-slate font-mono tracking-wide uppercase">
                 {activePlot.type}
               </span>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 text-[10px] text-zinc-600">
+            <div className="grid grid-cols-3 gap-2 text-[10px] text-bb-slate">
               <div>
-                <span className="text-[8px] font-mono text-zinc-400 uppercase block">Area</span>
-                <span className="font-semibold text-zinc-800">{activePlot.area}</span>
+                <span className="text-[8px] font-mono text-bb-slate uppercase block">Area</span>
+                <span className="font-semibold text-ink">{activePlot.area}</span>
               </div>
               <div>
-                <span className="text-[8px] font-mono text-zinc-400 uppercase block">Facing</span>
-                <span className="font-semibold text-zinc-800">{activePlot.facing}</span>
+                <span className="text-[8px] font-mono text-bb-slate uppercase block">Facing</span>
+                <span className="font-semibold text-ink">{activePlot.facing}</span>
               </div>
               <div>
-                <span className="text-[8px] font-mono text-zinc-400 uppercase block">Price</span>
-                <span className="font-semibold text-brick-orange">{activePlot.price}</span>
+                <span className="text-[8px] font-mono text-bb-slate uppercase block">Price</span>
+                <span className="font-semibold text-bb-orange">{activePlot.price}</span>
               </div>
             </div>
           </div>
         ) : (
-          <div className="bg-zinc-50 border border-zinc-200/50 rounded-xl p-3 text-center text-[10px] text-zinc-400 font-light">
+          <div className="bg-bb-paper border border-line/50 rounded-xl p-3 text-center text-[10px] text-bb-slate font-light">
             Click any plot on the HUD map to view specs.
           </div>
         )}
       </div>
 
       {/* HUD Info Footer */}
-      <div className="mt-3.5 flex items-center justify-between text-[8.5px] text-zinc-400 font-mono">
-        <span className="flex items-center gap-1 text-emerald-600 font-bold">
-          <ShieldCheck className="w-3 h-3 text-emerald-500" /> Secure Node Verified
+      <div className="mt-3.5 flex items-center justify-between text-[8.5px] text-bb-slate font-mono">
+        <span className="flex items-center gap-1 text-bb-available font-bold">
+          <ShieldCheck className="w-3 h-3 text-bb-available" /> Secure Node Verified
         </span>
         <span>BRICKBYTES HUD v1.2</span>
       </div>
