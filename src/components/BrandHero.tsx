@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import BrandIcon from "./BrandIcon";
-import SitePlan from "./SitePlan";
+import HeroProductShot from "./HeroProductShot";
 import { buttonPrimary, buttonSecondary } from "./ui/button";
 
 const facts = [
@@ -23,15 +23,8 @@ const facts = [
   },
 ] as const;
 
-const legend = [
-  { label: "Available", swatch: "bg-white border border-ink/40" },
-  { label: "Booked", swatch: "bg-bb-stone border border-ink/40" },
-  { label: "Selected", swatch: "bg-bb-orange" },
-];
-
-// Homepage hero: the brand statement, then the product itself. The artwork is
-// built from brand elements only: flat glass-system shapes cropped off the
-// edge (Guidelines p. 20) behind a site plan in the illustration style (p. 22).
+// Homepage hero: the brand statement, then the product itself (laptop + phone,
+// Guidelines p. 26) over flat glass-system shapes cropped off the edge (p. 20).
 export default function BrandHero() {
   return (
     <section className="relative overflow-hidden bg-bb-paper pt-28 sm:pt-36">
@@ -61,43 +54,11 @@ export default function BrandHero() {
         </div>
 
         <div className="relative lg:col-span-6">
-          <div aria-hidden className="pointer-events-none absolute -right-36 -top-20 w-[560px] max-w-none sm:-right-44 sm:w-[640px]">
+          <div aria-hidden className="pointer-events-none absolute -right-40 -top-4 w-[560px] max-w-none sm:-right-56 sm:-top-32 sm:w-[680px]">
             <div className="bg-grid-pattern absolute -inset-20 [mask-image:radial-gradient(closest-side,black,transparent)]" />
             <Image src="/brand/glass-shapes.svg" alt="" width={600} height={600} priority className="relative w-full" />
           </div>
-
-          <div className="relative pb-24 sm:pb-20 lg:pl-6">
-            <div className="rounded-3xl border border-line bg-white p-5 shadow-[0_1px_2px_rgb(28_26_23/0.04),0_32px_64px_-32px_rgb(28_26_23/0.25)] sm:p-6">
-              <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-                <p className="font-display text-[15px] font-semibold text-ink">Phase 2 layout</p>
-                <ul className="flex gap-4 text-xs text-bb-slate">
-                  {legend.map((item) => (
-                    <li key={item.label} className="flex items-center gap-1.5">
-                      <span aria-hidden className={`h-2.5 w-2.5 rounded-[2px] ${item.swatch}`} />
-                      {item.label}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <SitePlan className="w-full" />
-            </div>
-
-            <figure
-              aria-label="Plot details card for plot C-47"
-              className="absolute bottom-0 left-0 w-60 rounded-2xl border border-line bg-white p-5 shadow-[0_1px_2px_rgb(28_26_23/0.04),0_24px_48px_-20px_rgb(28_26_23/0.28)] sm:-left-6 sm:w-64"
-            >
-              <p className="font-mono text-xs uppercase tracking-[0.12em] text-bb-slate">Plot C-47</p>
-              <p className="mt-1 font-display text-2xl font-extrabold text-ink">200 sq yd · East</p>
-              <p className="mt-2 font-mono text-sm text-ink">₹ 42,50,000</p>
-              <div className="mt-3 flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-[0.08em]">
-                <span className="rounded-full border border-bb-available/40 px-2.5 py-1 text-bb-available">Available</span>
-                <span className="rounded-full border border-ink/15 px-2.5 py-1 text-bb-slate">30 ft road</span>
-              </div>
-              <span aria-hidden className="mt-4 block rounded-full bg-ink py-2.5 text-center text-sm font-semibold text-white">
-                Book site visit
-              </span>
-            </figure>
-          </div>
+          <HeroProductShot />
         </div>
       </div>
 
