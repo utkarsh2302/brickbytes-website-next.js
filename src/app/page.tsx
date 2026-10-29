@@ -1,4 +1,5 @@
 import BrandHero from "@/components/BrandHero";
+import ClientLogos from "@/components/ClientLogos";
 import LiveMapDemo from "@/components/LiveMapDemo";
 import Problem from "@/components/Problem";
 import Transformation from "@/components/Transformation";
@@ -19,6 +20,7 @@ export default function Home() {
     <div className="relative min-h-screen">
       <main>
         <BrandHero />
+        <ClientLogos />
         <LiveMapDemo />
         <Problem />
         <Transformation />
