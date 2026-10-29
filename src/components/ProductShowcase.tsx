@@ -164,7 +164,7 @@ export default function ProductShowcase() {
                     key={plot.id}
                     role="button"
                     tabIndex={isFilteredOut ? -1 : 0}
-                    aria-label={`${plot.id}, ${plot.type}, ${style.label}`}
+                    aria-label={`${plot.id}, ${plot.size}, ${plot.type}, ${style.label}`}
                     aria-pressed={isSelected}
                     onClick={() => handleSelectPlot(plot.id, isFilteredOut)}
                     onKeyDown={(e) => {
@@ -199,6 +199,8 @@ export default function ProductShowcase() {
                     <text x={cx} y={plot.y + plot.h - 20} fontSize="7.5" fill="#1c1a17" className="font-mono" textAnchor="middle">
                       {plot.id}
                     </text>
+                    {/* Keeps the two labels apart in the text the button's name is checked against */}
+                    {" "}
                     <text x={cx} y={plot.y + plot.h - 9} fontSize="6" fill={isSelected ? "#1c1a17" : "#5a6272"} className="font-mono" textAnchor="middle">
                       {plot.size}
                     </text>
@@ -250,9 +252,9 @@ export default function ProductShowcase() {
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="font-mono text-xs uppercase tracking-[0.12em] text-bb-slate">{selectedPlot.id}</p>
-                    <h3 className="mt-1 font-display text-2xl font-extrabold text-ink">
+                    <p className="mt-1 font-display text-2xl font-extrabold text-ink">
                       {selectedPlot.size} · {selectedPlot.facing}
-                    </h3>
+                    </p>
                     <p className="mt-1 text-base text-bb-slate">{selectedPlot.type}</p>
                   </div>
                   <span

@@ -3,7 +3,8 @@ import { DM_Mono, Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { constructMetadata, SITE_DESCRIPTION, siteJsonLd } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { constructMetadata, SITE_DESCRIPTION, siteJsonLdNodes } from "@/lib/seo";
 
 // Brand type (Guidelines p. 18): Plus Jakarta Sans for display, Inter for
 // body, DM Mono for plot facts.
@@ -24,7 +25,7 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = constructMetadata({
-  title: "Interactive Master Plans for Real Estate Sales | BrickBytes",
+  title: "Interactive Plot Maps for Real Estate Developers | BrickBytes",
   description: SITE_DESCRIPTION,
   path: "/",
 });
@@ -45,10 +46,7 @@ export default function RootLayout({
       <body
         className={`${jakarta.variable} ${inter.variable} ${dmMono.variable} antialiased`}
       >
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
-        />
+        <JsonLd nodes={siteJsonLdNodes} />
         <Navbar />
         {children}
         <Footer />

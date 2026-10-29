@@ -3,8 +3,10 @@ import BrandIcon, { type BrandIconName } from "./BrandIcon";
 import CompanyDetails from "./CompanyDetails";
 import FinalCTA from "./FinalCTA";
 import GlassAccent from "./GlassAccent";
+import JsonLd from "./JsonLd";
 import PageHero from "./ui/PageHero";
 import SectionHeading from "./ui/SectionHeading";
+import { ORGANIZATION_ID, SITE_URL } from "@/lib/seo";
 
 const missionItems: { tag: string; title: string; desc: string; icon: BrandIconName }[] = [
   {
@@ -74,9 +76,19 @@ const founders: { name: string; initials: string; role: string; photo?: string }
   },
 ];
 
+// The founders as schema.org people who work for the Organization.
+const founderJsonLd = founders.map((founder) => ({
+  "@type": "Person",
+  name: founder.name,
+  jobTitle: founder.role,
+  ...(founder.photo && { image: `${SITE_URL}${founder.photo}` }),
+  worksFor: { "@id": ORGANIZATION_ID },
+}));
+
 export default function AboutPage() {
   return (
     <>
+      <JsonLd nodes={founderJsonLd} />
       <PageHero
         title="Why we built BrickBytes"
         lead="Real estate projects are still sold with static PDFs, old photos and endless phone calls. BrickBytes, a venture by BrickNova Technologies in Jaipur, turns each project into a live, interactive map, so buyers, brokers and developers work from the same facts."

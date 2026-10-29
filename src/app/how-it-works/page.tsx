@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import HowItWorksPage from "@/components/HowItWorksPage";
-import { constructMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
   title: "How It Works: From Layout Plan to Live 3D Map | BrickBytes",
@@ -11,6 +12,7 @@ export const metadata: Metadata = constructMetadata({
 export default function HowItWorksRoute() {
   return (
     <div className="relative min-h-screen">
+      <JsonLd nodes={[breadcrumbJsonLd("How it works", "/how-it-works")]} />
       <main>
         <HowItWorksPage />
       </main>

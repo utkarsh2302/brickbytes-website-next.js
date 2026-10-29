@@ -3,11 +3,12 @@ import type { Metadata } from "next";
 import FinalCTA from "@/components/FinalCTA";
 import PageHero from "@/components/ui/PageHero";
 import { OFFICE_ADDRESS_LINE } from "@/lib/contact";
-import { constructMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
   title: "Privacy Policy | BrickBytes",
-  description: "Learn about how BrickBytes collects, stores, and handles your data safely and transparently.",
+  description: "How BrickBytes, run by BrickNova Technologies, collects, uses, stores and protects the personal details you share when you book a demo or contact our team.",
   path: "/privacy",
 });
 
@@ -18,6 +19,7 @@ export default function PrivacyPage() {
 
   return (
     <>
+      <JsonLd nodes={[breadcrumbJsonLd("Privacy policy", "/privacy")]} />
       <PageHero title="Privacy policy" lead={`Last updated ${lastUpdated}`} accent="pin" />
 
       <section className="relative bg-bb-paper pb-24 sm:pb-32">

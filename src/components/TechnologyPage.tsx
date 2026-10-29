@@ -192,6 +192,8 @@ const capabilities: {
   lead: string;
   features: string[];
   mock: React.ReactNode;
+  // The page that covers this part in depth
+  more?: { label: string; href: string };
 }[] = [
   {
     id: "explore",
@@ -205,6 +207,7 @@ const capabilities: {
       "Drone and ground photos of the site",
     ],
     mock: <ExplorerMock />,
+    more: { label: "More on the 3D plot viewer", href: "/3d-plot-viewer" },
   },
   {
     id: "inventory",
@@ -218,6 +221,7 @@ const capabilities: {
       "Reservation documents generated for you",
     ],
     mock: <InventoryMock />,
+    more: { label: "More on plot inventory management", href: "/plot-inventory-management-software" },
   },
   {
     id: "assistant",
@@ -244,6 +248,7 @@ const capabilities: {
       "A clear view of booked, held and open plots",
     ],
     mock: <ControlMock />,
+    more: { label: "More on the broker portal", href: "/broker-portal" },
   },
 ];
 
@@ -275,7 +280,7 @@ export default function TechnologyPage() {
     <>
       <PageHero
         accent="circles"
-        title="One platform for your whole project"
+        title="Plot layout software for your whole project"
         lead="BrickBytes gives you four connected tools: an interactive map for buyers, live plot inventory, instant answers to buyer questions and a control center for your team and brokers."
       >
         <div className="flex flex-col gap-3 sm:flex-row">
@@ -309,6 +314,15 @@ export default function TechnologyPage() {
                     </li>
                   ))}
                 </ul>
+                {capability.more && (
+                  <Link
+                    href={capability.more.href}
+                    className="mt-8 inline-flex items-center gap-1.5 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+                  >
+                    {capability.more.label}
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                )}
               </div>
               <div>{capability.mock}</div>
             </div>

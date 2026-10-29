@@ -12,7 +12,26 @@ const columns = [
     links: [
       { name: "Technology", href: "/technology" },
       { name: "How it works", href: "/how-it-works" },
-      { name: "Solutions", href: "/#use-cases" },
+      { name: "3D plot viewer", href: "/3d-plot-viewer" },
+      { name: "Plot booking", href: "/plot-booking-software" },
+      { name: "Plot inventory", href: "/plot-inventory-management-software" },
+      { name: "Broker portal", href: "/broker-portal" },
+    ],
+  },
+  {
+    title: "Solutions",
+    links: [
+      { name: "Plotted developments", href: "/plotted-developments" },
+      { name: "Villa communities", href: "/villa-communities" },
+      { name: "Apartment projects", href: "/apartment-projects" },
+      { name: "Jaipur", href: "/jaipur" },
+    ],
+  },
+  {
+    title: "Guides",
+    links: [
+      { name: "Interactive map vs PDF", href: "/interactive-plot-map-vs-pdf" },
+      { name: "Layout plan to interactive map", href: "/layout-plan-to-interactive-map" },
     ],
   },
   {
@@ -20,12 +39,6 @@ const columns = [
     links: [
       { name: "About", href: "/about" },
       { name: "Contact", href: "/contact" },
-      { name: "Book a demo", href: "/contact" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
       { name: "Privacy policy", href: "/privacy" },
       { name: "Terms of service", href: "/terms" },
     ],
@@ -42,8 +55,8 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-line bg-bb-paper py-16 text-ink sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-6 md:gap-8">
-          <div className="col-span-2 flex flex-col gap-6">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-8 lg:grid-cols-7">
+          <div className="col-span-2 flex flex-col gap-6 md:col-span-4 lg:col-span-2">
             <Link href="/" className="flex w-fit items-center">
               <Image src="/logo.svg" alt="BrickBytes" width={130} height={28} className="h-7 w-auto" />
             </Link>
@@ -57,9 +70,9 @@ export default function Footer() {
 
           {columns.map((column) => (
             <nav key={column.title} aria-labelledby={`footer-${column.title}`} className="flex flex-col gap-4">
-              <h2 id={`footer-${column.title}`} className="text-sm font-semibold text-ink">
+              <p id={`footer-${column.title}`} className="text-sm font-semibold text-ink">
                 {column.title}
-              </h2>
+              </p>
               <ul className="flex flex-col gap-3">
                 {column.links.map((link) => (
                   <li key={link.name}>
@@ -73,7 +86,7 @@ export default function Footer() {
           ))}
 
           <div className="flex flex-col gap-4">
-            <h2 className="text-sm font-semibold text-ink">Get in touch</h2>
+            <p className="text-sm font-semibold text-ink">Get in touch</p>
             <ul className="flex flex-col gap-3">
               <li>
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={linkClass}>

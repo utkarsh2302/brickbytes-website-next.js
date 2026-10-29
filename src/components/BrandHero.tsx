@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import BrandIcon from "./BrandIcon";
@@ -23,6 +22,28 @@ const facts = [
   },
 ] as const;
 
+// The glass-system shapes from /brand/glass-shapes.svg, inlined. As an <img>
+// this decoration was the page's Largest Contentful Paint element; an inline
+// SVG never is, so LCP measures the headline instead.
+function GlassShapes() {
+  const plot = "M40 60H360A150 150 0 0 1 360 360H40Z";
+  const pin = "M210 380A170 170 0 1 1 380 550H210Z";
+  return (
+    <svg viewBox="0 0 600 600" className="relative h-auto w-full">
+      <defs>
+        <clipPath id="hero-glass-plot">
+          <path d={plot} />
+        </clipPath>
+      </defs>
+      <circle cx="380" cy="380" r="232" fill="none" stroke="#1c1a17" strokeOpacity="0.16" strokeDasharray="4 6" />
+      <path d={plot} fill="#e6d3bc" />
+      <path d={pin} fill="#ff5a1f" />
+      <path d={pin} fill="#e2531c" clipPath="url(#hero-glass-plot)" />
+      <path d="M372 380h16M380 372v16" stroke="#1c1a17" strokeOpacity="0.25" />
+    </svg>
+  );
+}
+
 // Homepage hero: the brand statement, then the product itself (laptop + phone,
 // Guidelines p. 26) over flat glass-system shapes cropped off the edge (p. 20).
 export default function BrandHero() {
@@ -34,7 +55,7 @@ export default function BrandHero() {
             Every plot, <span className="block">in plain sight.</span>
           </h1>
           <p className="mt-8 max-w-lg text-lg leading-relaxed text-bb-slate sm:text-xl sm:leading-relaxed">
-            BrickBytes turns your layout plan into a live, interactive map of your project. Buyers and brokers see every
+            BrickBytes turns your layout plan into a live, interactive plot map of your project. Buyers and brokers see every
             plot&apos;s size, facing, price and availability, then book a site visit.
           </p>
 
@@ -56,7 +77,7 @@ export default function BrandHero() {
         <div className="relative lg:col-span-6">
           <div aria-hidden className="pointer-events-none absolute -right-40 -top-4 w-[560px] max-w-none sm:-right-56 sm:-top-36 sm:w-[680px]">
             <div className="bg-grid-pattern absolute -inset-20 [mask-image:radial-gradient(closest-side,black,transparent)]" />
-            <Image src="/brand/glass-shapes.svg" alt="" width={600} height={600} priority className="relative w-full" />
+            <GlassShapes />
           </div>
           <HeroProductShot />
         </div>

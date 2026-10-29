@@ -67,7 +67,7 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="hidden items-center gap-1.5 rounded-full bg-bb-orange px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-bb-kiln focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:inline-flex"
+          className="hidden items-center gap-1.5 rounded-full bg-bb-orange px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-bb-kiln focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:inline-flex"
         >
           Book a demo
           <ArrowRight className="h-4 w-4" aria-hidden />
@@ -106,7 +106,7 @@ export default function Navbar() {
           <div className="mx-auto max-w-6xl px-4 pb-6 sm:px-6">
             <Link
               href="/contact"
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-bb-orange py-3.5 font-semibold text-white"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-bb-orange py-3.5 font-semibold text-ink"
             >
               Book a demo
               <ArrowRight className="h-4 w-4" aria-hidden />

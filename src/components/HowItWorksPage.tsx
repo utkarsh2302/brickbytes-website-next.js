@@ -3,11 +3,42 @@ import { ArrowRight } from "lucide-react";
 
 import BrandIcon, { type BrandIconName } from "./BrandIcon";
 import HowItWorks from "./HowItWorks";
-import FAQ from "./FAQ";
+import FAQ, { type Faq } from "./FAQ";
 import FinalCTA from "./FinalCTA";
 import PageHero from "./ui/PageHero";
 import SectionHeading from "./ui/SectionHeading";
 import { buttonPrimary, buttonSecondary } from "./ui/button";
+
+const onboardingFaqs: Faq[] = [
+  {
+    question: "What files do you need from us?",
+    answer:
+      "Your layout plan as a CAD (.dwg) export or PDF. We also work from hand-drawn sketches. Add plot dimensions, your price list, current availability and booking rules, plus drone footage or site photos if you have them.",
+  },
+  {
+    question: "How long until our map is live?",
+    answer: "Usually 10 to 14 business days from the day we receive your layout plan and price list.",
+  },
+  {
+    question: "Who builds the map?",
+    answer:
+      "Our team does. We place every plot boundary, road width and amenity to match your approved layout. You review the map before it goes live.",
+  },
+  {
+    question: "Can we put the map on our own website?",
+    answer: "Yes. The map can sit on your project website, and you can also share it as a link with buyers and brokers.",
+  },
+  {
+    question: "What if our layout changes after launch?",
+    answer:
+      "Upload the revised layout from the developer console as phases open or plots change, so the map keeps up with the project.",
+  },
+  {
+    question: "How do our brokers get access?",
+    answer:
+      "We set up your brokers when you go live. You choose what each broker and staff member can see, and you can remove access at any time.",
+  },
+];
 
 const steps: {
   title: string;
@@ -127,7 +158,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <FAQ />
+      <FAQ items={onboardingFaqs} />
 
       <FinalCTA />
     </>

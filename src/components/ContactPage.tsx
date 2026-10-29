@@ -4,11 +4,37 @@ import React, { useState } from "react";
 import { ArrowRight, ChevronDown, Mail, MessageCircle } from "lucide-react";
 import BrandIcon from "./BrandIcon";
 import CompanyDetails from "./CompanyDetails";
-import FAQ from "./FAQ";
+import FAQ, { type Faq } from "./FAQ";
 import PageHero from "./ui/PageHero";
 import SectionHeading from "./ui/SectionHeading";
 import { buttonPrimary, buttonSecondary } from "./ui/button";
 import { SALES_PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
+
+const demoFaqs: Faq[] = [
+  {
+    question: "What happens in a demo?",
+    answer:
+      "We walk you through a live project map, tailored to your layout: how buyers explore plots, how brokers hold them and how your team manages availability.",
+  },
+  {
+    question: "How quickly will you reply?",
+    answer: "Within one business day by email or the form. On WhatsApp we typically reply within minutes.",
+  },
+  {
+    question: "What should we send before the demo?",
+    answer:
+      "Your layout plan, if you have it to hand. A PDF or CAD (.dwg) export is enough for us to show you what your project's map would look like.",
+  },
+  {
+    question: "Do you work with projects outside Jaipur?",
+    answer:
+      "Yes. We build the map from your files and it runs in any browser, so your project can be anywhere in India.",
+  },
+  {
+    question: "Which kinds of projects do you support?",
+    answer: "Plotted developments, gated villa communities and apartment towers.",
+  },
+];
 
 const projectTypes = ["Plotted layout", "Township", "High-rise", "Villa community", "Commercial", "Other"];
 
@@ -367,7 +393,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <FAQ />
+      <FAQ items={demoFaqs} />
     </>
   );
 }

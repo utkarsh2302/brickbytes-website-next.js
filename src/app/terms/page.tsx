@@ -3,11 +3,12 @@ import type { Metadata } from "next";
 import FinalCTA from "@/components/FinalCTA";
 import PageHero from "@/components/ui/PageHero";
 import { OFFICE_ADDRESS_LINE } from "@/lib/contact";
-import { constructMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
   title: "Terms of Service | BrickBytes",
-  description: "Read the Terms of Service for using BrickBytes interactive platform solutions.",
+  description: "The terms for using the BrickBytes website and its interactive plot maps, live inventory and broker tools, operated by BrickNova Technologies Private Limited.",
   path: "/terms",
 });
 
@@ -18,6 +19,7 @@ export default function TermsPage() {
 
   return (
     <>
+      <JsonLd nodes={[breadcrumbJsonLd("Terms of service", "/terms")]} />
       <PageHero title="Terms of service" lead={`Last updated ${lastUpdated}`} accent="pin" />
 
       <section className="relative bg-bb-paper pb-24 sm:pb-32">

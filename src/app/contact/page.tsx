@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ContactPage from "@/components/ContactPage";
-import { constructMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
   title: "Book a Demo or Contact Sales | BrickBytes",
@@ -11,6 +12,7 @@ export const metadata: Metadata = constructMetadata({
 export default function ContactRoute() {
   return (
     <div className="relative min-h-screen">
+      <JsonLd nodes={[breadcrumbJsonLd("Contact", "/contact")]} />
       <main>
         <ContactPage />
       </main>

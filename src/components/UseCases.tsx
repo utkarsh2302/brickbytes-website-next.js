@@ -89,18 +89,21 @@ function TowerIllustration() {
 const useCases = [
   {
     title: "Plotted developments",
+    href: "/plotted-developments",
     desc: "Show every plot of a subdivision on a live map, with size, road width, corner plots and booking status.",
     features: ["Plot-by-plot selection", "Hold timers for reservations", "Road widths and boundaries", "Corner plots marked"],
     illustration: <PlottedIllustration />,
   },
   {
     title: "Villa communities",
+    href: "/villa-communities",
     desc: "Place villa plots next to parks, walking paths and the clubhouse, so buyers see the whole community.",
     features: ["Full community layout", "Clubhouse and garden views", "Walking paths", "Live unit availability"],
     illustration: <VillaIllustration />,
   },
   {
     title: "Apartment towers",
+    href: "/apartment-projects",
     desc: "Present towers floor by floor. Buyers pick a floor, check unit layouts and see which units are free.",
     features: ["Floor selector", "Unit availability filters", "Unit layout views", "Multi-tower site maps"],
     illustration: <TowerIllustration />,
@@ -134,10 +137,10 @@ export default function UseCases() {
               </ul>
 
               <Link
-                href="/contact"
+                href={useCase.href}
                 className="mt-auto inline-flex items-center gap-1.5 self-start rounded-sm pt-8 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
               >
-                Talk to us about your project
+                More on {useCase.title.toLowerCase()}
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
             </li>

@@ -4,7 +4,7 @@ import { OFFICE_ADDRESS, SALES_PHONE } from "./contact";
 export const SITE_URL = "https://brickbytes.in";
 
 export const SITE_DESCRIPTION =
-  "BrickBytes turns your layout plan into an interactive 3D master plan. Buyers and brokers see every plot's size, facing, price and live status in any browser.";
+  "BrickBytes turns your layout plan into an interactive plot map. Buyers and brokers see every plot's size, facing, price and live status in any browser.";
 
 interface MetadataProps {
   title: string;
@@ -62,54 +62,88 @@ export function constructMetadata({
   };
 }
 
-// One graph so the WebSite entity can reference the Organization by @id.
+export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+
+export type JsonLdNode = Record<string, unknown>;
+
+// Site-wide entities. The WebSite references the Organization by @id, and
+// page-level nodes (breadcrumbs, services, people) do the same.
 // Details mirror the office address and contact info on /contact.
-export const siteJsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": `${SITE_URL}/#organization`,
-      name: "BrickBytes",
-      legalName: "BrickNova Technologies Private Limited",
-      url: SITE_URL,
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE_URL}/icon-512.png`,
-        width: 512,
-        height: 512,
-      },
-      description: SITE_DESCRIPTION,
+// No sameAs: add social profiles here only once they're confirmed as ours.
+export const siteJsonLdNodes: JsonLdNode[] = [
+  {
+    "@type": "Organization",
+    "@id": ORGANIZATION_ID,
+    name: "BrickBytes",
+    legalName: "BrickNova Technologies Private Limited",
+    url: SITE_URL,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/icon-512.png`,
+      width: 512,
+      height: 512,
+    },
+    description: SITE_DESCRIPTION,
+    email: "business@brickbytes.in",
+    taxID: "08AAOCB6672J1Z2",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: OFFICE_ADDRESS.street,
+      addressLocality: OFFICE_ADDRESS.city,
+      addressRegion: OFFICE_ADDRESS.region,
+      postalCode: OFFICE_ADDRESS.postalCode,
+      addressCountry: OFFICE_ADDRESS.countryCode,
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
       email: "business@brickbytes.in",
-      taxID: "08AAOCB6672J1Z2",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: OFFICE_ADDRESS.street,
-        addressLocality: OFFICE_ADDRESS.city,
-        addressRegion: OFFICE_ADDRESS.region,
-        postalCode: OFFICE_ADDRESS.postalCode,
-        addressCountry: OFFICE_ADDRESS.countryCode,
-      },
-      contactPoint: {
-        "@type": "ContactPoint",
-        contactType: "sales",
-        email: "business@brickbytes.in",
-        telephone: SALES_PHONE,
-        areaServed: "IN",
-        availableLanguage: ["en", "hi"],
-      },
-      sameAs: [
-        "https://x.com/brickbytes",
-        "https://linkedin.com/company/brickbytes",
-      ],
+      telephone: SALES_PHONE,
+      areaServed: "IN",
+      availableLanguage: ["en", "hi"],
     },
-    {
-      "@type": "WebSite",
-      "@id": `${SITE_URL}/#website`,
-      name: "BrickBytes",
-      url: SITE_URL,
-      inLanguage: "en-IN",
-      publisher: { "@id": `${SITE_URL}/#organization` },
-    },
-  ],
-};
+  },
+  {
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    name: "BrickBytes",
+    url: SITE_URL,
+    inLanguage: "en-IN",
+    publisher: { "@id": ORGANIZATION_ID },
+  },
+];
+
+// Home > page. The site is flat, so every inner page sits one level down.
+export function breadcrumbJsonLd(name: string, path: string): JsonLdNode {
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name, item: `${SITE_URL}${path}` },
+    ],
+  };
+}
+
+// A product or solution page, described as a service BrickBytes provides
+// (we build each project's map, then run it as software).
+export function serviceJsonLd({
+  name,
+  description,
+  path,
+  areaServed = { "@type": "Country", name: "India" },
+}: {
+  name: string;
+  description: string;
+  path: string;
+  areaServed?: JsonLdNode;
+}): JsonLdNode {
+  return {
+    "@type": "Service",
+    name,
+    serviceType: name,
+    description,
+    url: `${SITE_URL}${path}`,
+    provider: { "@id": ORGANIZATION_ID },
+    areaServed,
+  };
+}

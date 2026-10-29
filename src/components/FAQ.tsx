@@ -6,7 +6,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Plus } from "lucide-react";
 import SectionHeading from "./ui/SectionHeading";
 
-const faqs = [
+export type Faq = { question: string; answer: string };
+
+// The general questions, for the homepage. Other pages pass questions about
+// their own topic, so no two pages repeat the same block.
+const generalFaqs: Faq[] = [
   {
     question: "What is BrickBytes?",
     answer:
@@ -39,7 +43,7 @@ const faqs = [
   },
 ];
 
-export default function FAQ() {
+export default function FAQ({ items = generalFaqs }: { items?: Faq[] }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
@@ -62,7 +66,7 @@ export default function FAQ() {
         </div>
 
         <ul className="border-b border-line lg:col-span-8">
-          {faqs.map((faq, index) => {
+          {items.map((faq, index) => {
             const isOpen = activeIndex === index;
             const buttonId = `faq-question-${index}`;
             const panelId = `faq-answer-${index}`;
