@@ -64,12 +64,14 @@ const founders: { name: string; initials: string; role: string; desc: string; ph
     name: "Utkarsh Sharma",
     initials: "US",
     role: "Founder & Director",
+    photo: "/team/utkarsh-sharma.webp",
     desc: "Utkarsh leads partnerships at BrickBytes. He works with developers and their broker networks to understand how each project is sold, then shapes every rollout so the live map fits the way their teams already work.",
   },
   {
     name: "Rashika Verma",
     initials: "RV",
     role: "Founder & Director",
+    photo: "/team/rashika-verma.webp",
     desc: "Rashika leads product at BrickBytes. She turns what developers, brokers and buyers ask for into features they use every day, and keeps every project map accurate, simple and quick to use.",
   },
 ];
