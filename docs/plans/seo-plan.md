@@ -18,27 +18,41 @@ Audit date: 2026-10-29. Method: the claude-seo audit checklist (technical, on-pa
 
 Already correct before this work: SSR/static rendering, canonicals, robots.txt, a 404 page with a real 404 status and `noindex`, HTTPS + HSTS, one H1 per page.
 
-## Needs an owner decision (visible copy)
+## Live-site audit (2026-10-30)
 
-1. **Homepage H1** ("Transform flat layouts into digital sales experiences.") names no search topic. Option: lead with "interactive master plan" or "plot inventory" wording, or use the brand tagline "Every plot, in plain sight."
-2. **Brand voice conflicts.** The hero says "AI-powered", "luxury township" and "premium". Brand Guidelines v2.1 (p. 5) says "Grounded, not flashy proptech" and lists "AI-powered revolution" under Don't.
-3. **Contact H1** ("Let's build something extraordinary") is generic. Option: "Book a BrickBytes demo".
-4. **The same FAQ block appears on `/`, `/how-it-works` and `/contact`.** Give each page questions about its own topic.
-5. **"Solutions" is only an anchor (`/#use-cases`).** Separate pages for plotted developments, villa communities and apartment projects would each target their own searches.
+An audit of the deployed site found the technical base sound (Lighthouse mobile: SEO 100, Performance 97–99), but:
+
+- No brickbytes.in page appeared in web search, even for "BrickBytes". An unrelated LEGO extension, "Brick.Bytes", owns that name in results.
+- The site had 5 content pages. Its main phrase, "interactive master plan", collides with government city master plans (Jaipur Master Plan, JDA). Competitors target "plot layout software", "plot booking software", "3D plot viewer" and "plot inventory management software".
+- The SEO benchmark competitor, Plotex (plotex.in), has 84 indexed URLs: keyword product pages, comparison pages, a Jaipur page and about 45 blog posts.
+
+## Done (branch `feat/seo-fixes`)
+
+| Area | Change | How to check |
+|---|---|---|
+| Keywords | Home title "Interactive Plot Maps for Real Estate Developers"; `/technology` targets "plot layout software" (title and H1); "interactive plot map" in the site description and hero lead. The home H1 stays the brand statement (brand plan decision). | View source |
+| New pages | 10 topic pages in `src/app/(topics)/`, all built on `LandingPage`: `/3d-plot-viewer`, `/plot-booking-software`, `/plot-inventory-management-software`, `/broker-portal`, `/plotted-developments`, `/villa-communities`, `/apartment-projects`, `/jaipur`, `/interactive-plot-map-vs-pdf`, `/layout-plan-to-interactive-map`. Copy only uses product claims already made elsewhere on the site. | `/sitemap.xml` lists 17 URLs |
+| Internal links | Footer lists every page; the use-case cards on `/` link to their solution pages; `/technology` sections link to the product pages. | Click through |
+| FAQs | `FAQ` takes `items`. `/how-it-works`, `/contact` and each topic page have their own questions; no question repeats across pages. | Compare pages |
+| Structured data | `JsonLd` component. BreadcrumbList on every inner page, Service on product and solution pages, Article on the guide, Person for the founders on `/about`. Removed unconfirmed `sameAs` profiles (`www.linkedin.com/company/brickbytes` returned 404). | Google Rich Results Test |
+| Home LCP | The decorative hero shapes are an inline SVG instead of an `<img>`, so they are no longer the LCP element (it was 2.6s on mobile, with 1.7s of render delay); the hero text is LCP now. | Lighthouse → LCP element |
+| Accessibility | Primary buttons use ink text on Byte Orange (5.6:1; white was 3.1:1). The showcase plots' accessible names start with their visible text. Lighthouse accessibility is 100 on the pages tested. | Lighthouse |
+| Markup | The sales comparison renders once (it was duplicated for mobile and desktop). Footer column labels and a demo plot label are no longer headings. | View source |
+| Small fixes | `/favicon.ico` (was 404). Fuller descriptions on `/privacy` and `/terms`. | `curl -I /favicon.ico` |
 
 ## Needs an owner action (off-site)
 
-1. Verify the domain in Google Search Console and Bing Webmaster Tools, then submit `/sitemap.xml`.
-2. Confirm that `x.com/brickbytes` and `linkedin.com/company/brickbytes` belong to BrickBytes. They are in the Organization `sameAs`. If they don't, remove them from `src/lib/seo.ts`. If they do, link them in the footer.
-3. Create a Google Business Profile for the Jaipur office (C-3, 8-B Shri Ram Nagar, Mansarovar).
+1. **Verify the domain in Google Search Console** as a Domain property (a DNS TXT record at the DNS host), submit `/sitemap.xml`, and use URL Inspection → Request indexing on the main pages. Do the same in Bing Webmaster Tools (it can import from Search Console).
+2. **Social profiles.** Create or confirm the LinkedIn company page and the X account, then add their URLs as `sameAs` in `src/lib/seo.ts` and link them in the footer.
+3. **Google Business Profile** for the Jaipur office (C-3, 8-B Shri Ram Nagar, Mansarovar), with the same address and phone as `/contact`.
+4. **Client case studies.** With each client's permission and real numbers (time to launch, bookings, fewer calls), add `/projects/<client>` pages. These need facts we don't have.
+5. **Backlinks.** Ask each client to link "Interactive map by BrickBytes" from their project website. List BrickBytes on Capterra India, G2, SourceForge, IndiaMART, Startup India and Product Hunt.
+6. **Pricing.** A pricing or "how pricing works" page would match how buyers search, but needs a pricing decision.
+7. **Keep publishing** guides like `/layout-plan-to-interactive-map`, about two a month (e.g. selling plots online, broker management, RERA layout requirements).
 
 ## Out of scope / not recommended
 
 - FAQPage schema: Google retired FAQ rich results on 2026-05-07.
 - `llms.txt`: Google Search ignores it. Optional later.
 - Meta keywords, changefreq/priority tuning: ignored by Google.
-
-## Low priority
-
-- Footer column titles are `h4` right after page `h2`s, which skips a heading level.
-- The site orange `#ff5e13` is close to, but not the same as, brand Byte Orange `#FF5A1F`.
+- Per-page share images: the shared card is on-brand; revisit if link previews matter more.
