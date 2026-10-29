@@ -23,9 +23,9 @@ export default function Footer() {
           <div className="col-span-2 flex flex-col gap-6 text-left">
             <Link href="/" className="flex items-center group cursor-pointer">
               <Image
-                src="/logo.png"
+                src="/logo.svg"
                 alt="BrickBytes Logo"
-                width={98}
+                width={130}
                 height={28}
                 className="h-7 w-auto object-contain transition-all duration-300 group-hover:scale-105"
               />

@@ -4,16 +4,16 @@
   "description": "Luxury interactive subdivision and plot visualization for real-estate developers and builders.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1c1a17",
+  "background_color": "#f7f4ef",
   "theme_color": "#ff5e13",
   "icons": [
     {
-      "src": "/favicon.png",
-      "sizes": "any",
+      "src": "/icon-192.png",
+      "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/apple-touch-icon.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

@@ -51,9 +51,9 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center group cursor-pointer">
             <Image
-              src="/logo.png"
+              src="/logo.svg"
               alt="BrickBytes Logo"
-              width={111}
+              width={148}
               height={32}
               className="h-8 w-auto object-contain transition-all duration-300 group-hover:scale-105"
               priority

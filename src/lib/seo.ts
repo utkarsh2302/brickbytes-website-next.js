@@ -25,7 +25,10 @@ export function constructMetadata({
     },
     manifest: "/manifest.json",
     icons: {
-      icon: "/favicon.png",
+      icon: [
+        { url: "/icon.svg", type: "image/svg+xml" },
+        { url: "/favicon.png", sizes: "48x48", type: "image/png" },
+      ],
       apple: "/apple-touch-icon.png",
     },
     openGraph: {
