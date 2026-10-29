@@ -1,15 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, PhoneCall } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 const navItems = [
-  { name: "Our Technology", href: "/technology" },
-  { name: "How It Works", href: "/how-it-works" },
+  { name: "Technology", href: "/technology" },
+  { name: "How it works", href: "/how-it-works" },
   { name: "Solutions", href: "/#use-cases" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
@@ -18,7 +17,6 @@ const navItems = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -34,137 +32,88 @@ export default function Navbar() {
     setIsOpen(false);
   }, [pathname]);
 
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      <div
-        className={`mx-auto px-4 sm:px-6 lg:px-8 mt-4 transition-all duration-300 ${
-          scrolled ? "max-w-5xl" : "max-w-7xl"
-        }`}
-      >
-        <nav
-          className={`flex items-center justify-between py-3 px-6 rounded-2xl transition-all duration-300 border ${
-            scrolled
-              ? "bg-bb-paper/75 backdrop-blur-xl border-ink/8 shadow-[0_10px_35px_-10px_rgba(28,26,23,0.08)]"
-              : "bg-transparent border-transparent"
-          }`}
-        >
-          {/* Logo */}
-          <Link href="/" className="flex items-center group cursor-pointer">
-            <Image
-              src="/logo.svg"
-              alt="BrickBytes Logo"
-              width={148}
-              height={32}
-              className="h-8 w-auto object-contain"
-              priority
-            />
-          </Link>
+  const solid = scrolled || isOpen;
 
-          {/* Desktop Nav Items */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navItems.map((item, idx) => {
+  return (
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        solid ? "border-line bg-bb-paper" : "border-transparent bg-transparent"
+      }`}
+    >
+      <nav className="mx-auto flex h-18 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center">
+          <Image src="/logo.svg" alt="BrickBytes" width={148} height={32} className="h-8 w-auto" priority />
+        </Link>
+
+        <ul className="hidden items-center gap-8 lg:flex">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <li key={item.name}>
+                <Link
+                  href={item.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`relative py-2 text-sm font-medium transition-colors hover:text-ink ${
+                    isActive ? "text-ink" : "text-bb-slate"
+                  }`}
+                >
+                  {item.name}
+                  {isActive && <span className="absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-bb-orange" />}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        <Link
+          href="/contact"
+          className="hidden items-center gap-1.5 rounded-full bg-bb-orange px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-bb-kiln focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:inline-flex"
+        >
+          Book a demo
+          <ArrowRight className="h-4 w-4" aria-hidden />
+        </Link>
+
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          className="-mr-2 flex h-11 w-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-ink/5 lg:hidden"
+        >
+          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </nav>
+
+      {isOpen && (
+        <div id="mobile-menu" className="border-t border-line bg-bb-paper lg:hidden">
+          <ul className="mx-auto flex max-w-6xl flex-col px-4 py-4 sm:px-6">
+            {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors hover:text-ink ${
-                    isActive ? "text-bb-orange" : "text-bb-slate"
-                  }`}
-                  onMouseEnter={() => setHoveredIndex(idx)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                >
-                  <span className="relative z-10">{item.name}</span>
-                  {hoveredIndex === idx && (
-                    <motion.span
-                      className="absolute inset-0 bg-ink/5 rounded-lg border border-ink/3"
-                      layoutId="navbar-hover"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-bb-orange rounded-full" />
-                  )}
-                </Link>
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`block py-3 text-lg font-medium ${isActive ? "text-ink" : "text-bb-slate"}`}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
               );
             })}
-          </div>
-
-          {/* Actions / CTA */}
-          <div className="hidden lg:flex items-center gap-4">
+          </ul>
+          <div className="mx-auto max-w-6xl px-4 pb-6 sm:px-6">
             <Link
               href="/contact"
-              className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-bb-orange hover:bg-bb-orange/95 text-sm font-medium text-white transition-all duration-300 shadow-sm shadow-bb-orange/10 hover:shadow-bb-orange/25 group"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-bb-orange py-3.5 font-semibold text-white"
             >
-              <PhoneCall className="w-3.5 h-3.5" />
-              <span>Book Demo</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+              Book a demo
+              <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           </div>
-
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center justify-center p-2 rounded-xl text-bb-slate hover:text-ink hover:bg-black/5 transition-colors border border-transparent"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </nav>
-      </div>
-
-      {/* Mobile Drawer */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden border-b border-black/5 bg-bb-paper/95 backdrop-blur-xl absolute top-full left-0 right-0 w-full overflow-hidden shadow-xl"
-          >
-            <div className="px-6 py-8 flex flex-col gap-6">
-              <div className="flex flex-col gap-4">
-                {navItems.map((item, idx) => {
-                  const isActive = pathname === item.href;
-                  return (
-                    <motion.div
-                      initial={{ x: -20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: idx * 0.05 }}
-                      key={item.name}
-                    >
-                      <Link
-                        href={item.href}
-                        className={`text-lg font-medium transition-colors ${
-                          isActive ? "text-bb-orange" : "text-bb-slate hover:text-ink"
-                        }`}
-                      >
-                        {item.name}
-                      </Link>
-                    </motion.div>
-                  );
-                })}
-              </div>
-              <div className="h-px bg-bb-stone w-full" />
-              <div className="flex flex-col gap-4">
-                <Link
-                  href="/contact"
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-bb-orange text-white font-medium hover:bg-bb-orange/95 transition-colors shadow-sm"
-                >
-                  <PhoneCall className="w-4 h-4" />
-                  <span>Book Demo</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </header>
   );
 }

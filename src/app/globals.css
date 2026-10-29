@@ -15,6 +15,19 @@
   --color-bb-available: #2e7a4e;
   --color-bb-hold: #b7791f;
   --color-bb-booked: #9aa0a8;
+
+  /* Hero: the pin drops onto its plot, once */
+  --animate-pin-drop: pin-drop 700ms cubic-bezier(0.16, 1, 0.3, 1) 400ms both;
+  @keyframes pin-drop {
+    from {
+      opacity: 0;
+      transform: translateY(-28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 @theme inline {
@@ -24,6 +37,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-bb-paper);
     color: var(--color-ink);

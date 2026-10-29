@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <!-- Glass system (Brand Guidelines p. 20): the plot in Sand and the pin in
+       Byte Orange as flat sheets; where they overlap the glass turns Kiln. -->
+  <defs>
+    <clipPath id="plot">
+      <path d="M40 60H360A150 150 0 0 1 360 360H40Z" />
+    </clipPath>
+  </defs>
+  <circle cx="380" cy="380" r="232" fill="none" stroke="#1c1a17" stroke-opacity="0.16" stroke-width="1" stroke-dasharray="4 6" />
+  <path d="M40 60H360A150 150 0 0 1 360 360H40Z" fill="#e6d3bc" />
+  <path d="M210 380A170 170 0 1 1 380 550H210Z" fill="#ff5a1f" />
+  <path d="M210 380A170 170 0 1 1 380 550H210Z" fill="#e2531c" clip-path="url(#plot)" />
+  <path d="M372 380h16M380 372v16" stroke="#1c1a17" stroke-opacity="0.25" stroke-width="1" />
+</svg>
