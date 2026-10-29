@@ -11,6 +11,9 @@ Bring the whole site onto the BrickBytes v2.1 brand (Brand Guidelines v2.1, Oct 
 - **Navy kept to a minimum.** Survey Navy appears only in the logo's name. Where the guidelines show a navy hero or navy cards, use the Paper or Sand version of the same layout.
 - **Clean, Google-like.** No glassmorphism, blur, gradient washes or decorative scroll animations. Motion only answers user actions, plus at most one hero entrance.
 - **Clean, on-brand, modern, expensive-looking.** Fewer, larger elements and generous section spacing. Big headlines with tight tracking. Hairline borders and soft two-part shadows instead of heavy cards. One orange accent per screen. The brand's 3D glass render (the guidelines' "hero" finish, meant for the website) is the hero artwork.
+- **No 3D logo.** Use the flat symbol, flat glass-system shapes and plan illustrations. The 3D glass renders are not used on the site or the share card.
+- **Tagline: "Technology that holds."** It's the sign-off in the footer, the closing section and the share card. The hero headline stays "Every plot, in plain sight." so it describes what we do.
+- **Contact:** WhatsApp +91 77422 00618 and business@brickbytes.in (`src/lib/contact.ts`).
 - **A visitor understands exactly what we do.** Within one screen, a first-time visitor can say what BrickBytes is (a live, interactive map of a plotted project that buyers and brokers use to see and book plots), who it is for (plotted-land developers and their brokers), and what to do next (book a demo). The hero says it in plain words, three plain facts follow, then the working map demo. No jargon ("spatial engine", "sales engine", "HUD").
 
 ## Design tokens (from guidelines p. 16–18, 32)
