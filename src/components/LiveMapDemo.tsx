@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Compass, X } from "lucide-react";
+import SectionHeading from "./ui/SectionHeading";
 
 // Plotted Land Gated Community Model
 const plots = [
@@ -387,12 +388,11 @@ export default function LiveMapDemo() {
   return (
     <section id="live-map" className="relative scroll-mt-18 overflow-hidden bg-bb-stone py-24 text-ink sm:py-32">
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 z-10 w-full flex flex-col items-center">
-        <div className="mb-12 w-full max-w-2xl self-start sm:mb-16">
-          <h2 className="font-display text-4xl font-extrabold leading-[1.05] text-ink sm:text-5xl">Try a live project map</h2>
-          <p className="mt-5 text-lg leading-relaxed text-bb-slate">
-            Drag the slider to compare a paper layout with the live map. Click any plot to see its size, facing and status.
-          </p>
-        </div>
+        <SectionHeading
+          title="Try a live project map"
+          lead="Drag the slider to compare a paper layout with the live map. Click any plot to see its size, facing and status."
+          className="mb-12 w-full self-start sm:mb-16"
+        />
         
         {/* Custom Animated Toast Notification */}
         <AnimatePresence>

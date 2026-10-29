@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <!-- Glass system (Brand Guidelines p. 20, middle composition): two sheets,
+       Sand and Byte Orange; where they overlap the glass turns Kiln. -->
+  <defs>
+    <clipPath id="sand-circle">
+      <circle cx="220" cy="250" r="170" />
+    </clipPath>
+  </defs>
+  <circle cx="300" cy="300" r="270" fill="none" stroke="#1c1a17" stroke-opacity="0.16" stroke-width="1" stroke-dasharray="4 6" />
+  <circle cx="220" cy="250" r="170" fill="#e6d3bc" />
+  <circle cx="380" cy="250" r="170" fill="#ff5a1f" />
+  <circle cx="380" cy="250" r="170" fill="#e2531c" clip-path="url(#sand-circle)" />
+  <path d="M110 430H420A70 70 0 0 1 420 570H110Z" fill="#e6d3bc" />
+</svg>

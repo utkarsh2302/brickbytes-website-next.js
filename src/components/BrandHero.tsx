@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import BrandIcon from "./BrandIcon";
 import SitePlan from "./SitePlan";
+import { buttonPrimary, buttonSecondary } from "./ui/button";
 
 const facts = [
   {
@@ -45,17 +46,11 @@ export default function BrandHero() {
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-bb-orange px-7 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-bb-kiln focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-            >
+            <Link href="/contact" className={`${buttonPrimary} py-4`}>
               Book a demo
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
-            <a
-              href="#live-map"
-              className="inline-flex items-center justify-center rounded-full border border-ink/15 bg-white px-7 py-4 text-[15px] font-semibold text-ink transition-colors hover:border-ink/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-            >
+            <a href="#live-map" className={`${buttonSecondary} py-4`}>
               Try the live map
             </a>
           </div>

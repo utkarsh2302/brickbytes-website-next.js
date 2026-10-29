@@ -1,6 +1,18 @@
 // Brand icon set (Guidelines p. 22): built only from the symbol's own shapes,
 // in Sand, Byte Orange and Kiln.
-type BrandIconName = "plot" | "pin" | "home" | "layout" | "area" | "facing";
+// The first six are the guideline set; the rest extend it with the same shapes
+// and colours.
+export type BrandIconName =
+  | "plot"
+  | "pin"
+  | "home"
+  | "layout"
+  | "area"
+  | "facing"
+  | "people"
+  | "chart"
+  | "clock"
+  | "lock";
 
 const SAND = "#e6d3bc";
 const ORANGE = "#ff5a1f";
@@ -39,6 +51,34 @@ const glyphs: Record<BrandIconName, React.ReactNode> = {
     <>
       <circle cx="20" cy="20" r="14" fill={SAND} />
       <path d="M20 7l6 13H14z" fill={KILN} />
+    </>
+  ),
+  people: (
+    <>
+      <circle cx="14" cy="12" r="5" fill={SAND} />
+      <path d="M5 34v-6a9 9 0 0 1 18 0v6z" fill={SAND} />
+      <circle cx="26" cy="14" r="5" fill={ORANGE} />
+      <path d="M17 34v-4a9 9 0 0 1 18 0v4z" fill={ORANGE} />
+    </>
+  ),
+  chart: (
+    <>
+      <rect x="6" y="22" width="8" height="12" fill={SAND} />
+      <rect x="16" y="15" width="8" height="19" fill={SAND} />
+      <rect x="26" y="7" width="8" height="27" fill={ORANGE} />
+    </>
+  ),
+  clock: (
+    <>
+      <circle cx="20" cy="20" r="14" fill={SAND} />
+      <path d="M20 20V6a14 14 0 0 1 14 14z" fill={KILN} />
+    </>
+  ),
+  lock: (
+    <>
+      <path d="M14 18v-5a6 6 0 0 1 12 0v5" fill="none" stroke={KILN} strokeWidth="3" />
+      <rect x="8" y="18" width="24" height="16" fill={SAND} />
+      <circle cx="20" cy="26" r="3" fill={ORANGE} />
     </>
   ),
 };

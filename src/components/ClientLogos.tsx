@@ -10,8 +10,7 @@ const clients = [
   { name: "Navsaar", src: "/clients/navsaar.png", width: 510, height: 222, displayHeight: 54 },
 ];
 
-// Client logo wall. Logos are shown in one tone (ink at reduced opacity) so
-// five different brand palettes sit quietly next to ours.
+// Client logo wall, each logo in its own original colours.
 export default function ClientLogos() {
   return (
     <section aria-labelledby="clients-heading" className="bg-bb-paper pb-20 sm:pb-24">
@@ -30,7 +29,7 @@ export default function ClientLogos() {
                   height={client.height}
                   sizes="160px"
                   style={{ height: client.displayHeight }}
-                  className="w-auto max-w-full opacity-70 brightness-0"
+                  className="w-auto max-w-full"
                 />
               </li>
             ))}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/contact";
+import { buttonPrimary, buttonSecondary } from "./ui/button";
 
 // Closing section. Built from the glass system (Guidelines p. 20): the flat
 // symbol at full scale, cropped off the edge, with a faint construction circle.
@@ -31,17 +32,11 @@ export default function FinalCTA() {
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-bb-orange px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-bb-kiln focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-            >
+            <Link href="/contact" className={buttonPrimary}>
               Book a demo
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
-            <a
-              href={WHATSAPP_URL}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-white/60 px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-            >
+            <a href={WHATSAPP_URL} className={buttonSecondary}>
               <MessageCircle className="h-4 w-4" aria-hidden />
               Message us on WhatsApp
             </a>
