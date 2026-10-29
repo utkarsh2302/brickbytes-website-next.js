@@ -30,7 +30,7 @@ Already correct before this work: SSR/static rendering, canonicals, robots.txt, 
 
 1. Verify the domain in Google Search Console and Bing Webmaster Tools, then submit `/sitemap.xml`.
 2. Confirm that `x.com/brickbytes` and `linkedin.com/company/brickbytes` belong to BrickBytes. They are in the Organization `sameAs`. If they don't, remove them from `src/lib/seo.ts`. If they do, link them in the footer.
-3. Create a Google Business Profile for the Jaipur registered office.
+3. Create a Google Business Profile for the Jaipur office (C-3, 8-B Shri Ram Nagar, Mansarovar).
 
 ## Out of scope / not recommended
 

@@ -1,15 +1,16 @@
 import BrandIcon from "./BrandIcon";
+import { OFFICE_ADDRESS_LINE } from "@/lib/contact";
 
-// Registered company details, shown on /about and /contact.
+// Company details, shown on /about and /contact.
 export default function CompanyDetails() {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
       <div className="flex gap-4 rounded-2xl border border-line bg-white p-6">
         <BrandIcon name="pin" className="h-8 w-8 shrink-0" />
         <div>
-          <p className="text-sm font-medium text-bb-slate">Registered office</p>
+          <p className="text-sm font-medium text-bb-slate">Office</p>
           <p className="mt-1 text-base leading-relaxed text-ink">
-            Khushi Sansar, Lakshmi Nikunj, Rampura Road, Mohanpura, Jaipur, Rajasthan 302020, India
+            {OFFICE_ADDRESS_LINE}
           </p>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { SALES_PHONE } from "./contact";
+import { OFFICE_ADDRESS, SALES_PHONE } from "./contact";
 
 export const SITE_URL = "https://brickbytes.in";
 
@@ -63,7 +63,7 @@ export function constructMetadata({
 }
 
 // One graph so the WebSite entity can reference the Organization by @id.
-// Details mirror the Registered Office and contact info on /contact.
+// Details mirror the office address and contact info on /contact.
 export const siteJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -84,11 +84,11 @@ export const siteJsonLd = {
       taxID: "08AAOCB6672J1Z2",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Khushi Sansar, Lakshmi Nikunj, Rampura Road, Mohanpura",
-        addressLocality: "Jaipur",
-        addressRegion: "Rajasthan",
-        postalCode: "302020",
-        addressCountry: "IN",
+        streetAddress: OFFICE_ADDRESS.street,
+        addressLocality: OFFICE_ADDRESS.city,
+        addressRegion: OFFICE_ADDRESS.region,
+        postalCode: OFFICE_ADDRESS.postalCode,
+        addressCountry: OFFICE_ADDRESS.countryCode,
       },
       contactPoint: {
         "@type": "ContactPoint",

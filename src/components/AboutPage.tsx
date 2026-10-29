@@ -63,14 +63,14 @@ const founders: { name: string; initials: string; role: string; desc: string; ph
   {
     name: "Utkarsh Sharma",
     initials: "US",
-    role: "Founder",
-    desc: "Driven by growth and strong relationships, Utkarsh focuses on strategic collaborations and creating opportunities through technology. He believes in building trust, understanding people and turning connections into meaningful outcomes.",
+    role: "Founder & Director",
+    desc: "Utkarsh leads partnerships at BrickBytes. He works with developers and their broker networks to understand how each project is sold, then shapes every rollout so the live map fits the way their teams already work.",
   },
   {
     name: "Rashika Verma",
     initials: "RV",
-    role: "Founder",
-    desc: "Passionate about innovation and strategic thinking, Rashika focuses on turning ideas into useful, technology-driven solutions. She believes in meaningful relationships, a long-term vision and thoughtful execution.",
+    role: "Founder & Director",
+    desc: "Rashika leads product at BrickBytes. She turns what developers, brokers and buyers ask for into features they use every day, and keeps every project map accurate, simple and quick to use.",
   },
 ];
 

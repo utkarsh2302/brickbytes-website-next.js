@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import FinalCTA from "@/components/FinalCTA";
 import PageHero from "@/components/ui/PageHero";
+import { OFFICE_ADDRESS_LINE } from "@/lib/contact";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
@@ -72,7 +73,7 @@ export default function TermsPage() {
               <address className="mt-4 rounded-2xl border border-line bg-white p-6 not-italic">
                 <span className="block font-display font-semibold text-ink">BrickNova Technologies Private Limited</span>
                 <span className="mt-2 block">
-                  Office: Khushi Sansar, Lakshmi Nikunj, Rampura Road, Mohanpura, Jaipur, Rajasthan 302020, India
+                  Office: {OFFICE_ADDRESS_LINE}
                 </span>
                 <span className="block">
                   CIN: <span className="font-mono">U62011RJ2026PTC113544</span>
