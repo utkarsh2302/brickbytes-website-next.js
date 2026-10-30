@@ -84,7 +84,7 @@ const content: LandingPageContent = {
   related: [
     { label: "The broker portal", href: "/broker-portal" },
     { label: "Plot inventory management", href: "/plot-inventory-management-software" },
-    { label: "How onboarding works", href: "/how-it-works" },
+    { label: "How to sell plots online", href: "/how-to-sell-plots-online" },
   ],
 };
 

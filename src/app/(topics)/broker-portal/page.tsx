@@ -81,7 +81,7 @@ const content: LandingPageContent = {
   related: [
     { label: "Plot booking software", href: "/plot-booking-software" },
     { label: "Plot inventory management", href: "/plot-inventory-management-software" },
-    { label: "Maps for plotted developments", href: "/plotted-developments" },
+    { label: "Stopping double bookings", href: "/stop-double-booking-plots" },
   ],
 };
 

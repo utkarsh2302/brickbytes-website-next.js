@@ -32,6 +32,8 @@ const columns = [
     links: [
       { name: "Interactive map vs PDF", href: "/interactive-plot-map-vs-pdf" },
       { name: "Layout plan to interactive map", href: "/layout-plan-to-interactive-map" },
+      { name: "Selling plots online", href: "/how-to-sell-plots-online" },
+      { name: "Stopping double bookings", href: "/stop-double-booking-plots" },
     ],
   },
   {

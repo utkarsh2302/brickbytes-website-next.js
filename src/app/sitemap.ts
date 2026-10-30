@@ -24,6 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/jaipur", changeFrequency: "monthly" as const, priority: 0.7 },
     { path: "/interactive-plot-map-vs-pdf", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/layout-plan-to-interactive-map", changeFrequency: "monthly" as const, priority: 0.6 },
+    { path: "/how-to-sell-plots-online", changeFrequency: "monthly" as const, priority: 0.6 },
+    { path: "/stop-double-booking-plots", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/privacy", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/terms", changeFrequency: "monthly" as const, priority: 0.5 },
   ];
