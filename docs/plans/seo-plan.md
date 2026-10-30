@@ -40,7 +40,7 @@ An audit of the deployed site found the technical base sound (Lighthouse mobile:
 | Markup | The sales comparison renders once (it was duplicated for mobile and desktop). Footer column labels and a demo plot label are no longer headings. | View source |
 | Small fixes | `/favicon.ico` (was 404). Fuller descriptions on `/privacy` and `/terms`. | `curl -I /favicon.ico` |
 | Founder identity | AI answers showed other people with the founders' common names. `/about` now gives each founder a Person `@id`, `sameAs` to their LinkedIn, a visible LinkedIn link and descriptive photo alt text; the Organization names them as `founder`; the sitemap lists their photos. | Rich Results Test on `/about` |
-| Guides | `/how-to-sell-plots-online` and `/stop-double-booking-plots` (Article schema), linked from the footer, `/plot-booking-software` and `/broker-portal`. | `/sitemap.xml` lists 19 URLs |
+| Guides | `/how-to-sell-plots-online`, `/stop-double-booking-plots`, `/choose-plot-booking-software` and `/plotted-development-marketing` (Article schema), chosen where search results had no developer-focused answer. All guides are listed on `/guides` (ItemList schema) and in the footer. | `/sitemap.xml` lists 22 URLs |
 | IndexNow | `public/<key>.txt` plus `scripts/indexnow.mjs`; `.github/workflows/indexnow.yml` submits the sitemap's URLs after each successful production deploy, so Bing (and the AI answers built on it) re-crawls within hours. | Actions tab → IndexNow run after a deploy |
 
 ## Needs an owner action (off-site)

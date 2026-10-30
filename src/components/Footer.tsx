@@ -34,6 +34,9 @@ const columns = [
       { name: "Layout plan to interactive map", href: "/layout-plan-to-interactive-map" },
       { name: "Selling plots online", href: "/how-to-sell-plots-online" },
       { name: "Stopping double bookings", href: "/stop-double-booking-plots" },
+      { name: "Choosing booking software", href: "/choose-plot-booking-software" },
+      { name: "Marketing plotted projects", href: "/plotted-development-marketing" },
+      { name: "All guides", href: "/guides" },
     ],
   },
   {
