@@ -1,0 +1,17 @@
+name: IndexNow
+
+# Vercel reports each deployment to GitHub. After a successful production
+# deploy, ask IndexNow (Bing and others) to re-crawl the sitemap's pages, so
+# changes reach Bing and the AI answers built on it within hours, not weeks.
+on: deployment_status
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    if: github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node scripts/indexnow.mjs
