@@ -61,7 +61,7 @@ const values: { title: string; desc: string; icon: BrandIconName }[] = [
 
 // Add `photo: "/team/<name>.jpg"` (portrait, at least 800×1000) to show a photo
 // instead of the brand monogram.
-const founders: { name: string; initials: string; role: string; photo?: string }[] = [
+export const founders: { name: string; initials: string; role: string; photo?: string }[] = [
   {
     name: "Utkarsh Sharma",
     initials: "US",
@@ -76,14 +76,22 @@ const founders: { name: string; initials: string; role: string; photo?: string }
   },
 ];
 
-// The founders as schema.org people who work for the Organization.
-const founderJsonLd = founders.map((founder) => ({
+// The founders as schema.org people, and the Organization's `founder` link to
+// them. Both names are common, so search engines and AI answers need this tie
+// to BrickBytes to pick these photos over other people with the same name.
+const founderPeople = founders.map((founder) => ({
   "@type": "Person",
+  "@id": `${SITE_URL}/about#${founder.name.toLowerCase().replace(/ /g, "-")}`,
   name: founder.name,
   jobTitle: founder.role,
+  url: `${SITE_URL}/about`,
   ...(founder.photo && { image: `${SITE_URL}${founder.photo}` }),
   worksFor: { "@id": ORGANIZATION_ID },
 }));
+const founderJsonLd = [
+  ...founderPeople,
+  { "@id": ORGANIZATION_ID, founder: founderPeople.map((person) => ({ "@id": person["@id"] })) },
+];
 
 export default function AboutPage() {
   return (
@@ -114,7 +122,7 @@ export default function AboutPage() {
                     {founder.photo ? (
                       <Image
                         src={founder.photo}
-                        alt={`Portrait of ${founder.name}`}
+                        alt={`${founder.name}, ${founder.role} of BrickBytes`}
                         fill
                         sizes="176px"
                         className="object-cover"
