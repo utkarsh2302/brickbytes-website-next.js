@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { OFFICE_ADDRESS, SALES_PHONE } from "./contact";
+import { LINKEDIN_URL, OFFICE_ADDRESS, SALES_PHONE } from "./contact";
 
 export const SITE_URL = "https://brickbytes.in";
 
@@ -69,7 +69,7 @@ export type JsonLdNode = Record<string, unknown>;
 // Site-wide entities. The WebSite references the Organization by @id, and
 // page-level nodes (breadcrumbs, services, people) do the same.
 // Details mirror the office address and contact info on /contact.
-// No sameAs: add social profiles here only once they're confirmed as ours.
+// sameAs lists only social profiles confirmed as ours.
 export const siteJsonLdNodes: JsonLdNode[] = [
   {
     "@type": "Organization",
@@ -102,6 +102,7 @@ export const siteJsonLdNodes: JsonLdNode[] = [
       areaServed: "IN",
       availableLanguage: ["en", "hi"],
     },
+    sameAs: [LINKEDIN_URL],
   },
   {
     "@type": "WebSite",

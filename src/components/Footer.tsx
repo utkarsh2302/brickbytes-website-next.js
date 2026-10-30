@@ -4,7 +4,7 @@ import React from "react";
 import { ArrowUp } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { SALES_PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
+import { LINKEDIN_URL, SALES_PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
 
 const columns = [
   {
@@ -98,6 +98,11 @@ export default function Footer() {
               <li>
                 <a href="mailto:business@brickbytes.in" className={linkClass}>
                   business@brickbytes.in
+                </a>
+              </li>
+              <li>
+                <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                  LinkedIn
                 </a>
               </li>
             </ul>

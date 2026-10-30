@@ -46,7 +46,7 @@ An audit of the deployed site found the technical base sound (Lighthouse mobile:
 ## Needs an owner action (off-site)
 
 1. ~~Verify the domain in Google Search Console and Bing Webmaster Tools.~~ Done 2026-10-30: Domain property verified (TXT record in Vercel DNS), sitemap submitted as `https://brickbytes.in/sitemap.xml`, Bing imported from Search Console. Remaining: request indexing for the pages not yet requested (about 10 a day).
-2. **Social profiles.** Create or confirm the LinkedIn company page and the X account, then add their URLs as `sameAs` in `src/lib/seo.ts` and link them in the footer.
+2. **Social profiles.** LinkedIn company page done (`LINKEDIN_URL` in `src/lib/contact.ts`: Organization `sameAs` and footer link). Add other profiles (e.g. X) the same way once they exist.
 3. **Google Business Profile** for the Jaipur office (C-3, 8-B Shri Ram Nagar, Mansarovar), with the same address and phone as `/contact`.
 4. **Client case studies.** With each client's permission and real numbers (time to launch, bookings, fewer calls), add `/projects/<client>` pages. These need facts we don't have.
 5. **Backlinks.** Ask each client to link "Interactive map by BrickBytes" from their project website. List BrickBytes on Capterra India, G2, SourceForge, IndiaMART, Startup India and Product Hunt.
