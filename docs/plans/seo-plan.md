@@ -39,10 +39,13 @@ An audit of the deployed site found the technical base sound (Lighthouse mobile:
 | Accessibility | Primary buttons use ink text on Byte Orange (5.6:1; white was 3.1:1). The showcase plots' accessible names start with their visible text. Lighthouse accessibility is 100 on the pages tested. | Lighthouse |
 | Markup | The sales comparison renders once (it was duplicated for mobile and desktop). Footer column labels and a demo plot label are no longer headings. | View source |
 | Small fixes | `/favicon.ico` (was 404). Fuller descriptions on `/privacy` and `/terms`. | `curl -I /favicon.ico` |
+| Founder identity | AI answers showed other people with the founders' common names. `/about` now gives each founder a Person `@id`, `sameAs` to their LinkedIn, a visible LinkedIn link and descriptive photo alt text; the Organization names them as `founder`; the sitemap lists their photos. | Rich Results Test on `/about` |
+| Guides | `/how-to-sell-plots-online` and `/stop-double-booking-plots` (Article schema), linked from the footer, `/plot-booking-software` and `/broker-portal`. | `/sitemap.xml` lists 19 URLs |
+| IndexNow | `public/<key>.txt` plus `scripts/indexnow.mjs`; `.github/workflows/indexnow.yml` submits the sitemap's URLs after each successful production deploy, so Bing (and the AI answers built on it) re-crawls within hours. | Actions tab → IndexNow run after a deploy |
 
 ## Needs an owner action (off-site)
 
-1. **Verify the domain in Google Search Console** as a Domain property (a DNS TXT record at the DNS host), submit `/sitemap.xml`, and use URL Inspection → Request indexing on the main pages. Do the same in Bing Webmaster Tools (it can import from Search Console).
+1. ~~Verify the domain in Google Search Console and Bing Webmaster Tools.~~ Done 2026-10-30: Domain property verified (TXT record in Vercel DNS), sitemap submitted as `https://brickbytes.in/sitemap.xml`, Bing imported from Search Console. Remaining: request indexing for the pages not yet requested (about 10 a day).
 2. **Social profiles.** Create or confirm the LinkedIn company page and the X account, then add their URLs as `sameAs` in `src/lib/seo.ts` and link them in the footer.
 3. **Google Business Profile** for the Jaipur office (C-3, 8-B Shri Ram Nagar, Mansarovar), with the same address and phone as `/contact`.
 4. **Client case studies.** With each client's permission and real numbers (time to launch, bookings, fewer calls), add `/projects/<client>` pages. These need facts we don't have.
