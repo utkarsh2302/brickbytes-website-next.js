@@ -1,9 +1,6 @@
 import { MetadataRoute } from "next";
-import { founders } from "@/components/AboutPage";
+import { founderPath, founders } from "@/lib/founders";
 import { SITE_URL } from "@/lib/seo";
-
-// Listed so image search links the founder photos to /about and its names.
-const founderPhotos = founders.flatMap((founder) => (founder.photo ? [`${SITE_URL}${founder.photo}`] : []));
 
 // No lastModified: a build timestamp marks every page as changed on every
 // deploy, and Google ignores lastmod values that are not accurate.
@@ -33,10 +30,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/terms", changeFrequency: "monthly" as const, priority: 0.5 },
   ];
 
-  return routes.map((route) => ({
-    url: `${SITE_URL}${route.path}`,
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
-    ...(route.path === "/about" && { images: founderPhotos }),
+  // Each profile lists its photo, so image search ties the photo to the name.
+  const founderProfiles = founders.map((founder) => ({
+    url: `${SITE_URL}${founderPath(founder)}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+    ...(founder.photo && { images: [`${SITE_URL}${founder.photo}`] }),
   }));
+
+  return [
+    ...routes.map((route) => ({
+      url: `${SITE_URL}${route.path}`,
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+    })),
+    ...founderProfiles,
+  ];
 }

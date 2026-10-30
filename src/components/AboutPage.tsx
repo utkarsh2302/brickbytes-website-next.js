@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import BrandIcon, { type BrandIconName } from "./BrandIcon";
 import CompanyDetails from "./CompanyDetails";
 import FinalCTA from "./FinalCTA";
@@ -6,7 +7,7 @@ import GlassAccent from "./GlassAccent";
 import JsonLd from "./JsonLd";
 import PageHero from "./ui/PageHero";
 import SectionHeading from "./ui/SectionHeading";
-import { ORGANIZATION_ID, SITE_URL } from "@/lib/seo";
+import { founderJsonLd, founderPath, founders, organizationFoundersJsonLd } from "@/lib/founders";
 
 const missionItems: { tag: string; title: string; desc: string; icon: BrandIconName }[] = [
   {
@@ -59,47 +60,10 @@ const values: { title: string; desc: string; icon: BrandIconName }[] = [
   },
 ];
 
-// Add `photo: "/team/<name>.jpg"` (portrait, at least 800×1000) to show a photo
-// instead of the brand monogram.
-export const founders: { name: string; initials: string; role: string; photo?: string; linkedIn?: string }[] = [
-  {
-    name: "Utkarsh Sharma",
-    initials: "US",
-    role: "Founder & Director",
-    photo: "/team/utkarsh-sharma.webp",
-    linkedIn: "https://www.linkedin.com/in/utkarsh-sharma232002",
-  },
-  {
-    name: "Rashika Verma",
-    initials: "RV",
-    role: "Founder & Director",
-    photo: "/team/rashika-verma.webp",
-    linkedIn: "https://www.linkedin.com/in/rashika-verma-313468270",
-  },
-];
-
-// The founders as schema.org people, and the Organization's `founder` link to
-// them. Both names are common, so search engines and AI answers need this tie
-// to BrickBytes to pick these photos over other people with the same name.
-const founderPeople = founders.map((founder) => ({
-  "@type": "Person",
-  "@id": `${SITE_URL}/about#${founder.name.toLowerCase().replace(/ /g, "-")}`,
-  name: founder.name,
-  jobTitle: founder.role,
-  url: `${SITE_URL}/about`,
-  ...(founder.photo && { image: `${SITE_URL}${founder.photo}` }),
-  ...(founder.linkedIn && { sameAs: [founder.linkedIn] }),
-  worksFor: { "@id": ORGANIZATION_ID },
-}));
-const founderJsonLd = [
-  ...founderPeople,
-  { "@id": ORGANIZATION_ID, founder: founderPeople.map((person) => ({ "@id": person["@id"] })) },
-];
-
 export default function AboutPage() {
   return (
     <>
-      <JsonLd nodes={founderJsonLd} />
+      <JsonLd nodes={[...founders.map(founderJsonLd), organizationFoundersJsonLd]} />
       <PageHero
         title="Why we built BrickBytes"
         lead="Real estate projects are still sold with static PDFs, old photos and endless phone calls. BrickBytes, a venture by BrickNova Technologies in Jaipur, turns each project into a live, interactive map, so buyers, brokers and developers work from the same facts."
@@ -145,7 +109,14 @@ export default function AboutPage() {
                       </>
                     )}
                   </div>
-                  <h3 className="mt-4 font-display text-lg font-extrabold text-ink">{founder.name}</h3>
+                  <h3 className="mt-4 font-display text-lg font-extrabold text-ink">
+                    <Link
+                      href={founderPath(founder)}
+                      className="underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+                    >
+                      {founder.name}
+                    </Link>
+                  </h3>
                   <p className="mt-0.5 text-sm font-medium text-bb-slate">{founder.role}</p>
                   {founder.linkedIn && (
                     <a
