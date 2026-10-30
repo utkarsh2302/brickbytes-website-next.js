@@ -61,18 +61,20 @@ const values: { title: string; desc: string; icon: BrandIconName }[] = [
 
 // Add `photo: "/team/<name>.jpg"` (portrait, at least 800×1000) to show a photo
 // instead of the brand monogram.
-export const founders: { name: string; initials: string; role: string; photo?: string }[] = [
+export const founders: { name: string; initials: string; role: string; photo?: string; linkedIn?: string }[] = [
   {
     name: "Utkarsh Sharma",
     initials: "US",
     role: "Founder & Director",
     photo: "/team/utkarsh-sharma.webp",
+    linkedIn: "https://www.linkedin.com/in/utkarsh-sharma232002",
   },
   {
     name: "Rashika Verma",
     initials: "RV",
     role: "Founder & Director",
     photo: "/team/rashika-verma.webp",
+    linkedIn: "https://www.linkedin.com/in/rashika-verma-313468270",
   },
 ];
 
@@ -86,6 +88,7 @@ const founderPeople = founders.map((founder) => ({
   jobTitle: founder.role,
   url: `${SITE_URL}/about`,
   ...(founder.photo && { image: `${SITE_URL}${founder.photo}` }),
+  ...(founder.linkedIn && { sameAs: [founder.linkedIn] }),
   worksFor: { "@id": ORGANIZATION_ID },
 }));
 const founderJsonLd = [
@@ -144,6 +147,14 @@ export default function AboutPage() {
                   </div>
                   <h3 className="mt-4 font-display text-lg font-extrabold text-ink">{founder.name}</h3>
                   <p className="mt-0.5 text-sm font-medium text-bb-slate">{founder.role}</p>
+                  {founder.linkedIn && (
+                    <a
+                      href={founder.linkedIn}
+                      className="mt-2 inline-flex text-sm font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+                    >
+                      LinkedIn<span className="sr-only"> profile of {founder.name}</span>
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
