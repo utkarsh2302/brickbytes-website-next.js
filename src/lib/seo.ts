@@ -35,12 +35,14 @@ export function constructMetadata({
       canonical: fullUrl,
     },
     manifest: "/manifest.json",
+    // ?v=2: the logo changed on 2026-10-29 but the file names didn't, so
+    // Google kept showing its cached old icons. A new URL makes it refetch.
     icons: {
       icon: [
-        { url: "/icon.svg", type: "image/svg+xml" },
-        { url: "/favicon.png", sizes: "48x48", type: "image/png" },
+        { url: "/icon.svg?v=2", type: "image/svg+xml" },
+        { url: "/favicon.png?v=2", sizes: "48x48", type: "image/png" },
       ],
-      apple: "/apple-touch-icon.png",
+      apple: "/apple-touch-icon.png?v=2",
     },
     openGraph: {
       title,
