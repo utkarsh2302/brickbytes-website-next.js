@@ -53,12 +53,12 @@ The frontend is built using a modern, fast, and highly responsive web stack:
 Follow these steps to set up and run the codebase on your local machine:
 
 ### Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) (version 18.x or higher recommended) installed.
+Make sure you have [Node.js](https://nodejs.org/) (version 22.18 or later, for the tests) installed.
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Utkarsh9571/brickbytes-utkarsh.git
-cd brickbytes-utkarsh
+git clone https://github.com/utkarsh2302/brickbytes-website-next.js.git
+cd brickbytes-website-next.js
 ```
 
 ### 2. Install Dependencies
