@@ -10,6 +10,7 @@ const columns = [
   {
     title: "Product",
     links: [
+      { name: "Custom software", href: "/custom-real-estate-software" },
       { name: "Technology", href: "/technology" },
       { name: "How it works", href: "/how-it-works" },
       { name: "3D plot viewer", href: "/3d-plot-viewer" },
@@ -69,7 +70,7 @@ export default function Footer() {
             <div className="flex flex-col gap-2">
               <p className="font-display text-base font-semibold text-ink">Technology that holds.</p>
               <p className="max-w-xs text-sm leading-relaxed text-bb-slate">
-                Live, interactive plot maps for real estate developers and their brokers.
+                Custom software and live plot maps for real estate developers.
               </p>
             </div>
           </div>
@@ -100,8 +101,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                {/* <wbr> lets the address wrap in the narrow column at ~1024px instead of overflowing */}
                 <a href="mailto:business@brickbytes.in" className={linkClass}>
-                  business@brickbytes.in
+                  business<wbr />@brickbytes.in
                 </a>
               </li>
               <li>

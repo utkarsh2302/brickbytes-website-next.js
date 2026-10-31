@@ -5,10 +5,10 @@ import { constructMetadata, serviceJsonLd } from "@/lib/seo";
 
 const path = "/jaipur";
 const description =
-  "BrickBytes is built in Jaipur. We turn layout plans for Jaipur and Rajasthan projects into live, interactive plot maps with plot holds and a broker portal.";
+  "BrickBytes is a real estate software company in Jaipur. We build custom software and live plot maps for developers in Jaipur, Rajasthan and across India.";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Interactive Plot Maps for Jaipur Developers | BrickBytes",
+  title: "Real Estate Software Company in Jaipur | BrickBytes",
   description,
   path,
 });
@@ -16,9 +16,16 @@ export const metadata: Metadata = constructMetadata({
 const content: LandingPageContent = {
   name: "Jaipur",
   path,
-  title: "Interactive plot maps, built in Jaipur",
-  lead: "BrickBytes is made by BrickNova Technologies in Mansarovar, Jaipur. We build live plot maps for developers in Jaipur, across Rajasthan and the rest of India.",
+  title: "Real estate software, built in Jaipur",
+  lead: "BrickBytes is made by BrickNova Technologies in Mansarovar, Jaipur. We build custom software and live plot maps for real estate developers in Jaipur, across Rajasthan and the rest of India.",
   sections: [
+    {
+      title: "Software for the way your project sells",
+      paragraphs: [
+        "We build the system your sales run on, around your own rules: bookings and instalments, broker networks and commissions, leads, live inventory and an interactive map of the project.",
+      ],
+      points: ["Bookings and instalments", "Broker commissions across levels", "CRM and lead tracking", "Live plot maps"],
+    },
     {
       title: "A team in your own city",
       paragraphs: [
@@ -72,7 +79,7 @@ const content: LandingPageContent = {
   related: [
     { label: "Maps for plotted developments", href: "/plotted-developments" },
     { label: "The broker portal", href: "/broker-portal" },
-    { label: "About BrickBytes", href: "/about" },
+    { label: "Custom real estate software", href: "/custom-real-estate-software" },
   ],
 };
 
@@ -84,7 +91,7 @@ export default function JaipurRoute() {
           content={content}
           schema={[
             serviceJsonLd({
-              name: "Interactive plot maps for Jaipur developers",
+              name: "Real estate software for Jaipur developers",
               description,
               path,
               areaServed: { "@type": "City", name: "Jaipur" },

@@ -25,7 +25,7 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = constructMetadata({
-  title: "Interactive Plot Maps for Real Estate Developers | BrickBytes",
+  title: "Real Estate Software & Interactive Plot Maps | BrickBytes",
   description: SITE_DESCRIPTION,
   path: "/",
 });

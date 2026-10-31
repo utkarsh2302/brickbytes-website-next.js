@@ -60,7 +60,7 @@ export default async function OpenGraphImage() {
               Every plot, in plain sight.
             </div>
             <div style={{ marginTop: 28, fontSize: 28, lineHeight: 1.4, color: "#5a6272" }}>
-              Live, interactive plot maps for real estate developers and their brokers.
+              Custom software and live plot maps for real estate developers.
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 20, fontSize: 24 }}>

@@ -26,26 +26,32 @@ Always use `https://brickbytes.in`, never `www.`, `http://` or a page with track
 
 ## Descriptions
 
-**Tagline** (48 characters)
+BrickBytes builds custom software for real estate developers (confirmed by the founders on 2026-10-31); plot maps are one product among several.
 
-> Interactive plot maps for real estate developers
+**Tagline** (42 characters)
 
-**Short description** (151 characters; fits meta fields and most "summary" boxes)
+> Custom software for real estate developers
 
-> BrickBytes turns your layout plan into an interactive plot map. Buyers and brokers see every plot's size, facing, price and live status in any browser.
+**Short description, 140-character fields** (134 characters)
 
-**Long description** (under 750 characters, the Google Business Profile limit)
+> BrickBytes builds custom software for real estate developers in India, from booking and broker portals to live, interactive plot maps.
 
-> BrickBytes, a venture of BrickNova Technologies Private Limited in Jaipur, turns real estate layout plans into live, interactive 2D and 3D plot maps. Buyers open a project in any browser and tap a plot to see its size in square yards, facing, road width, price and whether it's still available. Developers manage plot inventory and bookings with timed holds, and brokers sell from their own portal on the same live availability, so everyone works from the same facts. BrickBytes works with plotted developments, villa communities and apartment projects, and takes a project from layout plan to live map in 10 to 14 business days.
+**Short description** (151 characters; the site's own description, fits meta fields and most "summary" boxes)
+
+> BrickBytes builds custom software for real estate developers: bookings and payments, broker commissions, CRM, live inventory and interactive plot maps.
+
+**Long description** (697 characters, under the Google Business Profile limit of 750)
+
+> BrickBytes, a venture of BrickNova Technologies Private Limited in Jaipur, builds custom software for real estate developers. One system covers booking management with payment and instalment tracking, broker and channel-partner management with commissions across levels, CRM and lead tracking, live inventory for plots, villas and flats, admin dashboards, a customer portal, mobile apps, and interactive 2D and 3D plot maps that buyers and brokers explore in any browser. Each system is built around how the developer already sells: their commission structure, payment plans, approvals and reports. BrickBytes works with plotted developments, villa communities and apartment projects across India.
 
 **Keywords or tags** (where a listing asks for them)
 
-> plot booking software, plot inventory management software, interactive plot map, 3D plot viewer, broker portal, real estate software, plotted development software, Jaipur
+> custom real estate software, real estate software company Jaipur, real estate CRM, broker commission software, channel partner management, plot booking software, plot inventory management software, interactive plot map, 3D plot viewer, Jaipur
 
 **Categories**
 
 - Google Business Profile: *Software company* (primary)
-- Software marketplaces: *Real estate software*, with *Property management* or *Real estate CRM* as a second category only where no closer one exists
+- Software marketplaces: *Real estate software* (primary), then *Real estate CRM* and *Property management* where a listing allows more than one
 
 ## Where to list, in order
 

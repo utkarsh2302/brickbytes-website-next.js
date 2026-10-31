@@ -9,7 +9,7 @@ export const SITE_URL = "https://brickbytes.in";
 export const FOUNDED = { date: "2024-09-05", monthYear: "September 2024" };
 
 export const SITE_DESCRIPTION =
-  "BrickBytes turns your layout plan into an interactive plot map. Buyers and brokers see every plot's size, facing, price and live status in any browser.";
+  "BrickBytes builds custom software for real estate developers: bookings and payments, broker commissions, CRM, live inventory and interactive plot maps.";
 
 interface MetadataProps {
   title: string;

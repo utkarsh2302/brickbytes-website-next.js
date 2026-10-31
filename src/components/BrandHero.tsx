@@ -55,8 +55,8 @@ export default function BrandHero() {
             Every plot, <span className="block">in plain sight.</span>
           </h1>
           <p className="mt-8 max-w-lg text-lg leading-relaxed text-bb-slate sm:text-xl sm:leading-relaxed">
-            BrickBytes turns your layout plan into a live, interactive plot map of your project. Buyers and brokers see every
-            plot&apos;s size, facing, price and availability, then book a site visit.
+            BrickBytes builds custom software for real estate developers, from bookings, payments and broker commissions
+            to a live, interactive plot map that buyers and brokers explore in any browser.
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -70,7 +70,13 @@ export default function BrandHero() {
           </div>
 
           <p className="mt-7 text-sm text-bb-slate">
-            For plotted-land developers and their brokers. Live in 10 to 14 business days.
+            For plotted developments, villa communities and apartment projects.{" "}
+            <Link
+              href="/custom-real-estate-software"
+              className="font-semibold text-ink underline underline-offset-4 hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+            >
+              See everything we build
+            </Link>
           </p>
         </div>
 

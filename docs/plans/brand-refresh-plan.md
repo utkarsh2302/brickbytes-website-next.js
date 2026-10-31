@@ -2,6 +2,8 @@
 
 Status: approved 2026-10-29 (brand-statement hero; re-skin + simplify; copy aligned to brand voice)
 
+Update 2026-10-31: the founders broadened the positioning. BrickBytes builds custom software for real estate developers (bookings and payments, broker networks and commissions, CRM, inventory, dashboards, customer portal, mobile apps), with plot maps as one product. The hero headline stays "Every plot, in plain sight."; the hero lead, the site description and the homepage title now say custom software, and `/custom-real-estate-software` describes the full scope.
+
 ## Goal
 
 Bring the whole site onto the BrickBytes v2.1 brand (Brand Guidelines v2.1, Oct 2026) with a clean, Google-like feel: lots of space, plain sentence-case copy, flat surfaces, little decorative motion. The homepage opens on the brand statement, **"Every plot, in plain sight."**

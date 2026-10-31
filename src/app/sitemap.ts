@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/how-it-works", changeFrequency: "weekly" as const, priority: 0.8 },
     { path: "/about", changeFrequency: "weekly" as const, priority: 0.8 },
     { path: "/contact", changeFrequency: "weekly" as const, priority: 0.8 },
+    { path: "/custom-real-estate-software", changeFrequency: "monthly" as const, priority: 0.9 },
     { path: "/3d-plot-viewer", changeFrequency: "monthly" as const, priority: 0.8 },
     { path: "/plot-booking-software", changeFrequency: "monthly" as const, priority: 0.8 },
     { path: "/plot-inventory-management-software", changeFrequency: "monthly" as const, priority: 0.8 },

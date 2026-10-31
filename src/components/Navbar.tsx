@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 const navItems = [
+  { name: "Custom software", href: "/custom-real-estate-software" },
   { name: "Technology", href: "/technology" },
   { name: "How it works", href: "/how-it-works" },
   { name: "Solutions", href: "/#use-cases" },
