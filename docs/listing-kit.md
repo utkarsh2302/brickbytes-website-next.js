@@ -73,4 +73,5 @@ Send the listing's URL to whoever maintains the site. Profiles that are clearly 
 | Crunchbase | https://www.crunchbase.com/organization/brickbytes | 2026-10-31 |
 | Crunchbase: Utkarsh Sharma | https://www.crunchbase.com/person/utkarsh-sharma-186e | 2026-10-31 |
 | Crunchbase: Rashika Verma | https://www.crunchbase.com/person/rashika-verma-c084 | 2026-10-31 |
+| Google Business Profile | https://share.google/vghiPOHZEgYABqkGR (Knowledge Graph ID /g/11l_55z_bb) | 2026-10-31 |
 | | | |

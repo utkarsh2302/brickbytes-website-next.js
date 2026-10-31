@@ -114,7 +114,12 @@ export const siteJsonLdNodes: JsonLdNode[] = [
         closes: OFFICE_HOURS.closes,
       },
     },
-    sameAs: [LINKEDIN_URL, "https://www.crunchbase.com/organization/brickbytes"],
+    sameAs: [
+      LINKEDIN_URL,
+      "https://www.crunchbase.com/organization/brickbytes",
+      // The Google Business Profile, by its Knowledge Graph ID
+      "https://www.google.com/search?kgmid=/g/11l_55z_bb",
+    ],
   },
   {
     "@type": "WebSite",
