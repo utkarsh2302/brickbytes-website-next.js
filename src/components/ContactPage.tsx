@@ -8,6 +8,7 @@ import FAQ, { type Faq } from "./FAQ";
 import PageHero from "./ui/PageHero";
 import SectionHeading from "./ui/SectionHeading";
 import { buttonPrimary, buttonSecondary } from "./ui/button";
+import { inputClass } from "./ui/input";
 import { SALES_PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
 
 const demoFaqs: Faq[] = [
@@ -69,9 +70,6 @@ function findFieldErrors(formElement: HTMLFormElement) {
   }
   return errors;
 }
-
-const inputClass =
-  "w-full rounded-xl border border-line bg-white px-4 py-3 text-base text-ink placeholder:text-bb-slate transition-colors focus:border-ink focus:outline-none focus:ring-1 focus:ring-ink disabled:cursor-not-allowed disabled:opacity-60 aria-[invalid=true]:border-red-700";
 
 function Field({
   id,

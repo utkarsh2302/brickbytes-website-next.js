@@ -72,7 +72,13 @@ npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) (or the port indicated in the terminal) in your browser to view the application.
 
-### 4. Build for Production
+### 4. Run the Tests
+Unit tests (`src/**/*.test.ts`) run on Node's built-in test runner, so they need Node 22.18 or later:
+```bash
+npm test
+```
+
+### 5. Build for Production
 To generate an optimized build of the application:
 ```bash
 npm run build

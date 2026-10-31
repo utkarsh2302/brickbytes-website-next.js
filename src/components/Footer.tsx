@@ -36,6 +36,7 @@ const columns = [
       { name: "Stopping double bookings", href: "/stop-double-booking-plots" },
       { name: "Choosing booking software", href: "/choose-plot-booking-software" },
       { name: "Marketing plotted projects", href: "/plotted-development-marketing" },
+      { name: "Plots in one acre", href: "/how-many-plots-in-one-acre" },
       { name: "All guides", href: "/guides" },
     ],
   },

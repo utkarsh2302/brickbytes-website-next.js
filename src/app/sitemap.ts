@@ -25,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/stop-double-booking-plots", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/choose-plot-booking-software", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/plotted-development-marketing", changeFrequency: "monthly" as const, priority: 0.6 },
+    { path: "/how-many-plots-in-one-acre", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/guides", changeFrequency: "weekly" as const, priority: 0.6 },
     { path: "/privacy", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/terms", changeFrequency: "monthly" as const, priority: 0.5 },

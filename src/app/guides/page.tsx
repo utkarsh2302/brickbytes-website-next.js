@@ -18,6 +18,11 @@ export const metadata: Metadata = constructMetadata({
 // Newest first. Add each new guide here, in the footer and in the sitemap.
 const guides: { title: string; summary: string; href: string }[] = [
   {
+    title: "How many plots fit in one acre",
+    summary: "A calculator for your plot count, after roads, parks and common areas.",
+    href: "/how-many-plots-in-one-acre",
+  },
+  {
     title: "How to choose plot booking software",
     summary: "The questions to ask in a demo, from live inventory to who owns your data.",
     href: "/choose-plot-booking-software",
