@@ -7,6 +7,7 @@ export type Founder = {
   role: string;
   photo?: string;
   linkedIn?: string;
+  crunchbase?: string;
 };
 
 // Shown on /about and on each founder's profile page (/team/<slug>).
@@ -20,6 +21,7 @@ export const founders: Founder[] = [
     role: "Founder & Director",
     photo: "/team/utkarsh-sharma.webp",
     linkedIn: "https://www.linkedin.com/in/utkarsh-sharma232002",
+    crunchbase: "https://www.crunchbase.com/person/utkarsh-sharma-186e",
   },
   {
     slug: "rashika-verma",
@@ -28,6 +30,7 @@ export const founders: Founder[] = [
     role: "Founder & Director",
     photo: "/team/rashika-verma.webp",
     linkedIn: "https://www.linkedin.com/in/rashika-verma-313468270",
+    crunchbase: "https://www.crunchbase.com/person/rashika-verma-c084",
   },
 ];
 
@@ -43,6 +46,7 @@ function founderId(founder: Founder) {
 
 export function founderJsonLd(founder: Founder): JsonLdNode {
   const url = `${SITE_URL}${founderPath(founder)}`;
+  const profiles = [founder.linkedIn, founder.crunchbase].filter((profile) => profile !== undefined);
   return {
     "@type": "Person",
     "@id": founderId(founder),
@@ -50,7 +54,7 @@ export function founderJsonLd(founder: Founder): JsonLdNode {
     jobTitle: founder.role,
     url,
     ...(founder.photo && { image: `${SITE_URL}${founder.photo}` }),
-    ...(founder.linkedIn && { sameAs: [founder.linkedIn] }),
+    ...(profiles.length > 0 && { sameAs: profiles }),
     worksFor: { "@id": ORGANIZATION_ID },
   };
 }

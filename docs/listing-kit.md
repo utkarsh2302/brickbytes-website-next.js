@@ -71,4 +71,6 @@ Send the listing's URL to whoever maintains the site. Profiles that are clearly 
 |---|---|---|
 | LinkedIn company page | https://www.linkedin.com/company/brickbytes_tech/ | 2026-10-30 |
 | Crunchbase | https://www.crunchbase.com/organization/brickbytes | 2026-10-31 |
+| Crunchbase: Utkarsh Sharma | https://www.crunchbase.com/person/utkarsh-sharma-186e | 2026-10-31 |
+| Crunchbase: Rashika Verma | https://www.crunchbase.com/person/rashika-verma-c084 | 2026-10-31 |
 | | | |
