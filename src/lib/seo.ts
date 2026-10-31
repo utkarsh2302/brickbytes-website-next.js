@@ -119,6 +119,8 @@ export const siteJsonLdNodes: JsonLdNode[] = [
       "https://www.crunchbase.com/organization/brickbytes",
       // The Google Business Profile, by its Knowledge Graph ID
       "https://www.google.com/search?kgmid=/g/11l_55z_bb",
+      // Our Google Play developer page (the apps on it are published for clients)
+      "https://play.google.com/store/apps/developer?id=BrickBytes",
     ],
   },
   {

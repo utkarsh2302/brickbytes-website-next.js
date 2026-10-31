@@ -34,7 +34,7 @@ const content: LandingPageContent = {
         "Interactive 2D and 3D plot maps",
         "Admin dashboards for your team",
         "A portal for your customers",
-        "Mobile apps for brokers and buyers",
+        "Mobile apps for brokers and buyers, in English and Hindi",
       ],
     },
     {
@@ -55,6 +55,25 @@ const content: LandingPageContent = {
       paragraphs: [
         "Brokers get their own portal with live availability, their leads, their bookings and their commissions. Where brokers bring in other brokers, each one sees their own team.",
         "Commission rules follow your structure level by level, and your team approves each payout from the admin dashboard.",
+      ],
+    },
+    {
+      title: "A mobile app for brokers in the field",
+      paragraphs: [
+        "Brokers carry live inventory on their phones and book a plot on the spot: they photograph the handwritten booking form, and the app fills in the buyer's name, phone, address, plot number and payment details.",
+        "Site visits are logged with a GPS-verified check-in and a photo from the plot. Brokers follow each customer's booking and home-loan progress, track their commissions, their team and their place on the leaderboard, get a notification when a plot in their project sells, and share their own booking page with clients.",
+      ],
+      points: [
+        "Booking from a photo of the paper form",
+        "GPS-verified site visits with photo proof",
+        "Commissions, team and leaderboard",
+        "A booking page for each broker",
+      ],
+    },
+    {
+      title: "For buyers: tours, EMIs and booking status",
+      paragraphs: [
+        "Buyers browse every project, explore plots on the interactive map, take 360° tours and drone views of the site, work out EMI options and check their own booking status with their phone number.",
       ],
     },
     {
