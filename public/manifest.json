@@ -1,7 +1,7 @@
 {
   "name": "BrickBytes",
   "short_name": "BrickBytes",
-  "description": "Interactive 3D master plans and live plot inventory for real estate developers, brokers and buyers.",
+  "description": "Custom software for real estate developers: bookings and payments, broker commissions, CRM, live inventory and interactive plot maps.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f7f4ef",
