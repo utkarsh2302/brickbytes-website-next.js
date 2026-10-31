@@ -61,13 +61,12 @@ BrickBytes builds custom software for real estate developers (confirmed by the f
 | 2 | Bing Places (bingplaces.com) | Bing feeds ChatGPT search and Copilot | Import from Google Business Profile once it's verified. |
 | 3 | Founders' LinkedIn profiles | Ties your names to BrickBytes | Headline "Founder & Director, BrickBytes"; add your profile page (`brickbytes.in/team/<your-name>`) in the Website field; set BrickBytes as your current position. |
 | 4 | Crunchbase (crunchbase.com) | Commonly used as a source for company and founder facts | Company profile plus a profile for each founder, linked to the company. |
-| 5 | Capterra, GetApp and Software Advice | Rank for "plot booking software" comparisons | One free vendor sign-up (Gartner Digital Markets) lists you on all three. |
-| 6 | G2 (g2.com) | Software comparison searches | Free profile. Reviews from clients make it count. |
-| 7 | SoftwareSuggest and Techjockey | Indian software marketplaces that rank for real estate software searches | Free vendor listings. |
-| 8 | IndiaMART (seller.indiamart.com) | Indian B2B buyers search here | List "Plot booking software" and "Interactive plot map" as products. |
-| 9 | Startup India (startupindia.gov.in) | An official .gov.in profile | DPIIT recognition needs the incorporation documents. |
-| 10 | JustDial and Sulekha | Local Indian directories that confirm the name, address and phone | Use the details above exactly. |
-| 11 | Product Hunt (producthunt.com) | A launch page and a link | Do this when you have a public demo to show. |
+| 5 | G2, Capterra, GetApp and Software Advice | Software comparison searches and the reviews AI answers quote | G2 bought the other three from Gartner in 2026, so one G2 seller account (start at capterra.com/vendors) manages all four. They list packaged software only, so list the BrickBytes platform with "request a demo", not custom development services. Free profiles carry no link to the website. Description rules: third person, no superlatives, no links or calls to action. |
+| 6 | SoftwareSuggest and Techjockey | Indian software marketplaces that rank for real estate software searches | Free vendor listings. |
+| 7 | IndiaMART (seller.indiamart.com) | Indian B2B buyers search here | List "Plot booking software" and "Interactive plot map" as products. |
+| 8 | Startup India (startupindia.gov.in) | An official .gov.in profile | DPIIT recognition needs the incorporation documents. |
+| 9 | JustDial and Sulekha | Local Indian directories that confirm the name, address and phone | Use the details above exactly. |
+| 10 | Product Hunt (producthunt.com) | A launch page and a link | Do this when you have a public demo to show. |
 
 ## After each listing goes live
 
