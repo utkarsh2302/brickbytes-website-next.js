@@ -74,7 +74,7 @@ export type JsonLdNode = Record<string, unknown>;
 // Site-wide entities. The WebSite references the Organization by @id, and
 // page-level nodes (breadcrumbs, services, people) do the same.
 // Details mirror the office address and contact info on /contact.
-// sameAs lists only social profiles confirmed as ours.
+// sameAs lists only profiles and listings confirmed as ours.
 export const siteJsonLdNodes: JsonLdNode[] = [
   {
     "@type": "Organization",
@@ -114,7 +114,7 @@ export const siteJsonLdNodes: JsonLdNode[] = [
         closes: OFFICE_HOURS.closes,
       },
     },
-    sameAs: [LINKEDIN_URL],
+    sameAs: [LINKEDIN_URL, "https://www.crunchbase.com/organization/brickbytes"],
   },
   {
     "@type": "WebSite",

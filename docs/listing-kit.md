@@ -70,4 +70,5 @@ Send the listing's URL to whoever maintains the site. Profiles that are clearly 
 | Listing | URL | Date live |
 |---|---|---|
 | LinkedIn company page | https://www.linkedin.com/company/brickbytesjpr/ | 2026-10-30 |
+| Crunchbase | https://www.crunchbase.com/organization/brickbytes | 2026-10-31 |
 | | | |
