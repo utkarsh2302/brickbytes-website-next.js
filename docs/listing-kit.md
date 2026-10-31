@@ -18,7 +18,7 @@ Every fact below is taken from the website (`src/lib/contact.ts`, `src/lib/seo.t
 | GSTIN | 08AAOCB6672J1Z2 |
 | Founded | 5 September 2024 (Google "opening date", Crunchbase "founded"). BrickNova Technologies Private Limited was incorporated in 2026: where a form asks for the incorporation date (Startup India, IndiaMART), use the date on the certificate of incorporation. |
 | Founders | Utkarsh Sharma, Founder & Director (https://brickbytes.in/team/utkarsh-sharma) and Rashika Verma, Founder & Director (https://brickbytes.in/team/rashika-verma) |
-| LinkedIn | https://www.linkedin.com/company/brickbytesjpr/ |
+| LinkedIn | https://www.linkedin.com/company/brickbytes_tech/ |
 | Logo | `public/icon-512.png` (square, 512 × 512) or `public/logo.svg` (wordmark) |
 | Opening hours | Monday to Saturday, 10 am to 7 pm (10:00–19:00). Same as Google Business Profile. |
 
@@ -69,6 +69,6 @@ Send the listing's URL to whoever maintains the site. Profiles that are clearly 
 
 | Listing | URL | Date live |
 |---|---|---|
-| LinkedIn company page | https://www.linkedin.com/company/brickbytesjpr/ | 2026-10-30 |
+| LinkedIn company page | https://www.linkedin.com/company/brickbytes_tech/ | 2026-10-30 |
 | Crunchbase | https://www.crunchbase.com/organization/brickbytes | 2026-10-31 |
 | | | |
