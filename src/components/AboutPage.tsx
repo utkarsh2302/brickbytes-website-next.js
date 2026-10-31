@@ -8,6 +8,7 @@ import JsonLd from "./JsonLd";
 import PageHero from "./ui/PageHero";
 import SectionHeading from "./ui/SectionHeading";
 import { founderJsonLd, founderPath, founders, organizationFoundersJsonLd } from "@/lib/founders";
+import { FOUNDED } from "@/lib/seo";
 
 const missionItems: { tag: string; title: string; desc: string; icon: BrandIconName }[] = [
   {
@@ -79,7 +80,8 @@ export default function AboutPage() {
                 Founded in Jaipur
               </h2>
               <p className="mt-4 max-w-md text-lg leading-relaxed text-bb-slate">
-                BrickBytes is built by BrickNova Technologies and led by its two founders.
+                BrickBytes started in {FOUNDED.monthYear}. It&apos;s built by BrickNova Technologies and led by its two
+                founders.
               </p>
             </div>
             <ul className="flex gap-6 sm:gap-8 lg:col-span-7 lg:justify-end">

@@ -5,6 +5,7 @@ import FinalCTA from "./FinalCTA";
 import PageHero from "./ui/PageHero";
 import { buttonPrimary, buttonSecondary } from "./ui/button";
 import { founderPath, type Founder } from "@/lib/founders";
+import { FOUNDED } from "@/lib/seo";
 
 const products: { label: string; href: string }[] = [
   { label: "Interactive 2D and 3D plot maps", href: "/3d-plot-viewer" },
@@ -65,8 +66,8 @@ export default function FounderProfile({ founder, coFounder }: { founder: Founde
                 their brokers.
               </p>
               <p className="text-lg leading-relaxed text-bb-slate">
-                {founder.name} started BrickBytes with {coFounder.name} because real estate projects were still sold with
-                static PDFs, old photos and endless phone calls. Their answer is one live map that buyers, brokers and
+                {founder.name} started BrickBytes with {coFounder.name} in {FOUNDED.monthYear}, because real estate
+                projects were still sold with static PDFs, old photos and endless phone calls. Their answer is one live map that buyers, brokers and
                 developers all work from, so every conversation starts from the same facts.
               </p>
               <p className="text-lg leading-relaxed text-bb-slate">

@@ -1,5 +1,5 @@
 import BrandIcon from "./BrandIcon";
-import { OFFICE_ADDRESS_LINE } from "@/lib/contact";
+import { OFFICE_ADDRESS_LINE, OFFICE_HOURS } from "@/lib/contact";
 
 // Company details, shown on /about and /contact.
 export default function CompanyDetails() {
@@ -12,6 +12,7 @@ export default function CompanyDetails() {
           <p className="mt-1 text-base leading-relaxed text-ink">
             {OFFICE_ADDRESS_LINE}
           </p>
+          <p className="mt-2 text-sm text-bb-slate">Open {OFFICE_HOURS.line}</p>
         </div>
       </div>
       <div className="rounded-2xl border border-line bg-white p-6">

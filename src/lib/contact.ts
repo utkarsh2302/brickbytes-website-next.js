@@ -13,4 +13,12 @@ export const OFFICE_ADDRESS = {
   countryCode: "IN",
 };
 
-export const OFFICE_ADDRESS_LINE = `${OFFICE_ADDRESS.street}, ${OFFICE_ADDRESS.city}, ${OFFICE_ADDRESS.region} ${OFFICE_ADDRESS.postalCode}, ${OFFICE_ADDRESS.country}`;
+// Must match the hours on the Google Business Profile.
+export const OFFICE_HOURS = {
+  days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  opens: "10:00",
+  closes: "19:00",
+  line: "Monday to Saturday, 10 am to 7 pm",
+};
+
+export const OFFICE_ADDRESS_LINE =`${OFFICE_ADDRESS.street}, ${OFFICE_ADDRESS.city}, ${OFFICE_ADDRESS.region} ${OFFICE_ADDRESS.postalCode}, ${OFFICE_ADDRESS.country}`;

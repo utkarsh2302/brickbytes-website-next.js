@@ -16,11 +16,11 @@ Every fact below is taken from the website (`src/lib/contact.ts`, `src/lib/seo.t
 | Address | C-3, 8-B Shri Ram Nagar, opp. Dhanwantri Hospital & Research Centre, near New Sanganer Road, Mansarovar, Jaipur, Rajasthan 302020, India |
 | CIN | U62011RJ2026PTC113544 |
 | GSTIN | 08AAOCB6672J1Z2 |
-| Year founded | 2026 (the year of incorporation in the CIN) |
+| Founded | 5 September 2024 (Google "opening date", Crunchbase "founded"). BrickNova Technologies Private Limited was incorporated in 2026: where a form asks for the incorporation date (Startup India, IndiaMART), use the date on the certificate of incorporation. |
 | Founders | Utkarsh Sharma, Founder & Director (https://brickbytes.in/team/utkarsh-sharma) and Rashika Verma, Founder & Director (https://brickbytes.in/team/rashika-verma) |
 | LinkedIn | https://www.linkedin.com/company/brickbytesjpr/ |
 | Logo | `public/icon-512.png` (square, 512 × 512) or `public/logo.svg` (wordmark) |
-| Opening hours | **Fill in.** Use the same hours everywhere. |
+| Opening hours | Monday to Saturday, 10 am to 7 pm (10:00–19:00). Same as Google Business Profile. |
 
 Always use `https://brickbytes.in`, never `www.`, `http://` or a page with tracking parameters.
 

@@ -1,7 +1,12 @@
 import { Metadata } from "next";
-import { LINKEDIN_URL, OFFICE_ADDRESS, SALES_PHONE } from "./contact";
+import { LINKEDIN_URL, OFFICE_ADDRESS, OFFICE_HOURS, SALES_PHONE } from "./contact";
 
 export const SITE_URL = "https://brickbytes.in";
+
+// When BrickBytes started. BrickNova Technologies Private Limited was
+// incorporated later (2026, per the CIN); forms asking for the incorporation
+// date need the date on the certificate, not this one.
+export const FOUNDED = { date: "2024-09-05", monthYear: "September 2024" };
 
 export const SITE_DESCRIPTION =
   "BrickBytes turns your layout plan into an interactive plot map. Buyers and brokers see every plot's size, facing, price and live status in any browser.";
@@ -84,6 +89,7 @@ export const siteJsonLdNodes: JsonLdNode[] = [
       height: 512,
     },
     description: SITE_DESCRIPTION,
+    foundingDate: FOUNDED.date,
     email: "business@brickbytes.in",
     taxID: "08AAOCB6672J1Z2",
     address: {
@@ -101,6 +107,12 @@ export const siteJsonLdNodes: JsonLdNode[] = [
       telephone: SALES_PHONE,
       areaServed: "IN",
       availableLanguage: ["en", "hi"],
+      hoursAvailable: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: OFFICE_HOURS.days,
+        opens: OFFICE_HOURS.opens,
+        closes: OFFICE_HOURS.closes,
+      },
     },
     sameAs: [LINKEDIN_URL],
   },
