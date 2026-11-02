@@ -4,10 +4,10 @@ import { constructMetadata, serviceJsonLd } from "@/lib/seo";
 
 const path = "/real-estate-crm";
 const description =
-  "A real estate CRM built for developers: every enquiry, site visit and booking in one place, shared with your sales team and brokers on live inventory.";
+  "A real estate CRM for builders and developers: every enquiry, site visit and booking in one place, shared with your sales team and brokers on live inventory.";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Real Estate CRM for Developers in India | BrickBytes",
+  title: "Real Estate CRM Software for Builders in India | BrickBytes",
   description,
   path,
 });
@@ -15,7 +15,7 @@ export const metadata: Metadata = constructMetadata({
 const content: LandingPageContent = {
   name: "Real estate CRM",
   path,
-  title: "A real estate CRM built for developers",
+  title: "A real estate CRM built for builders and developers",
   lead: "Follow every enquiry from the first call to the site visit and the booking, in the same system that holds your live inventory, so your team and brokers never promise a plot that's gone.",
   sections: [
     {
@@ -58,9 +58,9 @@ const content: LandingPageContent = {
       link: { label: "Channel partner and commission software", href: "/channel-partner-management-software" },
     },
     {
-      title: "Built around your sales process",
+      title: "A customised CRM, built around your sales process",
       paragraphs: [
-        "Lead stages, assignments and reports are set up to match how your team already sells, as part of the software we build for each developer.",
+        "Lead stages, assignments and reports are set up to match how your team already sells, as part of the software we build for each builder and developer.",
       ],
       link: { label: "Everything we build", href: "/custom-real-estate-software" },
     },
@@ -84,7 +84,7 @@ const content: LandingPageContent = {
   related: [
     { label: "Custom real estate software", href: "/custom-real-estate-software" },
     { label: "The broker portal", href: "/broker-portal" },
-    { label: "Plot booking software", href: "/plot-booking-software" },
+    { label: "How to choose a real estate CRM", href: "/best-real-estate-crm" },
   ],
 };
 

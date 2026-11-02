@@ -18,6 +18,11 @@ export const metadata: Metadata = constructMetadata({
 // Newest first. Add each new guide here, in the footer and in the sitemap.
 const guides: { title: string; summary: string; href: string }[] = [
   {
+    title: "How to choose the best real estate CRM",
+    summary: "What a builder's CRM needs that a broker's doesn't, and how to test one before you buy.",
+    href: "/best-real-estate-crm",
+  },
+  {
     title: "How many plots fit in one acre",
     summary: "A calculator for your plot count, after roads, parks and common areas.",
     href: "/how-many-plots-in-one-acre",

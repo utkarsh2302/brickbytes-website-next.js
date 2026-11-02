@@ -157,7 +157,7 @@ export function serviceJsonLd({
   name: string;
   description: string;
   path: string;
-  areaServed?: JsonLdNode;
+  areaServed?: JsonLdNode | JsonLdNode[];
 }): JsonLdNode {
   return {
     "@type": "Service",

@@ -40,8 +40,8 @@ const content: LandingPageContent = {
     {
       title: "Built around how you sell",
       paragraphs: [
-        "Every developer sells differently. Some work with a few brokers on a fixed commission, others with large broker networks paid across several levels. Some take full payment at booking, others collect it in instalments.",
-        "We build your rules into the software: your commission structure, your payment plans, your approval steps and the reports your team relies on. You don't have to change how you sell to fit the software.",
+        "Every builder and developer sells differently. Some work with a few brokers on a fixed commission, others with large broker networks paid across several levels. Some take full payment at booking, others collect it in instalments.",
+        "Customised real estate software means your rules are built in: your commission structure, your payment plans, your approval steps and the reports your team relies on. You don't have to change how you sell to fit the software.",
       ],
     },
     {
@@ -71,6 +71,7 @@ const content: LandingPageContent = {
         "Commissions, team and leaderboard",
         "A booking page for each broker",
       ],
+      link: { label: "Real estate app development", href: "/real-estate-app-development" },
     },
     {
       title: "For buyers: tours, EMIs and booking status",
@@ -104,7 +105,7 @@ const content: LandingPageContent = {
     {
       question: "Is BrickBytes ready-made software or built for us?",
       answer:
-        "Both. Plot maps, bookings, inventory and the broker portal are ready to set up, and we build the rest around your rules: commission structures, payment plans, approvals and reports.",
+        "Both. Plot maps, bookings, inventory and the broker portal are ready to set up, and we customise the rest around your rules: commission structures, payment plans, approvals and reports.",
     },
     {
       question: "Can it handle multi-level broker commissions?",

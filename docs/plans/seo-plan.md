@@ -44,22 +44,18 @@ An audit of the deployed site found the technical base sound (Lighthouse mobile:
 | Plot calculator | `/how-many-plots-in-one-acre` targets "how many plots in 1 acre", where results were only unit converters. A live calculator (land, plot size in sq yd, share sold as plots) and a plots-per-acre table, both from `estimatePlotYield` in `src/lib/plot-yield.ts` (tested, `npm test`). It states no regulatory figures: local rules differ, so readers are told to check them. | `/sitemap.xml` lists 25 URLs |
 | Positioning | The founders confirmed (2026-10-31) that BrickBytes builds custom real estate software, not only plot maps. New hub `/custom-real-estate-software` (nav, footer, hero link) targets "custom real estate software"; the homepage title is "Real Estate Software & Interactive Plot Maps"; `/jaipur` targets "real estate software company in Jaipur". Site description, share image and listing-kit descriptions updated to match. | `/sitemap.xml` lists 26 URLs |
 | Feature pages | `/real-estate-crm`, `/channel-partner-management-software` (multi-level associate plans; "MLM" appears once, in a FAQ), `/real-estate-payment-tracking` and `/flat-booking-software`, each targeting its own searches. Copy uses only features the founders confirmed or that the public Play listing shows. `/custom-real-estate-software` links to each from the matching section (`LandingSection.link`); all four are in the footer. | `/sitemap.xml` lists 30 URLs |
+| Keyword pages | From the keyword list (below): `/jaipur` now targets "real estate software and CRM in Jaipur" and covers Rajasthan, CRM and apps; `/best-real-estate-crm` (guide, Article schema) is an honest how-to-choose page that says when BrickBytes is the wrong fit; `/real-estate-app-development` covers custom apps (Android only, as published on Google Play); "customised" and "builders" wording on `/custom-real-estate-software` and `/real-estate-crm`. | `/sitemap.xml` lists 32 URLs |
 | IndexNow | `public/<key>.txt` plus `scripts/indexnow.mjs`; `.github/workflows/indexnow.yml` submits the sitemap's URLs after each successful production deploy, so Bing (and the AI answers built on it) re-crawls within hours. | Actions tab → IndexNow run after a deploy |
 
 ## Keyword targets
 
-The full list is `docs/seo-keywords.csv`: every keyword we target, the page that answers it and its status (`live`, `built, not deployed`, `planned`, `needs a local project`). Update a row's status when its page ships. For search volumes, paste the keyword column into Google Keyword Planner → "Get search volume and forecasts".
+The full list is `docs/seo-keywords.csv`: every keyword we target, its priority, the page that answers it and its status (`live`, `built, not deployed`, `needs a local project`). Update a row's status when its page ships.
+
+Priority 1 is Jaipur: our office and Google Business Profile are there, so it's where we can realistically reach the top first. Then the brand and Rajasthan (2), CRM, software and app searches (3), features and India-wide searches (4), guides (5) and other cities and states (6). For search volumes, paste the keyword column into Google Keyword Planner → "Get search volume and forecasts".
 
 - **One page per intent, not per wording.** Google treats custom, customized and customised, or app and application, as the same search. Variants go into the copy of one page, never into pages of their own.
 - **Location pages only where we have something local to say.** Jaipur and Rajasthan belong on `/jaipur`, because our office is there. For any other city or state, a page is added only once we have a real project there (a client case study, the local approval process, how buyers there compare plots). Near-identical pages per city are what Google's spam policies call doorway abuse ("pages targeted at specific regions or cities that funnel users to one page"), which can demote the whole site. Until then, the India-wide pages answer those searches.
 - **"Best …" searches** are mostly answered by review sites and roundup articles. We win them with reviews (Google Business Profile, G2) and by being included in other sites' lists. Our own page for them is `/best-real-estate-crm`, an honest guide to choosing one.
-
-Planned page changes (the `planned` rows):
-
-1. `/jaipur`: title "Real Estate Software & CRM Company in Jaipur", and it covers Rajasthan.
-2. `/best-real-estate-crm`: guide "Best Real Estate CRM in India: How to Choose".
-3. `/real-estate-app-development`: custom apps for brokers and buyers.
-4. "Customized" and "builders" wording on `/custom-real-estate-software` and `/real-estate-crm`.
 
 ## Needs an owner action (off-site)
 
