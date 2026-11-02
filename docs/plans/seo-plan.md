@@ -46,6 +46,21 @@ An audit of the deployed site found the technical base sound (Lighthouse mobile:
 | Feature pages | `/real-estate-crm`, `/channel-partner-management-software` (multi-level associate plans; "MLM" appears once, in a FAQ), `/real-estate-payment-tracking` and `/flat-booking-software`, each targeting its own searches. Copy uses only features the founders confirmed or that the public Play listing shows. `/custom-real-estate-software` links to each from the matching section (`LandingSection.link`); all four are in the footer. | `/sitemap.xml` lists 30 URLs |
 | IndexNow | `public/<key>.txt` plus `scripts/indexnow.mjs`; `.github/workflows/indexnow.yml` submits the sitemap's URLs after each successful production deploy, so Bing (and the AI answers built on it) re-crawls within hours. | Actions tab → IndexNow run after a deploy |
 
+## Keyword targets
+
+The full list is `docs/seo-keywords.csv`: every keyword we target, the page that answers it and its status (`live`, `built, not deployed`, `planned`, `needs a local project`). Update a row's status when its page ships. For search volumes, paste the keyword column into Google Keyword Planner → "Get search volume and forecasts".
+
+- **One page per intent, not per wording.** Google treats custom, customized and customised, or app and application, as the same search. Variants go into the copy of one page, never into pages of their own.
+- **Location pages only where we have something local to say.** Jaipur and Rajasthan belong on `/jaipur`, because our office is there. For any other city or state, a page is added only once we have a real project there (a client case study, the local approval process, how buyers there compare plots). Near-identical pages per city are what Google's spam policies call doorway abuse ("pages targeted at specific regions or cities that funnel users to one page"), which can demote the whole site. Until then, the India-wide pages answer those searches.
+- **"Best …" searches** are mostly answered by review sites and roundup articles. We win them with reviews (Google Business Profile, G2) and by being included in other sites' lists. Our own page for them is `/best-real-estate-crm`, an honest guide to choosing one.
+
+Planned page changes (the `planned` rows):
+
+1. `/jaipur`: title "Real Estate Software & CRM Company in Jaipur", and it covers Rajasthan.
+2. `/best-real-estate-crm`: guide "Best Real Estate CRM in India: How to Choose".
+3. `/real-estate-app-development`: custom apps for brokers and buyers.
+4. "Customized" and "builders" wording on `/custom-real-estate-software` and `/real-estate-crm`.
+
 ## Needs an owner action (off-site)
 
 1. ~~Verify the domain in Google Search Console and Bing Webmaster Tools.~~ Done 2026-10-30: Domain property verified (TXT record in Vercel DNS), sitemap submitted as `https://brickbytes.in/sitemap.xml`, Bing imported from Search Console. Remaining: request indexing for the pages not yet requested (about 10 a day).
