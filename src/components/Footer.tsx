@@ -11,6 +11,10 @@ const columns = [
     title: "Product",
     links: [
       { name: "Custom software", href: "/custom-real-estate-software" },
+      { name: "Real estate CRM", href: "/real-estate-crm" },
+      { name: "Channel partner software", href: "/channel-partner-management-software" },
+      { name: "Payment tracking", href: "/real-estate-payment-tracking" },
+      { name: "Flat booking", href: "/flat-booking-software" },
       { name: "Technology", href: "/technology" },
       { name: "How it works", href: "/how-it-works" },
       { name: "3D plot viewer", href: "/3d-plot-viewer" },

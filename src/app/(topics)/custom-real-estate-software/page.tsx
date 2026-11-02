@@ -49,6 +49,7 @@ const content: LandingPageContent = {
       paragraphs: [
         "Every booking is tied to its plot or flat, its buyer and the broker who brought them. Record the booking amount and each instalment against it, so your accounts team sees what has been paid and what is still due.",
       ],
+      link: { label: "Payment and instalment tracking", href: "/real-estate-payment-tracking" },
     },
     {
       title: "Broker networks and commissions",
@@ -56,6 +57,7 @@ const content: LandingPageContent = {
         "Brokers get their own portal with live availability, their leads, their bookings and their commissions. Where brokers bring in other brokers, each one sees their own team.",
         "Commission rules follow your structure level by level, and your team approves each payout from the admin dashboard.",
       ],
+      link: { label: "Channel partner and commission software", href: "/channel-partner-management-software" },
     },
     {
       title: "A mobile app for brokers in the field",
@@ -81,6 +83,7 @@ const content: LandingPageContent = {
       paragraphs: [
         "Keep every enquiry in one place, assign it to someone on your team or to a broker, and follow it from the first call to the site visit and the booking.",
       ],
+      link: { label: "Real estate CRM", href: "/real-estate-crm" },
     },
     {
       title: "Plots, villas and flats on a live map",
@@ -88,6 +91,7 @@ const content: LandingPageContent = {
         "Your inventory drives an interactive 2D and 3D map of the project. Buyers explore it in any browser and see what's still available, and every booking updates the map at once.",
         "Plot maps go live 10 to 14 business days after we receive your layout plan.",
       ],
+      link: { label: "Flat booking software", href: "/flat-booking-software" },
     },
     {
       title: "A Jaipur team, working across India",

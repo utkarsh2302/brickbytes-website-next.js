@@ -11,6 +11,8 @@ export type LandingSection = {
   title: string;
   paragraphs: string[];
   points?: string[];
+  // A page that covers this section in depth
+  link?: { label: string; href: string };
 };
 
 export type LandingPageContent = {
@@ -80,6 +82,15 @@ export default function LandingPage({
                       </li>
                     ))}
                   </ul>
+                )}
+                {section.link && (
+                  <Link
+                    href={section.link.href}
+                    className="inline-flex items-center gap-1.5 pt-2 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+                  >
+                    {section.link.label}
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </Link>
                 )}
               </div>
             </div>
