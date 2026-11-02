@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Plus } from "lucide-react";
 import SectionHeading from "./ui/SectionHeading";
 
@@ -14,7 +14,7 @@ const generalFaqs: Faq[] = [
   {
     question: "What is BrickBytes?",
     answer:
-      "BrickBytes turns a project's layout plan into a live, interactive map. Buyers and brokers see each plot's size, facing, price and availability, in a 2D, 3D or drone view.",
+      "BrickBytes builds custom software for real estate developers: bookings with payment and instalment tracking, broker and channel-partner commissions, a CRM, live inventory, mobile apps and interactive 2D and 3D plot maps. It's made by BrickNova Technologies in Jaipur.",
   },
   {
     question: "Who is BrickBytes for?",
@@ -29,7 +29,7 @@ const generalFaqs: Faq[] = [
   {
     question: "How long does onboarding take?",
     answer:
-      "Usually 10 to 14 business days, and we handle the setup. Send us your CAD (.dwg) drawings or PDF layout plan, and our team turns them into your interactive map.",
+      "Plot maps usually go live in 10 to 14 business days, and we handle the setup: send us your CAD (.dwg) drawings or PDF layout plan. Timelines for custom features depend on what you need.",
   },
   {
     question: "Can BrickBytes support plotted developments?",
@@ -90,22 +90,19 @@ export default function FAQ({ items = generalFaqs }: { items?: Faq[] }) {
                   </button>
                 </h3>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={panelId}
-                      role="region"
-                      aria-labelledby={buttonId}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <p className="max-w-2xl pb-7 text-base leading-relaxed text-bb-slate sm:text-lg">{faq.answer}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* Every answer stays in the HTML, collapsed, so search engines can read it */}
+                <motion.div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={buttonId}
+                  aria-hidden={!isOpen}
+                  initial={false}
+                  animate={isOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  className="overflow-hidden"
+                >
+                  <p className="max-w-2xl pb-7 text-base leading-relaxed text-bb-slate sm:text-lg">{faq.answer}</p>
+                </motion.div>
               </li>
             );
           })}
