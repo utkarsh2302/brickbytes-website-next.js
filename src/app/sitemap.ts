@@ -33,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/plotted-development-marketing", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/how-many-plots-in-one-acre", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/best-real-estate-crm", changeFrequency: "monthly" as const, priority: 0.6 },
+    { path: "/manage-channel-partners", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/guides", changeFrequency: "weekly" as const, priority: 0.6 },
     { path: "/privacy", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/terms", changeFrequency: "monthly" as const, priority: 0.5 },

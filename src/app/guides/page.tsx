@@ -18,6 +18,11 @@ export const metadata: Metadata = constructMetadata({
 // Newest first. Add each new guide here, in the footer and in the sitemap.
 const guides: { title: string; summary: string; href: string }[] = [
   {
+    title: "How to manage channel partners in real estate",
+    summary: "The rules, records and shared inventory that keep broker sales free of disputes.",
+    href: "/manage-channel-partners",
+  },
+  {
     title: "How to choose the best real estate CRM",
     summary: "What a builder's CRM needs that a broker's doesn't, and how to test one before you buy.",
     href: "/best-real-estate-crm",

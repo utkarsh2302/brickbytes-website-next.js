@@ -44,6 +44,7 @@ const columns = [
       { name: "Marketing plotted projects", href: "/plotted-development-marketing" },
       { name: "Plots in one acre", href: "/how-many-plots-in-one-acre" },
       { name: "Choosing a real estate CRM", href: "/best-real-estate-crm" },
+      { name: "Managing channel partners", href: "/manage-channel-partners" },
       { name: "All guides", href: "/guides" },
     ],
   },

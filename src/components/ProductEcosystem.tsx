@@ -1,4 +1,5 @@
-import { Check } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Check } from "lucide-react";
 import BrandIcon, { type BrandIconName } from "./BrandIcon";
 import SectionHeading from "./ui/SectionHeading";
 
@@ -15,6 +16,7 @@ const platformCards: {
   title: string;
   desc: string;
   features: string[];
+  link: { label: string; href: string };
   mockup: React.ReactNode;
 }[] = [
   {
@@ -22,6 +24,7 @@ const platformCards: {
     title: "For buyers",
     desc: "Buyers explore the layout with live availability, plot details and aerial site views.",
     features: ["Interactive project map", "Details for every plot", "Live availability", "Project information"],
+    link: { label: "Interactive plot maps", href: "/3d-plot-viewer" },
     mockup: (
       <svg viewBox="0 0 240 150" className="h-40 w-full" aria-hidden>
         <rect x="12.5" y="10.5" width="215" height="129" rx="10" fill="#ffffff" stroke={LINE} />
@@ -61,6 +64,7 @@ const platformCards: {
     title: "For brokers",
     desc: "Brokers track their leads, schedule site visits and coordinate bookings from their phone.",
     features: ["Lead tracking", "Site visit scheduling", "Booking coordination", "Performance overview"],
+    link: { label: "Channel partner software", href: "/channel-partner-management-software" },
     mockup: (
       <svg viewBox="0 0 240 150" className="h-40 w-full" aria-hidden>
         <rect x="12.5" y="10.5" width="215" height="129" rx="10" fill="#ffffff" stroke={LINE} />
@@ -89,8 +93,9 @@ const platformCards: {
   {
     icon: "chart",
     title: "For developers",
-    desc: "Manage the layout, allocate plots, oversee brokers and review sales from one control center.",
+    desc: "Manage the layout, allocate plots, follow leads, oversee brokers and review sales from one control center.",
     features: ["Inventory management", "Team and broker oversight", "Sales analytics", "Business volume at a glance"],
+    link: { label: "Real estate CRM", href: "/real-estate-crm" },
     mockup: (
       <svg viewBox="0 0 240 150" className="h-40 w-full" aria-hidden>
         <rect x="12.5" y="10.5" width="215" height="129" rx="10" fill="#ffffff" stroke={LINE} />
@@ -147,6 +152,13 @@ export default function ProductEcosystem() {
                   </li>
                 ))}
               </ul>
+              <Link
+                href={card.link.href}
+                className="mt-auto inline-flex items-center gap-1.5 pt-6 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+              >
+                {card.link.label}
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
             </li>
           ))}
         </ul>

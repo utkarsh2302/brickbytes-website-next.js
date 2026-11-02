@@ -8,10 +8,12 @@ import { founderPath, type Founder } from "@/lib/founders";
 import { FOUNDED } from "@/lib/seo";
 
 const products: { label: string; href: string }[] = [
+  { label: "Custom real estate software", href: "/custom-real-estate-software" },
+  { label: "A real estate CRM", href: "/real-estate-crm" },
+  { label: "Channel partner and commission software", href: "/channel-partner-management-software" },
+  { label: "Payment and instalment tracking", href: "/real-estate-payment-tracking" },
+  { label: "Mobile apps for brokers and buyers", href: "/real-estate-app-development" },
   { label: "Interactive 2D and 3D plot maps", href: "/3d-plot-viewer" },
-  { label: "Plot booking with timed holds", href: "/plot-booking-software" },
-  { label: "Live plot inventory", href: "/plot-inventory-management-software" },
-  { label: "A broker portal on live availability", href: "/broker-portal" },
 ];
 
 const cardLinkClass =
@@ -26,7 +28,7 @@ export default function FounderProfile({ founder, coFounder }: { founder: Founde
     <>
       <PageHero
         title={founder.name}
-        lead={`${founder.role} of BrickBytes, the Jaipur company that turns real estate layout plans into live, interactive plot maps.`}
+        lead={`${founder.role} of BrickBytes, the Jaipur company that builds custom software for real estate developers.`}
         accent="circles"
       >
         <div className="flex flex-col gap-3 sm:flex-row">
@@ -62,17 +64,21 @@ export default function FounderProfile({ founder, coFounder }: { founder: Founde
               </h2>
               <p className="text-lg leading-relaxed text-bb-slate">
                 {founder.name} is a founder and director of BrickBytes, a venture of BrickNova Technologies Private
-                Limited in Jaipur. BrickBytes builds live, interactive maps of real estate projects for developers and
-                their brokers.
+                Limited in Jaipur. BrickBytes builds custom software for real estate developers and their brokers:
+                bookings and payments, broker commissions, CRM, mobile apps and live plot maps.
               </p>
               <p className="text-lg leading-relaxed text-bb-slate">
                 {founder.name} started BrickBytes with {coFounder.name} in {FOUNDED.monthYear}, because real estate
-                projects were still sold with static PDFs, old photos and endless phone calls. Their answer is one live map that buyers, brokers and
+                projects were still sold with static PDFs, old photos and endless phone calls. Their answer is one live system that buyers, brokers and
                 developers all work from, so every conversation starts from the same facts.
               </p>
               <p className="text-lg leading-relaxed text-bb-slate">
-                BrickBytes takes developers of plotted developments, villa communities and apartment projects from layout
-                plan to live map in 10 to 14 business days.
+                BrickBytes works with developers of plotted developments, villa communities and apartment projects
+                across India, from{" "}
+                <Link href="/jaipur" className="font-semibold text-ink underline underline-offset-4">
+                  its office in Jaipur
+                </Link>
+                .
               </p>
             </div>
           </div>

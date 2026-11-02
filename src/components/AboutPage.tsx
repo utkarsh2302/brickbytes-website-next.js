@@ -14,13 +14,13 @@ const missionItems: { tag: string; title: string; desc: string; icon: BrandIconN
   {
     tag: "Mission",
     title: "Replace static paperwork",
-    desc: "Turn layout plans into interactive maps that give buyers clarity, developers control and brokers the tools to close faster.",
+    desc: "Build the software each project sells on, giving buyers clarity, developers control and brokers the tools to close faster.",
     icon: "pin",
   },
   {
     tag: "Vision",
     title: "A new standard for selling projects",
-    desc: "Make the interactive map the normal way real estate projects are explored, understood and sold, in place of static brochures.",
+    desc: "Make one live system the normal way real estate projects are explored, booked and sold, in place of brochures, registers and spreadsheets.",
     icon: "layout",
   },
   {
@@ -67,7 +67,7 @@ export default function AboutPage() {
       <JsonLd nodes={[...founders.map(founderJsonLd), organizationFoundersJsonLd]} />
       <PageHero
         title="Why we built BrickBytes"
-        lead="Real estate projects are still sold with static PDFs, old photos and endless phone calls. BrickBytes, a venture by BrickNova Technologies in Jaipur, turns each project into a live, interactive map, so buyers, brokers and developers work from the same facts."
+        lead="Real estate projects are still sold with static PDFs, spreadsheets and endless phone calls. BrickBytes, a venture by BrickNova Technologies in Jaipur, builds the software each project sells on, so buyers, brokers and developers work from the same facts."
         accent="circles"
       />
 

@@ -1,20 +1,20 @@
 priority,keyword,group,target_page,status
-1,best real estate crm in jaipur,location: home city,/jaipur,"built, not deployed"
-1,real estate crm in jaipur,location: home city,/jaipur,"built, not deployed"
-1,best real estate software in jaipur,location: home city,/jaipur,"built, not deployed"
+1,best real estate crm in jaipur,location: home city,/jaipur,live
+1,real estate crm in jaipur,location: home city,/jaipur,live
+1,best real estate software in jaipur,location: home city,/jaipur,live
 1,real estate software in jaipur,location: home city,/jaipur,live
 1,real estate software company in jaipur,location: home city,/jaipur,live
 1,custom real estate software in jaipur,location: home city,/jaipur,live
-1,real estate crm software in jaipur,location: home city,/jaipur,"built, not deployed"
-1,crm for builders in jaipur,location: home city,/jaipur,"built, not deployed"
-1,custom real estate crm in jaipur,location: home city,/jaipur,"built, not deployed"
-1,customized real estate software in jaipur,location: home city,/jaipur,"built, not deployed"
-1,real estate software development company in jaipur,location: home city,/jaipur,"built, not deployed"
-1,real estate app development company in jaipur,location: home city,/jaipur,"built, not deployed"
-1,best real estate app development company in jaipur,location: home city,/jaipur,"built, not deployed"
-1,software company for real estate in jaipur,location: home city,/jaipur,"built, not deployed"
-1,plot booking software in jaipur,location: home city,/jaipur,"built, not deployed"
-1,channel partner software in jaipur,location: home city,/jaipur,"built, not deployed"
+1,real estate crm software in jaipur,location: home city,/jaipur,live
+1,crm for builders in jaipur,location: home city,/jaipur,live
+1,custom real estate crm in jaipur,location: home city,/jaipur,live
+1,customized real estate software in jaipur,location: home city,/jaipur,live
+1,real estate software development company in jaipur,location: home city,/jaipur,live
+1,real estate app development company in jaipur,location: home city,/jaipur,live
+1,best real estate app development company in jaipur,location: home city,/jaipur,live
+1,software company for real estate in jaipur,location: home city,/jaipur,live
+1,plot booking software in jaipur,location: home city,/jaipur,live
+1,channel partner software in jaipur,location: home city,/jaipur,live
 2,brickbytes,brand,/,live
 2,brickbytes jaipur,brand,/jaipur,live
 2,brickbytes real estate software,brand,/,live
@@ -22,58 +22,58 @@ priority,keyword,group,target_page,status
 2,brickbytes founders,brand,/about,live
 2,utkarsh sharma brickbytes,brand,/team/utkarsh-sharma,live
 2,rashika verma brickbytes,brand,/team/rashika-verma,live
-2,best real estate crm in rajasthan,location: home state,/jaipur,"built, not deployed"
-2,real estate crm in rajasthan,location: home state,/jaipur,"built, not deployed"
-2,best real estate software in rajasthan,location: home state,/jaipur,"built, not deployed"
-2,real estate software in rajasthan,location: home state,/jaipur,"built, not deployed"
-2,real estate software company in rajasthan,location: home state,/jaipur,"built, not deployed"
-2,custom real estate software in rajasthan,location: home state,/jaipur,"built, not deployed"
-3,real estate crm,crm,/real-estate-crm,"built, not deployed"
-3,real estate crm software,crm,/real-estate-crm,"built, not deployed"
-3,real estate crm india,crm,/real-estate-crm,"built, not deployed"
-3,real estate crm for developers,crm,/real-estate-crm,"built, not deployed"
-3,real estate crm for builders,crm,/real-estate-crm,"built, not deployed"
-3,crm for real estate developers,crm,/real-estate-crm,"built, not deployed"
-3,crm for builders and developers,crm,/real-estate-crm,"built, not deployed"
-3,real estate lead management software,crm,/real-estate-crm,"built, not deployed"
-3,custom real estate crm,crm,/real-estate-crm,"built, not deployed"
-3,customized real estate crm,crm,/real-estate-crm,"built, not deployed"
-3,customised real estate crm,crm,/real-estate-crm,"built, not deployed"
-3,best real estate crm,crm,/best-real-estate-crm,"built, not deployed"
-3,best crm for real estate developers,crm,/best-real-estate-crm,"built, not deployed"
-3,best crm for builders,crm,/best-real-estate-crm,"built, not deployed"
-3,best real estate crm and software,crm,/best-real-estate-crm,"built, not deployed"
+2,best real estate crm in rajasthan,location: home state,/jaipur,live
+2,real estate crm in rajasthan,location: home state,/jaipur,live
+2,best real estate software in rajasthan,location: home state,/jaipur,live
+2,real estate software in rajasthan,location: home state,/jaipur,live
+2,real estate software company in rajasthan,location: home state,/jaipur,live
+2,custom real estate software in rajasthan,location: home state,/jaipur,live
+3,real estate crm,crm,/real-estate-crm,live
+3,real estate crm software,crm,/real-estate-crm,live
+3,real estate crm india,crm,/real-estate-crm,live
+3,real estate crm for developers,crm,/real-estate-crm,live
+3,real estate crm for builders,crm,/real-estate-crm,live
+3,crm for real estate developers,crm,/real-estate-crm,live
+3,crm for builders and developers,crm,/real-estate-crm,live
+3,real estate lead management software,crm,/real-estate-crm,live
+3,custom real estate crm,crm,/real-estate-crm,live
+3,customized real estate crm,crm,/real-estate-crm,live
+3,customised real estate crm,crm,/real-estate-crm,live
+3,best real estate crm,crm,/best-real-estate-crm,live
+3,best crm for real estate developers,crm,/best-real-estate-crm,live
+3,best crm for builders,crm,/best-real-estate-crm,live
+3,best real estate crm and software,crm,/best-real-estate-crm,live
 3,real estate software,software,/,live
 3,real estate software india,software,/,live
 3,real estate software for developers,software,/custom-real-estate-software,live
-3,real estate software for builders,software,/custom-real-estate-software,"built, not deployed"
+3,real estate software for builders,software,/custom-real-estate-software,live
 3,real estate sales software,software,/custom-real-estate-software,live
 3,real estate management software,software,/custom-real-estate-software,live
 3,real estate software company,software,/custom-real-estate-software,live
 3,real estate software development company,software,/custom-real-estate-software,live
 3,best real estate software,software,/,live
 3,custom real estate software,software,/custom-real-estate-software,live
-3,customized real estate software,software,/custom-real-estate-software,"built, not deployed"
-3,customised real estate software,software,/custom-real-estate-software,"built, not deployed"
+3,customized real estate software,software,/custom-real-estate-software,live
+3,customised real estate software,software,/custom-real-estate-software,live
 3,custom real estate software development,software,/custom-real-estate-software,live
 3,custom real estate software company,software,/custom-real-estate-software,live
-3,real estate app development,app,/real-estate-app-development,"built, not deployed"
-3,real estate app development company,app,/real-estate-app-development,"built, not deployed"
-3,real estate app development company in india,app,/real-estate-app-development,"built, not deployed"
-3,custom real estate application,app,/real-estate-app-development,"built, not deployed"
-3,customized real estate application,app,/real-estate-app-development,"built, not deployed"
-3,customised real estate app,app,/real-estate-app-development,"built, not deployed"
-3,real estate mobile app for builders,app,/real-estate-app-development,"built, not deployed"
-3,real estate app for brokers,app,/real-estate-app-development,"built, not deployed"
-4,channel partner management software,feature,/channel-partner-management-software,"built, not deployed"
-4,channel partner management software real estate,feature,/channel-partner-management-software,"built, not deployed"
-4,broker commission software,feature,/channel-partner-management-software,"built, not deployed"
-4,real estate commission software,feature,/channel-partner-management-software,"built, not deployed"
-4,real estate mlm software,feature,/channel-partner-management-software,"built, not deployed"
-4,real estate payment tracking,feature,/real-estate-payment-tracking,"built, not deployed"
-4,real estate instalment tracking software,feature,/real-estate-payment-tracking,"built, not deployed"
-4,flat booking software,feature,/flat-booking-software,"built, not deployed"
-4,apartment booking software,feature,/flat-booking-software,"built, not deployed"
+3,real estate app development,app,/real-estate-app-development,live
+3,real estate app development company,app,/real-estate-app-development,live
+3,real estate app development company in india,app,/real-estate-app-development,live
+3,custom real estate application,app,/real-estate-app-development,live
+3,customized real estate application,app,/real-estate-app-development,live
+3,customised real estate app,app,/real-estate-app-development,live
+3,real estate mobile app for builders,app,/real-estate-app-development,live
+3,real estate app for brokers,app,/real-estate-app-development,live
+4,channel partner management software,feature,/channel-partner-management-software,live
+4,channel partner management software real estate,feature,/channel-partner-management-software,live
+4,broker commission software,feature,/channel-partner-management-software,live
+4,real estate commission software,feature,/channel-partner-management-software,live
+4,real estate mlm software,feature,/channel-partner-management-software,live
+4,real estate payment tracking,feature,/real-estate-payment-tracking,live
+4,real estate instalment tracking software,feature,/real-estate-payment-tracking,live
+4,flat booking software,feature,/flat-booking-software,live
+4,apartment booking software,feature,/flat-booking-software,live
 4,plot booking software,feature,/plot-booking-software,live
 4,plot inventory management software,feature,/plot-inventory-management-software,live
 4,real estate inventory management software,feature,/plot-inventory-management-software,live
@@ -83,8 +83,8 @@ priority,keyword,group,target_page,status
 4,interactive plot map,feature,/plotted-developments,live
 4,interactive site plan for villas,feature,/villa-communities,live
 4,live unit availability apartments,feature,/apartment-projects,live
-4,best real estate crm in india,location: india,/best-real-estate-crm,"built, not deployed"
-4,real estate crm in india,location: india,/real-estate-crm,"built, not deployed"
+4,best real estate crm in india,location: india,/best-real-estate-crm,live
+4,real estate crm in india,location: india,/real-estate-crm,live
 4,best real estate software in india,location: india,/,live
 4,real estate software in india,location: india,/,live
 4,real estate software company in india,location: india,/custom-real-estate-software,live
@@ -97,6 +97,9 @@ priority,keyword,group,target_page,status
 5,how to market a plotted development,guide,/plotted-development-marketing,live
 5,layout plan pdf to interactive map,guide,/layout-plan-to-interactive-map,live
 5,interactive plot map vs pdf,guide,/interactive-plot-map-vs-pdf,live
+5,how to manage channel partners in real estate,guide,/manage-channel-partners,"built, not deployed"
+5,channel partner management in real estate,guide,/manage-channel-partners,"built, not deployed"
+5,real estate channel partner commission,guide,/manage-channel-partners,"built, not deployed"
 6,best real estate crm in jodhpur,location: rajasthan city,/best-real-estate-crm,needs a local project
 6,real estate crm in jodhpur,location: rajasthan city,/real-estate-crm,needs a local project
 6,best real estate software in jodhpur,location: rajasthan city,/,needs a local project

@@ -91,6 +91,17 @@ export const siteJsonLdNodes: JsonLdNode[] = [
       height: 512,
     },
     description: SITE_DESCRIPTION,
+    // What we build, so search engines and AI answers connect the name to these topics
+    knowsAbout: [
+      "Custom real estate software",
+      "Real estate CRM",
+      "Channel partner management",
+      "Real estate payment tracking",
+      "Real estate app development",
+      "Plot booking software",
+      "Interactive plot maps",
+    ],
+    areaServed: { "@type": "Country", name: "India" },
     foundingDate: FOUNDED.date,
     email: "business@brickbytes.in",
     taxID: "08AAOCB6672J1Z2",

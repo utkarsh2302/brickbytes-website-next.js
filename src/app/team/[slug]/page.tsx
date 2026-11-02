@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!founder) return {};
   return constructMetadata({
     title: `${founder.name} | ${founder.role}, BrickBytes`,
-    description: `${founder.name} is a founder and director of BrickBytes, the Jaipur company turning real estate layout plans into live, interactive plot maps for developers.`,
+    description: `${founder.name} is a founder and director of BrickBytes, the Jaipur company building custom real estate software, CRM and plot maps for developers.`,
     path: founderPath(founder),
   });
 }

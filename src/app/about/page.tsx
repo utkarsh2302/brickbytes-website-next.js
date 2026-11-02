@@ -4,8 +4,8 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd, constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
-  title: "About BrickBytes | The Team Behind Interactive Plot Maps",
-  description: "Meet the Jaipur team behind BrickBytes, built by BrickNova Technologies. We help real estate developers sell plots and homes with interactive live project maps.",
+  title: "About BrickBytes | Real Estate Software Team in Jaipur",
+  description: "Meet the Jaipur team behind BrickBytes, built by BrickNova Technologies. We build custom software for real estate developers: CRM, bookings and plot maps.",
   path: "/about",
 });
 
