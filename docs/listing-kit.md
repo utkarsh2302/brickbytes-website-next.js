@@ -48,6 +48,17 @@ BrickBytes builds custom software for real estate developers (confirmed by the f
 
 > custom real estate software, real estate software company Jaipur, real estate CRM, real estate CRM for builders, real estate app development, broker commission software, channel partner management, real estate payment tracking, flat booking software, plot booking software, plot inventory management software, interactive plot map, 3D plot viewer, Jaipur
 
+**Product descriptions** (IndiaMART and other sites that list each service as a product; price "on request")
+
+| Product | Description |
+|---|---|
+| Real estate CRM | Lead, site visit and booking tracking for builders, tied to live plot and flat inventory, with mobile apps for your team and brokers in English and Hindi. |
+| Custom real estate software | Software built around how your project sells: bookings and instalments, broker commissions across levels, CRM, live inventory, admin dashboards and plot maps. |
+| Real estate app development | An Android app with your company's name for your brokers and buyers, published on Google Play: bookings, site visits, commissions, EMIs and booking status, in English and Hindi. |
+| Channel partner software | Manage brokers and associate networks: commissions level by level, a team view for every associate, leaderboards and payouts your team approves. |
+| Plot booking software | Live plot availability with holds that expire on their own, so two brokers never book the same plot. |
+| Interactive plot map | Your approved layout as an interactive 2D and 3D map showing each plot's size, facing, price and live status, live in 10 to 14 business days. |
+
 **Categories**
 
 - Google Business Profile: *Software company* (primary)
