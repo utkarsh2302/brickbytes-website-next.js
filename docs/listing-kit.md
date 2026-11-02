@@ -46,7 +46,7 @@ BrickBytes builds custom software for real estate developers (confirmed by the f
 
 **Keywords or tags** (where a listing asks for them)
 
-> custom real estate software, real estate software company Jaipur, real estate CRM, broker commission software, channel partner management, plot booking software, plot inventory management software, interactive plot map, 3D plot viewer, Jaipur
+> custom real estate software, real estate software company Jaipur, real estate CRM, real estate CRM for builders, real estate app development, broker commission software, channel partner management, real estate payment tracking, flat booking software, plot booking software, plot inventory management software, interactive plot map, 3D plot viewer, Jaipur
 
 **Categories**
 
@@ -62,8 +62,8 @@ BrickBytes builds custom software for real estate developers (confirmed by the f
 | 3 | Founders' LinkedIn profiles | Ties your names to BrickBytes | Headline "Founder & Director, BrickBytes"; add your profile page (`brickbytes.in/team/<your-name>`) in the Website field; set BrickBytes as your current position. |
 | 4 | Crunchbase (crunchbase.com) | Commonly used as a source for company and founder facts | Company profile plus a profile for each founder, linked to the company. |
 | 5 | G2, Capterra, GetApp and Software Advice | Software comparison searches and the reviews AI answers quote | G2 bought the other three from Gartner in 2026, so one G2 seller account (start at capterra.com/vendors) manages all four. They list packaged software only, so list the BrickBytes platform with "request a demo", not custom development services. Free profiles carry no link to the website. Description rules: third person, no superlatives, no links or calls to action. |
-| 6 | SoftwareSuggest and Techjockey | Indian software marketplaces that rank for real estate software searches | Free vendor listings. |
-| 7 | IndiaMART (seller.indiamart.com) | Indian B2B buyers search here | List "Plot booking software" and "Interactive plot map" as products. |
+| 6 | SoftwareSuggest and Techjockey | Indian software marketplaces. Their pages rank for city searches such as "Best Real Estate Software Providers in Pune", where we have no page of our own. | Free vendor listings. Choose the real estate software and real estate CRM categories. Where a form asks which locations you serve, choose all of India. How their city pages pick vendors isn't published, so check the city pages after the listing goes live. |
+| 7 | IndiaMART (seller.indiamart.com) | Indian B2B buyers search here, and its product pages rank for "real estate software" and "real estate CRM" searches | List each service as its own product: Real estate CRM, Custom real estate software, Real estate app development, Channel partner software, Plot booking software, Interactive plot map. Set the service area to all of India. |
 | 8 | Startup India (startupindia.gov.in) | An official .gov.in profile | DPIIT recognition needs the incorporation documents. |
 | 9 | JustDial and Sulekha | Local Indian directories that confirm the name, address and phone | Use the details above exactly. |
 | 10 | Product Hunt (producthunt.com) | A launch page and a link | Do this when you have a public demo to show. |
