@@ -15,7 +15,7 @@ export const metadata: Metadata = constructMetadata({
 const h2Class = "font-display text-2xl font-semibold text-ink";
 
 export default function PrivacyPage() {
-  const lastUpdated = "June 14, 2026";
+  const lastUpdated = "November 14, 2026";
 
   return (
     <>
@@ -61,6 +61,13 @@ export default function PrivacyPage() {
               <h2 className={h2Class}>4. Data sharing and third parties</h2>
               <p className="mt-4">
                 We do not sell, rent, or trade your personal data to third-party marketing companies. Data is only shared with certified cloud hosting servers and database APIs (such as Resend or Vercel) necessary to deliver website notification emails and host interactive models securely.
+              </p>
+              <p className="mt-4">
+                <strong>Meta Pixel and cookies</strong>: Our website uses the Meta Pixel, a small piece of code from Meta Platforms (the company behind Facebook and Instagram). When you visit our pages, it uses cookies and similar technology to tell Meta which pages were viewed, along with technical details such as your browser and IP address. We use this to show our ads to people who have visited our website and to measure how our ads perform. Meta processes this data under its own{" "}
+                <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-4 hover:text-bb-kiln">
+                  Privacy Policy
+                </a>
+                . You can control the ads you see from Meta in your Facebook or Instagram ad preferences, and you can block or delete cookies in your browser settings.
               </p>
             </div>
 
