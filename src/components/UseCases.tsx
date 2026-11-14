@@ -91,21 +91,18 @@ const useCases = [
     title: "Plotted developments",
     href: "/plotted-developments",
     desc: "Show every plot of a subdivision on a live map, with size, road width, corner plots and booking status.",
-    features: ["Plot-by-plot selection", "Hold timers for reservations", "Road widths and boundaries", "Corner plots marked"],
     illustration: <PlottedIllustration />,
   },
   {
     title: "Villa communities",
     href: "/villa-communities",
     desc: "Place villa plots next to parks, walking paths and the clubhouse, so buyers see the whole community.",
-    features: ["Full community layout", "Clubhouse and garden views", "Walking paths", "Live unit availability"],
     illustration: <VillaIllustration />,
   },
   {
     title: "Apartment towers",
     href: "/apartment-projects",
     desc: "Present towers floor by floor. Buyers pick a floor, check unit layouts and see which units are free.",
-    features: ["Floor selector", "Unit availability filters", "Unit layout views", "Multi-tower site maps"],
     illustration: <TowerIllustration />,
   },
 ];
@@ -122,23 +119,15 @@ export default function UseCases() {
 
         <ul className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {useCases.map((useCase) => (
-            <li key={useCase.title} className="flex flex-col rounded-2xl border border-line bg-white p-6 sm:p-8">
+            <li key={useCase.title} className="flex flex-col rounded-2xl border border-line bg-white p-6 sm:p-7">
               <div className="rounded-xl border border-line bg-bb-paper p-4">{useCase.illustration}</div>
               <h3 className="mt-8 font-display text-xl font-semibold text-ink">{useCase.title}</h3>
               <p className="mt-2 text-base leading-relaxed text-bb-slate">{useCase.desc}</p>
 
-              <ul className="mt-6 space-y-2.5 border-t border-line pt-6">
-                {useCase.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-base text-ink">
-                    <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-bb-orange" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
 
               <Link
                 href={useCase.href}
-                className="mt-auto inline-flex items-center gap-1.5 self-start rounded-sm pt-8 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                className="mt-auto inline-flex items-center gap-1.5 self-start rounded-sm pt-6 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
               >
                 More on {useCase.title.toLowerCase()}
                 <ArrowRight className="h-4 w-4" aria-hidden />

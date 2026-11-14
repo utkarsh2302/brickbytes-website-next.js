@@ -1,11 +1,11 @@
 // Orthographic site plan in the brand illustration style (Guidelines p. 22):
-// 1px lines, roads as double lines, no 3D. The selected plot is orange and
-// carries the pin. Lines use ink instead of Survey Navy, to keep navy to the
+// 1px lines, roads as double lines. The homepage's 3D model (HeroScene) is
+// built from the same plots. The selected plot is orange and carries the pin. Lines use ink instead of Survey Navy, to keep navy to the
 // logo. Pass onSelect to make plots clickable; pass viewBox to crop.
 const COLUMNS = [24, 96, 168, 280, 352, 424];
 const ROWS = [24, 108, 216, 300];
-const PLOT_W = 64;
-const PLOT_H = 76;
+export const PLOT_W = 64;
+export const PLOT_H = 76;
 const SIZES_SQ_YD = [167, 180, 200, 200, 200, 222];
 const RATE_PER_SQ_YD = 21_250;
 const BOOKED = new Set([0, 8, 14, 23, 19, 5]);
@@ -47,7 +47,7 @@ export const samplePlots: SamplePlot[] = ROWS.flatMap((y, row) =>
 
 export const DEFAULT_PLOT_ID = "C-47";
 
-const FILL: Record<PlotStatus, string> = { Available: "#ffffff", "On hold": "#f3e9dc", Booked: "#ece6dd" };
+export const PLOT_FILL: Record<PlotStatus, string> = { Available: "#ffffff", "On hold": "#f3e9dc", Booked: "#ece6dd" };
 
 export default function SitePlan({
   className,
@@ -79,7 +79,7 @@ export default function SitePlan({
             y={plot.y + 0.5}
             width={PLOT_W}
             height={PLOT_H}
-            fill={isSelected ? "#ff5a1f" : FILL[plot.status]}
+            fill={isSelected ? "#ff5a1f" : PLOT_FILL[plot.status]}
             stroke="#1c1a17"
             strokeOpacity="0.55"
             strokeWidth="1"

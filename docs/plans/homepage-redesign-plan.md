@@ -59,6 +59,23 @@ Removed components are deleted, not left unused. `About`'s mission and vision al
 3. Scroll-linked before/after section and sticky platform section.
 4. Responsive and accessibility pass, Lighthouse, browser check at three widths.
 
+## Result (2026-11-15)
+
+| Check | Before | After |
+|---|---|---|
+| Homepage height at 1440 px | 16,206 px, 16 sections | 10,492 px, 10 sections (hero, logo strip, live map, paper → live, platform, how it works, use cases, why, FAQ, CTA) |
+| Words on the page | 2,277 | 1,724 (repeated copy removed) |
+| Title, description, H1, JSON-LD, internal links | | Identical to the live site |
+| Lighthouse mobile, local production build | Performance 92–93, LCP 3.2–3.4 s, TBT 0 ms | Performance 93–94, LCP 3.1–3.2 s, TBT 20 ms, CLS 0, Accessibility 100, SEO 100 |
+
+Changes from the plan, and why:
+
+- **Height** missed the ~8,500 px target: How it works and Use cases stayed separate (How it works is shared with `/how-it-works`, and the navbar links to `#use-cases`). Use-case cards lost their bullet lists instead; each solution page has them.
+- **The interactive plot-status demo (ProductShowcase) was removed**, not merged: with the 3D hero and the live map demo it would have been the third interactive map. Its feature copy is in the platform cards.
+- **The 3D model loads on the visitor's first scroll, touch, pointer move or key press**, not when the browser is idle. Loaded during page load it added about 4.5 s of blocked main thread on a throttled phone (Performance 61). It also renders on demand (only while something moves), with no idle animation.
+- **LCP is over the 2.5 s budget on both versions**, so it isn't caused by this change (the live site measures 2.7 s on Vercel). The LCP element is the hero paragraph and the delay is render delay; worth its own investigation.
+- Best practices scores 79 on both versions, because of the Meta Pixel's third-party cookie.
+
 ## Out of scope
 
 - Inner pages (they keep `LandingPage`), the navbar and footer, copy rewrites beyond merging.

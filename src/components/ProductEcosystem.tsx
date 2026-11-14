@@ -1,5 +1,9 @@
+"use client";
+
+import { useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import BrandIcon, { type BrandIconName } from "./BrandIcon";
 import SectionHeading from "./ui/SectionHeading";
 
@@ -15,7 +19,7 @@ const platformCards: {
   icon: BrandIconName;
   title: string;
   desc: string;
-  features: string[];
+  features: { title: string; desc: string }[];
   link: { label: string; href: string };
   mockup: React.ReactNode;
 }[] = [
@@ -23,10 +27,15 @@ const platformCards: {
     icon: "home",
     title: "For buyers",
     desc: "Buyers explore the layout with live availability, plot details and aerial site views.",
-    features: ["Interactive project map", "Details for every plot", "Live availability", "Project information"],
+    features: [
+      { title: "Interactive plot maps", desc: "Filter plots by availability and check each one's facing, size and road width." },
+      { title: "3D project view", desc: "Plots, buildings and surroundings in 3D, so the layout makes sense before a visit." },
+      { title: "Drone and site views", desc: "Aerial and ground photos with plot boundaries drawn on top." },
+      { title: "Answers at any hour", desc: "An assistant answers common questions about plots and project rules." },
+    ],
     link: { label: "Interactive plot maps", href: "/3d-plot-viewer" },
     mockup: (
-      <svg viewBox="0 0 240 150" className="h-40 w-full" aria-hidden>
+      <svg viewBox="0 0 240 150" className="h-auto w-full" aria-hidden>
         <rect x="12.5" y="10.5" width="215" height="129" rx="10" fill="#ffffff" stroke={LINE} />
         <text x="26" y="36" fontSize="11" fontWeight="700" fill={INK}>
           Plot 14
@@ -63,10 +72,15 @@ const platformCards: {
     icon: "people",
     title: "For brokers",
     desc: "Brokers track their leads, schedule site visits and coordinate bookings from their phone.",
-    features: ["Lead tracking", "Site visit scheduling", "Booking coordination", "Performance overview"],
+    features: [
+      { title: "Broker portal", desc: "Each broker gets their own space for leads, plot holds and site visits." },
+      { title: "Lead tracking", desc: "Every buyer, the plot they want and where the deal stands." },
+      { title: "Site visit scheduling", desc: "Book and confirm visits without calling your office." },
+      { title: "Commission tracking", desc: "Brokers see what they've earned on each booking." },
+    ],
     link: { label: "Channel partner software", href: "/channel-partner-management-software" },
     mockup: (
-      <svg viewBox="0 0 240 150" className="h-40 w-full" aria-hidden>
+      <svg viewBox="0 0 240 150" className="h-auto w-full" aria-hidden>
         <rect x="12.5" y="10.5" width="215" height="129" rx="10" fill="#ffffff" stroke={LINE} />
         {[
           { y: 22, name: "Rajesh M.", status: "Visit scheduled", color: SLATE, plot: "PLOT 14" },
@@ -94,10 +108,15 @@ const platformCards: {
     icon: "chart",
     title: "For developers",
     desc: "Manage the layout, allocate plots, follow leads, oversee brokers and review sales from one control center.",
-    features: ["Inventory management", "Team and broker oversight", "Sales analytics", "Business volume at a glance"],
+    features: [
+      { title: "Developer console", desc: "Upload revised layouts, approve broker commissions and change any plot's status." },
+      { title: "Plot holds and status", desc: "Lock a plot, release a hold or generate booking documents; the map updates at once." },
+      { title: "Sales analytics", desc: "How fast plots sell, which parts of the project draw interest, how each broker performs." },
+      { title: "Team and broker access", desc: "Choose what each salesperson and broker can see, and remove access any time." },
+    ],
     link: { label: "Real estate CRM", href: "/real-estate-crm" },
     mockup: (
-      <svg viewBox="0 0 240 150" className="h-40 w-full" aria-hidden>
+      <svg viewBox="0 0 240 150" className="h-auto w-full" aria-hidden>
         <rect x="12.5" y="10.5" width="215" height="129" rx="10" fill="#ffffff" stroke={LINE} />
         {[
           { x: 24, label: "Total value", value: "₹95 Cr" },
@@ -125,41 +144,63 @@ const platformCards: {
   },
 ];
 
+type PlatformCard = (typeof platformCards)[number];
+
+// Each card pins near the top of the screen and the next one slides over it;
+// the covered card eases back a little, so the three read as a stack.
+function StackedCard({ card, index }: { card: PlatformCard; index: number }) {
+  const element = useRef<HTMLLIElement>(null);
+  const reducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: element, offset: ["start start", "end start"] });
+  const scale = useTransform(scrollYProgress, [0, 1], [1, reducedMotion ? 1 : 0.92]);
+
+  return (
+    <li ref={element} className="lg:sticky" style={{ top: `${7 + index * 1.5}rem` }}>
+      <motion.article
+        style={{ scale }}
+        className="grid origin-top grid-cols-1 gap-8 rounded-3xl border border-line bg-white p-6 shadow-[0_1px_2px_rgb(28_26_23/0.04),0_32px_64px_-32px_rgb(28_26_23/0.25)] sm:p-10 lg:grid-cols-2 lg:gap-12"
+      >
+        <div>
+          <div className="flex items-center gap-3">
+            <BrandIcon name={card.icon} className="h-9 w-9 shrink-0" />
+            <h3 className="font-display text-2xl font-extrabold text-ink">{card.title}</h3>
+          </div>
+          <p className="mt-3 text-lg leading-relaxed text-bb-slate">{card.desc}</p>
+          <dl className="mt-6 grid grid-cols-1 gap-x-6 gap-y-4 border-t border-line pt-6 sm:grid-cols-2">
+            {card.features.map((feature) => (
+              <div key={feature.title}>
+                <dt className="font-display text-base font-semibold text-ink">{feature.title}</dt>
+                <dd className="mt-1 text-sm leading-relaxed text-bb-slate">{feature.desc}</dd>
+              </div>
+            ))}
+          </dl>
+          <Link
+            href={card.link.href}
+            className="mt-6 inline-flex items-center gap-1.5 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+          >
+            {card.link.label}
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
+        </div>
+        <div className="flex items-center rounded-2xl border border-line bg-bb-paper p-4 sm:p-6">{card.mockup}</div>
+      </motion.article>
+    </li>
+  );
+}
+
 export default function ProductEcosystem() {
   return (
     <section id="platform" className="relative bg-bb-stone py-24 text-ink sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="One platform for buyers, brokers and developers."
-          lead="Each side gets its own view of the same live project, so everyone works from the same plot status."
+          lead="Buyers explore the project, brokers sell from it and your team runs it, all from the same live plot status."
           className="mb-14 sm:mb-16"
         />
 
-        <ul className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          {platformCards.map((card) => (
-            <li key={card.title} className="flex flex-col rounded-2xl border border-line bg-white p-6 sm:p-8">
-              <div className="mb-8 rounded-xl border border-line bg-bb-paper p-3">{card.mockup}</div>
-              <div className="flex items-center gap-3">
-                <BrandIcon name={card.icon} className="h-8 w-8 shrink-0" />
-                <h3 className="font-display text-xl font-semibold text-ink">{card.title}</h3>
-              </div>
-              <p className="mt-3 text-base leading-relaxed text-bb-slate">{card.desc}</p>
-              <ul className="mt-6 space-y-3 border-t border-line pt-6">
-                {card.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-base text-ink">
-                    <Check className="mt-1 h-4 w-4 shrink-0 text-bb-orange" strokeWidth={2} aria-hidden />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={card.link.href}
-                className="mt-auto inline-flex items-center gap-1.5 pt-6 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
-              >
-                {card.link.label}
-                <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
-            </li>
+        <ul className="space-y-8 lg:space-y-16">
+          {platformCards.map((card, index) => (
+            <StackedCard key={card.title} card={card} index={index} />
           ))}
         </ul>
       </div>
