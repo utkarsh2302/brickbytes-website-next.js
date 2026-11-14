@@ -1,12 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import BrandIcon, { type BrandIconName } from "./BrandIcon";
 import SectionHeading from "./ui/SectionHeading";
-import { swipeItem, swipeRow } from "./ui/swipe";
 
 // Product mock-ups: flat white UI on Paper, 1px lines, plot data in DM Mono,
 // status colours only here (Guidelines p. 17).
@@ -147,19 +146,41 @@ const platformCards: {
 
 type PlatformCard = (typeof platformCards)[number];
 
-// Each card pins near the top of the screen and the next one slides over it;
-// the covered card eases back a little, so the three read as a stack.
-function StackedCard({ card, index }: { card: PlatformCard; index: number }) {
+// True from the lg breakpoint up, where the cards stack instead of switching.
+function useStacked() {
+  const [stacked, setStacked] = useState(false);
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 1024px)");
+    const update = () => setStacked(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+  return stacked;
+}
+
+// From lg up, each card pins near the top of the screen and the next one
+// slides over it; the covered card eases back a little, so the three read as
+// a stack. Below lg only the chosen card shows (the others stay in the HTML).
+function StackedCard({ card, index, active }: { card: PlatformCard; index: number; active: boolean }) {
   const element = useRef<HTMLLIElement>(null);
   const reducedMotion = useReducedMotion();
+  const stacked = useStacked();
   const { scrollYProgress } = useScroll({ target: element, offset: ["start start", "end start"] });
-  const scale = useTransform(scrollYProgress, [0, 1], [1, reducedMotion ? 1 : 0.92]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, stacked && !reducedMotion ? 0.92 : 1]);
 
   return (
-    <li ref={element} className={`${swipeItem} lg:sticky`} style={{ top: `${7 + index * 1.5}rem` }}>
+    <li
+      ref={element}
+      id={`platform-panel-${index}`}
+      role="tabpanel"
+      aria-labelledby={`platform-tab-${index}`}
+      className={`lg:sticky lg:block ${active ? "motion-safe:animate-[fade-up_350ms_cubic-bezier(0.16,1,0.3,1)]" : "max-lg:hidden"}`}
+      style={{ top: `${7 + index * 1.5}rem` }}
+    >
       <motion.article
         style={{ scale }}
-        className="grid h-full origin-top grid-cols-1 gap-6 rounded-3xl border border-line bg-white p-5 shadow-[0_1px_2px_rgb(28_26_23/0.04),0_32px_64px_-32px_rgb(28_26_23/0.25)] sm:p-10 lg:grid-cols-2 lg:gap-12"
+        className="grid origin-top grid-cols-1 gap-6 rounded-3xl border border-line bg-white p-5 shadow-[0_1px_2px_rgb(28_26_23/0.04),0_32px_64px_-32px_rgb(28_26_23/0.25)] sm:p-10 lg:grid-cols-2 lg:gap-12"
       >
         <div>
           <div className="flex items-center gap-3">
@@ -183,13 +204,17 @@ function StackedCard({ card, index }: { card: PlatformCard; index: number }) {
             <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
         </div>
-        <div className="flex items-center rounded-2xl border border-line bg-bb-paper p-3 sm:p-6">{card.mockup}</div>
+        <div className="flex items-center rounded-2xl border border-line bg-bb-paper p-3 sm:p-6">
+          <div className="mx-auto w-full max-w-sm lg:max-w-none">{card.mockup}</div>
+        </div>
       </motion.article>
     </li>
   );
 }
 
 export default function ProductEcosystem() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <section id="platform" className="relative bg-bb-stone py-16 text-ink sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -199,9 +224,33 @@ export default function ProductEcosystem() {
           className="mb-10 sm:mb-16"
         />
 
-        <ul aria-label="BrickBytes for buyers, brokers and developers" className={swipeRow("md:grid-cols-1 md:gap-10 lg:gap-16")}>
+        {/* Phones and tablets: one card at a time, picked here */}
+        <div
+          role="tablist"
+          aria-label="Who it's for"
+          className="mb-5 grid grid-cols-3 gap-1 rounded-full border border-line bg-white p-1 lg:hidden"
+        >
           {platformCards.map((card, index) => (
-            <StackedCard key={card.title} card={card} index={index} />
+            <button
+              key={card.title}
+              type="button"
+              role="tab"
+              id={`platform-tab-${index}`}
+              aria-selected={index === activeIndex}
+              aria-controls={`platform-panel-${index}`}
+              onClick={() => setActiveIndex(index)}
+              className={`min-h-11 rounded-full px-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
+                index === activeIndex ? "bg-ink text-white" : "text-bb-slate hover:text-ink"
+              }`}
+            >
+              {card.title.replace("For ", "").replace(/^\w/, (letter) => letter.toUpperCase())}
+            </button>
+          ))}
+        </div>
+
+        <ul className="lg:space-y-16">
+          {platformCards.map((card, index) => (
+            <StackedCard key={card.title} card={card} index={index} active={index === activeIndex} />
           ))}
         </ul>
       </div>

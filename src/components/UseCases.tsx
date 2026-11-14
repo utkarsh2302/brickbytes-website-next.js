@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import SectionHeading from "./ui/SectionHeading";
-import { swipeItem, swipeRow } from "./ui/swipe";
 
 // Plan illustrations in the brand style (Guidelines p. 22): orthographic, 1px
 // ink lines, roads as double lines, Stone for booked, one orange plot with the pin.
@@ -118,21 +117,25 @@ export default function UseCases() {
           className="mb-10 sm:mb-16"
         />
 
-        <ul aria-label="Project types" className={swipeRow("md:grid-cols-3 md:gap-6")}>
+        {/* Phones: compact rows, the drawing beside the text. From md up: three cards. */}
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
           {useCases.map((useCase) => (
-            <li key={useCase.title} className={`${swipeItem} flex flex-col rounded-2xl border border-line bg-white p-5 sm:p-7`}>
-              <div className="rounded-xl border border-line bg-bb-paper p-4">{useCase.illustration}</div>
-              <h3 className="mt-6 font-display text-xl font-semibold text-ink sm:mt-8">{useCase.title}</h3>
-              <p className="mt-2 text-base leading-relaxed text-bb-slate">{useCase.desc}</p>
-
-
-              <Link
-                href={useCase.href}
-                className="mt-auto inline-flex min-h-11 items-center gap-1.5 self-start rounded-sm pt-4 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-              >
-                More on {useCase.title.toLowerCase()}
-                <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
+            <li
+              key={useCase.title}
+              className="grid grid-cols-[6.5rem_1fr] items-start gap-4 rounded-2xl border border-line bg-white p-4 sm:grid-cols-[9rem_1fr] sm:p-5 md:flex md:flex-col md:gap-0 md:p-7"
+            >
+              <div className="rounded-xl border border-line bg-bb-paper p-2 sm:p-3 md:w-full md:p-4">{useCase.illustration}</div>
+              <div className="flex h-full flex-col md:mt-8">
+                <h3 className="font-display text-lg font-semibold text-ink md:text-xl">{useCase.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-bb-slate md:mt-2 md:text-base">{useCase.desc}</p>
+                <Link
+                  href={useCase.href}
+                  className="mt-auto self-start rounded-sm py-2.5 text-sm font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink md:pt-4 md:text-base"
+                >
+                  More on {useCase.title.toLowerCase()}
+                  <ArrowRight className="ml-1 inline h-4 w-4 align-[-3px]" aria-hidden />
+                </Link>
+              </div>
             </li>
           ))}
         </ul>

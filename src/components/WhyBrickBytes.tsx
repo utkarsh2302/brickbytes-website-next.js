@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react";
 import BrandIcon, { type BrandIconName } from "./BrandIcon";
 import GlassAccent from "./GlassAccent";
 import SectionHeading from "./ui/SectionHeading";
-import { swipeItem, swipeRow } from "./ui/swipe";
 
 const benefits: { icon: BrandIconName; title: string; body: string }[] = [
   {
@@ -62,16 +61,18 @@ export default function WhyBrickBytes() {
           What changes when your sales team, brokers and buyers all work from the same live map.
         </p>
 
-        <ul
-          tabIndex={0}
-          aria-label="Why developers choose BrickBytes"
-          className={`mt-10 sm:mt-16 ${swipeRow("md:grid-cols-2 md:gap-5 lg:grid-cols-4")}`}
-        >
+        {/* Phones: one card with the four reasons as a list. From md up: four cards. */}
+        <ul className="mt-10 grid grid-cols-1 divide-y divide-line rounded-2xl border border-line bg-white sm:mt-16 md:grid-cols-2 md:gap-5 md:divide-y-0 md:border-0 md:bg-transparent lg:grid-cols-4">
           {benefits.map((benefit) => (
-            <li key={benefit.title} className={`${swipeItem} flex flex-col gap-4 rounded-2xl border border-line bg-white p-6 sm:p-7`}>
-              <BrandIcon name={benefit.icon} className="h-10 w-10" />
-              <h3 className="font-display text-xl font-semibold text-ink">{benefit.title}</h3>
-              <p className="text-base leading-relaxed text-bb-slate">{benefit.body}</p>
+            <li
+              key={benefit.title}
+              className="flex items-start gap-4 p-5 md:flex-col md:rounded-2xl md:border md:border-line md:bg-white md:p-7"
+            >
+              <BrandIcon name={benefit.icon} className="h-8 w-8 shrink-0 md:h-10 md:w-10" />
+              <div>
+                <h3 className="font-display text-lg font-semibold text-ink md:text-xl">{benefit.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-bb-slate md:mt-3 md:text-base">{benefit.body}</p>
+              </div>
             </li>
           ))}
         </ul>

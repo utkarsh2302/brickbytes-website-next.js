@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Clock, FileSpreadsheet, Phone, Scroll, TrendingDown, type LucideIcon } from "lucide-react";
 import BrandIcon, { type BrandIconName } from "./BrandIcon";
 import SectionHeading from "./ui/SectionHeading";
@@ -75,74 +74,58 @@ const steps: Step[] = [
   },
 ];
 
-const faceBase = "flex items-start gap-4 rounded-2xl border p-5 sm:p-6 [grid-area:1/1] [backface-visibility:hidden]";
+const EASE = [0.16, 1, 0.3, 1] as const;
 
-function BeforeFace({ step, className = "" }: { step: Step["before"]; className?: string }) {
-  const Icon = step.icon;
+// One card per step: the paper way on top, crossed out, and what replaces it
+// below. When the card comes into view the line draws through the paper way
+// and the answer settles in, once. Only opacity and transforms animate, so it
+// behaves the same in every browser, and nothing is ever left half-done.
+function StepCard({ step, still }: { step: Step; still: boolean }) {
+  const Icon = step.before.icon;
   return (
-    <div className={`${faceBase} border-dashed border-ink/20 bg-bb-paper ${className}`}>
-      <Icon className="mt-1 h-6 w-6 shrink-0 text-bb-slate" strokeWidth={1.5} aria-hidden />
-      <div>
-        <p className="text-sm text-bb-slate">On paper</p>
-        <h3 className="mt-1 font-display text-lg font-semibold text-ink">{step.title}</h3>
-        <p className="mt-1 text-base leading-relaxed text-bb-slate">{step.desc}</p>
-      </div>
-    </div>
-  );
-}
-
-function AfterFace({ step, className = "" }: { step: Step["after"]; className?: string }) {
-  return (
-    <div
-      className={`${faceBase} border-line bg-white shadow-[0_1px_2px_rgb(28_26_23/0.04),0_20px_40px_-24px_rgb(28_26_23/0.2)] ${className}`}
+    <motion.li
+      initial={still ? "shown" : "waiting"}
+      whileInView="shown"
+      viewport={{ once: true, amount: 0.6 }}
+      className="rounded-2xl border border-line bg-white p-5 shadow-[0_1px_2px_rgb(28_26_23/0.04),0_20px_40px_-28px_rgb(28_26_23/0.2)] sm:p-6"
     >
-      <BrandIcon name={step.icon} className="mt-0.5 h-7 w-7 shrink-0" />
-      <div>
-        <p className="flex items-center gap-2 text-sm font-medium text-ink">
-          <span aria-hidden className="h-2 w-2 rounded-[2px] bg-bb-orange" />
-          With BrickBytes
-        </p>
-        <h3 className="mt-1 font-display text-lg font-semibold text-ink">{step.title}</h3>
-        <p className="mt-1 text-base leading-relaxed text-bb-slate">{step.desc}</p>
+      <div className="flex items-start gap-3 text-bb-slate">
+        <Icon className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden />
+        <div className="min-w-0">
+          <p className="relative inline text-sm sm:text-base">
+            <span className="sr-only">On paper: </span>
+            {step.before.title}
+            <motion.span
+              aria-hidden
+              variants={{ waiting: { scaleX: 0 }, shown: { scaleX: 1 } }}
+              transition={{ duration: 0.5, ease: EASE }}
+              className="absolute inset-x-0 top-1/2 h-[1.5px] origin-left bg-bb-slate/70"
+            />
+          </p>
+          <p className="mt-1 hidden text-sm leading-relaxed text-bb-slate/80 sm:block">{step.before.desc}</p>
+        </div>
       </div>
-    </div>
-  );
-}
 
-// One card per step that flips, like a departure board, from the paper way
-// to the BrickBytes way as it crosses the middle of the screen. Both faces
-// stay in the HTML, so search engines and screen readers get the full pair.
-function FlipCard({ step }: { step: Step }) {
-  const card = useRef<HTMLLIElement>(null);
-  const { scrollYProgress } = useScroll({ target: card, offset: ["start 80%", "start 40%"] });
-  const rotateX = useTransform(scrollYProgress, [0, 1], [0, -180]);
-
-  return (
-    <li ref={card} className="[perspective:1400px]">
-      <motion.div style={{ rotateX }} className="grid [transform-style:preserve-3d]">
-        <BeforeFace step={step.before} />
-        <AfterFace step={step.after} className="[transform:rotateX(180deg)]" />
+      <motion.div
+        variants={{ waiting: { opacity: 0.35, y: 6 }, shown: { opacity: 1, y: 0 } }}
+        transition={{ duration: 0.5, delay: 0.25, ease: EASE }}
+        className="mt-4 flex items-start gap-4 border-t border-dashed border-ink/15 pt-4"
+      >
+        <BrandIcon name={step.after.icon} className="h-8 w-8 shrink-0" />
+        <div>
+          <h3 className="font-display text-lg font-semibold text-ink">
+            <span className="sr-only">With BrickBytes: </span>
+            {step.after.title}
+          </h3>
+          <p className="mt-1 text-base leading-relaxed text-bb-slate">{step.after.desc}</p>
+        </div>
       </motion.div>
-    </li>
-  );
-}
-
-// With reduced motion the pair sits side by side instead of flipping.
-function StaticPair({ step }: { step: Step }) {
-  return (
-    <li className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-      <div className="grid">
-        <BeforeFace step={step.before} />
-      </div>
-      <div className="grid">
-        <AfterFace step={step.after} />
-      </div>
-    </li>
+    </motion.li>
   );
 }
 
 export default function SalesComparison() {
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useReducedMotion() ?? false;
 
   return (
     <section id="comparison" className="relative bg-bb-paper py-16 text-ink sm:py-32">
@@ -164,9 +147,9 @@ export default function SalesComparison() {
         </div>
 
         <ul className="space-y-4 lg:col-span-7">
-          {steps.map((step) =>
-            reducedMotion ? <StaticPair key={step.after.title} step={step} /> : <FlipCard key={step.after.title} step={step} />,
-          )}
+          {steps.map((step) => (
+            <StepCard key={step.after.title} step={step} still={reducedMotion} />
+          ))}
         </ul>
       </div>
     </section>

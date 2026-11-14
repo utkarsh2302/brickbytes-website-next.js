@@ -16,14 +16,15 @@
   --color-bb-hold: #b7791f;
   --color-bb-booked: #9aa0a8;
 
-  /* Client logos on phones: one strip, two copies, moved by one copy's width */
-  --animate-marquee: marquee 32s linear infinite;
-  @keyframes marquee {
+  /* A panel that has just been switched to settles in */
+  @keyframes fade-up {
     from {
-      transform: translateX(0);
+      opacity: 0;
+      transform: translateY(8px);
     }
     to {
-      transform: translateX(-50%);
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
