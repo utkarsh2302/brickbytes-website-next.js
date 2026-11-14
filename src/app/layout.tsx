@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import MetaPixel from "@/components/MetaPixel";
 import { constructMetadata, SITE_DESCRIPTION, siteJsonLdNodes } from "@/lib/seo";
 
 // Brand type (Guidelines p. 18): Plus Jakarta Sans for display, Inter for
@@ -50,6 +51,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <MetaPixel />
       </body>
     </html>
   );
