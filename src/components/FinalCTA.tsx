@@ -8,7 +8,7 @@ import { buttonPrimary, buttonSecondary } from "./ui/button";
 // symbol at full scale, cropped off the edge, with a faint construction circle.
 export default function FinalCTA() {
   return (
-    <section id="contact" className="relative overflow-hidden bg-bb-stone py-24 sm:py-32">
+    <section id="contact" className="relative overflow-hidden bg-bb-stone py-16 sm:py-32">
       <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 md:block">
         <svg className="absolute -right-24 top-1/2 h-[560px] w-[560px] -translate-y-1/2" viewBox="0 0 100 100">
           <circle cx="50" cy="50" r="49.5" fill="none" stroke="#1c1a17" strokeOpacity="0.18" strokeWidth="0.2" strokeDasharray="1 1" />

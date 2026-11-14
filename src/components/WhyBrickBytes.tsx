@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import BrandIcon, { type BrandIconName } from "./BrandIcon";
 import GlassAccent from "./GlassAccent";
 import SectionHeading from "./ui/SectionHeading";
+import { swipeItem, swipeRow } from "./ui/swipe";
 
 const benefits: { icon: BrandIconName; title: string; body: string }[] = [
   {
@@ -50,7 +51,7 @@ const promises: { icon: BrandIconName; title: string; body: string }[] = [
 // ink at 80% because Slate falls just under 4.5:1 on Sand.
 export default function WhyBrickBytes() {
   return (
-    <section id="why-brickbytes" className="relative overflow-hidden bg-bb-sand py-24 text-ink sm:py-32">
+    <section id="why-brickbytes" className="relative overflow-hidden bg-bb-sand py-16 text-ink sm:py-32">
       {/* Circles, not pin: on Sand the Sand sheets vanish, leaving the orange
           disc and its Kiln overlap */}
       <GlassAccent variant="circles" className="-right-44 -top-40 hidden w-[520px] md:block" />
@@ -61,9 +62,13 @@ export default function WhyBrickBytes() {
           What changes when your sales team, brokers and buyers all work from the same live map.
         </p>
 
-        <ul className="mt-14 grid grid-cols-1 gap-5 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4">
+        <ul
+          tabIndex={0}
+          aria-label="Why developers choose BrickBytes"
+          className={`mt-10 sm:mt-16 ${swipeRow("md:grid-cols-2 md:gap-5 lg:grid-cols-4")}`}
+        >
           {benefits.map((benefit) => (
-            <li key={benefit.title} className="flex flex-col gap-4 rounded-2xl border border-line bg-white p-6 sm:p-7">
+            <li key={benefit.title} className={`${swipeItem} flex flex-col gap-4 rounded-2xl border border-line bg-white p-6 sm:p-7`}>
               <BrandIcon name={benefit.icon} className="h-10 w-10" />
               <h3 className="font-display text-xl font-semibold text-ink">{benefit.title}</h3>
               <p className="text-base leading-relaxed text-bb-slate">{benefit.body}</p>
@@ -94,17 +99,17 @@ export default function WhyBrickBytes() {
               BrickBytes is made by BrickNova Technologies in Jaipur. We build custom software for real estate developers
               and their brokers.
             </p>
-            <div className="mt-auto flex flex-wrap gap-x-6 gap-y-3 pt-8">
+            <div className="mt-auto flex flex-wrap gap-x-6 gap-y-1 pt-6 sm:pt-8">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-1.5 text-base font-semibold text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                className="inline-flex min-h-11 items-center gap-1.5 text-base font-semibold text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 About BrickBytes
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 text-base font-semibold text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                className="inline-flex min-h-11 items-center gap-1.5 text-base font-semibold text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 See it on your own layout plan
                 <ArrowRight className="h-4 w-4" aria-hidden />

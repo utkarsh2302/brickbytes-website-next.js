@@ -91,12 +91,12 @@ export default function HeroVisual() {
             <span className={`rounded-full border px-1.5 py-0.5 text-[10px] ${STATUS_CHIP[plot.status]}`}>{plot.status}</span>
           </p>
         </div>
-        <div className="flex shrink-0 flex-col gap-1.5">
+        <div className="flex shrink-0 gap-2 sm:flex-col sm:gap-1.5">
           <button
             type="button"
             onClick={() => step(-1)}
             aria-label="Previous plot"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-ink/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-ink/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
           >
             <ChevronLeft className="h-4 w-4" aria-hidden />
           </button>
@@ -104,7 +104,7 @@ export default function HeroVisual() {
             type="button"
             onClick={() => step(1)}
             aria-label="Next plot"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-ink/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-ink/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
           >
             <ChevronRight className="h-4 w-4" aria-hidden />
           </button>

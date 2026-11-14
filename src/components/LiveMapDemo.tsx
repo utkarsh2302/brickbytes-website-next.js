@@ -386,12 +386,12 @@ export default function LiveMapDemo() {
   };
 
   return (
-    <section id="live-map" className="relative scroll-mt-18 overflow-hidden bg-bb-stone py-24 text-ink sm:py-32">
+    <section id="live-map" className="relative scroll-mt-18 overflow-hidden bg-bb-stone py-16 text-ink sm:py-32">
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 z-10 w-full flex flex-col items-center">
         <SectionHeading
           title="Try a live project map"
-          lead="Drag the slider to compare a paper layout with the live map. Click any plot to see its size, facing and status."
-          className="mb-12 w-full self-start sm:mb-16"
+          lead="Drag the slider to compare a paper layout with the live map. Tap or click any plot to see its size, facing and status."
+          className="mb-8 w-full self-start sm:mb-16"
         />
         
         {/* Custom Animated Toast Notification */}
@@ -417,7 +417,7 @@ export default function LiveMapDemo() {
         {/* Comparison Showcase Container */}
         <div
           ref={containerRef}
-          className="relative w-full max-w-275 h-57.5 xs:h-[290px] sm:h-95 md:h-125 lg:h-145 xl:h-160 bg-bb-paper border border-line/80 rounded-2xl overflow-hidden select-none cursor-ew-resize shadow-[0_25px_60px_-15px_rgba(28,26,23,0.12)]"
+          className="relative w-full max-w-275 h-75 sm:h-95 md:h-125 lg:h-145 xl:h-160 bg-bb-paper border border-line/80 rounded-2xl overflow-hidden select-none cursor-ew-resize shadow-[0_25px_60px_-15px_rgba(28,26,23,0.12)]"
         >
           {/* Flat Map Wrapper */}
           <div className="absolute inset-0 w-full h-full">
@@ -425,13 +425,13 @@ export default function LiveMapDemo() {
             {/* BACKGROUND: RIGHT SIDE - Luxury Project Presentation System */}
             <div className="absolute inset-0 w-full h-full bg-bb-paper">
               {/* Luxury Header Stamp */}
-              <div className="absolute top-6 left-6 flex flex-col gap-1 text-[10px] text-bb-slate font-sans tracking-wider pointer-events-none text-left">
+              <div className="absolute top-6 left-6 hidden sm:flex flex-col gap-1 text-[10px] text-bb-slate font-sans tracking-wider pointer-events-none text-left">
                 <span className="font-semibold text-ink uppercase tracking-[0.2em]">The Oasis Sanctuary</span>
                 <span className="font-display font-semibold text-bb-slate">Sample plotted project</span>
               </div>
 
               {/* Floating Interactive Controls (Top Right) */}
-              <div className="absolute top-6 right-6 flex items-center gap-1 z-20 pointer-events-auto bg-white/95 backdrop-blur-sm p-1 rounded-lg border border-line/50 shadow-md">
+              <div className="absolute top-3 right-3 sm:top-6 sm:right-6 flex items-center gap-1 z-20 pointer-events-auto bg-white/95 backdrop-blur-sm p-1 rounded-lg border border-line/50 shadow-md">
                 {(["2d", "3d", "drone"] as const).map((mode) => (
                   <button
                     key={mode}
@@ -443,7 +443,7 @@ export default function LiveMapDemo() {
                         setDronePlotId(null);
                       }
                     }}
-                    className={`px-3 py-1.5 rounded-md text-[9px] font-bold tracking-wider uppercase transition-all duration-200 ${
+                    className={`px-3 py-2.5 sm:py-1.5 rounded-md text-[10px] sm:text-[9px] font-bold tracking-wider uppercase transition-all duration-200 ${
                       viewMode === mode
                         ? "bg-ink text-white shadow-sm"
                         : "text-bb-slate hover:text-ink hover:bg-bb-stone/42"
@@ -475,7 +475,7 @@ export default function LiveMapDemo() {
 
               {/* SVG Plots Map - Interactive Landscape */}
               <svg 
-                className="w-full h-full px-6 py-10" 
+                className="w-full h-full px-2 pb-3 pt-16 sm:px-6 sm:py-10" 
                 viewBox="0 0 1000 600" 
                 preserveAspectRatio="xMidYMid meet"
                 role="img"
@@ -1197,14 +1197,14 @@ export default function LiveMapDemo() {
               }}
             >
               {/* Engineering Title Stamp */}
-              <div className="absolute top-6 left-6 flex flex-col gap-1.5 text-[9px] text-bb-slate font-mono uppercase tracking-widest pointer-events-none">
+              <div className="absolute top-6 left-6 hidden sm:flex flex-col gap-1.5 text-[9px] text-bb-slate font-mono uppercase tracking-widest pointer-events-none">
                 <span className="font-bold text-bb-slate">SUBDIVISION MAP SYSTEM</span>
                 <span>SHEET: SEC-C / SITE PLAN</span>
                 <span>REVISION v2.0 • 12/04/2004</span>
               </div>
 
               {/* Title Block Box (Engineering Drafting Stamp) */}
-              <div className="absolute bottom-6 left-6 z-10 p-4 border border-ink/15 font-mono text-[9px] text-bb-slate leading-relaxed bg-[#f4f2ed]/90 max-w-55 pointer-events-none">
+              <div className="absolute bottom-6 left-6 z-10 hidden sm:block p-4 border border-ink/15 font-mono text-[9px] text-bb-slate leading-relaxed bg-[#f4f2ed]/90 max-w-55 pointer-events-none">
                 <p className="font-bold text-bb-slate border-b border-ink/15 pb-1.5 mb-1.5 uppercase tracking-wide">Technical Boundary Draft</p>
                 <p>SCALE: 1 INCH = 40 FEET</p>
                 <p>TOTAL UNITS: 16 SUBDIVISIONS</p>
@@ -1213,7 +1213,7 @@ export default function LiveMapDemo() {
               </div>
 
               {/* SVG Plots Map - Flat Monochrome Draft Layout */}
-              <svg className="w-full h-full px-6 py-10 opacity-70" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
+              <svg className="w-full h-full px-2 pb-3 pt-16 sm:px-6 sm:py-10 opacity-70" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
                 
                 <defs>
                   {/* Diagonal line hatch representing natural reserve/lake */}

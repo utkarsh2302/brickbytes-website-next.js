@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import SectionHeading from "./ui/SectionHeading";
+import { swipeItem, swipeRow } from "./ui/swipe";
 
 // Plan illustrations in the brand style (Guidelines p. 22): orthographic, 1px
 // ink lines, roads as double lines, Stone for booked, one orange plot with the pin.
@@ -109,25 +110,25 @@ const useCases = [
 
 export default function UseCases() {
   return (
-    <section id="use-cases" className="relative scroll-mt-18 bg-bb-stone py-24 sm:py-32">
+    <section id="use-cases" className="relative scroll-mt-18 bg-bb-stone py-16 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Built for plots, villas and apartments"
           lead="One platform, whether you sell plotted land, a gated villa community or apartment towers."
-          className="mb-14 sm:mb-16"
+          className="mb-10 sm:mb-16"
         />
 
-        <ul className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <ul aria-label="Project types" className={swipeRow("md:grid-cols-3 md:gap-6")}>
           {useCases.map((useCase) => (
-            <li key={useCase.title} className="flex flex-col rounded-2xl border border-line bg-white p-6 sm:p-7">
+            <li key={useCase.title} className={`${swipeItem} flex flex-col rounded-2xl border border-line bg-white p-5 sm:p-7`}>
               <div className="rounded-xl border border-line bg-bb-paper p-4">{useCase.illustration}</div>
-              <h3 className="mt-8 font-display text-xl font-semibold text-ink">{useCase.title}</h3>
+              <h3 className="mt-6 font-display text-xl font-semibold text-ink sm:mt-8">{useCase.title}</h3>
               <p className="mt-2 text-base leading-relaxed text-bb-slate">{useCase.desc}</p>
 
 
               <Link
                 href={useCase.href}
-                className="mt-auto inline-flex items-center gap-1.5 self-start rounded-sm pt-6 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                className="mt-auto inline-flex min-h-11 items-center gap-1.5 self-start rounded-sm pt-4 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
               >
                 More on {useCase.title.toLowerCase()}
                 <ArrowRight className="h-4 w-4" aria-hidden />

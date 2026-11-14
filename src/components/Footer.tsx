@@ -59,7 +59,9 @@ const columns = [
   },
 ];
 
-const linkClass = "text-sm text-bb-slate transition-colors hover:text-ink";
+// On phones each link is padded to a 32px tap height; from md up the columns
+// are spaced by the list gap instead.
+const linkClass = "inline-block py-1.5 text-sm text-bb-slate transition-colors hover:text-ink md:py-0";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -67,9 +69,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-line bg-bb-paper py-16 text-ink sm:py-20">
+    <footer className="relative border-t border-line bg-bb-paper py-12 text-ink sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-8 lg:grid-cols-7">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 md:gap-8 lg:grid-cols-7">
           <div className="col-span-2 flex flex-col gap-6 md:col-span-4 lg:col-span-2">
             <Link href="/" className="flex w-fit items-center">
               <Image src="/logo.svg" alt="BrickBytes" width={130} height={28} className="h-7 w-auto" />
@@ -83,11 +85,15 @@ export default function Footer() {
           </div>
 
           {columns.map((column) => (
-            <nav key={column.title} aria-labelledby={`footer-${column.title}`} className="flex flex-col gap-4">
+            <nav
+              key={column.title}
+              aria-labelledby={`footer-${column.title}`}
+              className="col-span-2 flex flex-col gap-2 md:col-span-1 md:gap-4"
+            >
               <p id={`footer-${column.title}`} className="text-sm font-semibold text-ink">
                 {column.title}
               </p>
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-wrap gap-x-5 md:flex-col md:gap-3">
                 {column.links.map((link) => (
                   <li key={link.name}>
                     <Link href={link.href} className={linkClass}>
@@ -99,12 +105,12 @@ export default function Footer() {
             </nav>
           ))}
 
-          <div className="flex flex-col gap-4">
+          <div className="col-span-2 flex flex-col gap-2 md:col-span-1 md:gap-4">
             <p className="text-sm font-semibold text-ink">Get in touch</p>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-wrap gap-x-5 md:flex-col md:gap-3">
               <li>
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                  WhatsApp <span className="block whitespace-nowrap font-mono">{SALES_PHONE_DISPLAY}</span>
+                  WhatsApp <span className="whitespace-nowrap font-mono md:block">{SALES_PHONE_DISPLAY}</span>
                 </a>
               </li>
               <li>
@@ -122,7 +128,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-2 border-t border-line pt-8 text-sm text-bb-slate sm:flex-row sm:flex-wrap sm:gap-x-8">
+        <div className="mt-10 flex flex-col gap-2 border-t border-line pt-6 sm:mt-16 sm:pt-8 text-sm text-bb-slate sm:flex-row sm:flex-wrap sm:gap-x-8">
           <span className="font-medium text-ink">BrickNova Technologies Private Limited</span>
           <span>Jaipur, Rajasthan, India</span>
           <span>
@@ -133,7 +139,7 @@ export default function Footer() {
           </span>
         </div>
 
-        <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-line pt-8 sm:flex-row sm:items-center">
+        <div className="mt-6 flex flex-col items-start justify-between gap-4 border-t border-line pt-6 sm:mt-8 sm:pt-8 sm:flex-row sm:items-center">
           <p className="text-sm text-bb-slate">
             &copy; 2026 BrickBytes, a venture by BrickNova Technologies. All rights reserved.
           </p>

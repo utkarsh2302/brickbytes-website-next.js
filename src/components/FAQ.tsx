@@ -51,7 +51,7 @@ export default function FAQ({ items = generalFaqs }: { items?: Faq[] }) {
   };
 
   return (
-    <section id="faq" className="relative bg-bb-paper py-24 text-ink sm:py-32">
+    <section id="faq" className="relative bg-bb-paper py-16 text-ink sm:py-32">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div className="lg:col-span-4">
           <SectionHeading title="Frequently asked questions" />

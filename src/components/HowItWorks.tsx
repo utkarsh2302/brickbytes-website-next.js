@@ -27,17 +27,17 @@ const steps: { icon: BrandIconName; title: string; desc: string }[] = [
 // showAccent is off on /how-it-works, where the page hero already carries one.
 export default function HowItWorks({ showAccent = true }: { showAccent?: boolean }) {
   return (
-    <section id="process" className="relative overflow-hidden bg-bb-paper py-24 sm:py-32">
+    <section id="process" className="relative overflow-hidden bg-bb-paper py-16 sm:py-32">
       {showAccent && <GlassAccent variant="circles" className="-top-56 right-0 hidden w-[460px] lg:block" />}
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Live in three steps"
           lead="From your layout plan to a live map in 10 to 14 business days. Our team does the build; you review and launch."
-          className="mb-14 sm:mb-20"
+          className="mb-10 sm:mb-20"
         />
 
-        <ol className="relative grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">
+        <ol className="relative grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
           {/* Connects step 1 to step 3; ends where the third column begins */}
           <span aria-hidden className="absolute left-6 right-[calc((100%-4rem)/3)] top-6 hidden h-px bg-line md:block" />
           {steps.map((step, idx) => (
@@ -54,7 +54,7 @@ export default function HowItWorks({ showAccent = true }: { showAccent?: boolean
           ))}
         </ol>
 
-        <div className="mt-16 sm:mt-20">
+        <div className="mt-12 sm:mt-20">
           <Link href="/contact" className={buttonPrimary}>
             Book a demo
             <ArrowRight className="h-4 w-4" aria-hidden />

@@ -21,28 +21,28 @@ function GlassShapes() {
 // as a live 3D model, over flat glass-system shapes cropped off the edge (p. 20).
 export default function BrandHero() {
   return (
-    <section className="relative overflow-hidden bg-bb-paper pb-16 pt-28 sm:pb-20 sm:pt-36">
-      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
+    <section className="relative overflow-hidden bg-bb-paper pb-12 pt-24 sm:pb-20 sm:pt-36">
+      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-4 sm:gap-16 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
         <div className="lg:col-span-6">
           <h1 className="font-display text-[44px] font-extrabold leading-[0.98] tracking-[-0.035em] text-ink sm:text-7xl lg:text-[88px]">
             Every plot, <span className="block">in plain sight.</span>
           </h1>
-          <p className="mt-8 max-w-lg text-lg leading-relaxed text-bb-slate sm:text-xl sm:leading-relaxed">
+          <p className="mt-5 max-w-lg text-base leading-relaxed text-bb-slate sm:mt-8 sm:text-xl sm:leading-relaxed">
             BrickBytes builds custom software for real estate developers, from bookings, payments and broker commissions
             to a live, interactive plot map that buyers and brokers explore in any browser.
           </p>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Link href="/contact" className={`${buttonPrimary} py-4`}>
+          <div className="mt-7 grid grid-cols-2 gap-3 sm:mt-10 sm:flex">
+            <Link href="/contact" className={`${buttonPrimary} py-4 max-sm:px-3`}>
               Book a demo
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
-            <a href="#live-map" className={`${buttonSecondary} py-4`}>
+            <a href="#live-map" className={`${buttonSecondary} py-4 max-sm:px-3`}>
               Try the live map
             </a>
           </div>
 
-          <p className="mt-7 text-sm text-bb-slate">
+          <p className="mt-7 hidden text-sm text-bb-slate sm:block">
             For plotted developments, villa communities and apartment projects.{" "}
             <Link
               href="/custom-real-estate-software"

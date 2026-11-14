@@ -300,7 +300,7 @@ export default function TechnologyPage() {
           <section
             key={capability.id}
             id={capability.id}
-            className={`relative scroll-mt-18 py-24 sm:py-32 ${onStone ? "bg-bb-stone" : "bg-bb-paper"}`}
+            className={`relative scroll-mt-18 py-16 sm:py-32 ${onStone ? "bg-bb-stone" : "bg-bb-paper"}`}
           >
             <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
               <div className={index % 2 === 1 ? "lg:order-last" : ""}>

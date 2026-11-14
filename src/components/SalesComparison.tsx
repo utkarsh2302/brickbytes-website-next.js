@@ -145,15 +145,15 @@ export default function SalesComparison() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section id="comparison" className="relative bg-bb-paper py-24 text-ink sm:py-32">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
+    <section id="comparison" className="relative bg-bb-paper py-16 text-ink sm:py-32">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-32">
             <SectionHeading
               title="Selling plots shouldn't depend on PDFs and endless calls."
               lead="Brochures, phone calls and spreadsheets leave buyers guessing and keep your team repeating the same answers. Here is what replaces each of them."
             />
-            <div className="mt-10 flex items-start gap-4 rounded-2xl bg-bb-stone p-6">
+            <div className="mt-10 hidden items-start gap-4 rounded-2xl bg-bb-stone p-6 lg:flex">
               <BrandIcon name="clock" className="h-9 w-9 shrink-0" />
               <p className="text-base leading-relaxed text-ink">
                 Buyers check a plot&apos;s size, facing, price and status themselves, at any time of day, before they ever

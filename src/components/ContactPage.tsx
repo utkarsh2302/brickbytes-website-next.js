@@ -183,7 +183,7 @@ export default function ContactPage() {
         </div>
       </PageHero>
 
-      <section className="relative bg-bb-stone py-24 sm:py-32">
+      <section className="relative bg-bb-stone py-16 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading title="Talk to us directly" className="mb-12" />
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -224,7 +224,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section id="demo-form" className="relative scroll-mt-18 bg-bb-paper py-24 sm:py-32">
+      <section id="demo-form" className="relative scroll-mt-18 bg-bb-paper py-16 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="Tell us about your project"
@@ -384,7 +384,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section aria-labelledby="company-heading" className="relative bg-bb-stone py-24 sm:py-32">
+      <section aria-labelledby="company-heading" className="relative bg-bb-stone py-16 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading id="company-heading" title="Company information" className="mb-12" />
           <CompanyDetails />

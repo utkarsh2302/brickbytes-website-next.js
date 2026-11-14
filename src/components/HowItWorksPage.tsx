@@ -108,7 +108,7 @@ export default function HowItWorksPage() {
 
       <HowItWorks showAccent={false} />
 
-      <section id="steps" className="relative scroll-mt-18 bg-bb-stone py-24 sm:py-32">
+      <section id="steps" className="relative scroll-mt-18 bg-bb-stone py-16 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="What happens at each step"
@@ -143,7 +143,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="relative border-b border-line bg-bb-paper py-24 sm:py-32">
+      <section className="relative border-b border-line bg-bb-paper py-16 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading title="What changes after launch" />
           <ul className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

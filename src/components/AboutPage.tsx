@@ -135,7 +135,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative bg-bb-stone py-24 sm:py-32">
+      <section className="relative bg-bb-stone py-16 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading title="What we're working towards" className="mb-12 sm:mb-16" />
           <ul className="grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -151,7 +151,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative bg-bb-paper py-24 sm:py-32">
+      <section className="relative bg-bb-paper py-16 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="What BrickBytes does"
@@ -169,7 +169,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative bg-bb-stone py-24 sm:py-32">
+      <section className="relative bg-bb-stone py-16 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading title="What guides our work" className="mb-12 sm:mb-16" />
           <ul className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -184,7 +184,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section aria-labelledby="company-heading" className="relative bg-bb-paper py-24 sm:py-32">
+      <section aria-labelledby="company-heading" className="relative bg-bb-paper py-16 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 id="company-heading" className="font-display text-2xl font-extrabold text-ink sm:text-3xl">
             BrickNova Technologies Private Limited

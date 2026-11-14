@@ -6,6 +6,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { ArrowRight } from "lucide-react";
 import BrandIcon, { type BrandIconName } from "./BrandIcon";
 import SectionHeading from "./ui/SectionHeading";
+import { swipeItem, swipeRow } from "./ui/swipe";
 
 // Product mock-ups: flat white UI on Paper, 1px lines, plot data in DM Mono,
 // status colours only here (Guidelines p. 17).
@@ -155,34 +156,34 @@ function StackedCard({ card, index }: { card: PlatformCard; index: number }) {
   const scale = useTransform(scrollYProgress, [0, 1], [1, reducedMotion ? 1 : 0.92]);
 
   return (
-    <li ref={element} className="lg:sticky" style={{ top: `${7 + index * 1.5}rem` }}>
+    <li ref={element} className={`${swipeItem} lg:sticky`} style={{ top: `${7 + index * 1.5}rem` }}>
       <motion.article
         style={{ scale }}
-        className="grid origin-top grid-cols-1 gap-8 rounded-3xl border border-line bg-white p-6 shadow-[0_1px_2px_rgb(28_26_23/0.04),0_32px_64px_-32px_rgb(28_26_23/0.25)] sm:p-10 lg:grid-cols-2 lg:gap-12"
+        className="grid h-full origin-top grid-cols-1 gap-6 rounded-3xl border border-line bg-white p-5 shadow-[0_1px_2px_rgb(28_26_23/0.04),0_32px_64px_-32px_rgb(28_26_23/0.25)] sm:p-10 lg:grid-cols-2 lg:gap-12"
       >
         <div>
           <div className="flex items-center gap-3">
             <BrandIcon name={card.icon} className="h-9 w-9 shrink-0" />
             <h3 className="font-display text-2xl font-extrabold text-ink">{card.title}</h3>
           </div>
-          <p className="mt-3 text-lg leading-relaxed text-bb-slate">{card.desc}</p>
-          <dl className="mt-6 grid grid-cols-1 gap-x-6 gap-y-4 border-t border-line pt-6 sm:grid-cols-2">
+          <p className="mt-3 text-base leading-relaxed text-bb-slate sm:text-lg">{card.desc}</p>
+          <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-line pt-5 sm:mt-6 sm:gap-x-6 sm:gap-y-4 sm:pt-6">
             {card.features.map((feature) => (
               <div key={feature.title}>
-                <dt className="font-display text-base font-semibold text-ink">{feature.title}</dt>
-                <dd className="mt-1 text-sm leading-relaxed text-bb-slate">{feature.desc}</dd>
+                <dt className="font-display text-sm font-semibold text-ink sm:text-base">{feature.title}</dt>
+                <dd className="mt-1 hidden text-sm leading-relaxed text-bb-slate sm:block">{feature.desc}</dd>
               </div>
             ))}
           </dl>
           <Link
             href={card.link.href}
-            className="mt-6 inline-flex items-center gap-1.5 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+            className="mt-4 inline-flex min-h-11 items-center gap-1.5 text-base font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
           >
             {card.link.label}
             <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
         </div>
-        <div className="flex items-center rounded-2xl border border-line bg-bb-paper p-4 sm:p-6">{card.mockup}</div>
+        <div className="flex items-center rounded-2xl border border-line bg-bb-paper p-3 sm:p-6">{card.mockup}</div>
       </motion.article>
     </li>
   );
@@ -190,15 +191,15 @@ function StackedCard({ card, index }: { card: PlatformCard; index: number }) {
 
 export default function ProductEcosystem() {
   return (
-    <section id="platform" className="relative bg-bb-stone py-24 text-ink sm:py-32">
+    <section id="platform" className="relative bg-bb-stone py-16 text-ink sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="One platform for buyers, brokers and developers."
           lead="Buyers explore the project, brokers sell from it and your team runs it, all from the same live plot status."
-          className="mb-14 sm:mb-16"
+          className="mb-10 sm:mb-16"
         />
 
-        <ul className="space-y-8 lg:space-y-16">
+        <ul aria-label="BrickBytes for buyers, brokers and developers" className={swipeRow("md:grid-cols-1 md:gap-10 lg:gap-16")}>
           {platformCards.map((card, index) => (
             <StackedCard key={card.title} card={card} index={index} />
           ))}
