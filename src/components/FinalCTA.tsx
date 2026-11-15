@@ -41,8 +41,6 @@ export default function FinalCTA() {
               Message us on WhatsApp
             </a>
           </div>
-
-          <p className="mt-16 font-display font-semibold text-lg text-ink/70">Technology that holds.</p>
         </div>
       </div>
     </section>

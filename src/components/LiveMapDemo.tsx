@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
 import { Compass, X } from "lucide-react";
 import SectionHeading from "./ui/SectionHeading";
 
@@ -32,6 +32,18 @@ const plots = [
   { id: "Plot 16", area: "710 Sq. Yds.", status: "available", facing: "Park & Corner", roadWidth: "40 ft", dimensions: "53 x 120 ft", path: "M 620,440 L 690,440 L 690,540 L 620,540 Z", cx: 655, cy: 490, block: "Parkview Meadows", isPremium: true }
 ];
 
+const STATUS_DOT: Record<string, string> = {
+  available: "bg-bb-available",
+  reserved: "bg-bb-hold",
+  sold: "bg-bb-booked",
+};
+
+const STATUS_PILL: Record<string, string> = {
+  available: "bg-bb-available/10 text-bb-available",
+  reserved: "bg-bb-hold/9 text-bb-hold",
+  sold: "bg-bb-stone/70 text-bb-slate",
+};
+
 export default function LiveMapDemo() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -45,26 +57,19 @@ export default function LiveMapDemo() {
   const [viewMode, setViewMode] = useState<"2d" | "3d" | "drone">("3d");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Intro Sequence Animation on Load: Center (50) -> Left (15) -> Right (85) -> Center (50)
-  useEffect(() => {
-    const timer = setTimeout(async () => {
-      if (hasUserInteracted) return;
-      setSliderPosition(15);
-      
-      await new Promise((r) => setTimeout(r, 1100));
-      if (hasUserInteracted) return;
-      setSliderPosition(85);
-      
-      await new Promise((r) => setTimeout(r, 1300));
-      if (hasUserInteracted) return;
-      setSliderPosition(50);
-      
-      await new Promise((r) => setTimeout(r, 1000));
-      setIsIntroAnimating(false);
-    }, 800);
+  const mapInView = useInView(containerRef, { once: true, amount: 0.5 });
+  const reducedMotion = useReducedMotion();
 
-    return () => clearTimeout(timer);
-  }, [hasUserInteracted]);
+  // Once the map is on screen, sweep the divider left, right and back to the
+  // middle, so visitors see that it moves. Any drag cancels the sweep.
+  // With reduced motion the divider stays put and the drag hint stays up.
+  useEffect(() => {
+    if (!mapInView || hasUserInteracted || reducedMotion) return;
+    const sweep: [delay: number, position: number][] = [[300, 15], [1400, 85], [2700, 50]];
+    const timers = sweep.map(([delay, position]) => setTimeout(() => setSliderPosition(position), delay));
+    timers.push(setTimeout(() => setIsIntroAnimating(false), 3700));
+    return () => timers.forEach(clearTimeout);
+  }, [mapInView, hasUserInteracted, reducedMotion]);
 
   // Handle Divider Dragging
   const handleMove = (clientX: number) => {
@@ -118,6 +123,17 @@ export default function LiveMapDemo() {
   const handlePlotHover = (index: number) => {
     if (dronePlotId) return; // Lock hover changes during plot-focused Drone View
     setSelectedPlotIndex(index);
+  };
+
+  // Used by the map, the plot number buttons and the view switch alike.
+  const selectPlot = (index: number) => {
+    setSelectedPlotIndex(index);
+    if (viewMode === "drone") setDronePlotId(plots[index].id);
+  };
+
+  const changeView = (mode: typeof viewMode) => {
+    setViewMode(mode);
+    setDronePlotId(mode === "drone" ? plots[selectedPlotIndex].id : null);
   };
 
   const currentPlot = plots[selectedPlotIndex];
@@ -272,14 +288,7 @@ export default function LiveMapDemo() {
       <g 
         key={plot.id} 
         onMouseEnter={() => handlePlotHover(index)}
-        onClick={() => {
-          if (!isFiltered) {
-            setSelectedPlotIndex(index);
-            if (viewMode === "drone") {
-              setDronePlotId(plot.id);
-            }
-          }
-        }}
+        onClick={() => selectPlot(index)}
         className="cursor-pointer group"
       >
         {/* Shadow layer */}
@@ -332,14 +341,15 @@ export default function LiveMapDemo() {
           />
         )}
         
-        {/* Plot labels, shifted to sit on the elevated cap */}
+        {/* Plot labels, shifted to sit on the elevated cap. On phones the
+            1000-unit-wide map is ~350px across, so the number is drawn larger. */}
         {!isFiltered && (
           <>
             <text
               x={(cx1 + cx2) / 2}
               y={(cy1 + cy2) / 2 - 2}
               textAnchor="middle"
-              className={`text-[8px] font-mono font-semibold tracking-wider transition-all duration-300 ${
+              className={`text-[8px] max-sm:text-[20px] font-mono font-semibold tracking-wider transition-all duration-300 ${
                 viewMode === "drone"
                   ? isSelected
                     ? "fill-white font-bold"
@@ -414,10 +424,32 @@ export default function LiveMapDemo() {
           )}
         </AnimatePresence>
 
+        <div className="relative w-full max-w-275">
+        {/* View switch: above the map on phones, so it never covers plots; floating top right from sm up */}
+        <div
+          role="group"
+          aria-label="Map view"
+          className="mb-3 grid grid-cols-3 gap-1 rounded-xl border border-line/50 bg-white p-1 shadow-sm sm:absolute sm:top-6 sm:right-6 sm:z-40 sm:mb-0 sm:flex sm:items-center sm:rounded-lg sm:bg-white/95 sm:shadow-md sm:backdrop-blur-sm"
+        >
+          {(["2d", "3d", "drone"] as const).map((mode) => (
+            <button
+              key={mode}
+              type="button"
+              aria-pressed={viewMode === mode}
+              onClick={() => changeView(mode)}
+              className={`min-h-11 px-3 rounded-lg text-xs font-bold tracking-wider uppercase transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:min-h-0 sm:rounded-md sm:py-1.5 sm:text-[9px] ${
+                viewMode === mode ? "bg-ink text-white shadow-sm" : "text-bb-slate hover:text-ink hover:bg-bb-stone/42"
+              }`}
+            >
+              {mode === "2d" ? "2D View" : mode === "3d" ? "3D View" : "Drone View"}
+            </button>
+          ))}
+        </div>
+
         {/* Comparison Showcase Container */}
         <div
           ref={containerRef}
-          className="relative w-full max-w-275 h-75 sm:h-95 md:h-125 lg:h-145 xl:h-160 bg-bb-paper border border-line/80 rounded-2xl overflow-hidden select-none cursor-ew-resize shadow-[0_25px_60px_-15px_rgba(28,26,23,0.12)]"
+          className="relative w-full aspect-[5/3] sm:aspect-auto sm:h-95 md:h-125 lg:h-145 xl:h-160 bg-bb-paper border border-line/80 rounded-2xl overflow-hidden select-none cursor-ew-resize shadow-[0_25px_60px_-15px_rgba(28,26,23,0.12)]"
         >
           {/* Flat Map Wrapper */}
           <div className="absolute inset-0 w-full h-full">
@@ -430,33 +462,7 @@ export default function LiveMapDemo() {
                 <span className="font-display font-semibold text-bb-slate">Sample plotted project</span>
               </div>
 
-              {/* Floating Interactive Controls (Top Right) */}
-              <div className="absolute top-3 right-3 sm:top-6 sm:right-6 flex items-center gap-1 z-20 pointer-events-auto bg-white/95 backdrop-blur-sm p-1 rounded-lg border border-line/50 shadow-md">
-                {(["2d", "3d", "drone"] as const).map((mode) => (
-                  <button
-                    key={mode}
-                    onClick={() => {
-                      setViewMode(mode);
-                      if (mode === "drone") {
-                        setDronePlotId(currentPlot.id);
-                      } else {
-                        setDronePlotId(null);
-                      }
-                    }}
-                    className={`px-3 py-2.5 sm:py-1.5 rounded-md text-[10px] sm:text-[9px] font-bold tracking-wider uppercase transition-all duration-200 ${
-                      viewMode === mode
-                        ? "bg-ink text-white shadow-sm"
-                        : "text-bb-slate hover:text-ink hover:bg-bb-stone/42"
-                    }`}
-                  >
-                    {mode === "2d" ? "2D View" : mode === "3d" ? "3D View" : "Drone View"}
-                  </button>
-                ))}
-              </div>
-
-              {/* Floating Buyer-Facing Experience HUD Cards */}
-              
-              {/* Floating Availability Legend (Top Right, under viewMode swapper) */}
+              {/* Floating Availability Legend (Top Right, under the view switch) */}
               {viewMode !== "drone" && (
                 <div className="absolute top-14.5 right-6 z-20 hidden sm:flex items-center gap-3.5 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-sm border border-line/50 shadow-sm pointer-events-none text-[9px] font-bold tracking-wider uppercase">
                   <span className="flex items-center gap-1.5 text-bb-slate">
@@ -475,7 +481,7 @@ export default function LiveMapDemo() {
 
               {/* SVG Plots Map - Interactive Landscape */}
               <svg 
-                className="w-full h-full px-2 pb-3 pt-16 sm:px-6 sm:py-10" 
+                className="w-full h-full p-1.5 sm:px-6 sm:py-10" 
                 viewBox="0 0 1000 600" 
                 preserveAspectRatio="xMidYMid meet"
                 role="img"
@@ -1073,13 +1079,7 @@ export default function LiveMapDemo() {
                   <div className="flex flex-col gap-0.5 border-b border-line/60 pb-2.5 mb-3">
                     <div className="flex items-center justify-between">
                       <span className="text-lg font-display font-semibold text-ink leading-tight">{currentPlot.id}</span>
-                      <span className={`text-[8px] uppercase font-bold px-1.5 py-0.5 rounded ${
-                        currentPlot.status === "available" 
-                          ? "bg-bb-available/10 text-bb-available" 
-                          : currentPlot.status === "reserved"
-                          ? "bg-bb-hold/9 text-bb-hold"
-                          : "bg-bb-stone/70 text-bb-slate"
-                      }`}>
+                      <span className={`text-[8px] uppercase font-bold px-1.5 py-0.5 rounded ${STATUS_PILL[currentPlot.status]}`}>
                         {currentPlot.status}
                       </span>
                     </div>
@@ -1114,7 +1114,7 @@ export default function LiveMapDemo() {
                     {/* Actions Process: Drone View toggle & Add to Compare */}
                     <div className="grid grid-cols-2 gap-2 mt-4 pt-2 border-t border-line/40">
                       <button
-                        onClick={() => setToastMessage(`Drone view for ${currentPlot.id} is coming soon.`)}
+                        onClick={() => changeView("drone")}
                         className="w-full py-2.5 rounded text-[9px] font-bold tracking-wider uppercase border border-line bg-white hover:bg-bb-paper text-bb-slate transition-colors"
                       >
                         Drone View
@@ -1168,18 +1168,17 @@ export default function LiveMapDemo() {
                   <div className="absolute bottom-6 right-6 w-5 h-5 border-b border-r border-white/40" />
                   
                   {/* Drone aerial label */}
-                  <div className="absolute top-6 left-1/2 -translate-x-1/2 px-4.5 py-2.5 rounded-lg bg-ink/90 text-white text-[11px] font-medium flex items-center gap-2 shadow border border-white/10 pointer-events-auto">
+                  <div className="absolute top-3 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 sm:top-6 sm:px-4.5 sm:py-2.5 rounded-lg bg-ink/90 text-white text-[11px] font-medium flex items-center gap-2 shadow border border-white/10 pointer-events-auto">
                     <Compass className="w-3.5 h-3.5 text-bb-orange" />
                     <span>{dronePlotId} site view</span>
                     <span className="text-[11px] text-white/70 ml-1 border-l border-white/20 pl-2">
                       Sample image
                     </span>
-                    <button 
-                      onClick={() => {
-                        setDronePlotId(null);
-                        setViewMode("3d");
-                      }}
-                      className="ml-2.5 p-0.5 rounded bg-white/10 hover:bg-white/20 transition-colors"
+                    <button
+                      type="button"
+                      aria-label="Close drone view"
+                      onClick={() => changeView("3d")}
+                      className="ml-1 p-2 -my-1 rounded bg-white/10 hover:bg-white/20 transition-colors"
                     >
                       <X className="w-3.5 h-3.5 text-white" />
                     </button>
@@ -1213,7 +1212,7 @@ export default function LiveMapDemo() {
               </div>
 
               {/* SVG Plots Map - Flat Monochrome Draft Layout */}
-              <svg className="w-full h-full px-2 pb-3 pt-16 sm:px-6 sm:py-10 opacity-70" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
+              <svg className="w-full h-full p-1.5 sm:px-6 sm:py-10 opacity-70" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
                 
                 <defs>
                   {/* Diagonal line hatch representing natural reserve/lake */}
@@ -1380,8 +1379,9 @@ export default function LiveMapDemo() {
           </div>
 
           {/* Draggable Divider Handle */}
+          {/* touch-none: dragging the divider on a phone must not also scroll the page */}
           <div
-            className="absolute top-0 bottom-0 w-1 bg-bb-orange z-30 cursor-ew-resize"
+            className="absolute top-0 bottom-0 w-1 bg-bb-orange z-30 cursor-ew-resize touch-none"
             style={{
               left: `${sliderPosition}%`,
               ...{ transition: transitionStyle }
@@ -1409,67 +1409,74 @@ export default function LiveMapDemo() {
           </div>
 
         </div>
+        </div>
 
-        {/* Mobile Layout Accessories (Details Only) */}
-        <div className="w-full max-w-275 mt-6 md:hidden px-2 flex flex-col gap-4 text-left pointer-events-auto">
+        {/* Phones and small tablets: every plot as a button (plots on the map
+            are too small to tap reliably), then the chosen plot's details */}
+        <div className="mt-4 w-full rounded-xl border border-line/80 bg-white p-4 text-left shadow-sm md:hidden">
+          <div role="group" aria-label="Choose a plot" className="grid grid-cols-8 gap-1.5">
+            {plots.map((plot, index) => {
+              const selected = index === selectedPlotIndex;
+              return (
+                <button
+                  key={plot.id}
+                  type="button"
+                  aria-pressed={selected}
+                  aria-label={`${plot.id}, ${plot.status}`}
+                  onClick={() => selectPlot(index)}
+                  className={`flex h-11 flex-col items-center justify-center gap-1 rounded-lg border font-mono text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
+                    selected ? "border-ink bg-ink text-white" : "border-line bg-bb-paper text-ink"
+                  }`}
+                >
+                  {plot.id.replace("Plot ", "")}
+                  <span aria-hidden className={`h-1.5 w-1.5 rounded-full ${STATUS_DOT[plot.status]}`} />
+                </button>
+              );
+            })}
+          </div>
+          <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-bb-slate">
+            <span className="flex items-center gap-1.5"><span aria-hidden className="h-2 w-2 rounded-full bg-bb-available" />Available</span>
+            <span className="flex items-center gap-1.5"><span aria-hidden className="h-2 w-2 rounded-full bg-bb-hold" />Reserved</span>
+            <span className="flex items-center gap-1.5"><span aria-hidden className="h-2 w-2 rounded-full bg-bb-booked" />Sold</span>
+          </p>
 
-          {/* Mobile Plot Details Card */}
-          <div className="w-full bg-white border border-line/80 rounded-xl p-5 shadow-sm">
-            <div className="flex flex-col gap-0.5 border-b border-line/70 pb-3 mb-3">
-              <div className="flex items-center justify-between">
-                <span className="text-base font-display font-semibold text-ink">{currentPlot.id}</span>
-                <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${
-                  currentPlot.status === "available" 
-                    ? "bg-bb-available/10 text-bb-available" 
-                    : currentPlot.status === "reserved"
-                    ? "bg-bb-hold/9 text-bb-hold"
-                    : "bg-bb-stone/70 text-bb-slate"
-                }`}>
-                  {currentPlot.status}
-                </span>
-              </div>
-              <span className="text-[10px] font-semibold text-bb-slate uppercase tracking-wider mt-0.5">Residential Plot</span>
+          <div aria-live="polite" className="mt-4 border-t border-line/70 pt-4">
+            <div className="flex items-center justify-between gap-3">
+              <span className="font-display text-xl font-semibold text-ink">{currentPlot.id}</span>
+              <span className={`rounded px-2 py-0.5 text-[11px] font-bold uppercase ${STATUS_PILL[currentPlot.status]}`}>
+                {currentPlot.status}
+              </span>
             </div>
+            <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-3">
+              {[
+                ["Area", currentPlot.area],
+                ["Facing", currentPlot.facing],
+                ["Size", currentPlot.dimensions],
+                ["Road width", currentPlot.roadWidth],
+              ].map(([label, value]) => (
+                <div key={label}>
+                  <dt className="text-xs text-bb-slate">{label}</dt>
+                  <dd className="mt-0.5 text-sm font-semibold text-ink">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
 
-            <div className="flex justify-between items-center py-2 border-b border-line/70 mb-3 text-xs">
-              <span className="text-bb-slate font-bold uppercase tracking-wider text-[9px]">Price</span>
-              <span className="font-semibold text-ink font-mono">Price on Request</span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-bb-slate mb-4">
-              <div className="flex justify-between border-b border-line/50 pb-1.5">
-                <span className="text-bb-slate">Area:</span>
-                <span className="font-semibold text-ink">{currentPlot.area}</span>
-              </div>
-              <div className="flex justify-between border-b border-line/50 pb-1.5">
-                <span className="text-bb-slate">Road Width:</span>
-                <span className="font-semibold text-ink">{currentPlot.roadWidth}</span>
-              </div>
-              <div className="flex justify-between border-b border-line/50 pb-1.5">
-                <span className="text-bb-slate">Facing:</span>
-                <span className="font-semibold text-ink">{currentPlot.facing}</span>
-              </div>
-              <div className="flex justify-between border-b border-line/50 pb-1.5">
-                <span className="text-bb-slate">Dimensions:</span>
-                <span className="font-semibold text-ink">{currentPlot.dimensions}</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 mt-1 pt-3 border-t border-line/70">
-              <button
-                onClick={() => setToastMessage(`Drone view for ${currentPlot.id} is coming soon.`)}
-                className="w-full py-2.5 rounded-lg text-xs font-bold tracking-wider uppercase border border-line bg-white text-bb-slate hover:bg-bb-paper transition-colors"
-              >
-                Drone View
-              </button>
-
-              <button
-                onClick={() => setToastMessage(`Added ${currentPlot.id} to comparison list.`)}
-                className="w-full py-2.5 bg-ink hover:bg-ink/90 text-white rounded-lg text-xs font-bold tracking-wider uppercase transition-colors"
-              >
-                Add To Compare
-              </button>
-            </div>
+          <div className="mt-4 grid grid-cols-2 gap-3 border-t border-line/70 pt-4">
+            <button
+              type="button"
+              onClick={() => changeView("drone")}
+              className="min-h-11 rounded-lg border border-line bg-white text-xs font-bold uppercase tracking-wider text-bb-slate transition-colors hover:bg-bb-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+            >
+              Drone view
+            </button>
+            <button
+              type="button"
+              onClick={() => setToastMessage(`Added ${currentPlot.id} to comparison list.`)}
+              className="min-h-11 rounded-lg bg-ink text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-ink/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+            >
+              Add to compare
+            </button>
           </div>
         </div>
 
