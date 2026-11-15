@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { SALES_PHONE, SALES_PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
+import { buttonPrimary, buttonSecondary } from "./ui/button";
 
 const navItems = [
   { name: "Custom software", href: "/custom-real-estate-software" },
@@ -32,6 +34,32 @@ export default function Navbar() {
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
+
+  // While the menu is open the page behind it must not scroll. Escape, or
+  // widening the window to the desktop layout, closes it.
+  useEffect(() => {
+    if (!isOpen) return;
+    const root = document.documentElement;
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+    const closeOnDesktop = () => {
+      if (desktop.matches) setIsOpen(false);
+    };
+    root.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => {
+      root.style.overflow = "";
+      window.removeEventListener("keydown", closeOnEscape);
+      desktop.removeEventListener("change", closeOnDesktop);
+    };
+  }, [isOpen]);
+
+  // A link to a section of the current page (Solutions on the homepage) does
+  // not change the pathname, so every menu link closes the menu itself.
+  const closeMenu = () => setIsOpen(false);
 
   const solid = scrolled || isOpen;
 
@@ -87,31 +115,49 @@ export default function Navbar() {
       </nav>
 
       {isOpen && (
-        <div id="mobile-menu" className="border-t border-line bg-bb-paper lg:hidden">
-          <ul className="mx-auto flex max-w-6xl flex-col px-4 py-4 sm:px-6">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    aria-current={isActive ? "page" : undefined}
-                    className={`block py-3 text-lg font-medium ${isActive ? "text-ink" : "text-bb-slate"}`}
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-          <div className="mx-auto max-w-6xl px-4 pb-6 sm:px-6">
-            <Link
-              href="/contact"
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-bb-orange py-3.5 font-semibold text-ink"
-            >
-              Book a demo
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </Link>
+        <div
+          id="mobile-menu"
+          className="fixed inset-x-0 bottom-0 top-18 overflow-y-auto overscroll-contain border-t border-line bg-bb-paper motion-safe:animate-[fade-up_300ms_cubic-bezier(0.16,1,0.3,1)] lg:hidden"
+        >
+          <div className="mx-auto flex min-h-full max-w-6xl flex-col px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-2 sm:px-6">
+            <ul className="divide-y divide-line">
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      onClick={closeMenu}
+                      aria-current={isActive ? "page" : undefined}
+                      className="flex min-h-14 items-center justify-between py-3 font-display text-2xl font-semibold text-ink"
+                    >
+                      {item.name}
+                      {isActive ? (
+                        <span aria-hidden className="h-2 w-2 rounded-full bg-bb-orange" />
+                      ) : (
+                        <ArrowRight className="h-5 w-5 text-bb-slate" aria-hidden />
+                      )}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="mt-auto grid gap-3 pt-8">
+              <Link href="/contact" onClick={closeMenu} className={buttonPrimary}>
+                Book a demo
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={buttonSecondary}>
+                <MessageCircle className="h-4 w-4" aria-hidden />
+                Message us on WhatsApp
+              </a>
+              <p className="pt-1 text-center text-sm text-bb-slate">
+                Or call{" "}
+                <a href={`tel:${SALES_PHONE}`} className="font-mono text-ink underline-offset-4 hover:underline">
+                  {SALES_PHONE_DISPLAY}
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       )}
