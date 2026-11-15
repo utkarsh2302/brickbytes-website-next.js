@@ -3,6 +3,7 @@ import { DM_Mono, Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MobileCtaBar from "@/components/MobileCtaBar";
 import JsonLd from "@/components/JsonLd";
 import MetaPixel from "@/components/MetaPixel";
 import { constructMetadata, SITE_DESCRIPTION, siteJsonLdNodes } from "@/lib/seo";
@@ -51,6 +52,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <MobileCtaBar />
         <MetaPixel />
       </body>
     </html>
