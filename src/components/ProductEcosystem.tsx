@@ -162,15 +162,16 @@ function useStacked() {
 // From lg up, each card pins near the top of the screen and the next one
 // slides over it; the covered card eases back a little, so the three read as
 // a stack. Below lg only the chosen card shows (the others stay in the HTML).
+// Panels are divs, not list items: a tabpanel role is not allowed on an li.
 function StackedCard({ card, index, active }: { card: PlatformCard; index: number; active: boolean }) {
-  const element = useRef<HTMLLIElement>(null);
+  const element = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
   const stacked = useStacked();
   const { scrollYProgress } = useScroll({ target: element, offset: ["start start", "end start"] });
   const scale = useTransform(scrollYProgress, [0, 1], [1, stacked && !reducedMotion ? 0.92 : 1]);
 
   return (
-    <li
+    <div
       ref={element}
       id={`platform-panel-${index}`}
       role="tabpanel"
@@ -208,7 +209,7 @@ function StackedCard({ card, index, active }: { card: PlatformCard; index: numbe
           <div className="mx-auto w-full max-w-sm lg:max-w-none">{card.mockup}</div>
         </div>
       </motion.article>
-    </li>
+    </div>
   );
 }
 
@@ -248,11 +249,11 @@ export default function ProductEcosystem() {
           ))}
         </div>
 
-        <ul className="lg:space-y-16">
+        <div className="lg:space-y-16">
           {platformCards.map((card, index) => (
             <StackedCard key={card.title} card={card} index={index} active={index === activeIndex} />
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

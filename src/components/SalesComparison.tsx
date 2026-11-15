@@ -106,12 +106,20 @@ function StepCard({ step, still }: { step: Step; still: boolean }) {
         </div>
       </div>
 
+      {/* The answer moves into place but is never faded: text that only reaches
+          full contrast after scrolling fails readers who haven't scrolled yet. */}
       <motion.div
-        variants={{ waiting: { opacity: 0.35, y: 6 }, shown: { opacity: 1, y: 0 } }}
+        variants={{ waiting: { y: 8 }, shown: { y: 0 } }}
         transition={{ duration: 0.5, delay: 0.25, ease: EASE }}
         className="mt-4 flex items-start gap-4 border-t border-dashed border-ink/15 pt-4"
       >
-        <BrandIcon name={step.after.icon} className="h-8 w-8 shrink-0" />
+        <motion.span
+          variants={{ waiting: { scale: 0.6 }, shown: { scale: 1 } }}
+          transition={{ duration: 0.5, delay: 0.3, ease: EASE }}
+          className="block shrink-0"
+        >
+          <BrandIcon name={step.after.icon} className="h-8 w-8" />
+        </motion.span>
         <div>
           <h3 className="font-display text-lg font-semibold text-ink">
             <span className="sr-only">With BrickBytes: </span>
