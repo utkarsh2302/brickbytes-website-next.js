@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { ArrowUp } from "lucide-react";
+import { useState } from "react";
+import { ArrowUp, Plus } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { LINKEDIN_URL, SALES_PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
@@ -64,6 +64,9 @@ const columns = [
 const linkClass = "inline-block py-1.5 text-sm text-bb-slate transition-colors hover:text-ink md:py-0";
 
 export default function Footer() {
+  // Phones only: one link group open at a time; from md up every group shows.
+  const [openColumn, setOpenColumn] = useState<string | null>(null);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -71,8 +74,8 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-line bg-bb-paper py-12 text-ink sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 md:gap-8 lg:grid-cols-7">
-          <div className="col-span-2 flex flex-col gap-6 md:col-span-4 lg:col-span-2">
+        <div className="grid grid-cols-2 gap-x-6 md:grid-cols-4 md:gap-8 lg:grid-cols-7">
+          <div className="col-span-2 flex flex-col gap-6 pb-8 md:col-span-4 md:pb-0 lg:col-span-2">
             <Link href="/" className="flex w-fit items-center">
               <Image src="/logo.svg" alt="BrickBytes" width={130} height={28} className="h-7 w-auto" />
             </Link>
@@ -84,28 +87,44 @@ export default function Footer() {
             </div>
           </div>
 
-          {columns.map((column) => (
-            <nav
-              key={column.title}
-              aria-labelledby={`footer-${column.title}`}
-              className="col-span-2 flex flex-col gap-2 md:col-span-1 md:gap-4"
-            >
-              <p id={`footer-${column.title}`} className="text-sm font-semibold text-ink">
-                {column.title}
-              </p>
-              <ul className="flex flex-wrap gap-x-5 md:flex-col md:gap-3">
-                {column.links.map((link) => (
-                  <li key={link.name}>
-                    <Link href={link.href} className={linkClass}>
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))}
+          {columns.map((column) => {
+            const open = openColumn === column.title;
+            return (
+              <nav
+                key={column.title}
+                aria-labelledby={`footer-${column.title}`}
+                className="col-span-2 flex flex-col border-t border-line md:col-span-1 md:gap-4 md:border-0"
+              >
+                <button
+                  type="button"
+                  aria-expanded={open}
+                  aria-controls={`footer-links-${column.title}`}
+                  onClick={() => setOpenColumn(open ? null : column.title)}
+                  className="flex min-h-12 items-center justify-between text-sm font-semibold text-ink md:hidden"
+                >
+                  {column.title}
+                  <Plus className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-45" : ""}`} aria-hidden />
+                </button>
+                <p id={`footer-${column.title}`} className="hidden text-sm font-semibold text-ink md:block">
+                  {column.title}
+                </p>
+                <ul
+                  id={`footer-links-${column.title}`}
+                  className={`${open ? "flex" : "hidden"} flex-wrap gap-x-5 pb-4 md:flex md:flex-col md:gap-3 md:pb-0`}
+                >
+                  {column.links.map((link) => (
+                    <li key={link.name}>
+                      <Link href={link.href} className={linkClass}>
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            );
+          })}
 
-          <div className="col-span-2 flex flex-col gap-2 md:col-span-1 md:gap-4">
+          <div className="col-span-2 flex flex-col gap-2 border-t border-line pt-6 md:col-span-1 md:gap-4 md:border-0 md:pt-0">
             <p className="text-sm font-semibold text-ink">Get in touch</p>
             <ul className="flex flex-wrap gap-x-5 md:flex-col md:gap-3">
               <li>
