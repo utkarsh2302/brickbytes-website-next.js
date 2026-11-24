@@ -108,7 +108,7 @@ const content: LandingPageContent = {
       answer: `${plotCount(sqYdOf(30, 40), 100)} by area alone, since one 30x40 site is 1,200 sq ft. After roads and parks, if 60% of the land is sold as sites, about ${plotCount(sqYdOf(30, 40), 60)}.`,
     },
     {
-      question: "How many 40x60 sites are in one acre?",
+      question: "How many 40x60 (60x40) sites are in one acre?",
       answer: `${plotCount(sqYdOf(40, 60), 100)} by area alone (2,400 sq ft each), or about ${plotCount(sqYdOf(40, 60), 60)} if 60% of the land is sold as sites.`,
     },
     {
