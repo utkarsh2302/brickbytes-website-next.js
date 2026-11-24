@@ -18,6 +18,13 @@ describe("estimatePlotYield", () => {
     assert.deepEqual(result, { saleableSqYd: 2904, plotCount: 14 });
   });
 
+  it("counts 30x40 ft sites in one acre from a size given in feet", () => {
+    // 1,200 sq ft is 133.33… sq yd; the guide quotes 36 by area and 21 at 60%
+    const plotSqYd = (30 * 40) / 9;
+    assert.equal(estimatePlotYield({ landSqYd: 4840, saleablePercent: 100, plotSqYd })?.plotCount, 36);
+    assert.equal(estimatePlotYield({ landSqYd: 4840, saleablePercent: 60, plotSqYd })?.plotCount, 21);
+  });
+
   it("counts a plot that fits exactly, despite floating-point error", () => {
     // 0.18 acres is 871.2 sq yd, which floating point stores as 871.1999999999999
     const result = estimatePlotYield({ landSqYd: acresToSqYd(0.18), saleablePercent: 100, plotSqYd: 217.8 });

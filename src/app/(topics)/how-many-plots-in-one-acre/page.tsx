@@ -7,25 +7,52 @@ import { constructMetadata, ORGANIZATION_ID, SITE_URL } from "@/lib/seo";
 const path = "/how-many-plots-in-one-acre";
 const title = "How many plots fit in one acre";
 const description =
-  "How many plots fit in 1 acre? One acre is 4,840 sq yd (gaj). Enter your plot size and the share of land sold as plots to estimate your layout's plot count.";
-// Update when the guide's content changes
+  "How many plots or sites fit in 1 acre? One acre is 4,840 sq yd (gaj) or 43,560 sq ft. See counts for 30x40 and 40x60 sites and 100 to 500 gaj plots.";
 const published = "2026-10-31";
+// Update when the guide's content changes
+const modified = "2026-11-24";
 
 export const metadata: Metadata = constructMetadata({
-  title: "How Many Plots in 1 Acre? Plot Calculator | BrickBytes",
+  title: "How Many Plots or Sites in 1 Acre? Calculator | BrickBytes",
   description,
   path,
 });
 
-// The reference table: plots per acre for common sizes, at a few shares of land sold as plots
-const tablePlotSizes = [100, 150, 200, 250, 300, 500];
+// Reference tables: plots per acre for common sizes, at a few shares of land
+// sold as plots. North India sizes plots in sq yd (gaj); much of South India
+// calls them sites and sizes them in feet (30x40 is 1,200 sq ft).
 const tableSaleablePercents = [100, 70, 60, 50];
+
+type TableRow = { label: string; detail: string; plotSqYd: number };
+
+const sqYdRows: TableRow[] = [100, 150, 200, 250, 300, 500].map((plotSqYd) => ({
+  label: `${plotSqYd} sq yd`,
+  detail: `${(plotSqYd * SQ_FT_PER_SQ_YD).toLocaleString("en-IN")} sq ft`,
+  plotSqYd,
+}));
+
+const feetRows: TableRow[] = [
+  [20, 30],
+  [30, 40],
+  [30, 50],
+  [40, 60],
+  [50, 80],
+].map(([width, depth]) => ({
+  label: `${width}x${depth} ft`,
+  detail: `${(width * depth).toLocaleString("en-IN")} sq ft`,
+  plotSqYd: (width * depth) / SQ_FT_PER_SQ_YD,
+}));
+
+const plotCount = (plotSqYd: number, saleablePercent: number) =>
+  estimatePlotYield({ landSqYd: SQ_YD_PER_ACRE, saleablePercent, plotSqYd })?.plotCount;
+
+const sqYdOf = (widthFt: number, depthFt: number) => (widthFt * depthFt) / SQ_FT_PER_SQ_YD;
 
 const content: LandingPageContent = {
   name: "Plots in one acre",
   path,
   title,
-  lead: "One acre is 4,840 sq yd (gaj), or 43,560 sq ft. Enter your plot size and how much of the land you'll sell as plots, and the calculator estimates how many plots your layout can hold.",
+  lead: "One acre is 4,840 sq yd (gaj), or 43,560 sq ft. Enter your plot or site size and how much of the land you'll sell as plots, and the calculator estimates how many your layout can hold.",
   sections: [
     {
       title: "The formula",
@@ -77,6 +104,14 @@ const content: LandingPageContent = {
       answer: "24 by area alone, or about 14 if 60% of the land is sold as plots.",
     },
     {
+      question: "How many 30x40 sites are in one acre?",
+      answer: `${plotCount(sqYdOf(30, 40), 100)} by area alone, since one 30x40 site is 1,200 sq ft. After roads and parks, if 60% of the land is sold as sites, about ${plotCount(sqYdOf(30, 40), 60)}.`,
+    },
+    {
+      question: "How many 40x60 sites are in one acre?",
+      answer: `${plotCount(sqYdOf(40, 60), 100)} by area alone (2,400 sq ft each), or about ${plotCount(sqYdOf(40, 60), 60)} if 60% of the land is sold as sites.`,
+    },
+    {
       question: "Can I use the calculator for land measured in bigha?",
       answer:
         "Yes, after converting it. A bigha's size changes from state to state, and sometimes between districts, so convert your land to square yards using the local value, choose sq yd and enter that.",
@@ -89,8 +124,51 @@ const content: LandingPageContent = {
   ],
 };
 
-const plotCount = (plotSqYd: number, saleablePercent: number) =>
-  estimatePlotYield({ landSqYd: SQ_YD_PER_ACRE, saleablePercent, plotSqYd })?.plotCount;
+function PlotsPerAcreTable({ id, heading, rows }: { id: string; heading: string; rows: TableRow[] }) {
+  return (
+    <section aria-labelledby={id} className="relative bg-bb-paper pb-16 sm:pb-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <h2 id={id} className="font-display text-2xl font-extrabold text-ink sm:text-3xl">
+          {heading}
+        </h2>
+        <div className="mt-8 overflow-x-auto rounded-2xl border border-line bg-white">
+          <table className="w-full text-left text-base">
+            <caption className="px-3 pt-5 sm:px-5 text-left text-sm text-bb-slate">
+              Columns show the share of the acre sold as plots; the rest is roads, parks and common areas.
+            </caption>
+            <thead>
+              <tr className="border-b border-line text-sm text-bb-slate">
+                <th scope="col" className="px-3 py-4 sm:p-5 font-medium">
+                  Size
+                </th>
+                {tableSaleablePercents.map((percent) => (
+                  <th key={percent} scope="col" className="px-2 py-4 sm:p-5 text-right font-medium">
+                    {percent}%
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row) => (
+                <tr key={row.label} className="border-b border-line last:border-b-0">
+                  <th scope="row" className="px-3 py-4 sm:p-5 whitespace-nowrap font-semibold text-ink">
+                    {row.label}
+                    <span className="block text-sm font-normal text-bb-slate">{row.detail}</span>
+                  </th>
+                  {tableSaleablePercents.map((percent) => (
+                    <td key={percent} className="px-2 py-4 sm:p-5 text-right tabular-nums text-ink">
+                      {plotCount(row.plotSqYd, percent)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function PlotsInOneAcreRoute() {
   return (
@@ -105,7 +183,7 @@ export default function PlotsInOneAcreRoute() {
               description,
               url: `${SITE_URL}${path}`,
               datePublished: published,
-              dateModified: published,
+              dateModified: modified,
               inLanguage: "en-IN",
               author: { "@id": ORGANIZATION_ID },
               publisher: { "@id": ORGANIZATION_ID },
@@ -114,49 +192,8 @@ export default function PlotsInOneAcreRoute() {
         >
           <PlotYieldCalculator />
 
-          <section aria-labelledby="plots-per-acre-table" className="relative bg-bb-paper pb-16 sm:pb-20">
-            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-              <h2 id="plots-per-acre-table" className="font-display text-2xl font-extrabold text-ink sm:text-3xl">
-                Plots in one acre, by plot size
-              </h2>
-              <div className="mt-8 overflow-x-auto rounded-2xl border border-line bg-white">
-                <table className="w-full text-left text-base">
-                  <caption className="px-3 pt-5 sm:px-5 text-left text-sm text-bb-slate">
-                    Columns show the share of the acre sold as plots; the rest is roads, parks and common areas.
-                  </caption>
-                  <thead>
-                    <tr className="border-b border-line text-sm text-bb-slate">
-                      <th scope="col" className="px-3 py-4 sm:p-5 font-medium">
-                        Plot size
-                      </th>
-                      {tableSaleablePercents.map((percent) => (
-                        <th key={percent} scope="col" className="px-3 py-4 sm:p-5 text-right font-medium">
-                          {percent}%
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {tablePlotSizes.map((plotSqYd) => (
-                      <tr key={plotSqYd} className="border-b border-line last:border-b-0">
-                        <th scope="row" className="px-3 py-4 sm:p-5 whitespace-nowrap font-semibold text-ink">
-                          {plotSqYd} sq yd
-                          <span className="block text-sm font-normal text-bb-slate">
-                            {(plotSqYd * SQ_FT_PER_SQ_YD).toLocaleString("en-IN")} sq ft
-                          </span>
-                        </th>
-                        {tableSaleablePercents.map((percent) => (
-                          <td key={percent} className="px-3 py-4 sm:p-5 text-right tabular-nums text-ink">
-                            {plotCount(plotSqYd, percent)}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
+          <PlotsPerAcreTable id="plots-per-acre-table" heading="Plots in one acre, by plot size" rows={sqYdRows} />
+          <PlotsPerAcreTable id="sites-per-acre-table" heading="Sites in one acre, by size in feet" rows={feetRows} />
         </LandingPage>
       </main>
     </div>
